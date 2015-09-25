@@ -28,22 +28,30 @@
   <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
 
   <xml id="toolbox" style="display: none">
-    <block type="controls_if"></block>
-    <block type="logic_boolean"></block>
-    <block type="logic_operation"></block>
-    <block type="logic_negate"></block>
-    <block type="logic_compare"></block>
-    <block type="math_number"></block>
-    <block type="math_arithmetic"></block>
-    <block type="poker_check"></block>
-    <block type="poker_fold"></block>
-    <block type="poker_raise">
-      <value name="amount">
-        <block type="math_number">
-          <field name="NUM">0</field>
-        </block>
-      </value>
-    </block>
+    <category name="Control">
+      <block type="controls_if"></block>
+    </category>
+    <category name="Actions">
+      <block type="poker_check"></block>
+      <block type="poker_fold"></block>
+      <block type="poker_raise">
+        <value name="amount">
+          <block type="math_number">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+      </block>
+    </category>
+    <category name="Logic">
+      <block type="logic_boolean"></block>
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
+      <block type="logic_compare"></block>
+    </category>
+    <category name="Math">
+      <block type="math_number"></block>
+      <block type="math_arithmetic"></block>
+    </category>
   </xml>
   </div>
 
