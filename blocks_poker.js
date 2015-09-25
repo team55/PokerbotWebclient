@@ -1,10 +1,10 @@
-Blockly.Blocks['poker_check'] = {
+Blockly.Blocks['poker_call'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("check");
+        .appendField("call");
     this.setPreviousStatement(true);
     this.setColour(20);
-    this.setTooltip('Do action: check');
+    this.setTooltip('Do action: call');
   }
 };
 
