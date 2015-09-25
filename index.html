@@ -7,6 +7,7 @@
   <script src="blockly/blocks_compressed.js"></script>
   <script src="blockly/msg/js/en.js"></script>
   <script src="blocks_poker.js"></script>
+  <script src="generator_prolog.js"></script>
   <style>
     body {
       background-color: #fff;
@@ -25,6 +26,10 @@
 
   <div id="workDiv">
   <h1>Make your own pokerbot!</h1>
+  <p>
+    <button onclick="submit()">Submit to server (for now: show code)</button>
+    <textarea id="textarea" rows="4" cols="30"></textarea>
+  </p>
   <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
 
   <xml id="toolbox" style="display: none">
@@ -63,6 +68,16 @@
     var workspace = Blockly.inject('blocklyDiv',
         {media: 'blockly/media/',
          toolbox: document.getElementById('toolbox')});
+    function submit() {
+      // Generate Prolog code and display it.
+      var code = Blockly.Prolog.workspaceToCode(workspace);
+      alert(code);
+    }
+    function myUpdateFunction() {
+      var code = Blockly.Prolog.workspaceToCode(workspace);
+      document.getElementById('textarea').value = code;
+    }
+    workspace.addChangeListener(myUpdateFunction);
   </script>
 
 </body>
