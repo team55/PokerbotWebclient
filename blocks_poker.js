@@ -33,7 +33,7 @@ Blockly.Blocks['poker_raise'] = {
 Blockly.Blocks['poker_card_set'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["hand cards", "hand"], ["table cards", "table"], ["hand and table cards", "all"]]), "NAME");
+        .appendField(new Blockly.FieldDropdown([["hand cards", "handkaarten"], ["table cards", "tafelkaarten"], ["hand and table cards", "allekaarten"]]), "NAME");
     this.setOutput(true, "POKER_TYPE_CARDSET");
     this.setColour(330);
     this.setTooltip('');
@@ -88,7 +88,7 @@ Blockly.Blocks['poker_card_valop'] = {
         .setCheck("POKER_TYPE_CARDSET");
     this.appendDummyInput()
         .appendField("have value")
-        .appendField(new Blockly.FieldDropdown([["=", "eq"], [">=", "gq"], [">", "gr"], ["<=", "lq"], ["<", "le"], ["!=", "nq"]]), "OP");
+        .appendField(new Blockly.FieldDropdown([["=", "="], [">=", ">="], [">", ">"], ["<=", "<="], ["<", "<"], ["!=", "!="]]), "OP");
     this.appendValueInput("value")
         .setCheck("POKER_TYPE_CARD");
     this.setOutput(true, "Boolean");

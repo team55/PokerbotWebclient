@@ -79,6 +79,10 @@ Blockly.Prolog.ORDER_NONE = 99;          // (...)
  * @param {!Blockly.Workspace} workspace Workspace to generate code from.
  */
 Blockly.Prolog.init = function(workspace) {
+  // Init global variable-name counter (X1, X2, ...)
+  Blockly.Prolog.varcounter = 1;
+  // scope for 'and' expressions
+  Blockly.Prolog.scope = '';
   // Create a dictionary of definitions to be printed before the code.
   Blockly.Prolog.definitions_ = Object.create(null);
   // Create a dictionary mapping desired function names in definitions_
@@ -148,20 +152,28 @@ Blockly.Prolog.scrub_ = function(block, code) {
 
 Blockly.Prolog['controls_if'] = function(block) {
   // If/elseif/else condition.
+  var code = '';
   var n = 0;
-  var argument = Blockly.Prolog.valueToCode(block, 'IF' + n,
-      Blockly.Prolog.ORDER_NONE) || 'true';
-  var branch = Blockly.Prolog.statementToCode(block, 'DO' + n) || 'fold';
-  var code = 'do(' + branch + ', ' + (n+1) + ') :- ' + argument + '.';
-  for (n = 1; n <= block.elseifCount_; n++) {
-    argument = Blockly.Prolog.valueToCode(block, 'IF' + n,
+  for (; n <= block.elseifCount_; n++) {
+    var argument = Blockly.Prolog.valueToCode(block, 'IF' + n,
         Blockly.Prolog.ORDER_NONE) || 'true';
-    branch = Blockly.Prolog.statementToCode(block, 'DO' + n) || 'fold';
+    var branch = Blockly.Prolog.statementToCode(block, 'DO' + n) || 'fold';
+    var scope = Blockly.Prolog.scope;
+    if (scope != '') {
+        argument = scope + ', ' + argument;
+        Blockly.Prolog.scope = '';
+    }
     code += 'do(' + branch + ', ' + (n+1) + ') :- ' + argument + '.';
   }
   if (block.elseCount_) {
-    branch = Blockly.Prolog.statementToCode(block, 'ELSE');
-    code += 'do(' + branch + ', ' + (n+2) + ') :- true.';
+    var branch = Blockly.Prolog.statementToCode(block, 'ELSE');
+    var argument = 'true';
+    var scope = Blockly.Prolog.scope;
+    if (scope != '') {
+        argument = scope;
+        Blockly.Prolog.scope = '';
+    }
+    code += 'do(' + branch + ', ' + (n+2) + ') :- ' + argument + '.';
   }
   return code + '\n';
 };
@@ -279,12 +291,15 @@ Blockly.Prolog['poker_raise'] = function(block) {
   return code;
 };
 
+// returns the var!
 Blockly.Prolog['poker_card_set'] = function(block) {
   var dropdown_name = block.getFieldValue('NAME');
-  // TODO: Assemble Prolog into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.Prolog.ORDER_NONE];
+  var Xnew = 'X'+Blockly.Prolog.varcounter;
+  Blockly.Prolog.varcounter += 1;
+
+  var code = dropdown_name + '(' + Xnew + ')';
+  Blockly.Prolog.scope += code;
+  return [Xnew, Blockly.Prolog.ORDER_NONE];
 };
 
 Blockly.Prolog['poker_card_in'] = function(block) {
@@ -300,26 +315,36 @@ Blockly.Prolog['poker_card_suit'] = function(block) {
   var value_cardset = Blockly.Prolog.valueToCode(block, 'cardset', Blockly.Prolog.ORDER_ATOMIC);
   var dropdown_name = block.getFieldValue('NAME');
   // TODO: Assemble Prolog into code variable.
-  var code = '...';
+  var code = value_cardset + ', ' + '...';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Prolog.ORDER_NONE];
 };
 
-Blockly.Prolog['poker_card_vale'] = function(block) {
+Blockly.Prolog['poker_card_valeq'] = function(block) {
   var value_cardset = Blockly.Prolog.valueToCode(block, 'cardset', Blockly.Prolog.ORDER_ATOMIC);
   var dropdown_name = block.getFieldValue('NAME');
   // TODO: Assemble Prolog into code variable.
-  var code = '...';
+  var code = value_cardset + ', ' + '...';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Prolog.ORDER_NONE];
 };
 
-Blockly.Prolog['poker_card_valo'] = function(block) {
-  var value_cardset = Blockly.Prolog.valueToCode(block, 'cardset', Blockly.Prolog.ORDER_ATOMIC);
+Blockly.Prolog['poker_card_valop'] = function(block) {
+  //members([card(X0, _)],X1), X0 >=10.
+  var X_cardset = Blockly.Prolog.valueToCode(block, 'cardset', Blockly.Prolog.ORDER_NONE) || '_';
+  var Xnew = 'X'+Blockly.Prolog.varcounter;
+  Blockly.Prolog.varcounter += 1;
   var dropdown_op = block.getFieldValue('OP');
-  var value_value = Blockly.Prolog.valueToCode(block, 'value', Blockly.Prolog.ORDER_ATOMIC);
-  // TODO: Assemble Prolog into code variable.
-  var code = '...';
+  var X_value = Blockly.Prolog.valueToCode(block, 'value', Blockly.Prolog.ORDER_NONE);
+
+  var code = 'members([card('+Xnew+',_)],'+X_cardset+'), ';
+  code    += Xnew + ' ' + dropdown_op + ' ' + X_value;
   // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Prolog.ORDER_NONE];
+};
+
+Blockly.Prolog['poker_card_val'] = function(block) {
+  var dropdown_name = block.getFieldValue('val');
+  var code = dropdown_name;
   return [code, Blockly.Prolog.ORDER_NONE];
 };
