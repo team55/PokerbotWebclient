@@ -37,6 +37,8 @@ Blockly.Prolog = new Blockly.Generator('Prolog');
 Blockly.Prolog.addReservedWords(
     'fuck');
 
+Blockly.Prolog.INDENT = '';
+
 /**
  * Order of operation ENUMs.
  * http://php.net/manual/en/language.operators.precedence.php
