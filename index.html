@@ -35,6 +35,9 @@
   <xml id="toolbox" style="display: none">
     <category name="Control">
       <block type="controls_if"></block>
+      <block type="logic_boolean"></block>
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
     </category>
     <category name="Actions">
       <block type="poker_call"></block>
@@ -47,11 +50,27 @@
         </value>
       </block>
     </category>
-    <category name="Logic">
-      <block type="logic_boolean"></block>
-      <block type="logic_operation"></block>
-      <block type="logic_negate"></block>
-      <block type="logic_compare"></block>
+    <category name="Cards">
+      <block type="poker_card_set"></block>
+      <block type="poker_card_in">
+        <value name="nr">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="set">
+          <block type="poker_card_set"></block>
+        </value>
+      </block>
+      <block type="poker_card_suit"></block>
+      <block type="poker_card_valeq"></block>
+      <block type="poker_card_valop">
+        <value name="value">
+          <block type="poker_card_val">
+            <field name="val">Ace</field>
+          </block>
+        </value>
+      </block>
     </category>
     <category name="Math">
       <block type="math_number"></block>

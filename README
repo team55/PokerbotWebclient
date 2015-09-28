@@ -4,13 +4,7 @@ Uses blockly for pure client-side blocks.
 
 
 TODO:
-- equivalent of CardEquation
-    perhaps: pkr_cardin:   <pkr_cardval> in <pkr_cardset>
-             pkr_cardsuit: <pkr_cardin|pkr_cardset> have suit equal to [hearts, diamonds, clubs, spades, same suit]
-             pkr_cardval:  <pkr_cardin|pkr_cardset> have value [=,!=,<,<=,>,>=] <int>
-             pkr_cardval:  <pkr_cardin|pkr_cardset> have [equal value,increasing values]
-             pkr_cardsel:  any <int> card(s)
-             pkr_cardset:  all [table cards, hand cards, table and hand cards]
+- prolog output of card_ blocks
 - correct prolog output; no nested math, but raise(5+3) -> raise(X1), X1 is 5+3
 - connect to a table (using http request: https://github.com/Dtai/Webserver/blob/master/server/joinTable.php)
 - send rules to a table (same as above)

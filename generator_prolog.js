@@ -276,3 +276,48 @@ Blockly.Prolog['poker_raise'] = function(block) {
   var code = 'raise(' + argument0 + ')';
   return code;
 };
+
+Blockly.Prolog['poker_card_set'] = function(block) {
+  var dropdown_name = block.getFieldValue('NAME');
+  // TODO: Assemble Prolog into code variable.
+  var code = '...';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Prolog.ORDER_NONE];
+};
+
+Blockly.Prolog['poker_card_in'] = function(block) {
+  var value_nr = Blockly.Prolog.valueToCode(block, 'nr', Blockly.Prolog.ORDER_ATOMIC);
+  var value_set = Blockly.Prolog.valueToCode(block, 'set', Blockly.Prolog.ORDER_ATOMIC);
+  // TODO: Assemble Prolog into code variable.
+  var code = '...';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Prolog.ORDER_NONE];
+};
+
+Blockly.Prolog['poker_card_suit'] = function(block) {
+  var value_cardset = Blockly.Prolog.valueToCode(block, 'cardset', Blockly.Prolog.ORDER_ATOMIC);
+  var dropdown_name = block.getFieldValue('NAME');
+  // TODO: Assemble Prolog into code variable.
+  var code = '...';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Prolog.ORDER_NONE];
+};
+
+Blockly.Prolog['poker_card_vale'] = function(block) {
+  var value_cardset = Blockly.Prolog.valueToCode(block, 'cardset', Blockly.Prolog.ORDER_ATOMIC);
+  var dropdown_name = block.getFieldValue('NAME');
+  // TODO: Assemble Prolog into code variable.
+  var code = '...';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Prolog.ORDER_NONE];
+};
+
+Blockly.Prolog['poker_card_valo'] = function(block) {
+  var value_cardset = Blockly.Prolog.valueToCode(block, 'cardset', Blockly.Prolog.ORDER_ATOMIC);
+  var dropdown_op = block.getFieldValue('OP');
+  var value_value = Blockly.Prolog.valueToCode(block, 'value', Blockly.Prolog.ORDER_ATOMIC);
+  // TODO: Assemble Prolog into code variable.
+  var code = '...';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Prolog.ORDER_NONE];
+};
