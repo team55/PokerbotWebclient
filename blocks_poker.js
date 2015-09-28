@@ -61,7 +61,7 @@ Blockly.Blocks['poker_card_suit'] = {
         .setCheck("POKER_TYPE_CARDSET");
     this.appendDummyInput()
         .appendField("have suit equal to")
-        .appendField(new Blockly.FieldDropdown([["hearts", "hearts"], ["diamonds", "diamonds"], ["clubs", "clubs"], ["spades", "spades"], ["same suit", "same"]]), "NAME");
+        .appendField(new Blockly.FieldDropdown([["hearts", "h"], ["diamonds", "d"], ["clubs", "c"], ["spades", "s"], ["same suit", "same"]]), "NAME");
     this.setOutput(true, "Boolean");
     this.setColour(210);
     this.setTooltip('');
