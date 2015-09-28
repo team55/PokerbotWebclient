@@ -58,16 +58,31 @@
       <block type="math_arithmetic"></block>
     </category>
   </xml>
+
+  <xml id="startBlocks" style="display: none">
+    <block type="controls_if" x="25" y="25">
+      <value name="IF0">
+        <block type="logic_boolean">
+          <field name="BOOL">TRUE</field>
+        </block>
+      </value>
+      <statement name="DO0">
+        <block type="poker_call"></block>
+      </statement>
+    </block>
+  </xml>
   </div>
 
-  <div id="gameDiv">
-    gameDiv
+  <div id="scoreDiv">
+    scoreDiv
   </div>
 
   <script>
     var workspace = Blockly.inject('blocklyDiv',
         {media: 'blockly/media/',
          toolbox: document.getElementById('toolbox')});
+    Blockly.Xml.domToWorkspace(workspace,
+            document.getElementById('startBlocks'));
     function submit() {
       // Generate Prolog code and display it.
       var code = Blockly.Prolog.workspaceToCode(workspace);
