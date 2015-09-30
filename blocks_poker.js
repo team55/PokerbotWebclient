@@ -88,7 +88,7 @@ Blockly.Blocks['poker_card_valop'] = {
         .setCheck("POKER_TYPE_CARDSET");
     this.appendDummyInput()
         .appendField("have value")
-        .appendField(new Blockly.FieldDropdown([["=", "="], [">=", ">="], [">", ">"], ["<=", "<="], ["<", "<"], ["!=", "!="]]), "OP");
+        .appendField(new Blockly.FieldDropdown([["=", "=:="], [">=", ">="], [">", ">"], ["<=", "=<"], ["<", "<"], ["!=", "=\\="]]), "OP");
     this.appendValueInput("value")
         .setCheck("POKER_TYPE_CARD");
     this.setOutput(true, "Boolean");
