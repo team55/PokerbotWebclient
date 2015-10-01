@@ -390,16 +390,25 @@ Blockly.Prolog['poker_card_valeq'] = function(block) {
 };
 
 Blockly.Prolog['poker_card_valop'] = function(block) {
-  //allekaarten(X1), members([card(X0, _)],X1), X0 >=10
   var X_cardset = Blockly.Prolog.valueToCode(block, 'cardset', Blockly.Prolog.ORDER_NONE) || '_';
-  var Xnew = Blockly.Prolog.newvar();
   var dropdown_op = block.getFieldValue('OP');
   var X_value = Blockly.Prolog.valueToCode(block, 'value', Blockly.Prolog.ORDER_NONE);
 
-  // all in list: // L=[(f,2),(h,3),(h,5)], forall(member((_,V), L), V =< 5).
-  // 2 in list: // L=[(f,2),(h,3),(h,5)], findall(true, (member((_,V), L), V =< 4), R), length(R,N), N >= 2.
-  var code = 'members([card('+Xnew+',_)],'+X_cardset+'), ';
-  code    += Xnew + ' ' + dropdown_op + ' ' + X_value;
+  var t1 = Blockly.Prolog.newvar();
+  var n = Blockly.Prolog.cardset_nr;
+  var code = '';
+  if (n == -1) {
+    // all in list: // L=[(f,2),(h,3),(h,5)], forall(member((_,V), L), V =< 5).
+    code = 'forall(member((_,'+t1+'), '+X_cardset+'), '+t1+' '+dropdown_op+' '+X_value+')';
+  } else if (n == 1) {
+    code = 'member((_,'+t1+'), '+X_cardset+'), '+t1+' '+dropdown_op+' '+X_value+', !';
+  } else if (n > 1) {
+    var t2 = Blockly.Prolog.newvar();
+    var t3 = Blockly.Prolog.newvar();
+    var t4 = Blockly.Prolog.newvar();
+    // 2 in list: // L=[(f,2),(h,3),(h,5)], findall(true, (member((_,V), L), V =< 4), R), length(R,N), N >= 2.
+    code = 'findall(true, (member((_,'+t1+'), '+t2+'), '+t1+' '+dropdown_op+' '+X_value+'), '+t3+'), length('+t3+','+t4+'), '+t4+' >= '+n;
+  }
   return [code, Blockly.Prolog.ORDER_NONE];
 };
 
