@@ -83,6 +83,8 @@ Blockly.Prolog.init = function(workspace) {
   Blockly.Prolog.varcounter = 1;
   // scope for 'and' expressions
   Blockly.Prolog.scope = '';
+  // POKER_TYPE_CARDSET second return argument (nr of cards in set)
+  Blockly.Prolog.cardset_nr = -1;
   // Create a dictionary of definitions to be printed before the code.
   Blockly.Prolog.definitions_ = Object.create(null);
   // Create a dictionary mapping desired function names in definitions_
@@ -148,6 +150,11 @@ Blockly.Prolog.scrub_ = function(block, code) {
 };
 
 /** BLOCKS **/
+Blockly.Prolog.newvar = function() {
+  var Xnew = 'X'+Blockly.Prolog.varcounter;
+  Blockly.Prolog.varcounter += 1;
+  return Xnew;
+};
 /** BLOCKS: control **/
 
 Blockly.Prolog['controls_if'] = function(block) {
@@ -294,11 +301,11 @@ Blockly.Prolog['poker_raise'] = function(block) {
 // returns the var!
 Blockly.Prolog['poker_card_set'] = function(block) {
   var dropdown_name = block.getFieldValue('NAME');
-  var Xnew = 'X'+Blockly.Prolog.varcounter;
-  Blockly.Prolog.varcounter += 1;
+  var Xnew = Blockly.Prolog.newvar();
 
   var code = dropdown_name + '(' + Xnew + ')';
   Blockly.Prolog.scope += code;
+  // Blockly.Prolog.cardset_nr remains unchanged (full set)
   return [Xnew, Blockly.Prolog.ORDER_NONE];
 };
 
@@ -320,8 +327,7 @@ Blockly.Prolog['poker_card_suit'] = function(block) {
   if (suit == 'same') {
     // all in list: // L=[(h,2),(h,3),(h,3)], [(Y,_)|T]=L, forall(member(X,T), X=(Y,_)).
     // 2 in list: // L=[(h,2),(f,3),(h,3)], member((Y,_), L), findall(true, member((Y,_), L), R), length(R,N), N >= 2, !.
-    var Xnew = 'X'+Blockly.Prolog.varcounter;
-    Blockly.Prolog.varcounter += 1;
+    var Xnew = Blockly.Prolog.newvar();
     code = 'members([card(_, '+Xnew+')],'+X_cardset+')';
   } else { // one specific suit
     // all in list: // forall(member(X, [(h,2),(h,3),(h,3)]), X=(h,_)).
@@ -349,8 +355,7 @@ Blockly.Prolog['poker_card_valeq'] = function(block) {
 Blockly.Prolog['poker_card_valop'] = function(block) {
   //allekaarten(X1), members([card(X0, _)],X1), X0 >=10
   var X_cardset = Blockly.Prolog.valueToCode(block, 'cardset', Blockly.Prolog.ORDER_NONE) || '_';
-  var Xnew = 'X'+Blockly.Prolog.varcounter;
-  Blockly.Prolog.varcounter += 1;
+  var Xnew = Blockly.Prolog.newvar();
   var dropdown_op = block.getFieldValue('OP');
   var X_value = Blockly.Prolog.valueToCode(block, 'value', Blockly.Prolog.ORDER_NONE);
 
