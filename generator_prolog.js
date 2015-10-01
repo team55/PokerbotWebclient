@@ -350,18 +350,43 @@ Blockly.Prolog['poker_card_suit'] = function(block) {
 };
 
 Blockly.Prolog['poker_card_valeq'] = function(block) {
-  var value_cardset = Blockly.Prolog.valueToCode(block, 'cardset', Blockly.Prolog.ORDER_ATOMIC);
+  Blockly.Prolog.cardset_nr = -1;
+  var X_cardset = Blockly.Prolog.valueToCode(block, 'cardset', Blockly.Prolog.ORDER_ATOMIC) || '_';
   var type = block.getFieldValue('NAME');
 
+  var t1 = Blockly.Prolog.newvar();
+  var t2 = Blockly.Prolog.newvar();
+  var t3 = Blockly.Prolog.newvar();
+  var n = Blockly.Prolog.cardset_nr;
   var code = '';
   if (type == 'same') { // same values
-    // all in list: // L=[(h,3),(h,3),(h,3)], [(_,V)|T]=L, forall(member(X,T), X=(_,V)).
-    // 2 in list: // L=[(h,2),(f,3),(h,3)], member((_,V), L), findall(true, member((_,V), L), R), length(R,N), N >= 2, !.
+    if (n == -1) {
+      // all in list: // L=[(h,3),(h,3),(h,3)], [(_,V)|T]=L, forall(member(X,T), X=(_,V)).
+      code = '[(_,'+t1+')|'+t2+']='+X_cardset+', forall(member('+t3+','+t2+'), '+t3+'=(_,'+t1+'))';
+    } else if (n > 1) {
+      // 2 in list: // L=[(h,2),(f,3),(h,3)], member((_,V), L), findall(true, member((_,V), L), R), length(R,N), N >= 2, !.
+      code = 'member((_,'+t1+'), '+X_cardset+'), findall(true, member((_,'+t1+'), '+X_cardset+'), '+t2+'), length('+t2+','+t3+'), '+t3+' >= '+n+', !';
+    }
   } else { // increasing values
-    // all in list: // L=[(h,4),(h,3),(h,5)], findall(V, member((_,V), L), Lv), sort(Lv,Ls), length(Ls,Ll), forall(nth1(I, Ls, V), (I =:= Ll;(I =\= Ll, I1 is I+1, V1 is V+1, nth1(I1, Ls, V1)))).
-    // 3 in list: // L=[(h,4),(h,3),(h,5),(c,2)], member((_,V), L), forall((I=1;I=2;I=3), (VI is V+I, member((_,VI),L))), !. // Rather naieve...
+    if (n == -1) {
+      var t4 = Blockly.Prolog.newvar();
+      var t5 = Blockly.Prolog.newvar();
+      var t6 = Blockly.Prolog.newvar();
+      var t7 = Blockly.Prolog.newvar();
+      // all in list: // L=[(h,4),(h,3),(h,5)], findall(V, member((_,V), L), Lv), sort(Lv,Ls), length(Ls,Ll), forall(nth1(I, Ls, V), (I =:= Ll;(I =\= Ll, I1 is I+1, V1 is V+1, nth1(I1, Ls, V1)))).
+      code = 'findall('+t1+', member((_,'+t1+'), '+X_cardset+'), '+t2+'), sort('+t2+','+t3+'), length('+t3+','+t4+'), forall(nth1('+t5+', '+t3+', '+t1+'), ('+t5+' =:= '+t4+';('+t5+' =\\= '+t4+', '+t6+' is '+t5+'+1, '+t7+' is '+t1+'+1, nth1('+t6+', '+t3+', '+t7+'))))';
+    } else if (n > 1) {
+      // 3 in list: // L=[(h,4),(h,3),(h,5),(c,2)], member((_,V), L), forall((I=1;I=2;I=3), (VI is V+I, member((_,VI),L))), !. // Rather naieve...
+      var myenum = '';
+      for(var i=1; i<=n; i++) {
+        myenum += 'I='+i;
+        if (i != n)
+          myenum += ';';
+      }
+      code = 'member((_,'+t1+'), '+X_cardset+'), forall(('+myenum+'), ('+t2+' is '+t1+'+I, member((_,'+t2+'),'+X_cardset+'))), !';
+    }
   }
-  return [code, Blockly.Prolog.ORDER_NONE];
+  return [code, Blockly.Prolog.ORDER_ATOMIC];
 };
 
 Blockly.Prolog['poker_card_valop'] = function(block) {
