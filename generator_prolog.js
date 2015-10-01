@@ -306,33 +306,45 @@ Blockly.Prolog['poker_card_set'] = function(block) {
   var code = dropdown_name + '(' + Xnew + ')';
   Blockly.Prolog.scope += code;
   // Blockly.Prolog.cardset_nr remains unchanged (full set)
-  return [Xnew, Blockly.Prolog.ORDER_NONE];
+  return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 };
 
 Blockly.Prolog['poker_card_in'] = function(block) {
+  var Xset = Blockly.Prolog.valueToCode(block, 'set', Blockly.Prolog.ORDER_ATOMIC) || '_';
   var value_nr = Blockly.Prolog.valueToCode(block, 'nr', Blockly.Prolog.ORDER_ATOMIC);
-  var value_set = Blockly.Prolog.valueToCode(block, 'set', Blockly.Prolog.ORDER_ATOMIC);
-  // TODO: Assemble Prolog into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.Prolog.ORDER_NONE];
+  Blockly.Prolog.cardset_nr = value_nr;
+  return [Xset, Blockly.Prolog.ORDER_ATOMIC];
 };
 
 Blockly.Prolog['poker_card_suit'] = function(block) {
-  //allekaarten(X1), members([card(_, h)],X1)
-  var X_cardset = Blockly.Prolog.valueToCode(block, 'cardset', Blockly.Prolog.ORDER_NONE) || '_';
+  Blockly.Prolog.cardset_nr = -1;
+  var X_cardset = Blockly.Prolog.valueToCode(block, 'cardset', Blockly.Prolog.ORDER_ATOMIC) || '_';
   var suit = block.getFieldValue('NAME');
 
+  var t1 = Blockly.Prolog.newvar();
+  var t2 = Blockly.Prolog.newvar();
+  var t3 = Blockly.Prolog.newvar();
+  var n = Blockly.Prolog.cardset_nr;
   var code = '';
   if (suit == 'same') {
-    // all in list: // L=[(h,2),(h,3),(h,3)], [(Y,_)|T]=L, forall(member(X,T), X=(Y,_)).
-    // 2 in list: // L=[(h,2),(f,3),(h,3)], member((Y,_), L), findall(true, member((Y,_), L), R), length(R,N), N >= 2, !.
-    var Xnew = Blockly.Prolog.newvar();
-    code = 'members([card(_, '+Xnew+')],'+X_cardset+')';
+    if (n == -1) {
+      // all in list: // L=[(h,2),(h,3),(h,3)], [(Y,_)|T]=L, forall(member(X,T), X=(Y,_)).
+      code = '[('+t1+',_)|'+t2+']='+X_cardset+', forall(member('+t3+','+t2+'), '+t3+'=('+t1+',_))';
+    } else if (n > 1) {
+      // 2 in list: // L=[(h,2),(f,3),(h,3)], member((Y,_), L), findall(true, member((Y,_), L), R), length(R,N), N >= 2, !.
+      code = 'member(('+t1+',_), '+X_cardset+'), findall(true, member(('+t1+',_), '+X_cardset+'), '+t2+'), length('+t2+','+t3+'), '+t3+' >= '+n+', !';
+    }
   } else { // one specific suit
-    // all in list: // forall(member(X, [(h,2),(h,3),(h,3)]), X=(h,_)).
-    // 2 in list: // findall(true, member((h,_), [(h,2),(h,3),(f,3)]), R), length(R,N), N >= 2.
-    code = 'members([card(_, '+suit+')],'+X_cardset+')';
+    if (n == -1) {
+      // all in list: // forall(member(X, [(h,2),(h,3),(h,3)]), X=(h,_)).
+      code = 'forall(member('+t1+', '+X_cardset+'), '+t1+'=('+suit+',_))';
+    } else if (n == 1) {
+      // just one
+      code = 'member(('+suit+',_), '+X_cardset+'), !';
+    } else if (n > 1) {
+      // 2 in list: // findall(true, member((h,_), [(h,2),(h,3),(f,3)]), R), length(R,N), N >= 2.
+      code = 'findall(true, member(('+suit+',_), '+X_cardset+'), '+t1+'), length('+t1+','+t2+'), '+t2+' >= '+n;
+    }
   }
   return [code, Blockly.Prolog.ORDER_NONE];
 };
