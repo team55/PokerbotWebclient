@@ -4,8 +4,9 @@ Uses blockly for pure client-side blocks.
 
 
 TODO:
-- prolog output of card_ blocks
 - connect to a table (using http request: https://github.com/Dtai/Webserver/blob/master/server/joinTable.php)
 - send rules to a table (same as above)
+- test prolog output of card_ blocks
+- value to statement for cards to make it less 'wide'? (see stash)
 - add all missing blocks that are in other client
 - correct prolog output; no nested math, but raise(5+3) -> raise(X1), X1 is 5+3
