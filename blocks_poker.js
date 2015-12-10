@@ -53,11 +53,11 @@ Blockly.Blocks['poker_card'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("a card with");
-    this.appendValueInput("color")
+    this.appendValueInput("arg_color")
         .setCheck("POKER_TYPE_COLOR")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("color:");
-    this.appendValueInput("rank")
+    this.appendValueInput("arg_rank")
         .setCheck("POKER_TYPE_RANK")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("rank:");

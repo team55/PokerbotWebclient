@@ -99,14 +99,14 @@ Blockly.Prolog.init = function(workspace) {
  */
 Blockly.Prolog.finish = function(code) {
   // Convert the definitions dictionary into a list.
-  var definitions = [];
+  var definitions = ['red(h).','red(d).','black(c).','black(s).'];
   for (var name in Blockly.Prolog.definitions_) {
     definitions.push(Blockly.Prolog.definitions_[name]);
   }
   // Clean up temporary data.
   delete Blockly.Prolog.definitions_;
   delete Blockly.Prolog.functionNames_;
-  return definitions.join('\n\n') + '\n\n\n' + code;
+  return definitions.join('\n') + '\n\n' + code;
 };
 
 /**
@@ -317,21 +317,45 @@ Blockly.Prolog['poker_cards'] = function(block) {
 };
 
 Blockly.Prolog['poker_card'] = function(block) {
-  return '';
-  /*
   // return: card(Xrank,Xcolor)
-  // scope: Xrank>=10, Xcolor...
-  var Xrank = Blockly.Prolog.newvar();
-  var Xcolor = Blockly.Prolog.newvar();
-
+  var Xcolor = Blockly.Prolog.valueToCode(block, 'arg_color', Blockly.Prolog.ORDER_ATOMIC) || '_';
+  var Xrank = Blockly.Prolog.valueToCode(block, 'arg_rank', Blockly.Prolog.ORDER_ATOMIC) || '_';
   return 'card(' + Xrank + ',' + Xcolor + ')';
-  */
-  /*
-  var Xset = Blockly.Prolog.valueToCode(block, 'set', Blockly.Prolog.ORDER_ATOMIC) || '_';
-  var value_nr = Blockly.Prolog.valueToCode(block, 'nr', Blockly.Prolog.ORDER_ATOMIC);
-  Blockly.Prolog.cardset_nr = value_nr;
-  return [Xset, Blockly.Prolog.ORDER_ATOMIC];
-  */
+};
+
+Blockly.Prolog['poker_color'] = function(block) {
+  // return: X0
+  // scope: red(X0)
+  var Xnew = Blockly.Prolog.newvar();
+
+  var color_name = block.getFieldValue('color');
+  var code = color_name + '(' + Xnew + '), ';
+  Blockly.Prolog.scope += code;
+
+  return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
+};
+Blockly.Prolog['poker_color_any'] = function(block) {
+  return ['_', Blockly.Prolog.ORDER_ATOMIC];
+};
+Blockly.Prolog['poker_color_same'] = function(block) {
+  var code = '';
+  return [code, Blockly.Prolog.ORDER_ATOMIC];
+};
+
+Blockly.Prolog['poker_rank'] = function(block) {
+  var code = '';
+  return [code, Blockly.Prolog.ORDER_ATOMIC];
+};
+Blockly.Prolog['poker_rank_any'] = function(block) {
+  return ['_', Blockly.Prolog.ORDER_ATOMIC];
+};
+Blockly.Prolog['poker_rank_same'] = function(block) {
+  var code = '';
+  return [code, Blockly.Prolog.ORDER_ATOMIC];
+};
+Blockly.Prolog['poker_rank_incr'] = function(block) {
+  var code = '';
+  return [code, Blockly.Prolog.ORDER_ATOMIC];
 };
 
 Blockly.Prolog['poker_card_suit'] = function(block) {
