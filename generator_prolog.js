@@ -307,7 +307,7 @@ Blockly.Prolog['poker_raise'] = function(block) {
 // returns the var!
 Blockly.Prolog['poker_cards'] = function(block) {
   // scope: cardset(X0), members([],X0)
-  Blockly.Prolog.cardsame = {}; // reset hashtable for samevar and samecolor in this cardlist
+  Blockly.Prolog.cardsame_ = {}; // reset hashtable for samevar and samecolor in this cardlist
   var Xnew = Blockly.Prolog.newvar();
 
   var cardset_name = block.getFieldValue('in');
@@ -351,10 +351,10 @@ Blockly.Prolog['poker_color_same'] = function(block) {
   var groupnum = Blockly.Prolog.valueToCode(block, 'num', order) || '0';
   var cardsame_group = 'color'+groupnum;
 
-  if (!Blockly.Prolog.cardsame[cardsame_group])
-    Blockly.Prolog.cardsame[cardsame_group] = Blockly.Prolog.newvar();
+  if (!Blockly.Prolog.cardsame_[cardsame_group])
+    Blockly.Prolog.cardsame_[cardsame_group] = Blockly.Prolog.newvar();
 
-  var Xvar = Blockly.Prolog.cardsame[cardsame_group];
+  var Xvar = Blockly.Prolog.cardsame_[cardsame_group];
   return [Xvar, Blockly.Prolog.ORDER_ATOMIC];
 };
 
@@ -378,10 +378,10 @@ Blockly.Prolog['poker_rank_same'] = function(block) {
   var groupnum = Blockly.Prolog.valueToCode(block, 'num', order) || '0';
   var cardsame_group = 'rank'+groupnum;
 
-  if (!Blockly.Prolog.cardsame[cardsame_group])
-    Blockly.Prolog.cardsame[cardsame_group] = Blockly.Prolog.newvar();
+  if (!Blockly.Prolog.cardsame_[cardsame_group])
+    Blockly.Prolog.cardsame_[cardsame_group] = Blockly.Prolog.newvar();
 
-  var Xvar = Blockly.Prolog.cardsame[cardsame_group];
+  var Xvar = Blockly.Prolog.cardsame_[cardsame_group];
   return [Xvar, Blockly.Prolog.ORDER_ATOMIC];
 };
 Blockly.Prolog['poker_rank_incr'] = function(block) {
@@ -390,10 +390,10 @@ Blockly.Prolog['poker_rank_incr'] = function(block) {
   var groupnum = Blockly.Prolog.valueToCode(block, 'num', order) || '0';
   var cardsame_group = 'rank'+groupnum;
 
-  if (!Blockly.Prolog.cardsame[cardsame_group])
-    Blockly.Prolog.cardsame[cardsame_group] = Blockly.Prolog.newvar();
+  if (!Blockly.Prolog.cardsame_[cardsame_group])
+    Blockly.Prolog.cardsame_[cardsame_group] = Blockly.Prolog.newvar();
 
-  var Xvar = Blockly.Prolog.cardsame[cardsame_group];
+  var Xvar = Blockly.Prolog.cardsame_[cardsame_group];
 
   var incrval = Blockly.Prolog.valueToCode(block, 'incr', order) || '0';
   if (incrval != '0') {
