@@ -1,9 +1,11 @@
+/* Actions */
+
 Blockly.Blocks['poker_call'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("call");
     this.setPreviousStatement(true);
-    this.setColour(20);
+    this.setColour(120);
     this.setTooltip('Do action: call');
   }
 };
@@ -13,7 +15,7 @@ Blockly.Blocks['poker_fold'] = {
     this.appendDummyInput()
         .appendField("fold");
     this.setPreviousStatement(true);
-    this.setColour(20);
+    this.setColour(120);
     this.setTooltip('Do action: fold');
   }
 };
@@ -25,149 +27,68 @@ Blockly.Blocks['poker_raise'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("raise");
     this.setPreviousStatement(true);
-    this.setColour(20);
+    this.setColour(120);
     this.setTooltip('Do action: raise by an amount');
   }
 };
 
-Blockly.Blocks['poker_card_set'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["hand cards", "handkaarten"], ["table cards", "tafelkaarten"], ["hand and table cards", "allekaarten"]]), "NAME");
-    this.setOutput(true, "POKER_TYPE_CARDSET");
-    this.setColour(330);
-    this.setTooltip('');
-  }
-};
+/* Cards */
 
-Blockly.Blocks['poker_card_in'] = {
-  init: function() {
-    this.appendValueInput("nr")
-        .setCheck("Number")
-        .appendField("any");
-    this.appendValueInput("set")
-        .setCheck("POKER_TYPE_CARDSET")
-        .appendField("card(s) in");
-    this.setInputsInline(true);
-    this.setOutput(true, "POKER_TYPE_CARDSET");
-    this.setColour(330);
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['poker_card_suit'] = {
-  init: function() {
-    this.appendValueInput("cardset")
-        .setCheck("POKER_TYPE_CARDSET");
-    this.appendDummyInput()
-        .appendField("have suit equal to")
-        .appendField(new Blockly.FieldDropdown([["hearts", "h"], ["diamonds", "d"], ["clubs", "c"], ["spades", "s"], ["same suit", "same"]]), "NAME");
-    this.setOutput(true, "Boolean");
-    this.setColour(210);
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['poker_card_valeq'] = {
-  init: function() {
-    this.appendValueInput("cardset")
-        .setCheck("POKER_TYPE_CARDSET");
-    this.appendDummyInput()
-        .appendField("have")
-        .appendField(new Blockly.FieldDropdown([["same", "same"], ["increasing", "increasing"]]), "NAME")
-        .appendField("values");
-    this.setOutput(true, "Boolean");
-    this.setColour(210);
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['poker_card_valop'] = {
-  init: function() {
-    this.appendValueInput("cardset")
-        .setCheck("POKER_TYPE_CARDSET");
-    this.appendDummyInput()
-        .appendField("have value")
-        .appendField(new Blockly.FieldDropdown([["=", "=:="], [">=", ">="], [">", ">"], ["<=", "=<"], ["<", "<"], ["!=", "=\\="]]), "OP");
-    this.appendValueInput("value")
-        .setCheck("POKER_TYPE_CARD");
-    this.setOutput(true, "Boolean");
-    this.setColour(210);
-    this.setTooltip('');
-  }
-};
-
-Blockly.Blocks['poker_card_val'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"], ["Jack", "11"], ["Queen", "12"], ["King", "13"], ["Ace", "14"]]), "val");
-    this.setOutput(true, "POKER_TYPE_CARD");
-    this.setColour(290);
-    this.setTooltip('');
-  }
-};
-
-
-Blockly.Blocks['poker_card_in2'] = {
+Blockly.Blocks['poker_cards'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("cards in ")
-        .appendField(new Blockly.FieldDropdown([["hand", "hand"], ["table", "table"], ["hand and table", "both"]]), "cards");
-    this.appendStatementInput("NAME")
-        .setCheck("POKER_CARD2")
+        .appendField(new Blockly.FieldDropdown([["hand", "hand"], ["table", "table"], ["hand and table", "both"]]), "in");
+    this.appendStatementInput("cards")
+        .setCheck("POKER_TYPE_CARD")
         .appendField("contains");
     this.setInputsInline(false);
     this.setOutput(true);
-    this.setColour(0);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
+    this.setColour(210);
+    this.setTooltip('whether there are cards with certain properties (you can drag multiple cards in to denote different cards)');
   }
 };
 
-Blockly.Blocks['poker_card_card'] = {
+Blockly.Blocks['poker_card'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("a card with");
-    this.appendValueInput("col")
-        .setCheck("POKER_TYPE_COL2")
+    this.appendValueInput("color")
+        .setCheck("POKER_TYPE_COLOR")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("color:");
-    this.appendValueInput("val")
-        .setCheck("POKER_TYPE_VAL2")
+    this.appendValueInput("rank")
+        .setCheck("POKER_TYPE_RANK")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("value:");
+        .appendField("rank:");
     this.setInputsInline(false);
-    this.setPreviousStatement(true, "POKER_CARD2");
-    this.setNextStatement(true, "POKER_CARD2");
-    this.setColour(330);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
+    this.setPreviousStatement(true, "POKER_CARD");
+    this.setNextStatement(true, "POKER_CARD");
+    this.setColour(20);
+    this.setTooltip('declare properties of a specific card');
   }
 };
 
-Blockly.Blocks['poker_card_col_any'] = {
+Blockly.Blocks['poker_color'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("color = ")
+        .appendField(new Blockly.FieldDropdown([["red", "red"], ["black", "black"]]), "color");
+    this.setOutput(true, "POKER_TYPE_COLOR");
+    this.setColour(290);
+    this.setTooltip('color is red (hearts, diamonds) or black (spades, clubs)');
+  }
+};
+Blockly.Blocks['poker_color_any'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("any color");
-    this.setOutput(true, "POKER_TYPE_COL2");
-    this.setColour(275);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
+    this.setOutput(true, "POKER_TYPE_COLOR");
+    this.setColour(290);
+    this.setTooltip('can be any suit of any color');
   }
 };
-
-Blockly.Blocks['poker_card_col2'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([["red", "red"], ["black", "black"]]), "NAME");
-    this.setOutput(true, "POKER_TYPE_COL2");
-    this.setColour(275);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
-};
-
-Blockly.Blocks['poker_card_col_same'] = {
+Blockly.Blocks['poker_color_same'] = {
   init: function() {
     this.appendValueInput("num")
         .setCheck("Number")
@@ -175,60 +96,56 @@ Blockly.Blocks['poker_card_col_same'] = {
     this.appendDummyInput()
         .appendField(")");
     this.setInputsInline(true);
-    this.setOutput(true, "POKER_TYPE_COL2");
-    this.setColour(275);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
+    this.setOutput(true, "POKER_TYPE_COLOR");
+    this.setColour(290);
+    this.setTooltip('cards with \'same color\' and same group number will match if they have the same color (e.g. each of them is red)');
   }
 };
 
-Blockly.Blocks['poker_card_val_any'] = {
+Blockly.Blocks['poker_rank'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("any value");
-    this.setOutput(true, "POKER_TYPE_VAL2");
-    this.setColour(290);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
+        .appendField("rank ")
+        .appendField(new Blockly.FieldDropdown([[">=", ">="], [">", ">"], ["<=", "=<"], ["<", "<"], ["=", "=:="], ["!=", "=\\="]]), "op")
+        .appendField(new Blockly.FieldDropdown([["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"], ["Jack", "11"], ["Queen", "12"], ["King", "13"], ["Ace", "14"]]), "rank");
+    this.setOutput(true, "POKER_TYPE_RANK");
+    this.setColour(330);
+    this.setTooltip('whether the cards rank (value/symbol) satisfies the relation');
   }
 };
-
-Blockly.Blocks['poker_card_val2'] = {
+Blockly.Blocks['poker_rank_any'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldDropdown([[">=", ">="], [">", ">"], ["<=", "=<"], ["<", "<"], ["=", "=:="], ["!=", "=\\="]]), "OP")
-        .appendField(new Blockly.FieldDropdown([["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"], ["Jack", "11"], ["Queen", "12"], ["King", "13"], ["Ace", "14"]]), "val");
-    this.setOutput(true, "POKER_TYPE_VAL2");
-    this.setColour(290);
-    this.setTooltip('');
+        .appendField("any rank");
+    this.setOutput(true, "POKER_TYPE_RANK");
+    this.setColour(330);
+    this.setTooltip('can be any rank (value/symbol)');
   }
 };
-
-Blockly.Blocks['poker_card_val_same'] = {
+Blockly.Blocks['poker_rank_same'] = {
   init: function() {
     this.appendValueInput("num")
         .setCheck("Number")
-        .appendField("same value (group");
+        .appendField("same rank (group");
     this.appendDummyInput()
         .appendField(")");
     this.setInputsInline(true);
-    this.setOutput(true, "POKER_TYPE_VAL2");
-    this.setColour(290);
-    this.setTooltip('');
+    this.setOutput(true, "POKER_TYPE_RANK");
+    this.setColour(330);
+    this.setTooltip('cards with \'same rank\' and same group number will match if they have the same rank (e.g. each of them is an ace)');
   }
 };
-
-Blockly.Blocks['poker_card_val_sameplus'] = {
+Blockly.Blocks['poker_rank_incr'] = {
   init: function() {
     this.appendValueInput("num")
         .setCheck("Number")
-        .appendField("same value (group");
+        .appendField("same rank (group");
     this.appendDummyInput()
         .appendField(") +");
     this.appendValueInput("incr")
         .setCheck("Number");
-    this.setOutput(true, "POKER_TYPE_VAL2");
-    this.setColour(290);
-    this.setTooltip('Use this to enforce increasing cards (+1, +2, +3, ...)');
+    this.setOutput(true, "POKER_TYPE_RANK");
+    this.setColour(330);
+    this.setTooltip('use this to enforce increasing cards (+1, +2, +3, ...) for one group of \'same rank\' cards');
   }
 };
