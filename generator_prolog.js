@@ -359,8 +359,16 @@ Blockly.Prolog['poker_color_same'] = function(block) {
 };
 
 Blockly.Prolog['poker_rank'] = function(block) {
-  var code = '';
-  return [code, Blockly.Prolog.ORDER_ATOMIC];
+  // scope: X0 => 14,
+  var Xnew = Blockly.Prolog.newvar();
+
+  var arg_op = block.getFieldValue('op');
+  var arg_rank = block.getFieldValue('rank');
+
+  var code = Xnew + ' ' + arg_op + ' ' + arg_rank + ', ';
+  Blockly.Prolog.scope += code;
+
+  return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 };
 Blockly.Prolog['poker_rank_any'] = function(block) {
   return ['_', Blockly.Prolog.ORDER_ATOMIC];
