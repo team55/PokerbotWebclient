@@ -290,12 +290,15 @@ Blockly.Prolog['poker_fold'] = function(block) {
 };
 
 Blockly.Prolog['poker_raise'] = function(block) {
-  // TODO actually: do(raise(X0), 1) :- X0 is 3.14, true.
-  // here: do(raise(3.14), 1) :- true.
+  // do(raise(X0), 1) :- X0 is 3.14, true.
+  var Xnew = Blockly.Prolog.newvar();
+  
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var argument0 = Blockly.Prolog.valueToCode(block, 'amount', order) || '0';
-  var code = 'raise(' + argument0 + ')';
-  return code;
+  var code = Xnew + ' is ' + argument0;
+  Blockly.Prolog.scope += code;
+
+  return 'raise(' + Xnew + ')';
 };
 
 // returns the var!
