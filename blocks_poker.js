@@ -62,8 +62,8 @@ Blockly.Blocks['poker_card'] = {
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("rank:");
     this.setInputsInline(false);
-    this.setPreviousStatement(true, "POKER_CARD");
-    this.setNextStatement(true, "POKER_CARD");
+    this.setPreviousStatement(true, "POKER_TYPE_CARD");
+    this.setNextStatement(true, "POKER_TYPE_CARD");
     this.setColour(20);
     this.setTooltip('declare properties of a specific card');
   }
