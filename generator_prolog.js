@@ -405,6 +405,10 @@ Blockly.Prolog['poker_rank_incr'] = function(block) {
   return [Xvar, Blockly.Prolog.ORDER_ATOMIC];
 };
 
+
+/**
+ * Unfinished advanced prolog formulations (for different blocks)
+ *
 Blockly.Prolog['poker_card_suit'] = function(block) {
   Blockly.Prolog.cardset_nr = -1;
   var X_cardset = Blockly.Prolog.valueToCode(block, 'cardset', Blockly.Prolog.ORDER_ATOMIC) || '_';
@@ -500,28 +504,4 @@ Blockly.Prolog['poker_card_valop'] = function(block) {
   }
   return [code, Blockly.Prolog.ORDER_NONE];
 };
-
-Blockly.Prolog['poker_card_val'] = function(block) {
-  var dropdown_name = block.getFieldValue('val');
-  var code = dropdown_name;
-  return [code, Blockly.Prolog.ORDER_NONE];
-};
-
-Blockly.Prolog['poker_card_in2'] = function(block) {
-  var dropdown_cards = block.getFieldValue('cards');
-  var statements_name = Blockly.Prolog.statementToCode(block, 'NAME');
-  // TODO: Assemble Prolog into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.Prolog.ORDER_NONE];
-};
-
-Blockly.Prolog['poker_card_card'] = function(block) {
-  var dropdown_col_op = block.getFieldValue('col_op');
-  var value_col = Blockly.Prolog.valueToCode(block, 'col', Blockly.Prolog.ORDER_ATOMIC);
-  var dropdown_val_op = block.getFieldValue('val_op');
-  var value_val = Blockly.Prolog.valueToCode(block, 'val', Blockly.Prolog.ORDER_ATOMIC);
-  // TODO: Assemble Prolog into code variable.
-  var code = '...';
-  return code;
-};
+*/
