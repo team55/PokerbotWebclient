@@ -303,24 +303,35 @@ Blockly.Prolog['poker_raise'] = function(block) {
 
 // returns the var!
 Blockly.Prolog['poker_cards'] = function(block) {
-  // cardset(X0), members([],X0)
+  // scope: cardset(X0), members([],X0)
   var Xnew = Blockly.Prolog.newvar();
 
-  var dropdown_name = block.getFieldValue('in');
-  var code = dropdown_name + '(' + Xnew + ')';
+  var cardset_name = block.getFieldValue('in');
+  var code = cardset_name + '(' + Xnew + ')';
   
-  var cardlist = '';
+  var cardlist = Blockly.Prolog.statementToCode(block, 'cardlist') || '_';
   code += ', members(['+cardlist+'],'+Xnew+'), ';
   Blockly.Prolog.scope += code;
 
   return ['', Blockly.Prolog.ORDER_ATOMIC];
 };
 
-Blockly.Prolog['poker_card_in'] = function(block) {
+Blockly.Prolog['poker_card'] = function(block) {
+  return '';
+  /*
+  // return: card(Xrank,Xcolor)
+  // scope: Xrank>=10, Xcolor...
+  var Xrank = Blockly.Prolog.newvar();
+  var Xcolor = Blockly.Prolog.newvar();
+
+  return 'card(' + Xrank + ',' + Xcolor + ')';
+  */
+  /*
   var Xset = Blockly.Prolog.valueToCode(block, 'set', Blockly.Prolog.ORDER_ATOMIC) || '_';
   var value_nr = Blockly.Prolog.valueToCode(block, 'nr', Blockly.Prolog.ORDER_ATOMIC);
   Blockly.Prolog.cardset_nr = value_nr;
   return [Xset, Blockly.Prolog.ORDER_ATOMIC];
+  */
 };
 
 Blockly.Prolog['poker_card_suit'] = function(block) {
@@ -425,21 +436,21 @@ Blockly.Prolog['poker_card_val'] = function(block) {
   return [code, Blockly.Prolog.ORDER_NONE];
 };
 
-Blockly.JavaScript['poker_card_in2'] = function(block) {
+Blockly.Prolog['poker_card_in2'] = function(block) {
   var dropdown_cards = block.getFieldValue('cards');
-  var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
-  // TODO: Assemble JavaScript into code variable.
+  var statements_name = Blockly.Prolog.statementToCode(block, 'NAME');
+  // TODO: Assemble Prolog into code variable.
   var code = '...';
   // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.JavaScript.ORDER_NONE];
+  return [code, Blockly.Prolog.ORDER_NONE];
 };
 
-Blockly.JavaScript['poker_card_card'] = function(block) {
+Blockly.Prolog['poker_card_card'] = function(block) {
   var dropdown_col_op = block.getFieldValue('col_op');
-  var value_col = Blockly.JavaScript.valueToCode(block, 'col', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_col = Blockly.Prolog.valueToCode(block, 'col', Blockly.Prolog.ORDER_ATOMIC);
   var dropdown_val_op = block.getFieldValue('val_op');
-  var value_val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
+  var value_val = Blockly.Prolog.valueToCode(block, 'val', Blockly.Prolog.ORDER_ATOMIC);
+  // TODO: Assemble Prolog into code variable.
   var code = '...';
   return code;
 };

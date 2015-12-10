@@ -39,7 +39,7 @@ Blockly.Blocks['poker_cards'] = {
     this.appendDummyInput()
         .appendField("cards in ")
         .appendField(new Blockly.FieldDropdown([["hand", "handkaarten"], ["table", "tafelkaarten"], ["hand and table", "allekaarten"]]), "in");
-    this.appendStatementInput("cards")
+    this.appendStatementInput("cardlist")
         .setCheck("POKER_TYPE_CARD")
         .appendField("contains");
     this.setInputsInline(false);
