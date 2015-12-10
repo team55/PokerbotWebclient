@@ -90,6 +90,8 @@ Blockly.Prolog.init = function(workspace) {
   // Create a dictionary mapping desired function names in definitions_
   // to actual function names (to avoid collisions with user functions).
   Blockly.Prolog.functionNames_ = Object.create(null);
+  // Create a dictionary for samevar and samecolor (reset in every poker_cards)
+  Blockly.Prolog.cardsame_ = {};
 };
 
 /**
@@ -106,6 +108,7 @@ Blockly.Prolog.finish = function(code) {
   // Clean up temporary data.
   delete Blockly.Prolog.definitions_;
   delete Blockly.Prolog.functionNames_;
+  delete Blockly.Prolog.cardsame_;
   return definitions.join('\n') + '\n\n' + code;
 };
 
@@ -304,12 +307,18 @@ Blockly.Prolog['poker_raise'] = function(block) {
 // returns the var!
 Blockly.Prolog['poker_cards'] = function(block) {
   // scope: cardset(X0), members([],X0)
+  Blockly.Prolog.cardsame = {}; // reset hashtable for samevar and samecolor in this cardlist
   var Xnew = Blockly.Prolog.newvar();
 
   var cardset_name = block.getFieldValue('in');
   var code = cardset_name + '(' + Xnew + ')';
   
   var cardlist = Blockly.Prolog.statementToCode(block, 'cardlist') || '_';
+  var l = cardlist.length;
+  // cut of spurious ', ' at end if exists
+  if (l >= 2 && cardlist.charAt(l-1) == ' ' && cardlist.charAt(l-2) == ',')
+    cardlist = cardlist.substr(0,l-2);
+
   code += ', members(['+cardlist+'],'+Xnew+'), ';
   Blockly.Prolog.scope += code;
 
@@ -320,7 +329,7 @@ Blockly.Prolog['poker_card'] = function(block) {
   // return: card(Xrank,Xcolor)
   var Xcolor = Blockly.Prolog.valueToCode(block, 'arg_color', Blockly.Prolog.ORDER_ATOMIC) || '_';
   var Xrank = Blockly.Prolog.valueToCode(block, 'arg_rank', Blockly.Prolog.ORDER_ATOMIC) || '_';
-  return 'card(' + Xrank + ',' + Xcolor + ')';
+  return 'card(' + Xrank + ',' + Xcolor + '), ';
 };
 
 Blockly.Prolog['poker_color'] = function(block) {
@@ -338,8 +347,15 @@ Blockly.Prolog['poker_color_any'] = function(block) {
   return ['_', Blockly.Prolog.ORDER_ATOMIC];
 };
 Blockly.Prolog['poker_color_same'] = function(block) {
-  var code = '';
-  return [code, Blockly.Prolog.ORDER_ATOMIC];
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var groupnum = Blockly.Prolog.valueToCode(block, 'num', order) || '0';
+  var cardsame_group = 'color'+groupnum;
+
+  if (!Blockly.Prolog.cardsame[cardsame_group])
+    Blockly.Prolog.cardsame[cardsame_group] = Blockly.Prolog.newvar();
+
+  var Xvar = Blockly.Prolog.cardsame[cardsame_group];
+  return [Xvar, Blockly.Prolog.ORDER_ATOMIC];
 };
 
 Blockly.Prolog['poker_rank'] = function(block) {
