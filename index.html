@@ -51,6 +51,45 @@
       </block>
     </category>
     <category name="Cards">
+      <block type="poker_card_in2"></block>
+      <block type="poker_card_card">
+        <value name="col">
+          <block type="poker_card_col_any"></block>
+        </value>
+        <value name="val">
+          <block type="poker_card_val_any"></block>
+        </value>
+      </block>
+      <block type="poker_card_col2"></block>
+      <block type="poker_card_col_same">
+        <value name="num">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+      <block type="poker_card_val2"></block>
+      <block type="poker_card_val_same">
+        <value name="num">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+      <block type="poker_card_val_sameplus">
+        <value name="num">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="incr">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+    </category>
+    <category name="CardsPrev">
       <block type="poker_card_set"></block>
       <block type="poker_card_in">
         <value name="nr">

@@ -417,3 +417,22 @@ Blockly.Prolog['poker_card_val'] = function(block) {
   var code = dropdown_name;
   return [code, Blockly.Prolog.ORDER_NONE];
 };
+
+Blockly.JavaScript['poker_card_in2'] = function(block) {
+  var dropdown_cards = block.getFieldValue('cards');
+  var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+Blockly.JavaScript['poker_card_card'] = function(block) {
+  var dropdown_col_op = block.getFieldValue('col_op');
+  var value_col = Blockly.JavaScript.valueToCode(block, 'col', Blockly.JavaScript.ORDER_ATOMIC);
+  var dropdown_val_op = block.getFieldValue('val_op');
+  var value_val = Blockly.JavaScript.valueToCode(block, 'val', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...';
+  return code;
+};
