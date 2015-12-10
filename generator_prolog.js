@@ -167,7 +167,7 @@ Blockly.Prolog['controls_if'] = function(block) {
     var branch = Blockly.Prolog.statementToCode(block, 'DO' + n) || 'fold';
     var scope = Blockly.Prolog.scope;
     if (scope != '') {
-        argument = scope + ', ' + argument;
+        argument = scope + argument;
         Blockly.Prolog.scope = '';
     }
     code += 'do(' + branch + ', ' + (n+1) + ') :- ' + argument + '.';
@@ -295,21 +295,25 @@ Blockly.Prolog['poker_raise'] = function(block) {
   
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var argument0 = Blockly.Prolog.valueToCode(block, 'amount', order) || '0';
-  var code = Xnew + ' is ' + argument0;
+  var code = Xnew + ' is ' + argument0 + ', ';
   Blockly.Prolog.scope += code;
 
   return 'raise(' + Xnew + ')';
 };
 
 // returns the var!
-Blockly.Prolog['poker_card_set'] = function(block) {
-  var dropdown_name = block.getFieldValue('NAME');
+Blockly.Prolog['poker_cards'] = function(block) {
+  // cardset(X0), members([],X0)
   var Xnew = Blockly.Prolog.newvar();
 
+  var dropdown_name = block.getFieldValue('in');
   var code = dropdown_name + '(' + Xnew + ')';
+  
+  var cardlist = '';
+  code += ', members(['+cardlist+'],'+Xnew+'), ';
   Blockly.Prolog.scope += code;
-  // Blockly.Prolog.cardset_nr remains unchanged (full set)
-  return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
+
+  return ['', Blockly.Prolog.ORDER_ATOMIC];
 };
 
 Blockly.Prolog['poker_card_in'] = function(block) {
