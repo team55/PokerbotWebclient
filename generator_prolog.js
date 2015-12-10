@@ -366,12 +366,35 @@ Blockly.Prolog['poker_rank_any'] = function(block) {
   return ['_', Blockly.Prolog.ORDER_ATOMIC];
 };
 Blockly.Prolog['poker_rank_same'] = function(block) {
-  var code = '';
-  return [code, Blockly.Prolog.ORDER_ATOMIC];
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var groupnum = Blockly.Prolog.valueToCode(block, 'num', order) || '0';
+  var cardsame_group = 'rank'+groupnum;
+
+  if (!Blockly.Prolog.cardsame[cardsame_group])
+    Blockly.Prolog.cardsame[cardsame_group] = Blockly.Prolog.newvar();
+
+  var Xvar = Blockly.Prolog.cardsame[cardsame_group];
+  return [Xvar, Blockly.Prolog.ORDER_ATOMIC];
 };
 Blockly.Prolog['poker_rank_incr'] = function(block) {
-  var code = '';
-  return [code, Blockly.Prolog.ORDER_ATOMIC];
+  // scope: X0 is Xgrp + 1,
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var groupnum = Blockly.Prolog.valueToCode(block, 'num', order) || '0';
+  var cardsame_group = 'rank'+groupnum;
+
+  if (!Blockly.Prolog.cardsame[cardsame_group])
+    Blockly.Prolog.cardsame[cardsame_group] = Blockly.Prolog.newvar();
+
+  var Xvar = Blockly.Prolog.cardsame[cardsame_group];
+
+  var incrval = Blockly.Prolog.valueToCode(block, 'incr', order) || '0';
+  if (incrval != '0') {
+    var Xnew = Blockly.Prolog.newvar();
+    var code = Xnew + ' is ' + Xvar + ' + ' + incrval + ', ';
+    Blockly.Prolog.scope += code;
+    Xvar = Xnew; // for in return
+  }
+  return [Xvar, Blockly.Prolog.ORDER_ATOMIC];
 };
 
 Blockly.Prolog['poker_card_suit'] = function(block) {
