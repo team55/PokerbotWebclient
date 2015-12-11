@@ -164,7 +164,8 @@ Blockly.Prolog['controls_if'] = function(block) {
   // If/elseif/else condition.
   var code = '';
   var n = 0;
-  for (; n <= block.elseifCount_; n++) {
+  while (n <= block.elseifCount_) {
+    n++;
     var argument = Blockly.Prolog.valueToCode(block, 'IF' + n,
         Blockly.Prolog.ORDER_NONE) || 'true';
     var branch = Blockly.Prolog.statementToCode(block, 'DO' + n) || 'fold';
@@ -173,17 +174,18 @@ Blockly.Prolog['controls_if'] = function(block) {
         argument = scope + argument;
         Blockly.Prolog.scope = '';
     }
-    code += 'do(' + branch + ', ' + (n+1) + ') :- ' + argument + '.';
+    code += 'do(' + branch + ', ' + n + ') :- ' + argument + '.\n';
   }
   if (block.elseCount_) {
-    var branch = Blockly.Prolog.statementToCode(block, 'ELSE');
+    n++;
+    var branch = Blockly.Prolog.statementToCode(block, 'ELSE') || 'fold';
     var argument = 'true';
     var scope = Blockly.Prolog.scope;
     if (scope != '') {
         argument = scope;
         Blockly.Prolog.scope = '';
     }
-    code += 'do(' + branch + ', ' + (n+2) + ') :- ' + argument + '.';
+    code += 'do(' + branch + ', ' + n + ') :- ' + argument + '.\n';
   }
   return code + '\n';
 };
