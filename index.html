@@ -168,7 +168,6 @@
         */
       // Fake with 'sending' iframe for now
       var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName="+table+"&playerName="+user+"\">This website uses iframes to show the game results.</iframe>";
-      alert(faker);
       $('#debugDiv').html(faker);
 
       // Receiving iframe
@@ -176,9 +175,16 @@
       $('#playDiv').html(code);
     }
     function submit() {
-      // Generate Prolog code and display it.
+      var user = $('#inputUser').val();
+      var table = $('#inputTable').val();
+      // Generate Prolog code and submit it.
       var code = Blockly.Prolog.workspaceToCode(workspace);
       alert(code);
+
+      // send to server
+      var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName="+table+"&playerName="+user+"&description="+encodeURIComponent(code)+"\">This website uses iframes to show the game results.</iframe>";
+      alert(faker);
+      $('#debugDiv').html(faker);
     }
   </script>
 
