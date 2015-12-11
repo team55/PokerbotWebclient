@@ -33,13 +33,16 @@
 <body>
   <div id="loginDiv">
   <p>
-    Your name: <input type="text" id="inputName"></input>
+    Your name: <input type="text" id="inputUser"></input>
   </p>
   <p>
     Table name: <input type="text" id="inputTable"></input>
     <button onclick="connect()">Connect to server</button>
   </p>
-  </ul>
+  <div>Debugger:
+  <div id="debugDiv">
+  </div>
+  </div>
   </div>
 
   <div id="workDiv">
@@ -147,9 +150,29 @@
 
     // buttons
     function connect() {
-      // for now: open iframe
-      var tableName = $('#inputTable').val();
-      var code = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName="+tableName+"\">This website uses iframes to show the game results.</iframe>";
+      var user = $('#inputUser').val();
+      var table = $('#inputTable').val();
+
+      /*
+       * Same Origin Policy disallows... only when run on same server
+      // send hello to webserver, if OK continue
+      $.ajax({
+        method: "POST",
+        url: "http://bear.cs.kuleuven.be/pokerdemo/server/hello.php",
+        data: { tableName: table, playerName: user }
+      })
+        .done(function( msg ) {
+          alert( "Got reply: " + msg );
+        });
+        *
+        */
+      // Fake with 'sending' iframe for now
+      var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName="+table+"&playerName="+user+"\">This website uses iframes to show the game results.</iframe>";
+      alert(faker);
+      $('#debugDiv').html(faker);
+
+      // Receiving iframe
+      var code = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName="+table+"\">This website uses iframes to show the game results.</iframe>";
       $('#playDiv').html(code);
     }
     function submit() {
