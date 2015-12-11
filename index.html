@@ -32,7 +32,14 @@
 </head>
 <body>
   <div id="loginDiv">
-  loginDiv
+  <p>
+    Your name: <input type="text" id="inputName"></input>
+  </p>
+  <p>
+    Table name: <input type="text" id="inputTable"></input>
+    <button onclick="connect()">Connect to server</button>
+  </p>
+  </ul>
   </div>
 
   <div id="workDiv">
@@ -122,25 +129,35 @@
   </div>
 
   <div id="playDiv">
-    <iframe src="http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName=test">This website uses iframes to show the game results.</iframe> 
   </div>
 
   <script>
+    // blockly stuff
     var workspace = Blockly.inject('blocklyDiv',
         {media: 'blockly/media/',
          toolbox: document.getElementById('toolbox')});
     Blockly.Xml.domToWorkspace(workspace,
             document.getElementById('startBlocks'));
-    function submit() {
-      // Generate Prolog code and display it.
-      var code = Blockly.Prolog.workspaceToCode(workspace);
-      alert(code);
-    }
     function myUpdateFunction() {
       var code = Blockly.Prolog.workspaceToCode(workspace);
       document.getElementById('textarea').value = code;
     }
     workspace.addChangeListener(myUpdateFunction);
+
+    // buttons
+    function connect() {
+      // for now: open iframe
+      var tableName = document.getElementById('inputTable').value;
+      alert(tableName);
+      var code = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName="+tableName+"\">This website uses iframes to show the game results.</iframe>";
+      alert(code);
+      document.getElementById('playDiv').innerHTML = code;
+    }
+    function submit() {
+      // Generate Prolog code and display it.
+      var code = Blockly.Prolog.workspaceToCode(workspace);
+      alert(code);
+    }
   </script>
 
 </body>
