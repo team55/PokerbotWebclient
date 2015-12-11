@@ -131,6 +131,7 @@
   <div id="playDiv">
   </div>
 
+  <script src="jquery-1.11.3.min.js"></script>
   <script>
     // blockly stuff
     var workspace = Blockly.inject('blocklyDiv',
@@ -147,11 +148,9 @@
     // buttons
     function connect() {
       // for now: open iframe
-      var tableName = document.getElementById('inputTable').value;
-      alert(tableName);
+      var tableName = $('#inputTable').val();
       var code = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName="+tableName+"\">This website uses iframes to show the game results.</iframe>";
-      alert(code);
-      document.getElementById('playDiv').innerHTML = code;
+      $('#playDiv').html(code);
     }
     function submit() {
       // Generate Prolog code and display it.
