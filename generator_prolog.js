@@ -79,6 +79,8 @@ Blockly.Prolog.ORDER_NONE = 99;          // (...)
  * @param {!Blockly.Workspace} workspace Workspace to generate code from.
  */
 Blockly.Prolog.init = function(workspace) {
+  // Init global rule counter (do(_,1):-, do(_,2):-,...)
+  Blockly.Prolog.rulecounter = 1;
   // Init global variable-name counter (X1, X2, ...)
   Blockly.Prolog.varcounter = 1;
   // scope for 'and' expressions
@@ -163,9 +165,7 @@ Blockly.Prolog.newvar = function() {
 Blockly.Prolog['controls_if'] = function(block) {
   // If/elseif/else condition.
   var code = '';
-  var n = 0;
-  while (n <= block.elseifCount_) {
-    n++;
+  for (var n=0; n <= block.elseifCount_; n++) {
     var argument = Blockly.Prolog.valueToCode(block, 'IF' + n,
         Blockly.Prolog.ORDER_NONE) || 'true';
     var branch = Blockly.Prolog.statementToCode(block, 'DO' + n) || 'fold';
@@ -174,10 +174,10 @@ Blockly.Prolog['controls_if'] = function(block) {
         argument = scope + argument;
         Blockly.Prolog.scope = '';
     }
-    code += 'do(' + branch + ', ' + n + ') :- ' + argument + '.\n';
+    code += 'do(' + branch + ', ' + Blockly.Prolog.rulecounter + ') :- ' + argument + '.\n';
+    Blockly.Prolog.rulecounter++;
   }
   if (block.elseCount_) {
-    n++;
     var branch = Blockly.Prolog.statementToCode(block, 'ELSE') || 'fold';
     var argument = 'true';
     var scope = Blockly.Prolog.scope;
@@ -185,7 +185,8 @@ Blockly.Prolog['controls_if'] = function(block) {
         argument = scope;
         Blockly.Prolog.scope = '';
     }
-    code += 'do(' + branch + ', ' + n + ') :- ' + argument + '.\n';
+    code += 'do(' + branch + ', ' + Blockly.Prolog.rulecounter + ') :- ' + argument + '.\n';
+    Blockly.Prolog.rulecounter++;
   }
   return code + '\n';
 };
