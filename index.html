@@ -17,6 +17,17 @@
       font-weight: normal;
       font-size: 140%;
     }
+    iframe {
+      border: none;
+    }
+    #workDiv {
+      float: left;
+    }
+    #playDiv iframe {
+      width: 65%;
+      min-height: 800px;
+      float: left;
+    }
   </style>
 </head>
 <body>
@@ -28,7 +39,7 @@
   <h1>Make your own pokerbot!</h1>
   <p>
     <button onclick="submit()">Submit to server (for now: show code)</button>
-    <textarea id="textarea" rows="4" cols="30"></textarea>
+    <textarea id="textarea" rows="8" cols="30"></textarea>
   </p>
   <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
 
@@ -110,8 +121,8 @@
   </xml>
   </div>
 
-  <div id="scoreDiv">
-    scoreDiv
+  <div id="playDiv">
+    <iframe src="http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName=test">This website uses iframes to show the game results.</iframe> 
   </div>
 
   <script>
