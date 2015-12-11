@@ -179,11 +179,9 @@
       var table = $('#inputTable').val();
       // Generate Prolog code and submit it.
       var code = Blockly.Prolog.workspaceToCode(workspace);
-      alert(code);
 
       // send to server
       var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName="+table+"&playerName="+user+"&description="+encodeURIComponent(code)+"\">This website uses iframes to show the game results.</iframe>";
-      alert(faker);
       $('#debugDiv').html(faker);
     }
   </script>
