@@ -1,3 +1,363 @@
+
+/* Booleans */
+
+Blockly.Blocks['is_preflop'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("is preflop");
+    this.setOutput(true, "Boolean");
+    this.setColour(290);
+    this.setTooltip('Checks if flop is unseen');
+  }
+};
+
+Blockly.Blocks['is_flop'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("is flop");
+    this.setOutput(true, "Boolean");
+    this.setColour(290);
+    this.setTooltip('Checks if we are on the flop');
+  }
+};
+
+Blockly.Blocks['is_turn'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("is turn");
+    this.setOutput(true, "Boolean");
+    this.setColour(290);
+    this.setTooltip('Checks if we are on the turn');
+  }
+};
+
+Blockly.Blocks['is_river'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("is river");
+    this.setOutput(true, "Boolean");
+    this.setColour(290);
+    this.setTooltip('Checks if we are on the river');
+  }
+};
+
+Blockly.Blocks['is_postflop'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("is postflop");
+    this.setOutput(true, "Boolean");
+    this.setColour(290);
+    this.setTooltip('Checks the flop is seen');
+  }
+};
+
+Blockly.Blocks['is_small_blind'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("is small blind");
+    this.setOutput(true, "Boolean");
+    this.setColour(290);
+    this.setTooltip('Checks if we are in the small blind');
+  }
+};
+
+Blockly.Blocks['is_big_blind'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("is big blind");
+    this.setOutput(true, "Boolean");
+    this.setColour(290);
+    this.setTooltip('Checks if we are in the big blind');
+  }
+};
+
+Blockly.Blocks['is_dealer'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("is dealer");
+    this.setOutput(true, "Boolean");
+    this.setColour(290);
+    this.setTooltip('Checks if we are the dealer');
+  }
+};
+
+/* Numeric */
+
+Blockly.Blocks['stacksize'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("stacksize");
+    this.setOutput(true, "Number");
+    this.setColour(65);
+    this.setTooltip('Your current stacksize');
+  }
+};
+
+Blockly.Blocks['potsize'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("potsize");
+    this.setOutput(true, "Number");
+    this.setColour(65);
+    this.setTooltip('The current potsize');
+  }
+};
+
+Blockly.Blocks['active_players'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("number of active players");
+    this.setOutput(true, "Number");
+    this.setColour(65);
+    this.setTooltip('The number of active players');
+  }
+};
+
+Blockly.Blocks['non_allin_active_players'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("number of active players (not all-in)");
+    this.setOutput(true, "Number");
+    this.setColour(65);
+    this.setTooltip('The number of active players (not all-in)');
+  }
+};
+
+Blockly.Blocks['amount_to_call'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("amount to call");
+    this.setOutput(true, "Number");
+    this.setColour(65);
+    this.setTooltip('The amount to call');
+  }
+};
+
+Blockly.Blocks['max_profit'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("maximum profit");
+    this.setOutput(true, "Number");
+    this.setColour(65);
+    this.setTooltip('The maximum profit for this hand');
+  }
+};
+
+Blockly.Blocks['min_raise'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("the minimum amount to raise");
+    this.setOutput(true, "Number");
+    this.setColour(65);
+    this.setTooltip('The minimum amount to raise');
+  }
+};
+
+Blockly.Blocks['max_raise'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("maximum amount to raise");
+    this.setOutput(true, "Number");
+    this.setColour(65);
+    this.setTooltip('The maximum amount to raise');
+  }
+};
+
+Blockly.Blocks['number_of_raises'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("number of raises");
+    this.setOutput(true, "Number");
+    this.setColour(65);
+    this.setTooltip('The number of raises');
+  }
+};
+
+Blockly.Blocks['random'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("random amount");
+    this.setOutput(true, "Number");
+    this.setColour(65);
+    this.setTooltip('A random amount');
+  }
+};
+
+/* Comparators */
+
+Blockly.Blocks['greater_then'] = {
+  init: function() {
+    this.appendValueInput("A")
+        .setCheck("Number");
+    this.appendDummyInput()
+        .appendField(">");
+    this.appendValueInput("B")
+        .setCheck("Number");
+    this.setInputsInline(true);
+    this.setOutput(true, "Boolean");
+    this.setColour(190);
+    this.setTooltip('True if and only if A is greater then B');
+  }
+};
+Blockly.Blocks['greater_then_or_equal'] = {
+  init: function() {
+    this.appendValueInput("A")
+        .setCheck("Number");
+    this.appendDummyInput()
+        .appendField(">=");
+    this.appendValueInput("B")
+        .setCheck("Number");
+    this.setInputsInline(true);
+    this.setOutput(true, "Boolean");
+    this.setColour(190);
+    this.setTooltip('True if and only if A is greater then or equal to B');
+  }
+};
+Blockly.Blocks['less_then'] = {
+  init: function() {
+    this.appendValueInput("A")
+        .setCheck("Number");
+    this.appendDummyInput()
+        .appendField("<");
+    this.appendValueInput("B")
+        .setCheck("Number");
+    this.setInputsInline(true);
+    this.setOutput(true, "Boolean");
+    this.setColour(190);
+    this.setTooltip('True if and only if A is less then B');
+  }
+};
+Blockly.Blocks['less_then_or_equal'] = {
+  init: function() {
+    this.appendValueInput("A")
+        .setCheck("Number");
+    this.appendDummyInput()
+        .appendField("=<");
+    this.appendValueInput("B")
+        .setCheck("Number");
+    this.setInputsInline(true);
+    this.setOutput(true, "Boolean");
+    this.setColour(190);
+    this.setTooltip('True if and only if A is less then or equal to B');
+  }
+};
+Blockly.Blocks['equals'] = {
+  init: function() {
+    this.appendValueInput("A")
+        .setCheck("Number");
+    this.appendDummyInput()
+        .appendField("=");
+    this.appendValueInput("B")
+        .setCheck("Number");
+    this.setInputsInline(true);
+    this.setOutput(true, "Boolean");
+    this.setColour(190);
+    this.setTooltip('True if and only if A equals B');
+  }
+};
+Blockly.Blocks['and'] = {
+  init: function() {
+    this.appendValueInput("A")
+        .setCheck("Boolean");
+    this.appendDummyInput()
+        .appendField("and");
+    this.appendValueInput("B")
+        .setCheck("Boolean");
+    this.setInputsInline(true);
+    this.setOutput(true, "Boolean");
+    this.setColour(190);
+    this.setTooltip('True if and only if A and B are both true');
+  }
+};
+Blockly.Blocks['or'] = {
+  init: function() {
+    this.appendValueInput("A")
+        .setCheck("Boolean");
+    this.appendDummyInput()
+        .appendField("or");
+    this.appendValueInput("B")
+        .setCheck("Boolean");
+    this.setInputsInline(true);
+    this.setOutput(true, "Boolean");
+    this.setColour(190);
+    this.setTooltip('True if and only if A or B is true');
+  }
+};
+Blockly.Blocks['not'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("not");
+    this.appendValueInput("A")
+        .setCheck("Boolean");
+    this.setInputsInline(true);
+    this.setOutput(true, "Boolean");
+    this.setColour(190);
+    this.setTooltip('True if and only if A is false');
+  }
+};
+
+/* Operations */
+
+Blockly.Blocks['add'] = {
+  init: function() {
+    this.appendValueInput("A")
+        .setCheck("Number");
+    this.appendDummyInput()
+        .appendField("+");
+    this.appendValueInput("B")
+        .setCheck("Number");
+    this.setInputsInline(true);
+    this.setOutput(true, "Number");
+    this.setColour(190);
+    this.setTooltip('Results in A + B');
+  }
+};
+
+Blockly.Blocks['substract'] = {
+  init: function() {
+    this.appendValueInput("A")
+        .setCheck("Number");
+    this.appendDummyInput()
+        .appendField("-");
+    this.appendValueInput("B")
+        .setCheck("Number");
+    this.setInputsInline(true);
+    this.setOutput(true, "Number");
+    this.setColour(190);
+    this.setTooltip('Results in A - B');
+  }
+};
+
+Blockly.Blocks['multiply'] = {
+  init: function() {
+    this.appendValueInput("A")
+        .setCheck("Number");
+    this.appendDummyInput()
+        .appendField("*");
+    this.appendValueInput("B")
+        .setCheck("Number");
+    this.setInputsInline(true);
+    this.setOutput(true, "Number");
+    this.setColour(190);
+    this.setTooltip('Results in A * B');
+  }
+};
+
+Blockly.Blocks['divide'] = {
+  init: function() {
+    this.appendValueInput("A")
+        .setCheck("Number");
+    this.appendDummyInput()
+        .appendField("/");
+    this.appendValueInput("B")
+        .setCheck("Number");
+    this.setInputsInline(true);
+    this.setOutput(true, "Number");
+    this.setColour(190);
+    this.setTooltip('Results in A / B');
+  }
+};
+
 /* Actions */
 
 Blockly.Blocks['poker_call'] = {
@@ -22,13 +382,14 @@ Blockly.Blocks['poker_fold'] = {
 
 Blockly.Blocks['poker_raise'] = {
   init: function() {
-    this.appendValueInput("amount")
-        .setCheck("Number")
-        .setAlign(Blockly.ALIGN_RIGHT)
+    this.appendDummyInput()
         .appendField("raise");
+    this.appendValueInput("amount")
+        .setCheck("Number");
+    this.setInputsInline(true);
     this.setPreviousStatement(true);
-    this.setColour(120);
-    this.setTooltip('Do action: raise by an amount');
+    this.setColour(135);
+    this.setTooltip('Do action: raise');
   }
 };
 

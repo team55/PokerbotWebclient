@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-'use strict'; 
+'use strict';
 
 goog.provide('Blockly.Prolog');
 
@@ -160,6 +160,154 @@ Blockly.Prolog.newvar = function() {
   Blockly.Prolog.varcounter += 1;
   return Xnew;
 };
+
+/**
+ *  Implementation for blocks that represent BOOLEANS.
+ *  i.e. is_preflop, is_turn, is_dealer, etc.
+ */
+
+Blockly.Prolog['is_preflop'] = function(block) {
+ return ["ispreflop", Blockly.Prolog.ORDER_ATOMIC];
+};
+Blockly.Prolog['is_flop'] = function(block) {
+ return ["isflop", Blockly.Prolog.ORDER_ATOMIC];
+};
+Blockly.Prolog['is_turn'] = function(block) {
+ return ["isturn", Blockly.Prolog.ORDER_ATOMIC];
+};
+Blockly.Prolog['is_river'] = function(block) {
+ return ["isriver", Blockly.Prolog.ORDER_ATOMIC];
+};
+Blockly.Prolog['is_postflop'] = function(block) {
+ return ["ispostflop", Blockly.Prolog.ORDER_ATOMIC];
+};
+Blockly.Prolog['is_small_blind'] = function(block) {
+ return ["issmallblind", Blockly.Prolog.ORDER_ATOMIC];
+};
+Blockly.Prolog['is_big_blind'] = function(block) {
+ return ["isbigblind", Blockly.Prolog.ORDER_ATOMIC];
+};
+Blockly.Prolog['is_dealer'] = function(block) {
+ return ["isbutton", Blockly.Prolog.ORDER_ATOMIC];
+};
+
+/**
+ *  Implementation for blocks that represent NUMERIC values.
+ *  i.e. stacksize, potsize, active players, etc.
+ */
+
+Blockly.Prolog['stacksize'] = function(block) {
+  var Xnew = Blockly.Prolog.newvar();
+  Blockly.Prolog.scope += 'saldo(' + Xnew + '), ';
+  return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
+}
+Blockly.Prolog['potsize'] = function(block) {
+  var Xnew = Blockly.Prolog.newvar();
+  Blockly.Prolog.scope += 'potgrootte(' + Xnew + '), ';
+  return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
+}
+Blockly.Prolog['active_players'] = function(block) {
+  var Xnew = Blockly.Prolog.newvar();
+  Blockly.Prolog.scope += 'actievespelers(' + Xnew + '), ';
+  return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
+}
+Blockly.Prolog['non_allin_active_players'] = function(block) {
+  var Xnew = Blockly.Prolog.newvar();
+  Blockly.Prolog.scope += 'actievespelersmetgeld(' + Xnew + '), ';
+  return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
+}
+Blockly.Prolog['amount_to_call'] = function(block) {
+  var Xnew = Blockly.Prolog.newvar();
+  Blockly.Prolog.scope += 'tekort(' + Xnew + '), ';
+  return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
+}
+Blockly.Prolog['max_profit'] = function(block) {
+  var Xnew = Blockly.Prolog.newvar();
+  Blockly.Prolog.scope += 'maximalewinst(' + Xnew + '), ';
+  return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
+}
+Blockly.Prolog['min_raise'] = function(block) {
+  var Xnew = Blockly.Prolog.newvar();
+  Blockly.Prolog.scope += 'minimumraise(' + Xnew + '), ';
+  return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
+}
+Blockly.Prolog['max_raise'] = function(block) {
+  var Xnew = Blockly.Prolog.newvar();
+  Blockly.Prolog.scope += 'maximumraise(' + Xnew + '), ';
+  return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
+}
+Blockly.Prolog['number_of_raises'] = function(block) {
+  var Xnew = Blockly.Prolog.newvar();
+  Blockly.Prolog.scope += 'aantalraises(' + Xnew + '), ';
+  return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
+}
+Blockly.Prolog['random'] = function(block) {
+  var Xnew = Blockly.Prolog.newvar();
+  Blockly.Prolog.scope += 'random(' + Xnew + '), ';
+  return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
+}
+
+/**
+ *  Implementation for blocks that represent COMPARISONS.
+ *  i.e. greater_then, less_then, and, or, etc.
+ */
+
+Blockly.Prolog['greater_then'] = function(block) {
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var code = '(' + a + ' > ' + b + '), ';
+  return [code, order];
+}
+Blockly.Prolog['greater_then_or_equal'] = function(block) {
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var code = '(' + a + ' >= ' + b + '), ';
+  return [code, order];
+}
+Blockly.Prolog['less_then'] = function(block) {
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var code = '(' + a + ' < ' + b + '), ';
+  return [code, order];
+}
+Blockly.Prolog['less_then_or_equal'] = function(block) {
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var code = '(' + a + ' =< ' + b + '), ';
+  return [code, order];
+}
+Blockly.Prolog['equals'] = function(block) {
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var code = '(' + a + ' is ' + b + '), ';
+  return [code, order];
+}
+Blockly.Prolog['and'] = function(block) {
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var a = Blockly.Prolog.statementToCode(block, 'A', order) || '_';
+  var b = Blockly.Prolog.statementToCode(block, 'B', order) || '_';
+  var code = '(' + a + ', ' + b + '), ';
+  return [code, order];
+}
+Blockly.Prolog['or'] = function(block) {
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var code = '(' + a + '; ' + b + '), ';
+  return [code, order];
+}
+Blockly.Prolog['not'] = function(block) {
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
+  var code = ' \\\+ ' + a + '';
+  return [code, order];
+}
+
 /** BLOCKS: control **/
 
 Blockly.Prolog['controls_if'] = function(block) {
@@ -298,7 +446,7 @@ Blockly.Prolog['poker_fold'] = function(block) {
 Blockly.Prolog['poker_raise'] = function(block) {
   // do(raise(X0), 1) :- X0 is 3.14, true.
   var Xnew = Blockly.Prolog.newvar();
-  
+
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var argument0 = Blockly.Prolog.valueToCode(block, 'amount', order) || '0';
   var code = Xnew + ' is ' + argument0 + ', ';
@@ -319,7 +467,7 @@ Blockly.Prolog['poker_cards'] = function(block) {
   // put stuff generated by 'cardlist' after previous stuff
   var prevScope = Blockly.Prolog.scope;
   Blockly.Prolog.scope = '';
-  
+
   var cardlist = Blockly.Prolog.statementToCode(block, 'cardlist') || '_';
   var l = cardlist.length;
   // cut of spurious ', ' at end if exists
