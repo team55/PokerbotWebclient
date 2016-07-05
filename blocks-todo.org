@@ -1,0 +1,53 @@
+
+Booleans
+    - is_preflop        DI
+    - is_flop           DI
+    - is_turn           DI
+    - is_river          DI
+    - is_postflop       DI
+    - is_small_blind    DI
+    - is_big_blind      DI
+    - is_dealer         DI
+
+Numeric
+    - stacksize         DI
+    - potsize           DI
+    - active_players    DI
+    - non_allin_ap      DI
+    - amount_to_call    DI
+    - max_profit        DI
+    - min_raise         DI
+    - max_raise         DI
+    - number_of_raises  DI
+    - random            DI
+
+Comparators
+    - greater_then      D
+    - greater_then_oe   D
+    - less_then         D
+    - less_then_oe      D
+    - equals            D
+    - and               D
+    - or                D
+    - not               D
+
+Operations
+    - add               D
+    - substract         D
+    - multiply          D
+    - divide            D
+
+Extra:
+    - hole_cards
+    - community_cards
+    - all_cards
+    - card_comparison
+    - true
+    - false
+    - number
+    - call              D
+    - fold              D
+    - raise             D
+
+CHANGE COLOR BASED ON TYPE
+
