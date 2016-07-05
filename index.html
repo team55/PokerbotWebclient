@@ -3,11 +3,34 @@
 <head>
   <meta charset="utf-8">
   <title>Pokerdemo, webclient</title>
+
+  <!-- Semantic UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>-->
+
   <script src="blockly/blockly_compressed.js"></script>
   <script src="blockly/blocks_compressed.js"></script>
   <script src="blockly/msg/js/en.js"></script>
   <script src="blocks_poker.js"></script>
   <script src="generator_prolog.js"></script>
+
+  <style>
+    .signin {
+      width: 250px;
+      margin: 0 auto;
+      margin-top: 150px;
+    }
+    #debugger {
+      font-style: italic;
+    }
+    #workspace {
+      display: none;
+      text-align: center;
+      margin-top: 150px;
+    }
+  </style>
+  <!-- Custom Styles
   <style>
     body {
       background-color: #fff;
@@ -29,29 +52,81 @@
       float: left;
     }
   </style>
+  -->
+
 </head>
 <body>
-  <div id="loginDiv">
-  <p>
-    Your name: <input type="text" id="inputUser"></input>
-  </p>
-  <p>
-    Table name: <input type="text" id="inputTable"></input>
-    <button onclick="connect()">Connect to server</button>
-  </p>
-  <div>Debugger:
-  <div id="debugDiv">
-  </div>
-  </div>
+
+  <div id="auth" class="ui form signin">
+    <h3>Pokerbot</h3>
+    <div class="field">
+      <label>Username</label>
+      <input type="text" id="user-name" name="user-name" placeholder="Username">
+    </div>
+    <div class="field">
+      <label>Table</label>
+      <input type="text" id="table-name" name="table-name" placeholder="Table">
+    </div>
+    <button id="authbtn" class="ui button">Submit</button>
   </div>
 
+  <div id="workspace" class="ui">
+    <h1>Make your own pokerbot!</h1>
+    <h5>Currently playing as "<span id="username"></span>" on table "<span id="table"></span>".</h5>
+    <p>
+      <button onclick="submit()">Submit to server (for now: show code)</button>
+      <textarea id="textarea" rows="8" cols="30"></textarea>
+    </p>
+    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+    <div id="playDiv"></div>
+    <div id="debugger">
+      <p>Debugger: <span id="debugDiv"></span></p>
+    </div>
+  </div>
+
+  <script>
+
+    /**
+     *  Connects the user to the server.
+     */
+    $('#authbtn').click(function(event) {
+        // SOP();
+        var user = $('#user-name').val();
+        var table = $('#table-name').val();
+        var link = "http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName=" + table + "&playerName=" + user;
+        $('#debugDiv').load(link);
+
+        // Receiving iframe
+        var code = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName="+table+"\">This website uses iframes to show the game results.</iframe>";
+        $('#playDiv').html(code);
+
+        $('#username').html(user);
+        $('#table').html(table);
+
+        $('#auth').fadeOut("slow", function(e) {
+          $('#workspace').fadeIn("slow");
+        });
+
+    });
+
+    /**
+     *  Run when Same Origin Policy Disallows...
+     *  Only run on same server. Uncomment it in the function above.
+     */
+    var SOP = function() {
+      $.ajax({
+        method: "POST",
+        url: "http://bear.cs.kuleuven.be/pokerdemo/server/hello.php",
+        data: { tableName: table, playerName: user }
+      }).done(function( msg ) {
+        alert( "Got reply: " + msg );
+      });
+    }
+
+  </script>
+
+
   <div id="workDiv">
-  <h1>Make your own pokerbot!</h1>
-  <p>
-    <button onclick="submit()">Submit to server (for now: show code)</button>
-    <textarea id="textarea" rows="8" cols="30"></textarea>
-  </p>
-  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
 
   <xml id="toolbox" style="display: none">
     <category name="Control">
@@ -131,8 +206,7 @@
   </xml>
   </div>
 
-  <div id="playDiv">
-  </div>
+
 
   <script src="jquery-1.11.3.min.js"></script>
   <script>
@@ -148,41 +222,12 @@
     }
     workspace.addChangeListener(myUpdateFunction);
 
-    // buttons
-    function connect() {
-      var user = $('#inputUser').val();
-      var table = $('#inputTable').val();
-
-      /*
-       * Same Origin Policy disallows... only when run on same server
-      // send hello to webserver, if OK continue
-      $.ajax({
-        method: "POST",
-        url: "http://bear.cs.kuleuven.be/pokerdemo/server/hello.php",
-        data: { tableName: table, playerName: user }
-      })
-        .done(function( msg ) {
-          alert( "Got reply: " + msg );
-        });
-        *
-        */
-      // Fake with 'sending' iframe for now
-      var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName="+table+"&playerName="+user+"\">This website uses iframes to show the game results.</iframe>";
-      $('#debugDiv').html(faker);
-
-      // Receiving iframe
-      var code = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName="+table+"\">This website uses iframes to show the game results.</iframe>";
-      $('#playDiv').html(code);
-    }
     function submit() {
-      var user = $('#inputUser').val();
-      var table = $('#inputTable').val();
-      // Generate Prolog code and submit it.
+      var user = $('#user-name').val();
+      var table = $('#table-name').val();
       var code = Blockly.Prolog.workspaceToCode(workspace);
-
-      // send to server
-      var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName="+table+"&playerName="+user+"&description="+encodeURIComponent(code)+"\">This website uses iframes to show the game results.</iframe>";
-      $('#debugDiv').html(faker);
+      var link = "http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName=" + table + "&playerName=" + user;
+      $('#debugDiv').load(link);
     }
   </script>
 
