@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Pokerdemo, webclient</title>
+  <script src="blockly/blockly_compressed.js"></script>
+  <script src="blockly/blocks_compressed.js"></script>
+  <script src="blockly/msg/js/en.js"></script>
+  <script src="blocks_poker.js"></script>
+  <script src="generator_prolog.js"></script>
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+    iframe {
+      border: none;
+    }
+    #workDiv {
+      float: left;
+    }
+    #playDiv iframe {
+      width: 65%;
+      min-height: 800px;
+      float: left;
+    }
+  </style>
+</head>
+<body>
+  <div id="loginDiv">
+  <p>
+    Your name: <input type="text" id="inputUser"></input>
+  </p>
+  <p>
+    Table name: <input type="text" id="inputTable"></input>
+    <button onclick="connect()">Connect to server</button>
+  </p>
+  <div>Debugger:
+  <div id="debugDiv">
+  </div>
+  </div>
+  </div>
+
+  <div id="workDiv">
+  <h1>Make your own pokerbot!</h1>
+  <p>
+    <button onclick="submit()">Submit to server (for now: show code)</button>
+    <textarea id="textarea" rows="8" cols="30"></textarea>
+  </p>
+  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+
+  <xml id="toolbox" style="display: none">
+    <category name="Control">
+      <block type="controls_if"></block>
+      <block type="logic_boolean"></block>
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
+    </category>
+    <category name="Actions">
+      <block type="poker_call"></block>
+      <block type="poker_fold"></block>
+      <block type="poker_raise">
+        <value name="amount">
+          <block type="math_number">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+      </block>
+    </category>
+    <category name="Cards">
+      <block type="poker_cards"></block>
+      <block type="poker_card">
+        <value name="arg_color">
+          <block type="poker_color_any"></block>
+        </value>
+        <value name="arg_rank">
+          <block type="poker_rank_any"></block>
+        </value>
+      </block>
+      <block type="poker_color"></block>
+      <block type="poker_color_same">
+        <value name="num">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+      <block type="poker_rank"></block>
+      <block type="poker_rank_same">
+        <value name="num">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+      <block type="poker_rank_incr">
+        <value name="num">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <value name="incr">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+    </category>
+    <!-- <category name="Math">
+      <block type="math_number"></block>
+      <block type="math_arithmetic"></block>
+    </category>
+    -->
+  </xml>
+
+  <xml id="startBlocks" style="display: none">
+    <block type="controls_if" x="25" y="25">
+      <value name="IF0">
+        <block type="logic_boolean">
+          <field name="BOOL">TRUE</field>
+        </block>
+      </value>
+      <statement name="DO0">
+        <block type="poker_call"></block>
+      </statement>
+    </block>
+  </xml>
+  </div>
+
+  <div id="playDiv">
+  </div>
+
+  <script src="jquery-1.11.3.min.js"></script>
+  <script>
+    // blockly stuff
+    var workspace = Blockly.inject('blocklyDiv',
+        {media: 'blockly/media/',
+         toolbox: document.getElementById('toolbox')});
+    Blockly.Xml.domToWorkspace(workspace,
+            document.getElementById('startBlocks'));
+    function myUpdateFunction() {
+      var code = Blockly.Prolog.workspaceToCode(workspace);
+      document.getElementById('textarea').value = code;
+    }
+    workspace.addChangeListener(myUpdateFunction);
+
+    // buttons
+    function connect() {
+      var user = $('#inputUser').val();
+      var table = $('#inputTable').val();
+
+      /*
+       * Same Origin Policy disallows... only when run on same server
+      // send hello to webserver, if OK continue
+      $.ajax({
+        method: "POST",
+        url: "http://bear.cs.kuleuven.be/pokerdemo/server/hello.php",
+        data: { tableName: table, playerName: user }
+      })
+        .done(function( msg ) {
+          alert( "Got reply: " + msg );
+        });
+        *
+        */
+      // Fake with 'sending' iframe for now
+      var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName="+table+"&playerName="+user+"\">This website uses iframes to show the game results.</iframe>";
+      $('#debugDiv').html(faker);
+
+      // Receiving iframe
+      var code = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName="+table+"\">This website uses iframes to show the game results.</iframe>";
+      $('#playDiv').html(code);
+    }
+    function submit() {
+      var user = $('#inputUser').val();
+      var table = $('#inputTable').val();
+      // Generate Prolog code and submit it.
+      var code = Blockly.Prolog.workspaceToCode(workspace);
+
+      // send to server
+      var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName="+table+"&playerName="+user+"&description="+encodeURIComponent(code)+"\">This website uses iframes to show the game results.</iframe>";
+      $('#debugDiv').html(faker);
+    }
+  </script>
+
+</body>
+</html>
