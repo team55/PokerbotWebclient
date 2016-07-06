@@ -584,7 +584,7 @@ Blockly.Prolog['poker_card_valop'] = function(block) {
 
 /** BLOCKS: control **/
 
-Blockly.Prolog['controls_if'] = function(block) {
+Blockly.Prolog['custom_if'] = function(block) {
   // If/elseif/else condition.
   var code = '';
   for (var n=0; n <= block.elseifCount_; n++) {
