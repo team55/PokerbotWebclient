@@ -39,6 +39,8 @@
     Table name: <input type="text" id="inputTable"></input>
     <button onclick="connect()">Connect to server</button>
   </p>
+  <button onclick="saveWorkspace()">save config</button>
+  <button onclick="loadWorkspace()">load config</button>
   <div>Debugger:
   <div id="debugDiv">
   </div>
@@ -214,6 +216,18 @@
       // send to server
       var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName="+table+"&playerName="+user+"&description="+encodeURIComponent(code)+"\">This website uses iframes to show the game results.</iframe>";
       $('#debugDiv').html(faker);
+    }
+
+    function saveWorkspace() {
+      var xml = Blockly.Xml.workspaceToDom(workspace);
+      var xml_text = Blockly.Xml.domToText(xml);
+      alert(xml_text);
+    }
+
+    function loadWorkspace() {
+      var result = prompt("Enter xml");
+      var dom = Blockly.Xml.textToDom(result);
+      Blockly.Xml.domToWorkspace(workspace, dom);
     }
   </script>
 
