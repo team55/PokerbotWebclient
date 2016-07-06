@@ -297,21 +297,21 @@ Blockly.Prolog['equals'] = function(block) {
 }
 Blockly.Prolog['and'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
-  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
-  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || 'true';
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || 'true';
   var code = '(' + a + ', ' + b + ')';
   return [code, order];
 }
 Blockly.Prolog['or'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
-  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
-  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || 'true';
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || 'true';
   var code = '(' + a + '; ' + b + ')';
   return [code, order];
 }
 Blockly.Prolog['not'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
-  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || 'false';
   var code = ' \\\+ ' + a + '';
   return [code, order];
 }
