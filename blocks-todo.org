@@ -1,8 +1,8 @@
 
 Basics
-    - true
-    - false
-    - number
+    - true    (logic_boolean)
+    - false   (logic_boolean)
+    - number  (math_number)
 
 Booleans
     - is_preflop        DI

@@ -345,7 +345,8 @@ Blockly.Blocks['poker_call'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("call");
-    this.setPreviousStatement(true);
+    this.setPreviousStatement(true, "Action");
+    this.setOutput(false, "POKER_TYPE_ACTION");
     this.setColour(120);
     this.setTooltip('Do action: call');
   }
@@ -354,7 +355,7 @@ Blockly.Blocks['poker_fold'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("fold");
-    this.setPreviousStatement(true);
+    this.setPreviousStatement(true, "Action");
     this.setColour(120);
     this.setTooltip('Do action: fold');
   }
@@ -366,7 +367,7 @@ Blockly.Blocks['poker_raise'] = {
     this.appendValueInput("amount")
         .setCheck("Number");
     this.setInputsInline(true);
-    this.setPreviousStatement(true);
+    this.setPreviousStatement(true, "Action");
     this.setColour(135);
     this.setTooltip('Do action: raise');
   }
@@ -385,7 +386,7 @@ Blockly.Blocks['poker_cards'] = {
     this.setInputsInline(false);
     this.setOutput(true);
     this.setColour(210);
-    this.setTooltip('whether there are cards with certain properties (you can drag multiple cards in to denote different cards)');
+    this.setTooltip('Whether there are cards with certain properties (you can drag multiple cards in to denote different cards)');
   }
 };
 
@@ -401,6 +402,7 @@ Blockly.Blocks['poker_card'] = {
         .setCheck("POKER_TYPE_RANK")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("rank:");
+    this.setOutput(true, "POKER_TYPE_CARD");
     this.setInputsInline(false);
     this.setPreviousStatement(true, "POKER_TYPE_CARD");
     this.setNextStatement(true, "POKER_TYPE_CARD");

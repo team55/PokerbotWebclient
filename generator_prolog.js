@@ -190,6 +190,10 @@ Blockly.Prolog['is_big_blind'] = function(block) {
 Blockly.Prolog['is_dealer'] = function(block) {
  return ["isbutton", Blockly.Prolog.ORDER_ATOMIC];
 };
+Blockly.Prolog['logic_boolean'] = function(block) {
+  var code = (block.getFieldValue('BOOL') == 'TRUE') ? 'true' : 'false';
+  return [code, Blockly.Prolog.ORDER_ATOMIC];
+};
 
 /**
  *  Implementation for blocks that represent NUMERIC values.
@@ -246,6 +250,10 @@ Blockly.Prolog['random'] = function(block) {
   Blockly.Prolog.scope += 'random(' + Xnew + '), ';
   return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 }
+Blockly.Prolog['math_number'] = function(block) {
+  var code = parseFloat(block.getFieldValue('NUM'));
+  return [code, Blockly.Prolog.ORDER_ATOMIC];
+};
 
 /**
  *  Implementation for blocks that represent COMPARISONS.
@@ -307,7 +315,6 @@ Blockly.Prolog['not'] = function(block) {
   var code = ' \\\+ ' + a + '';
   return [code, order];
 }
-
 
 /**
  *  Implementation for blocks that represent OPERATIONS.
@@ -454,19 +461,11 @@ Blockly.Prolog['logic_negate'] = function(block) {
   return [code, order];
 };
 
-Blockly.Prolog['logic_boolean'] = function(block) {
-  // Boolean values true and false.
-  var code = (block.getFieldValue('BOOL') == 'TRUE') ? 'true' : 'false';
-  return [code, Blockly.Prolog.ORDER_ATOMIC];
-};
+
 
 /** BLOCKS: math **/
 
-Blockly.Prolog['math_number'] = function(block) {
-  // Numeric value.
-  var code = parseFloat(block.getFieldValue('NUM'));
-  return [code, Blockly.Prolog.ORDER_ATOMIC];
-};
+
 
 Blockly.Prolog['math_arithmetic'] = function(block) {
   // TODO: should be: X0 is 3.14, X1 is 3.15, X2 is (X0 + X1)
