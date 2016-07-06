@@ -519,8 +519,8 @@ Blockly.Blocks['custom_if'] = {
     this.appendStatementInput('DO0')
         .setCheck('Action')
         .appendField(Blockly.Msg.CONTROLS_IF_MSG_THEN);
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
+    this.setPreviousStatement(true, 'Action');
+    this.setNextStatement(true, 'Action');
     this.setMutator(new Blockly.Mutator(['controls_if_elseif',
                                          'controls_if_else']));
     // Assign 'this' to a variable for use in the tooltip closure below.

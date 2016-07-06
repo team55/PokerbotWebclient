@@ -1,55 +1,5 @@
 
-Basics
-    - true    (logic_boolean)
-    - false   (logic_boolean)
-    - number  (math_number)
-
-Booleans
-    - is_preflop        DI
-    - is_flop           DI
-    - is_turn           DI
-    - is_river          DI
-    - is_postflop       DI
-    - is_small_blind    DI
-    - is_big_blind      DI
-    - is_dealer         DI
-
-Numeric
-    - stacksize         DI
-    - potsize           DI
-    - active_players    DI
-    - non_allin_ap      DI
-    - amount_to_call    DI
-    - max_profit        DI
-    - min_raise         DI
-    - max_raise         DI
-    - number_of_raises  DI
-    - random            DI
-
-Comparators
-    - greater_then      DI
-    - greater_then_oe   DI
-    - less_then         DI
-    - less_then_oe      DI
-    - equals            DI
-    - and               DI
-    - or                DI
-    - not               DI
-
-Operations
-    - add               DI
-    - substract         DI
-    - multiply          DI
-    - divide            DI
-
-Extra:
-    - hole_cards        DI
-    - community_cards   DI
-    - all_cards         DI
-    - card_comparison   DI
-    - call              DI
-    - fold              DI
-    - raise             DI
-
 CHANGE COLOR BASED ON TYPE
-REMOVE EXTRA IMPLEMENTATIONS?
+SORT ON DIFFERENT PROPERTIES
+
+Fixed nested if statements issue.
