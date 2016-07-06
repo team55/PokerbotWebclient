@@ -32,10 +32,10 @@ Comparators
     - not               DI
 
 Operations
-    - add               D
-    - substract         D
-    - multiply          D
-    - divide            D
+    - add               DI
+    - substract         DI
+    - multiply          DI
+    - divide            DI
 
 Extra:
     - hole_cards
@@ -47,6 +47,6 @@ Extra:
     - number
     - call
     - fold
-    - raise             
+    - raise
 
 CHANGE COLOR BASED ON TYPE

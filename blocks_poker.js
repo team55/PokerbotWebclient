@@ -296,7 +296,6 @@ Blockly.Blocks['add'] = {
     this.setTooltip('Results in A + B');
   }
 };
-
 Blockly.Blocks['substract'] = {
   init: function() {
     this.appendValueInput("A")
@@ -311,7 +310,6 @@ Blockly.Blocks['substract'] = {
     this.setTooltip('Results in A - B');
   }
 };
-
 Blockly.Blocks['multiply'] = {
   init: function() {
     this.appendValueInput("A")
@@ -326,7 +324,6 @@ Blockly.Blocks['multiply'] = {
     this.setTooltip('Results in A * B');
   }
 };
-
 Blockly.Blocks['divide'] = {
   init: function() {
     this.appendValueInput("A")

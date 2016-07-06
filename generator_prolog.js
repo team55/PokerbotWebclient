@@ -308,6 +308,45 @@ Blockly.Prolog['not'] = function(block) {
   return [code, order];
 }
 
+
+/**
+ *  Implementation for blocks that represent OPERATIONS.
+ *  i.e. add, substract, multiple, etc.
+ */
+
+Blockly.Prolog['add'] = function(block) {
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var Xnew = Blockly.Prolog.newvar();
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  Blockly.Prolog.scope += Xnew + ' is ' + a + ' + ' + b + ', ';
+  return [Xnew, order];
+}
+Blockly.Prolog['substract'] = function(block) {
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var Xnew = Blockly.Prolog.newvar();
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  Blockly.Prolog.scope += Xnew + ' is ' + a + ' - ' + b + ', ';
+  return [Xnew, order];
+}
+Blockly.Prolog['multiply'] = function(block) {
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var Xnew = Blockly.Prolog.newvar();
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  Blockly.Prolog.scope += Xnew + ' is ' + a + ' * ' + b + ', ';
+  return [Xnew, order];
+}
+Blockly.Prolog['divide'] = function(block) {
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var Xnew = Blockly.Prolog.newvar();
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  Blockly.Prolog.scope += Xnew + ' is ' + a + ' / ' + b + ', ';
+  return [Xnew, order];
+}
+
 /** BLOCKS: control **/
 
 Blockly.Prolog['controls_if'] = function(block) {
