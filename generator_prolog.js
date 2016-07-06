@@ -111,7 +111,8 @@ Blockly.Prolog.finish = function(code) {
   delete Blockly.Prolog.definitions_;
   delete Blockly.Prolog.functionNames_;
   delete Blockly.Prolog.cardsame_;
-  return definitions.join('\n') + '\n\n' + code;
+
+  return definitions.join('\n') + '\n\n' + code.replace(', .', '.');
 };
 
 /**
@@ -297,8 +298,8 @@ Blockly.Prolog['equals'] = function(block) {
 }
 Blockly.Prolog['and'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
-  var a = Blockly.Prolog.statementToCode(block, 'A', order) || '_';
-  var b = Blockly.Prolog.statementToCode(block, 'B', order) || '_';
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
   var code = '(' + a + ', ' + b + '), ';
   return [code, order];
 }
