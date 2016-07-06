@@ -410,11 +410,7 @@ Blockly.Blocks['poker_card'] = {
   }
 };
 
-/**
- *  Blocks used to define the SUITS of the cards. Possibilities are
- *  specific, any or 'variable'.
- *  TODO: Work out a better way to handle the variable suits.
- */
+/* Suits */
 
 // Properties for the block construction.
 var allsuits = [["red", "red"], ["black", "black"]];
@@ -451,11 +447,7 @@ Blockly.Blocks['poker_color_same'] = {
   }
 };
 
-/**
- *  Blocks used to define the RANKS of the cards. Possibilities are
- *  specific, any, incremental or 'variable'.
- *  TODO: Work out a better way to handle the variable ranks.
- */
+/* Rank */
 
 Blockly.Blocks['poker_rank'] = {
   init: function() {
@@ -504,6 +496,8 @@ Blockly.Blocks['poker_rank_incr'] = {
     this.setTooltip('use this to enforce increasing cards (+1, +2, +3, ...) for one group of \'same rank\' cards');
   }
 };
+
+/* Custom if statement */
 
 Blockly.Blocks['custom_if'] = {
   /**
