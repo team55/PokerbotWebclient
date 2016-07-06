@@ -3,3 +3,4 @@ CHANGE COLOR BASED ON TYPE
 SORT ON DIFFERENT PROPERTIES
 
 Fixed nested if statements issue.
+

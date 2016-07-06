@@ -112,7 +112,7 @@ Blockly.Prolog.finish = function(code) {
   delete Blockly.Prolog.functionNames_;
   delete Blockly.Prolog.cardsame_;
 
-  var frmt = code.split(', .').join('.').trim();
+  var frmt = code.split(', .').join('.').split(', )').join(')').trim();
   if (frmt[frmt.length - 1] != '.') {
     frmt += '.';
   }
@@ -270,49 +270,49 @@ Blockly.Prolog['greater_then'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
   var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
-  var code = '(' + a + ' > ' + b + '), ';
+  var code = '(' + a + ' > ' + b + ')';
   return [code, order];
 }
 Blockly.Prolog['greater_then_or_equal'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
   var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
-  var code = '(' + a + ' >= ' + b + '), ';
+  var code = '(' + a + ' >= ' + b + ')';
   return [code, order];
 }
 Blockly.Prolog['less_then'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
   var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
-  var code = '(' + a + ' < ' + b + '), ';
+  var code = '(' + a + ' < ' + b + ')';
   return [code, order];
 }
 Blockly.Prolog['less_then_or_equal'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
   var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
-  var code = '(' + a + ' =< ' + b + '), ';
+  var code = '(' + a + ' =< ' + b + ')';
   return [code, order];
 }
 Blockly.Prolog['equals'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
   var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
-  var code = '(' + a + ' is ' + b + '), ';
+  var code = '(' + a + ' is ' + b + ')';
   return [code, order];
 }
 Blockly.Prolog['and'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
   var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
-  var code = '(' + a + ', ' + b + '), ';
+  var code = '(' + a + ', ' + b + ')';
   return [code, order];
 }
 Blockly.Prolog['or'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
   var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
-  var code = '(' + a + '; ' + b + '), ';
+  var code = '(' + a + '; ' + b + ')';
   return [code, order];
 }
 Blockly.Prolog['not'] = function(block) {
@@ -590,17 +590,37 @@ Blockly.Prolog['poker_card_valop'] = function(block) {
 /** BLOCKS: control **/
 
 Blockly.Prolog['custom_if'] = function(block) {
-  // If/elseif/else condition.
+
+  // Default code for the if statement. All statements will append to this.
   var code = '';
+
+  console.log('---');
   for (var n=0; n <= block.elseifCount_; n++) {
-    var argument = Blockly.Prolog.valueToCode(block, 'IF' + n,
-        Blockly.Prolog.ORDER_NONE) || 'true';
+    var argument = Blockly.Prolog.valueToCode(block, 'IF' + n, Blockly.Prolog.ORDER_NONE) || 'true';
     var branch = Blockly.Prolog.statementToCode(block, 'DO' + n) || 'fold';
     var scope = Blockly.Prolog.scope;
     if (scope != '') {
         argument = scope + argument;
         Blockly.Prolog.scope = '';
     }
+
+    // MAGIC HAPPENS HERE
+    var stmts = branch.split('\n');
+    if (stmts.length > 1)
+      for(var i = 0; i < stmts.length-1; i++)
+        if (stmts[i].length > 0)
+          code += stmts[i].substring(0, stmts[i].length - 1)
+          + ', '
+          + argument
+          + '.\n';
+    branch = stmts[stmts.length - 1];
+    // END MAGIC
+
+    console.log('Working on rule number ' + Blockly.Prolog.rulecounter);
+    console.log(scope);
+    console.log(branch);
+    console.log(argument);
+
     code += 'do(' + branch + ', ' + Blockly.Prolog.rulecounter + ') :- ' + argument + '.\n';
     Blockly.Prolog.rulecounter++;
   }
