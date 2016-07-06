@@ -173,10 +173,10 @@ Blockly.Prolog.newvar = function() {
  */
 
 Blockly.Prolog['is_preflop'] = function(block) {
- return ["ispreflop", Blockly.Prolog.ORDER_ATOMIC];
+  return ["ispreflop", Blockly.Prolog.ORDER_ATOMIC];
 };
 Blockly.Prolog['is_flop'] = function(block) {
- return ["isflop", Blockly.Prolog.ORDER_ATOMIC];
+  return ["isflop", Blockly.Prolog.ORDER_ATOMIC];
 };
 Blockly.Prolog['is_turn'] = function(block) {
  return ["isturn", Blockly.Prolog.ORDER_ATOMIC];
@@ -592,17 +592,32 @@ Blockly.Prolog['poker_card_valop'] = function(block) {
 Blockly.Prolog['custom_if'] = function(block) {
 
   // Default code for the if statement. All statements will append to this.
+  console.log('New if statement to be analyzed...');
   var code = '';
 
-  console.log('---');
+  // Analyze every 'if-do' statement (include if and else if's).
   for (var n=0; n <= block.elseifCount_; n++) {
+
+    console.log('Process statement number ' + (n+1) + '...');
+
+
+    // Fetch all the information about this specific if-statement.
     var argument = Blockly.Prolog.valueToCode(block, 'IF' + n, Blockly.Prolog.ORDER_NONE) || 'true';
-    var branch = Blockly.Prolog.statementToCode(block, 'DO' + n) || 'fold';
+
+    // Append the scope with the given argument if it is not ''.
     var scope = Blockly.Prolog.scope;
     if (scope != '') {
+        console.log('Appending the argument to scope variable...');
         argument = scope + argument;
         Blockly.Prolog.scope = '';
     }
+    console.log('Scope: '+ scope);
+
+    var branch = Blockly.Prolog.statementToCode(block, 'DO' + n) || 'fold';
+    console.log('Argument: ' + argument);
+    console.log('Branch: ' + branch);
+
+
 
     // MAGIC HAPPENS HERE
     var stmts = branch.split('\n');
@@ -616,10 +631,7 @@ Blockly.Prolog['custom_if'] = function(block) {
     branch = stmts[stmts.length - 1];
     // END MAGIC
 
-    console.log('Working on rule number ' + Blockly.Prolog.rulecounter);
-    console.log(scope);
-    console.log(branch);
-    console.log(argument);
+    console.log('Code after splitting: ' + code);
 
     code += 'do(' + branch + ', ' + Blockly.Prolog.rulecounter + ') :- ' + argument + '.\n';
     Blockly.Prolog.rulecounter++;
