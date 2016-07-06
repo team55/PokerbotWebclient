@@ -495,6 +495,7 @@ Blockly.Prolog['custom_if'] = function(block) {
         Blockly.Prolog.scope = '';
     }
     var branch = Blockly.Prolog.statementToCode(block, 'DO' + n) || 'fold';
+    argument += ', ' + Blockly.Prolog.scope;
     var stmts = branch.split('\n');
     if (stmts.length > 1)
       for(var i = 0; i < stmts.length-1; i++)
