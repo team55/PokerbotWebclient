@@ -10,7 +10,6 @@ Blockly.Blocks['is_preflop'] = {
     this.setTooltip('Checks if flop is unseen');
   }
 };
-
 Blockly.Blocks['is_flop'] = {
   init: function() {
     this.appendDummyInput()
@@ -20,7 +19,6 @@ Blockly.Blocks['is_flop'] = {
     this.setTooltip('Checks if we are on the flop');
   }
 };
-
 Blockly.Blocks['is_turn'] = {
   init: function() {
     this.appendDummyInput()
@@ -30,7 +28,6 @@ Blockly.Blocks['is_turn'] = {
     this.setTooltip('Checks if we are on the turn');
   }
 };
-
 Blockly.Blocks['is_river'] = {
   init: function() {
     this.appendDummyInput()
@@ -40,7 +37,6 @@ Blockly.Blocks['is_river'] = {
     this.setTooltip('Checks if we are on the river');
   }
 };
-
 Blockly.Blocks['is_postflop'] = {
   init: function() {
     this.appendDummyInput()
@@ -50,7 +46,6 @@ Blockly.Blocks['is_postflop'] = {
     this.setTooltip('Checks the flop is seen');
   }
 };
-
 Blockly.Blocks['is_small_blind'] = {
   init: function() {
     this.appendDummyInput()
@@ -60,7 +55,6 @@ Blockly.Blocks['is_small_blind'] = {
     this.setTooltip('Checks if we are in the small blind');
   }
 };
-
 Blockly.Blocks['is_big_blind'] = {
   init: function() {
     this.appendDummyInput()
@@ -70,7 +64,6 @@ Blockly.Blocks['is_big_blind'] = {
     this.setTooltip('Checks if we are in the big blind');
   }
 };
-
 Blockly.Blocks['is_dealer'] = {
   init: function() {
     this.appendDummyInput()
@@ -92,7 +85,6 @@ Blockly.Blocks['stacksize'] = {
     this.setTooltip('Your current stacksize');
   }
 };
-
 Blockly.Blocks['potsize'] = {
   init: function() {
     this.appendDummyInput()
@@ -102,7 +94,6 @@ Blockly.Blocks['potsize'] = {
     this.setTooltip('The current potsize');
   }
 };
-
 Blockly.Blocks['active_players'] = {
   init: function() {
     this.appendDummyInput()
@@ -112,7 +103,6 @@ Blockly.Blocks['active_players'] = {
     this.setTooltip('The number of active players');
   }
 };
-
 Blockly.Blocks['non_allin_active_players'] = {
   init: function() {
     this.appendDummyInput()
@@ -122,7 +112,6 @@ Blockly.Blocks['non_allin_active_players'] = {
     this.setTooltip('The number of active players (not all-in)');
   }
 };
-
 Blockly.Blocks['amount_to_call'] = {
   init: function() {
     this.appendDummyInput()
@@ -132,7 +121,6 @@ Blockly.Blocks['amount_to_call'] = {
     this.setTooltip('The amount to call');
   }
 };
-
 Blockly.Blocks['max_profit'] = {
   init: function() {
     this.appendDummyInput()
@@ -142,7 +130,6 @@ Blockly.Blocks['max_profit'] = {
     this.setTooltip('The maximum profit for this hand');
   }
 };
-
 Blockly.Blocks['min_raise'] = {
   init: function() {
     this.appendDummyInput()
@@ -152,7 +139,6 @@ Blockly.Blocks['min_raise'] = {
     this.setTooltip('The minimum amount to raise');
   }
 };
-
 Blockly.Blocks['max_raise'] = {
   init: function() {
     this.appendDummyInput()
@@ -162,7 +148,6 @@ Blockly.Blocks['max_raise'] = {
     this.setTooltip('The maximum amount to raise');
   }
 };
-
 Blockly.Blocks['number_of_raises'] = {
   init: function() {
     this.appendDummyInput()
@@ -172,7 +157,6 @@ Blockly.Blocks['number_of_raises'] = {
     this.setTooltip('The number of raises');
   }
 };
-
 Blockly.Blocks['random'] = {
   init: function() {
     this.appendDummyInput()
