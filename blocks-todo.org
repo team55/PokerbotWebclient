@@ -1,4 +1,9 @@
 
+Basics
+    - true
+    - false
+    - number
+
 Booleans
     - is_preflop        DI
     - is_flop           DI
@@ -42,11 +47,8 @@ Extra:
     - community_cards
     - all_cards
     - card_comparison
-    - true
-    - false
-    - number
-    - call
-    - fold
-    - raise
+    - call              DI
+    - fold              DI
+    - raise             DI
 
 CHANGE COLOR BASED ON TYPE

@@ -350,7 +350,6 @@ Blockly.Blocks['poker_call'] = {
     this.setTooltip('Do action: call');
   }
 };
-
 Blockly.Blocks['poker_fold'] = {
   init: function() {
     this.appendDummyInput()
@@ -360,7 +359,6 @@ Blockly.Blocks['poker_fold'] = {
     this.setTooltip('Do action: fold');
   }
 };
-
 Blockly.Blocks['poker_raise'] = {
   init: function() {
     this.appendDummyInput()

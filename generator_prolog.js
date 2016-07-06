@@ -347,6 +347,27 @@ Blockly.Prolog['divide'] = function(block) {
   return [Xnew, order];
 }
 
+/**
+ *  Implementation for blocks that represent ACTIONS.
+ *  i.e. call, fold, raise.
+ */
+
+Blockly.Prolog['poker_call'] = function(block) {
+  return 'call';
+};
+Blockly.Prolog['poker_fold'] = function(block) {
+  return 'fold';
+};
+Blockly.Prolog['poker_raise'] = function(block) {
+  // do(raise(X0), 1) :- X0 is 3.14, true.
+  var Xnew = Blockly.Prolog.newvar();
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var argument0 = Blockly.Prolog.valueToCode(block, 'amount', order) || '0';
+  var code = Xnew + ' is ' + argument0 + ', ';
+  Blockly.Prolog.scope += code;
+  return 'raise(' + Xnew + ')';
+};
+
 /** BLOCKS: control **/
 
 Blockly.Prolog['controls_if'] = function(block) {
@@ -473,26 +494,6 @@ Blockly.Prolog['math_arithmetic'] = function(block) {
 };
 
 /** BLOCKS: poker **/
-
-Blockly.Prolog['poker_call'] = function(block) {
-  return 'call';
-};
-
-Blockly.Prolog['poker_fold'] = function(block) {
-  return 'fold';
-};
-
-Blockly.Prolog['poker_raise'] = function(block) {
-  // do(raise(X0), 1) :- X0 is 3.14, true.
-  var Xnew = Blockly.Prolog.newvar();
-
-  var order = Blockly.Prolog.ORDER_ATOMIC;
-  var argument0 = Blockly.Prolog.valueToCode(block, 'amount', order) || '0';
-  var code = Xnew + ' is ' + argument0 + ', ';
-  Blockly.Prolog.scope += code;
-
-  return 'raise(' + Xnew + ')';
-};
 
 // returns the var!
 Blockly.Prolog['poker_cards'] = function(block) {
