@@ -6,7 +6,7 @@ Blockly.Blocks['is_preflop'] = {
     this.appendDummyInput()
         .appendField("is preflop");
     this.setOutput(true, "Boolean");
-    this.setColour(290);
+    this.setColour(210);
     this.setTooltip('Checks if flop is unseen');
   }
 };
@@ -15,7 +15,7 @@ Blockly.Blocks['is_flop'] = {
     this.appendDummyInput()
         .appendField("is flop");
     this.setOutput(true, "Boolean");
-    this.setColour(290);
+    this.setColour(210);
     this.setTooltip('Checks if we are on the flop');
   }
 };
@@ -24,7 +24,7 @@ Blockly.Blocks['is_turn'] = {
     this.appendDummyInput()
         .appendField("is turn");
     this.setOutput(true, "Boolean");
-    this.setColour(290);
+    this.setColour(210);
     this.setTooltip('Checks if we are on the turn');
   }
 };
@@ -33,7 +33,7 @@ Blockly.Blocks['is_river'] = {
     this.appendDummyInput()
         .appendField("is river");
     this.setOutput(true, "Boolean");
-    this.setColour(290);
+    this.setColour(210);
     this.setTooltip('Checks if we are on the river');
   }
 };
@@ -42,7 +42,7 @@ Blockly.Blocks['is_postflop'] = {
     this.appendDummyInput()
         .appendField("is postflop");
     this.setOutput(true, "Boolean");
-    this.setColour(290);
+    this.setColour(210);
     this.setTooltip('Checks the flop is seen');
   }
 };
@@ -51,7 +51,7 @@ Blockly.Blocks['is_small_blind'] = {
     this.appendDummyInput()
         .appendField("is small blind");
     this.setOutput(true, "Boolean");
-    this.setColour(290);
+    this.setColour(210);
     this.setTooltip('Checks if we are in the small blind');
   }
 };
@@ -60,7 +60,7 @@ Blockly.Blocks['is_big_blind'] = {
     this.appendDummyInput()
         .appendField("is big blind");
     this.setOutput(true, "Boolean");
-    this.setColour(290);
+    this.setColour(210);
     this.setTooltip('Checks if we are in the big blind');
   }
 };
@@ -69,7 +69,7 @@ Blockly.Blocks['is_dealer'] = {
     this.appendDummyInput()
         .appendField("is dealer");
     this.setOutput(true, "Boolean");
-    this.setColour(290);
+    this.setColour(210);
     this.setTooltip('Checks if we are the dealer');
   }
 };
@@ -81,7 +81,7 @@ Blockly.Blocks['stacksize'] = {
     this.appendDummyInput()
         .appendField("stacksize");
     this.setOutput(true, "Number");
-    this.setColour(65);
+    this.setColour(230);
     this.setTooltip('Your current stacksize');
   }
 };
@@ -90,7 +90,7 @@ Blockly.Blocks['potsize'] = {
     this.appendDummyInput()
         .appendField("potsize");
     this.setOutput(true, "Number");
-    this.setColour(65);
+    this.setColour(230);
     this.setTooltip('The current potsize');
   }
 };
@@ -99,7 +99,7 @@ Blockly.Blocks['active_players'] = {
     this.appendDummyInput()
         .appendField("number of active players");
     this.setOutput(true, "Number");
-    this.setColour(65);
+    this.setColour(230);
     this.setTooltip('The number of active players');
   }
 };
@@ -108,7 +108,7 @@ Blockly.Blocks['non_allin_active_players'] = {
     this.appendDummyInput()
         .appendField("number of active players (not all-in)");
     this.setOutput(true, "Number");
-    this.setColour(65);
+    this.setColour(230);
     this.setTooltip('The number of active players (not all-in)');
   }
 };
@@ -117,7 +117,7 @@ Blockly.Blocks['amount_to_call'] = {
     this.appendDummyInput()
         .appendField("amount to call");
     this.setOutput(true, "Number");
-    this.setColour(65);
+    this.setColour(230);
     this.setTooltip('The amount to call');
   }
 };
@@ -126,7 +126,7 @@ Blockly.Blocks['max_profit'] = {
     this.appendDummyInput()
         .appendField("maximum profit");
     this.setOutput(true, "Number");
-    this.setColour(65);
+    this.setColour(230);
     this.setTooltip('The maximum profit for this hand');
   }
 };
@@ -135,7 +135,7 @@ Blockly.Blocks['min_raise'] = {
     this.appendDummyInput()
         .appendField("the minimum amount to raise");
     this.setOutput(true, "Number");
-    this.setColour(65);
+    this.setColour(230);
     this.setTooltip('The minimum amount to raise');
   }
 };
@@ -144,7 +144,7 @@ Blockly.Blocks['max_raise'] = {
     this.appendDummyInput()
         .appendField("maximum amount to raise");
     this.setOutput(true, "Number");
-    this.setColour(65);
+    this.setColour(230);
     this.setTooltip('The maximum amount to raise');
   }
 };
@@ -153,7 +153,7 @@ Blockly.Blocks['number_of_raises'] = {
     this.appendDummyInput()
         .appendField("number of raises");
     this.setOutput(true, "Number");
-    this.setColour(65);
+    this.setColour(230);
     this.setTooltip('The number of raises');
   }
 };
@@ -162,7 +162,7 @@ Blockly.Blocks['random'] = {
     this.appendDummyInput()
         .appendField("random amount");
     this.setOutput(true, "Number");
-    this.setColour(65);
+    this.setColour(230);
     this.setTooltip('A random amount');
   }
 };
@@ -249,7 +249,7 @@ Blockly.Blocks['and'] = {
         .setCheck("Boolean");
     this.setInputsInline(true);
     this.setOutput(true, "Boolean");
-    this.setColour(190);
+    this.setColour(240);
     this.setTooltip('True if and only if A and B are both true');
   }
 };
@@ -263,7 +263,7 @@ Blockly.Blocks['or'] = {
         .setCheck("Boolean");
     this.setInputsInline(true);
     this.setOutput(true, "Boolean");
-    this.setColour(190);
+    this.setColour(240);
     this.setTooltip('True if and only if A or B is true');
   }
 };
@@ -275,7 +275,7 @@ Blockly.Blocks['not'] = {
         .setCheck("Boolean");
     this.setInputsInline(true);
     this.setOutput(true, "Boolean");
-    this.setColour(190);
+    this.setColour(240);
     this.setTooltip('True if and only if A is false');
   }
 };
@@ -380,7 +380,7 @@ Blockly.Blocks['poker_cards'] = {
     this.appendDummyInput()
         .appendField("cards in ")
         .appendField(new Blockly.FieldDropdown([["hand", "handkaarten"], ["table", "tafelkaarten"], ["hand and table", "allekaarten"]]), "in");
-    this.appendStatementInput("cardlist")
+    this.appendValueInput("cardlist")
         .setCheck("POKER_TYPE_CARD")
         .appendField("contains");
     this.setInputsInline(false);
@@ -389,7 +389,6 @@ Blockly.Blocks['poker_cards'] = {
     this.setTooltip('Whether there are cards with certain properties (you can drag multiple cards in to denote different cards)');
   }
 };
-
 Blockly.Blocks['poker_card'] = {
   init: function() {
     this.appendDummyInput()
@@ -411,14 +410,22 @@ Blockly.Blocks['poker_card'] = {
   }
 };
 
+/**
+ *  Blocks used to define the SUITS of the cards. Possibilities are
+ *  specific, any or 'variable'.
+ *  TODO: Work out a better way to handle the variable suits.
+ */
+
+// Properties for the block construction.
+var allsuits = [["red", "red"], ["black", "black"]];
 Blockly.Blocks['poker_color'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("color = ")
-        .appendField(new Blockly.FieldDropdown([["red", "red"], ["black", "black"]]), "color");
+        .appendField(new Blockly.FieldDropdown(allsuits), "color");
     this.setOutput(true, "POKER_TYPE_COLOR");
-    this.setColour(290);
-    this.setTooltip('color is red (hearts, diamonds) or black (spades, clubs)');
+    this.setColour(110);
+    this.setTooltip('Color is red (hearts, diamonds) or black (spades, clubs)');
   }
 };
 Blockly.Blocks['poker_color_any'] = {
@@ -426,23 +433,29 @@ Blockly.Blocks['poker_color_any'] = {
     this.appendDummyInput()
         .appendField("any color");
     this.setOutput(true, "POKER_TYPE_COLOR");
-    this.setColour(290);
-    this.setTooltip('can be any suit of any color');
+    this.setColour(210);
+    this.setTooltip('Can be any suit of any color');
   }
 };
 Blockly.Blocks['poker_color_same'] = {
   init: function() {
     this.appendValueInput("num")
         .setCheck("Number")
-        .appendField("same color (group");
+        .appendField("same color (Group");
     this.appendDummyInput()
         .appendField(")");
     this.setInputsInline(true);
     this.setOutput(true, "POKER_TYPE_COLOR");
-    this.setColour(290);
+    this.setColour(210);
     this.setTooltip('cards with \'same color\' and same group number will match if they have the same color (e.g. each of them is red)');
   }
 };
+
+/**
+ *  Blocks used to define the RANKS of the cards. Possibilities are
+ *  specific, any, incremental or 'variable'.
+ *  TODO: Work out a better way to handle the variable ranks.
+ */
 
 Blockly.Blocks['poker_rank'] = {
   init: function() {
@@ -468,7 +481,7 @@ Blockly.Blocks['poker_rank_same'] = {
   init: function() {
     this.appendValueInput("num")
         .setCheck("Number")
-        .appendField("same rank (group");
+        .appendField("same rank (Group");
     this.appendDummyInput()
         .appendField(")");
     this.setInputsInline(true);
@@ -481,7 +494,7 @@ Blockly.Blocks['poker_rank_incr'] = {
   init: function() {
     this.appendValueInput("num")
         .setCheck("Number")
-        .appendField("same rank (group");
+        .appendField("same rank (Group");
     this.appendDummyInput()
         .appendField(") +");
     this.appendValueInput("incr")

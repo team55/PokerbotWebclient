@@ -43,12 +43,13 @@ Operations
     - divide            DI
 
 Extra:
-    - hole_cards
-    - community_cards
-    - all_cards
-    - card_comparison
+    - hole_cards        DI
+    - community_cards   DI
+    - all_cards         DI
+    - card_comparison   DI
     - call              DI
     - fold              DI
     - raise             DI
 
 CHANGE COLOR BASED ON TYPE
+REMOVE EXTRA IMPLEMENTATIONS?
