@@ -1,2 +1,6 @@
 
-SORT ON DIFFERENT PROPERTIES
+red(h).
+red(d).
+black(c).
+black(s).
+is dit nodig?
