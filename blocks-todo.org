@@ -22,14 +22,14 @@ Numeric
     - random            DI
 
 Comparators
-    - greater_then      D
-    - greater_then_oe   D
-    - less_then         D
-    - less_then_oe      D
-    - equals            D
-    - and               D
-    - or                D
-    - not               D
+    - greater_then      DI
+    - greater_then_oe   DI
+    - less_then         DI
+    - less_then_oe      DI
+    - equals            DI
+    - and               DI
+    - or                DI
+    - not               DI
 
 Operations
     - add               D
@@ -45,9 +45,8 @@ Extra:
     - true
     - false
     - number
-    - call              D
-    - fold              D
-    - raise             D
+    - call
+    - fold
+    - raise             
 
 CHANGE COLOR BASED ON TYPE
-
