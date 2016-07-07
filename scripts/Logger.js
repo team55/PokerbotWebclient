@@ -6,16 +6,27 @@
  *  Make sure to change LOGIDENTIFIER to the id of the div.
  */
 var LOGIDENTIFIER = "#logdiv";
+var ERRIDENTIFIER = "#errdiv"
 var Logger = {
 
   log: function(data) {
-    var ext = '<br />Please tell this to the system administrator!';
-    var btn = '<br /><button onclick="Logger.hide()">Yeah sure<button>';
+    var btn = '<br /><button class="mini ui button" onclick="Logger.hideLog()">Alright!</button>';
     $(LOGIDENTIFIER).html(data + btn);
     $(LOGIDENTIFIER).show();
-  }
+  },
 
-  hide: function() {
+  error: function(data) {
+    var btn = '<br /><button class="mini ui button" onclick="Logger.hideError()">Hmmm... ok</button>';
+    $(ERRIDENTIFIER).html(data + btn);
+    $(ERRIDENTIFIER).show();
+  },
+
+  hideError: function() {
+    $(ERRIDENTIFIER).hide();
+    $(ERRIDENTIFIER).html('');
+  },
+
+  hideLog: function() {
     $(LOGIDENTIFIER).hide();
     $(LOGIDENTIFIER).html('');
   }

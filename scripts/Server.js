@@ -16,7 +16,7 @@ var Server = {
     }, error: function(error) {
       // TODO: HANDLE ERROR. JUST LOG IT IN SOME DIV?
     }});
-  }
+  },
 
   tableData: function(table) {
     destination = "http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName=";
@@ -26,7 +26,7 @@ var Server = {
     }, error: function(error) {
       // TODO: HANDLE ERROR. JUST LOG IT IN SOME DIV?
     }});
-  }
+  },
 
   sendRule: function(username, table, code) {
     destination = "http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName=";

@@ -8,31 +8,31 @@
   <script src="blockly/msg/js/en.js"></script>
   <script src="blocks_poker.js"></script>
   <script src="generator_prolog.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+
+
   <script src="scripts/Logger.js"></script>
   <script src="scripts/Server.js"></script>
-  <style>
-    body {
-      background-color: #fff;
-      font-family: sans-serif;
-    }
-    h1 {
-      font-weight: normal;
-      font-size: 140%;
-    }
-    iframe {
-      border: none;
-    }
-    #workDiv {
-      float: left;
-    }
-    #playDiv iframe {
-      width: 65%;
-      min-height: 800px;
-      float: left;
-    }
-  </style>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+  <link rel="stylesheet" href="css/stylesheet.css"/>
+
+
+
+
+
 </head>
 <body>
+
+  <div id="errdiv" class="ui red label"></div>
+  <div id="logdiv" class="ui blue label"></div>
+  <button onclick="Logger.error('help us!: error code 404')">test</button>
+  <button onclick="Logger.log('Yes Good!')">test</button>
+
+
   <div id="loginDiv">
   <p>
     Your name: <input type="text" id="inputUser"></input>
