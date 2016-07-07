@@ -1,0 +1,23 @@
+
+Todo's (ideas)
+
+REGULAR CLIENT
+- Switch to a JSON API
+- More logging on Client Side (Connections and code)
+- Uploading BLOCKLY code to preview others? (db?)
+- More Stepwise Client Side
+- Layout of client site
+- Layout of different graphs
+    (stay in another view, should be loaded on multiple locs)
+
+ADMIN CLIENT
+- Password? Anyone can spam new tables...
+- Possibility to open new tables (custom size)
+- Load bots into the tables
+- Preconfigured in a list
+- Lock tables (hide tables) and unlock tables
+
+Extra's
+- Explanation of the graphs
+
+irl: box, expanation video, etc;
