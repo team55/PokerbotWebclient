@@ -11,10 +11,13 @@ var Server = {
     destination += table + "&playerName=" + username
     $.ajax({url: destination, success: function(result) {
       var data = JSON.parse(result);
-      console.log(data['message']);
-      // TODO: SET THE USER WHEN SUCCESS. ANGULARJS?
+      if (data['type'] === 'Acknowledge') {
+        Logger.log(data['message']);
+      } else {
+        Logger.error(data['message']);
+      }
     }, error: function(error) {
-      // TODO: HANDLE ERROR. JUST LOG IT IN SOME DIV?
+      Logger.error(error);
     }});
   },
 
