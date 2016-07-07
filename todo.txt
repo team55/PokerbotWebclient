@@ -1,4 +1,6 @@
 
+// Note: I will finish this todo today.
+
 Todo's (ideas)
 
 REGULAR CLIENT
@@ -23,7 +25,7 @@ Extra's
 
 irl: box, expanation video, etc;
 
-Today (Start?): 
+Today (Start?):
     - JSON API, check input, etc. Stable & secure!
     - JS instance for easy use of the API.
     - Some documentation for better overview.
@@ -35,3 +37,20 @@ Today (Start?):
 NOTES:
     Should the 1-1 table be automatically created by user or admin?
 
+
+Design notes:
+
+STEP 1, TUTORIAL
+
+  1.  Callbot en if statement uitleggen
+      Make a high card (with examples)
+  2.  Make a pair, variables uitleggen
+  3.  #Raises om te limiteren
+  4. volgorde van statements, evt me de 3 of a kind
+  5. defeat bot
+
+
+
+1. Create all tables API.
+2. Connect to the new UI.
+    - Dropdown instead of input-box.

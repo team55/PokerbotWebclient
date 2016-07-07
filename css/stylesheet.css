@@ -60,10 +60,31 @@ html, body {
   text-align: center;
 }
 
-#blocklyArea {
-  width: 75%;
-  background-color: red;
+#controls, #preview, #workDiv {
+  display: none;
+}
+
+/* New Stuff */
+
+.connect {
+  width: 300px !important;
   margin: 0 auto;
-  text-align: center;
-  margin-bottom: 50px;
+}
+
+.dropdown {
+  margin-top: 25px !important;
+  margin-bottom: 25px !important;
+}
+
+.wlimit {
+  width: 900px;
+  margin: 0 auto !important;
+}
+
+#toggledimmer {
+  margin: 20px;
+}
+
+#tablestatus {
+  font-style: italic;
 }
