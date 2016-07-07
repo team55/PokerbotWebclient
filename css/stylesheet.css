@@ -1,5 +1,9 @@
 
-html, body { width: 100%; }
+html, body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
 
 #errdiv, #logdiv {
   width: 100% !important;
@@ -9,11 +13,57 @@ html, body { width: 100%; }
   font-size: 14px;
   padding-top: 25px;
   padding-bottom: 25px;
+  margin: 0;
   display: none;
   position: absolute;
+  z-index: 100;
 }
 
 #errdiv > button, #logdiv > button {
   color: black;
   margin-top: 15px;
+}
+
+.login {
+  width: 300px;
+  margin: 0 auto;
+  padding-top: 200px;
+  margin-bottom: 150px;
+}
+
+.controls {
+  width: 100%;
+  text-align: center;
+  padding-top: 25px;
+}
+
+#status {
+  font-style: italic;
+  margin-top: 25px;
+  margin-bottom: 5px;
+}
+
+#preview {
+  width: 400px;
+  margin: 0 auto;
+  display: none;
+}
+
+#textarea {
+  width: 100%;
+  background-color: transparent;
+  border-color: lightgrey;
+}
+
+#workDiv {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#blocklyArea {
+  width: 75%;
+  background-color: red;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 50px;
 }

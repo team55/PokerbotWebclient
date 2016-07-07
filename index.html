@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <title>Pokerdemo, webclient</title>
+
+  <!-- Include the Blockly library. -->
   <script src="blockly/blockly_compressed.js"></script>
   <script src="blockly/blocks_compressed.js"></script>
   <script src="blockly/msg/js/en.js"></script>
@@ -14,6 +16,7 @@
 
 
   <script src="scripts/Logger.js"></script>
+  <script src="scripts/Client.js"></script>
   <script src="scripts/Server.js"></script>
 
 
@@ -27,128 +30,149 @@
 </head>
 <body>
 
+  <!-- These divs are hidden initially but will be used for logging. -->
   <div id="errdiv" class="ui red label"></div>
   <div id="logdiv" class="ui blue label"></div>
 
+  <!-- Login section, used to connect to a table. -->
+  <div id="login" class="ui form login">
+    <h2>Create a custom Pokerbot!</h2>
+    <div class="field">
+      <label>Username</label>
+      <input id="username" type="text" placeholder="Username">
+    </div>
+    <div class="field">
+      <label>Table</label>
+      <input id="tablename" type="text" placeholder="Table">
+    </div>
+    <div id="connectbtn" class="ui submit button">Connect</div>
+  </div>
+  <script>
+    $('#connectbtn').click(function() {
+      var username = $('#username').val();
+      var table = $('#tablename').val();
+      Server.connect(username, table);
+    });
+  </script>
 
-  <div id="loginDiv">
-  <p>
-    Your name: <input type="text" id="inputUser"></input>
-  </p>
-  <p>
-    Table name: <input type="text" id="inputTable"></input>
-    <button onclick="connect()">Connect to server</button>
-  </p>
-  <button onclick="saveWorkspace()">save config</button>
-  <button onclick="loadWorkspace()">load config</button>
-  <div>Debugger:
-  <div id="debugDiv">
+  <!-- Control panel to save/load workspaceand to send rules to the Server. -->
+  <div id="controls" class="controls">
+    <h2>Create a custom Pokerbot!</h2>
+    <button class="ui button" onclick="saveWorkspace()">Save configuration</button>
+    <button class="ui button" onclick="loadWorkspace()">Load configuration</button>
+    <br /><br />
+    <button class="ui button" onclick="submit()">Send rules!</button>
+    <button class="ui button" onclick="Client.signout()">Sign out</button>
+    <br /><br />
+    <button class="ui button" onclick="Client.toggleprolog()">Toggle Prolog</button>
+    <br />
+    <div id="status"></div>
   </div>
+
+  <!-- Here u see a preview of the Prolog code that will be sent to the Server. -->
+  <div id="preview">
+    <textarea id="textarea" rows="8" cols="30"></textarea>
   </div>
-  </div>
+
+  <!-- The div with the blockly in it! This should still be made custom. -->
+  <div id="blocklyArea">hello</div>
 
   <div id="workDiv">
-  <h1>Make your own pokerbot!</h1>
-  <p>
-    <button onclick="submit()">Submit to server (for now: show code)</button>
-    <textarea id="textarea" rows="8" cols="30"></textarea>
-  </p>
-  <div id="blocklyDiv" style="height: 680px; width: 1200px;"></div>
-
-  <xml id="toolbox" style="display: none">
-    <category name="Situations">
-      <block type="is_preflop"></block>
-      <block type="is_flop"></block>
-      <block type="is_turn"></block>
-      <block type="is_river"></block>
-      <block type="is_postflop"></block>
-      <block type="is_small_blind"></block>
-      <block type="is_big_blind"></block>
-      <block type="is_dealer"></block>
-      <block type="logic_boolean"></block>
-    </category>
-    <category name="Amounts">
-      <block type="stacksize"></block>
-      <block type="potsize"></block>
-      <block type="active_players"></block>
-      <block type="non_allin_active_players"></block>
-      <block type="amount_to_call"></block>
-      <block type="max_profit"></block>
-      <block type="min_raise"></block>
-      <block type="max_raise"></block>
-      <block type="number_of_raises"></block>
-      <block type="random"></block>
-      <block type="math_number"></block>
-    </category>
-    <category name="Comparators">
-      <block type="greater_then"></block>
-      <block type="greater_then_or_equal"></block>
-      <block type="less_then"></block>
-      <block type="less_then_or_equal"></block>
-      <block type="equals"></block>
-      <block type="and"></block>
-      <block type="or"></block>
-      <block type="not"></block>
-    </category>
-    <category name="Operations">
-      <block type="add"></block>
-      <block type="substract"></block>
-      <block type="multiply"></block>
-      <block type="divide"></block>
-    </category>
-    <category name="Sequence">
-      <block type="custom_if"></block>
-    </category>
-    <category name="Actions">
-      <block type="poker_call"></block>
-      <block type="poker_fold"></block>
-      <block type="poker_raise"></block>
-    </category>
-    <category name="Cards">
-      <block type="poker_cards"></block>
-      <block type="poker_card">
-        <value name="arg_color">
-          <block type="poker_color_any"></block>
-        </value>
-        <value name="arg_rank">
-          <block type="poker_rank_any"></block>
-        </value>
-      </block>
-      <block type="poker_color"></block>
-      <block type="poker_color_same">
-        <value name="num">
-          <block type="math_number">
-            <field name="NUM">1</field>
-          </block>
-        </value>
-      </block>
-      <block type="poker_rank"></block>
-      <block type="poker_rank_same">
-        <value name="num">
-          <block type="math_number">
-            <field name="NUM">1</field>
-          </block>
-        </value>
-      </block>
-      <block type="poker_rank_incr">
-        <value name="num">
-          <block type="math_number">
-            <field name="NUM">1</field>
-          </block>
-        </value>
-        <value name="incr">
-          <block type="math_number">
-            <field name="NUM">1</field>
-          </block>
-        </value>
-      </block>
-    </category>
-    <!-- <category name="Math">
-      <block type="math_number"></block>
-      <block type="math_arithmetic"></block>
-    </category>
-    -->
-  </xml>
+    <div id="blocklyDiv" style="height: 680px; width: 1200px;"></div>
+    <xml id="toolbox" style="display: none">
+      <category name="Situations">
+        <block type="is_preflop"></block>
+        <block type="is_flop"></block>
+        <block type="is_turn"></block>
+        <block type="is_river"></block>
+        <block type="is_postflop"></block>
+        <block type="is_small_blind"></block>
+        <block type="is_big_blind"></block>
+        <block type="is_dealer"></block>
+        <block type="logic_boolean"></block>
+      </category>
+      <category name="Amounts">
+        <block type="stacksize"></block>
+        <block type="potsize"></block>
+        <block type="active_players"></block>
+        <block type="non_allin_active_players"></block>
+        <block type="amount_to_call"></block>
+        <block type="max_profit"></block>
+        <block type="min_raise"></block>
+        <block type="max_raise"></block>
+        <block type="number_of_raises"></block>
+        <block type="random"></block>
+        <block type="math_number"></block>
+      </category>
+      <category name="Comparators">
+        <block type="greater_then"></block>
+        <block type="greater_then_or_equal"></block>
+        <block type="less_then"></block>
+        <block type="less_then_or_equal"></block>
+        <block type="equals"></block>
+        <block type="and"></block>
+        <block type="or"></block>
+        <block type="not"></block>
+      </category>
+      <category name="Operations">
+        <block type="add"></block>
+        <block type="substract"></block>
+        <block type="multiply"></block>
+        <block type="divide"></block>
+      </category>
+      <category name="Sequence">
+        <block type="custom_if"></block>
+      </category>
+      <category name="Actions">
+        <block type="poker_call"></block>
+        <block type="poker_fold"></block>
+        <block type="poker_raise"></block>
+      </category>
+      <category name="Cards">
+        <block type="poker_cards"></block>
+        <block type="poker_card">
+          <value name="arg_color">
+            <block type="poker_color_any"></block>
+          </value>
+          <value name="arg_rank">
+            <block type="poker_rank_any"></block>
+          </value>
+        </block>
+        <block type="poker_color"></block>
+        <block type="poker_color_same">
+          <value name="num">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value>
+        </block>
+        <block type="poker_rank"></block>
+        <block type="poker_rank_same">
+          <value name="num">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value>
+        </block>
+        <block type="poker_rank_incr">
+          <value name="num">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value>
+          <value name="incr">
+            <block type="math_number">
+              <field name="NUM">1</field>
+            </block>
+          </value>
+        </block>
+      </category>
+      <!-- <category name="Math">
+        <block type="math_number"></block>
+        <block type="math_arithmetic"></block>
+      </category>
+      -->
+    </xml>
 
   <xml id="startBlocks" style="display: none">
     <block type="custom_if" x="25" y="25">

@@ -12,6 +12,7 @@ var Server = {
     $.ajax({url: destination, success: function(result) {
       var data = JSON.parse(result);
       if (data['type'] === 'Acknowledge') {
+        Client.signin(username, table);
         Logger.log(data['message']);
       } else {
         Logger.error(data['message']);

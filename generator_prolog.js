@@ -107,7 +107,7 @@ Blockly.Prolog.finish = function(code) {
   delete Blockly.Prolog.definitions_;
   delete Blockly.Prolog.functionNames_;
   delete Blockly.Prolog.cardsame_;
-  var frmt = code.split(', .').join('.').split(', )').join(')').trim();
+  var frmt = code.split(', .').join('.').split(', )').join(')').split(', ,').join(', ').trim();
   if (frmt[frmt.length - 1] != '.') {
     frmt += '.';
   }
