@@ -1,0 +1,19 @@
+
+html, body { width: 100%; }
+
+#errdiv, #logdiv {
+  width: 100% !important;
+  border-radius: none !important;
+  border: none !important;
+  text-align: center;
+  font-size: 14px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  display: none;
+  position: absolute;
+}
+
+#errdiv > button, #logdiv > button {
+  color: black;
+  margin-top: 15px;
+}
