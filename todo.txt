@@ -2,13 +2,14 @@
 Todo's (ideas)
 
 REGULAR CLIENT
-- Switch to a JSON API
-- More logging on Client Side (Connections and code)
+- Switch to a JSON API                                          x
+- More logging on Client Side (Connections and code)            x
 - Uploading BLOCKLY code to preview others? (db?)
-- More Stepwise Client Side
-- Layout of client site
+- More Stepwise Client Side                                     x
+- Layout of client site                                         x
 - Layout of different graphs
     (stay in another view, should be loaded on multiple locs)
+- Disconnect button                                             x
 
 ADMIN CLIENT
 - Password? Anyone can spam new tables...
@@ -21,3 +22,16 @@ Extra's
 - Explanation of the graphs
 
 irl: box, expanation video, etc;
+
+Today (Start?): 
+    - JSON API, check input, etc. Stable & secure!
+    - JS instance for easy use of the API.
+    - Some documentation for better overview.
+    - Client side AngularJS?
+    - Add some high level logging on the client side (API & Code).
+    - Layout of the client side page, with view for stats.
+    - Disconnect button!
+
+NOTES:
+    Should the 1-1 table be automatically created by user or admin?
+
