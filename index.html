@@ -8,6 +8,8 @@
   <script src="blockly/msg/js/en.js"></script>
   <script src="blocks_poker.js"></script>
   <script src="generator_prolog.js"></script>
+  <script src="scripts/Logger.js"></script>
+  <script src="scripts/Server.js"></script>
   <style>
     body {
       background-color: #fff;
@@ -183,9 +185,9 @@
 
     // buttons
     function connect() {
-      var user = $('#inputUser').val();
+      var username = $('#inputUser').val();
       var table = $('#inputTable').val();
-
+      Server.connect(username, table);
       /*
        * Same Origin Policy disallows... only when run on same server
       // send hello to webserver, if OK continue
@@ -200,12 +202,12 @@
         *
         */
       // Fake with 'sending' iframe for now
-      var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName="+table+"&playerName="+user+"\">This website uses iframes to show the game results.</iframe>";
-      $('#debugDiv').html(faker);
+      //var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName="+table+"&playerName="+user+"\">This website uses iframes to show the game results.</iframe>";
+      //$('#debugDiv').html(faker);
 
       // Receiving iframe
-      var code = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName="+table+"\">This website uses iframes to show the game results.</iframe>";
-      $('#playDiv').html(code);
+      //var code = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName="+table+"\">This website uses iframes to show the game results.</iframe>";
+      //$('#playDiv').html(code);
     }
     function submit() {
       var user = $('#inputUser').val();
