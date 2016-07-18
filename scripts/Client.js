@@ -39,4 +39,13 @@ var Client = {
     }
   },
 
+  /**
+   *  Checks whether or not a user is connected to a table.
+   *  Can be used to check before sending rules etc.
+   */
+  isSignedIn: function() {
+    return !(this.username === "")
+            && !(this.table === "");
+  }
+
 }

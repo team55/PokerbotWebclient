@@ -86,7 +86,14 @@
       margin-top: 15px;
     }
 
+    #blocklyDiv {
+      height: 500px;
+      margin-left: 20px;
+    }
 
+    .buttons {
+      padding-left: 20px;
+    }
 
   </style>
 
@@ -110,7 +117,123 @@
     </div>
 
     <!-- Blockly Interface -->
-    <div class="eleven wide column dbpurple">data</div>
+    <div class="eleven wide column">
+      <div class="ui grid">
+        <div class="sixteen wide column center aligned ">
+          <button class="ui tiny button" onclick="saveWorkspace()">Save configuration</button>
+          <button class="ui tiny button" onclick="loadWorkspace()">Load configuration</button>
+          <button class="ui tiny button" onclick="sendCode()">Send rules!</button>
+          <button class="ui tiny button" onclick="Client.signout()">Sign out</button>
+          <button class="ui tiny button" onclick="Client.toggleprolog()">Toggle Prolog</button>
+        </div>
+        <div id="workDiv" class="sixteen wide column">
+          <div id="blocklyDiv" style=""></div>
+          <xml id="toolbox" style="display: none">
+            <category name="Situations">
+              <block type="is_preflop"></block>
+              <block type="is_flop"></block>
+              <block type="is_turn"></block>
+              <block type="is_river"></block>
+              <block type="is_postflop"></block>
+              <block type="is_small_blind"></block>
+              <block type="is_big_blind"></block>
+              <block type="is_dealer"></block>
+              <block type="logic_boolean"></block>
+            </category>
+            <category name="Amounts">
+              <block type="stacksize"></block>
+              <block type="potsize"></block>
+              <block type="active_players"></block>
+              <block type="non_allin_active_players"></block>
+              <block type="amount_to_call"></block>
+              <block type="max_profit"></block>
+              <block type="min_raise"></block>
+              <block type="max_raise"></block>
+              <block type="number_of_raises"></block>
+              <block type="random"></block>
+              <block type="math_number"></block>
+            </category>
+            <category name="Comparators">
+              <block type="greater_then"></block>
+              <block type="greater_then_or_equal"></block>
+              <block type="less_then"></block>
+              <block type="less_then_or_equal"></block>
+              <block type="equals"></block>
+              <block type="and"></block>
+              <block type="or"></block>
+              <block type="not"></block>
+            </category>
+            <category name="Operations">
+              <block type="add"></block>
+              <block type="substract"></block>
+              <block type="multiply"></block>
+              <block type="divide"></block>
+            </category>
+            <category name="Sequence">
+              <block type="custom_if"></block>
+            </category>
+            <category name="Actions">
+              <block type="poker_call"></block>
+              <block type="poker_fold"></block>
+              <block type="poker_raise"></block>
+            </category>
+            <category name="Cards">
+              <block type="poker_cards"></block>
+              <block type="poker_card">
+                <value name="arg_color">
+                  <block type="poker_color_any"></block>
+                </value>
+                <value name="arg_rank">
+                  <block type="poker_rank_any"></block>
+                </value>
+              </block>
+              <block type="poker_color"></block>
+              <block type="poker_color_same">
+                <value name="num">
+                  <block type="math_number">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+              </block>
+              <block type="poker_rank"></block>
+              <block type="poker_rank_same">
+                <value name="num">
+                  <block type="math_number">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+              </block>
+              <block type="poker_rank_incr">
+                <value name="num">
+                  <block type="math_number">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+                <value name="incr">
+                  <block type="math_number">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+              </block>
+            </category>
+          </xml>
+          <xml id="startBlocks" style="display: none">
+            <block type="custom_if" x="25" y="25">
+              <value name="IF0">
+                <block type="logic_boolean">
+                  <field name="BOOL">TRUE</field>
+                </block>
+              </value>
+              <statement name="DO0">
+                <block type="poker_call"></block>
+              </statement>
+            </block>
+          </xml>
+        </div>
+      </div>
+
+
+    </div>
 
     <!-- Welcome div -->
     <div class="five wide column rightinfo">
@@ -129,130 +252,9 @@
 
 
 
-
-  <!-- Control panel to save/load workspaceand to send rules to the Server. -->
-  <div id="controls" class="controls">
-    <h2>Create a custom Pokerbot!</h2>
-    <button class="ui button" onclick="saveWorkspace()">Save configuration</button>
-    <button class="ui button" onclick="loadWorkspace()">Load configuration</button>
-    <br /><br />
-    <button class="ui button" onclick="submit()">Send rules!</button>
-    <button class="ui button" onclick="Client.signout()">Sign out</button>
-    <br /><br />
-    <button class="ui button" onclick="Client.toggleprolog()">Toggle Prolog</button>
-    <br />
-    <div id="status"></div>
-  </div>
-
   <!-- Here u see a preview of the Prolog code that will be sent to the Server. -->
   <div id="preview">
     <textarea id="textarea" rows="8" cols="30"></textarea>
-  </div>
-
-  <!-- The div with the blockly in it! This should still be made custom. -->
-  <div id="workDiv" style="text-align:center;margin:0 auto;width:90%;">
-    <div id="blocklyDiv" style="height: 680px; width: 800px;margin:0 auto;"></div>
-    <xml id="toolbox" style="display: none">
-      <category name="Situations">
-        <block type="is_preflop"></block>
-        <block type="is_flop"></block>
-        <block type="is_turn"></block>
-        <block type="is_river"></block>
-        <block type="is_postflop"></block>
-        <block type="is_small_blind"></block>
-        <block type="is_big_blind"></block>
-        <block type="is_dealer"></block>
-        <block type="logic_boolean"></block>
-      </category>
-      <category name="Amounts">
-        <block type="stacksize"></block>
-        <block type="potsize"></block>
-        <block type="active_players"></block>
-        <block type="non_allin_active_players"></block>
-        <block type="amount_to_call"></block>
-        <block type="max_profit"></block>
-        <block type="min_raise"></block>
-        <block type="max_raise"></block>
-        <block type="number_of_raises"></block>
-        <block type="random"></block>
-        <block type="math_number"></block>
-      </category>
-      <category name="Comparators">
-        <block type="greater_then"></block>
-        <block type="greater_then_or_equal"></block>
-        <block type="less_then"></block>
-        <block type="less_then_or_equal"></block>
-        <block type="equals"></block>
-        <block type="and"></block>
-        <block type="or"></block>
-        <block type="not"></block>
-      </category>
-      <category name="Operations">
-        <block type="add"></block>
-        <block type="substract"></block>
-        <block type="multiply"></block>
-        <block type="divide"></block>
-      </category>
-      <category name="Sequence">
-        <block type="custom_if"></block>
-      </category>
-      <category name="Actions">
-        <block type="poker_call"></block>
-        <block type="poker_fold"></block>
-        <block type="poker_raise"></block>
-      </category>
-      <category name="Cards">
-        <block type="poker_cards"></block>
-        <block type="poker_card">
-          <value name="arg_color">
-            <block type="poker_color_any"></block>
-          </value>
-          <value name="arg_rank">
-            <block type="poker_rank_any"></block>
-          </value>
-        </block>
-        <block type="poker_color"></block>
-        <block type="poker_color_same">
-          <value name="num">
-            <block type="math_number">
-              <field name="NUM">1</field>
-            </block>
-          </value>
-        </block>
-        <block type="poker_rank"></block>
-        <block type="poker_rank_same">
-          <value name="num">
-            <block type="math_number">
-              <field name="NUM">1</field>
-            </block>
-          </value>
-        </block>
-        <block type="poker_rank_incr">
-          <value name="num">
-            <block type="math_number">
-              <field name="NUM">1</field>
-            </block>
-          </value>
-          <value name="incr">
-            <block type="math_number">
-              <field name="NUM">1</field>
-            </block>
-          </value>
-        </block>
-      </category>
-    </xml>
-    <xml id="startBlocks" style="display: none">
-      <block type="custom_if" x="25" y="25">
-        <value name="IF0">
-          <block type="logic_boolean">
-            <field name="BOOL">TRUE</field>
-          </block>
-        </value>
-        <statement name="DO0">
-          <block type="poker_call"></block>
-        </statement>
-      </block>
-    </xml>
   </div>
 
   <div id="playDiv">
@@ -304,15 +306,24 @@
       //var code = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName="+table+"\">This website uses iframes to show the game results.</iframe>";
       //$('#playDiv').html(code);
     }
-    function submit() {
-      var user = $('#inputUser').val();
-      var table = $('#inputTable').val();
+
+    function sendCode() {
+      //var user = $('#inputUser').val();
+      //var table = $('#inputTable').val();
       // Generate Prolog code and submit it.
-      var code = Blockly.Prolog.workspaceToCode(workspace);
+
+      console.log(Client.username);
+      if (Client.isSignedIn()) {
+        var code = Blockly.Prolog.workspaceToCode(workspace);
+        API.sendRules(Client.username, Client.table, code);
+      } else {
+        console.err('Not signed in!');
+      }
+
 
       // send to server
-      var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName="+table+"&playerName="+user+"&description="+encodeURIComponent(code)+"\">This website uses iframes to show the game results.</iframe>";
-      $('#debugDiv').html(faker);
+      //var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName="+table+"&playerName="+user+"&description="+encodeURIComponent(code)+"\">This website uses iframes to show the game results.</iframe>";
+      //$('#debugDiv').html(faker);
     }
 
     function saveWorkspace() {

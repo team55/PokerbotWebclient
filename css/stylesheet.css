@@ -60,7 +60,7 @@ html, body {
   text-align: center;
 }
 
-#controls, #preview, #workDiv {
+#controls, #preview {
   display: none;
 }
 
