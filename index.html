@@ -66,6 +66,21 @@
       margin-bottom: 100px !important;
     }
 
+    .connect > span > span > input, .connect > span > span > span {
+      margin-top: 15px !important;
+    }
+
+    .dimmer {
+      background-color: rgba(0,0,0,0.95) !important;
+    }
+
+    .error {
+      color: #e74c3c;
+      font-style: italic;
+      margin-top: 15px;
+    }
+
+
   </style>
 
 
@@ -82,7 +97,7 @@
     <!-- Sign in and status div -->
     <div class="sixteen wide column cleancol">
       <span id="toggledimmer" class="ui teal button">Ga naar een tafel</span>
-      <span id="tablestatus">Geen tafel geselecteerd.</span>
+      <span id="tablestatus"></span>
     </div>
 
     <!-- Top data div -->
@@ -109,26 +124,7 @@
 
 
 
-  <!-- Login section, used to connect to a table. -->
-  <div id="login" class="ui form login">
-    <h2>Create a custom Pokerbot!</h2>
-    <div class="field">
-      <label>Username</label>
-      <input id="username" type="text" placeholder="Username">
-    </div>
-    <div class="field">
-      <label>Table</label>
-      <input id="tablename" type="text" placeholder="Table">
-    </div>
-    <div id="connectbtn" class="ui submit button">Connect</div>
-  </div>
-  <script>
-    $('#connectbtn').click(function() {
-      var username = $('#username').val();
-      var table = $('#tablename').val();
-      Server.connect(username, table);
-    });
-  </script>
+
 
   <!-- Control panel to save/load workspaceand to send rules to the Server. -->
   <div id="controls" class="controls">
@@ -328,6 +324,9 @@
     }
   </script>
 
+
+
+
   <!-- This is the content dimmer to connect to a table -->
   <div class="ui page dimmer">
     <div class="content">
@@ -338,18 +337,15 @@
             <p class="ui inverted connect">
               <span class="ui form">
                 <span class="field">
-                  <input type="text" placeholder="Gebruikersnaam">
+                  <input id="username" type="text" placeholder="Gebruikersnaam">
                 </span>
                 <span class="field">
-                  <select class="ui search dropdown">
-                    <option value="">Kies een tafel</option>
-                    <option value="AF">Bear (6-max)</option>
-                    <option value="ZW">Lion (9-max)</option>
-                  </select>
+                  <input id="tablename" type="text" placeholder="Tafelnaam">
                 </span>
                 <span class="field">
-                  <span class="ui teal submit button">Neem plaats</span>
+                  <span id="connectbtn" class="ui teal submit button">Neem plaats</span>
                 </span>
+                <div id="connecterror" class="error"><br></div>
               </span>
             </p>
           </div>
@@ -364,36 +360,17 @@
     </div>
   </div>
   <script>
+    $('#connectbtn').click(function() {
+      var username = $('#username').val();
+      var table = $('#tablename').val();
+      Server.connect(username, table);
+    });
     $('#toggledimmer').click(function(e) {
       $('.ui.page.dimmer').dimmer('show');
     });
   </script>
 
-  <div class="ui modal">
-    <i class="close icon"></i>
-    <div class="header">
-      Profile Picture
-    </div>
-    <div class="image content">
-      <div class="ui medium image">
-        <img src="/images/avatar/large/chris.jpg">
-      </div>
-      <div class="description">
-        <div class="ui header">We've auto-chosen a profile image for you.</div>
-        <p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
-        <p>Is it okay to use this photo?</p>
-      </div>
-    </div>
-    <div class="actions">
-      <div class="ui black deny button">
-        Nope
-      </div>
-      <div class="ui positive right labeled icon button">
-        Yep, that's me
-        <i class="checkmark icon"></i>
-      </div>
-    </div>
-  </div>
+
   <script>
     $('#createtable').click(function(e) {
       console.log('Hello');

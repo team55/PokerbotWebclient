@@ -6,7 +6,7 @@
  *  Make sure to change LOGIDENTIFIER to the id of the div.
  */
 var LOGIDENTIFIER = "#logdiv";
-var ERRIDENTIFIER = "#errdiv"
+var ERRIDENTIFIER = "#connecterror"
 var Logger = {
 
   log: function(data) {
@@ -16,8 +16,7 @@ var Logger = {
   },
 
   error: function(data) {
-    var btn = '<br /><button class="mini ui button" onclick="Logger.hideError()">Hmmm... ok</button>';
-    $(ERRIDENTIFIER).html(data + btn);
+    $(ERRIDENTIFIER).html(data);
     $(ERRIDENTIFIER).show();
   },
 

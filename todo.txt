@@ -1,4 +1,10 @@
 
+Notes:
+  - For now, table selection is done with an input box but would be cooler with
+    a dropdown. In order to implement this, we need to fix the backend API.
+  - When focus is on an input box, border-radius magically disappears?
+  - Errors should be written in dutch (server-side).
+
 // OLD:
 
 Todo's (ideas)
