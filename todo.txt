@@ -1,11 +1,10 @@
 
 Schedule:
   Todo's 18-07-2016:
-    - Fix sign in, sign out, create table, connect, send rules, etc.
-    - Template all AJAX calls with default tables.
-    - Redesign some things (buttons etc) so it looks better.
-    - Finish the complete pre-connected view (without BLOCKLY).
-    - Refactor HTML, JS & CSS.
+    - Fix sign in, sign out, create table, connect, send rules, etc.              DONE.
+    - Template all AJAX calls with default tables.                                DONE.
+    - Redesign some things (buttons etc) so it looks better.                      DONE.
+    - Finish the complete pre-connected view (without BLOCKLY).                   DONE.
   Todo's 19-07-2016
     - Find out how to EDIT BLOCKLY DESIGN.
     - Create the custom top-, bar- and bottom-graph.
@@ -26,6 +25,7 @@ Todo's:
 Ideas:
   - Loading icon when signing in... Can take a while.
   - We can't see our rules atm. We can save these client side?
+  - New Header? Top is too empty...
 
 
 // OLD:
