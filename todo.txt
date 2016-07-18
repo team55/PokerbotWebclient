@@ -6,7 +6,7 @@ Schedule:
     - Redesign some things (buttons etc) so it looks better.                      DONE.
     - Finish the complete pre-connected view (without BLOCKLY).                   DONE.
   Todo's 19-07-2016
-    - Find out how to EDIT BLOCKLY DESIGN.
+    - Find out how to EDIT BLOCKLY DESIGN. Check is via JS?
     - Create the custom top-, bar- and bottom-graph.
     - Finish the complete views (pre and post-connected INCL BLOCKLY).
     - Refactor & Finish, make further schedule to start the Tutorials.
