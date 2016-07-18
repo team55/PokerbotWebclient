@@ -4,6 +4,8 @@ Notes:
     a dropdown. In order to implement this, we need to fix the backend API.
   - When focus is on an input box, border-radius magically disappears?
   - Errors should be written in dutch (server-side).
+  - We might need a 'logout' or 'disconnect' button? Right now it feels like
+    you are 'locked' into the current account.
 
 // OLD:
 

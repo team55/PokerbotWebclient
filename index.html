@@ -80,6 +80,13 @@
       margin-top: 15px;
     }
 
+    .log {
+      color: #3498db;
+      font-style: italic;
+      margin-top: 15px;
+    }
+
+
 
   </style>
 
@@ -87,10 +94,6 @@
 
 </head>
 <body>
-
-  <!-- These divs are hidden initially but will be used for logging. -->
-  <div id="errdiv" class="ui red label"></div>
-  <div id="logdiv" class="ui blue label"></div>
 
   <div class="ui grid">
 
@@ -106,6 +109,7 @@
           hier worden weergegeven.</p>
     </div>
 
+    <!-- Blockly Interface -->
     <div class="eleven wide column dbpurple">data</div>
 
     <!-- Welcome div -->
@@ -353,7 +357,36 @@
             OF
           </div>
           <div class="center aligned column">
-            <button id="createtable" class="ui big teal submit button">Maak tafel</button>
+            <h1>Tafel aanmaken</h1>
+            <p class="ui inverted connect">
+              <span class="ui form">
+                <span class="field">
+                  <input id="tablecreatename" type="text" placeholder="Tafelnaam">
+                </span>
+                <span class="field">
+                  <input id="tablepassword" type="password" placeholder="Wachtwoord">
+                </span>
+                <span class="field">
+                  <select id="players" class="ui search dropdown">
+                    <option value="">Aantal plaatsen</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                  </select>
+                </span>
+                <span class="field">
+                  <button id="createtable" class="ui teal submit button">Maak tafel</button>
+                </span>
+                <div id="createerror" class="error"><br></div>
+                <div id="createlog" class="log"><br></div>
+              </span>
+            </p>
           </div>
         </div>
       </div>
@@ -365,19 +398,27 @@
       var table = $('#tablename').val();
       Server.connect(username, table);
     });
+    $('#createtable').click(function(e) {
+      if ($('#players').val() === '' || $('#tablecreatename').val() == '' || $('#tablepassword').val() == '') {
+        $('#createerror').html('Geef een tafelnaam, wachtwoord én aantal plaatsen.');
+      } else {
+        var table = $("#tablecreatename").val();
+        var password = $('#tablepassword').val();
+        var players = parseInt($('#players').val(), 10);
+        API.createTable(table, password, players);
+      }
+      console.log('Hello');
+      console.log($('#tablecreatename').val());
+      console.log($('#players').val());
+      console.log
+      //
+      //$('.ui.modal').modal('show');
+    });
     $('#toggledimmer').click(function(e) {
       $('.ui.page.dimmer').dimmer('show');
     });
   </script>
 
-
-  <script>
-    $('#createtable').click(function(e) {
-      console.log('Hello');
-      $('.ui.modal').modal('show');
-    });
-    //API.createTable('BartsTable', 'bart', 8);
-  </script>
 
 </body>
 </html>
