@@ -13,7 +13,7 @@ var Server = {
       var data = JSON.parse(result);
       if (data['type'] === 'Acknowledge') {
         Client.signin(username, table);
-        var label = '<a class="ui image label"><img src="img/person.jpg">' + username + '<div class="detail">' + table + '</div></a>';
+        var label = '<a class="ui image label"><img src="img/person.jpg">' + username + '<div class="detail">' + table + '<i class="delete icon"></i></div></a>';
         $('#tablestatus').html(label);
         $('.ui.page.dimmer').dimmer('hide');
       } else {
