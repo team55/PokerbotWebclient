@@ -42,10 +42,30 @@
     .dbyellow {
       background-color: yellow;
     }
+
+
+    .topgraph {
+      text-align: center;
+      font-style: italic;
+    }
+
+    .rightinfo {
+      text-align: center;
+    }
+
+    .rightinfo > p {
+      margin: 25px;
+    }
+
+    .cleancol {
+      padding: 0;
+    }
+
     .grid {
-      margin-top: 100px !important;
+      margin-top: 0 !important;
       margin-bottom: 100px !important;
     }
+
   </style>
 
 
@@ -53,20 +73,41 @@
 </head>
 <body>
 
-  <div class="ui grid">
-    <div class="sixteen wide column dbred">data</div>
-    <div class="sixteen wide column dbblue">data</div>
-    <div class="eleven wide column dbgreen">data</div>
-    <div class="five wide column dbpurple">data</div>
-    <div class="sixteen wide column dbyellow">data</div>
-  </div>
-
   <!-- These divs are hidden initially but will be used for logging. -->
   <div id="errdiv" class="ui red label"></div>
   <div id="logdiv" class="ui blue label"></div>
 
-  <span id="toggledimmer" class="ui teal button">Ga naar een tafel</span>
-  <span id="tablestatus">Geen tafel geselecteerd.</span>
+  <div class="ui grid">
+
+    <!-- Sign in and status div -->
+    <div class="sixteen wide column cleancol">
+      <span id="toggledimmer" class="ui teal button">Ga naar een tafel</span>
+      <span id="tablestatus">Geen tafel geselecteerd.</span>
+    </div>
+
+    <!-- Top data div -->
+    <div class="sixteen wide column topgraph">
+      <p> Wanneer je verbonden bent met een tafel, <br /> zullen de resultaten
+          hier worden weergegeven.</p>
+    </div>
+
+    <div class="eleven wide column dbpurple">data</div>
+
+    <!-- Welcome div -->
+    <div class="five wide column rightinfo">
+      <h1>Welkom!</h1>
+      <p> Via deze weg kun je voor het eerst kennis maken met programmeren door
+          een eigen pokerbot te maken. Heb je al ervaring met dit programma?
+          Verbind dan meteen met een tafel door te knop links bovenaan te
+          gebruiken. Toch eerst wat meer uitleg? Start dan de stapsgewijze
+          tutorial door middel van de knop onderaan deze uitleg. </p>
+      <div class="ui teal button">Start tutorial</div>
+    </div>
+    <div class="sixteen wide column bottomdata"></div>
+  </div>
+
+
+
 
   <!-- Login section, used to connect to a table. -->
   <div id="login" class="ui form login">
