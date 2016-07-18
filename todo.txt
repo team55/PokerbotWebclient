@@ -1,4 +1,17 @@
 
+Schedule:
+  Todo's 18-07-2016:
+    - Fix sign in, sign out, create table, connect, send rules, etc.
+    - Template all AJAX calls with default tables.
+    - Redesign some things (buttons etc) so it looks better.
+    - Finish the complete pre-connected view (without BLOCKLY).
+    - Refactor HTML, JS & CSS.
+  Todo's 19-07-2016
+    - Find out how to EDIT BLOCKLY DESIGN.
+    - Create the custom top-, bar- and bottom-graph.
+    - Finish the complete views (pre and post-connected INCL BLOCKLY).
+    - Refactor & Finish, make further schedule to start the Tutorials.
+
 Notes:
   - For now, table selection is done with an input box but would be cooler with
     a dropdown. In order to implement this, we need to fix the backend API.
@@ -8,8 +21,7 @@ Notes:
     you are 'locked' into the current account.
 
 Todo's:
-  - Load the different tables
-  - Unload all graphs
+  - Display warnings when overhead.
 
 Ideas:
   - Loading icon when signing in... Can take a while.
