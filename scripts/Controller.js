@@ -52,7 +52,11 @@ var disconnect = function() {
 }
 $('#disconnectbtn').click(function(e) {
   Client.signout();
-  // TODO: Unload all graphs.
-  $('#tablestatus').html('<span class="ui label">Geen verbinding met een tafel</span>');
-  $('#topgraph').html('<p> Wanneer je verbonden bent met een tafel, <br /> zullen de resultaten hier worden weergegeven.</p>');
+});
+
+/**
+ *  Execute the following commands on load.
+ */
+$(document).ready(function() {
+  $('#bargraph').load('elements/welcomebar.html');
 });

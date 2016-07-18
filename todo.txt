@@ -8,11 +8,12 @@ Notes:
     you are 'locked' into the current account.
 
 Todo's:
-  - Load the different tables Server.js:49.
-  - Unload all graphs Controller.js:53.
+  - Load the different tables
+  - Unload all graphs
 
 Ideas:
   - Loading icon when signing in... Can take a while.
+  - We can't see our rules atm. We can save these client side?
 
 
 // OLD:

@@ -44,14 +44,10 @@
     }
 
 
-    .topgraph {
-      text-align: center;
+    #topgraph, #bargraph, #bottomgraph {
       font-style: italic;
     }
 
-    .rightinfo {
-      text-align: center;
-    }
 
     .rightinfo > p {
       margin: 25px;
@@ -120,7 +116,7 @@
     </div>
 
     <!-- Top data div -->
-    <div id="topgraph" class="sixteen wide column topgraph">
+    <div id="topgraph" class="sixteen wide column center aligned">
       <p> Wanneer je verbonden bent met een tafel, <br /> zullen de resultaten
           hier worden weergegeven.</p>
     </div>
@@ -128,13 +124,6 @@
     <!-- Blockly Interface -->
     <div class="eleven wide column">
       <div class="ui grid">
-        <div class="sixteen wide column center aligned ">
-          <button class="ui tiny button" onclick="saveWorkspace()">Save configuration</button>
-          <button class="ui tiny button" onclick="loadWorkspace()">Load configuration</button>
-          <button class="ui tiny button" onclick="sendCode()">Send rules!</button>
-          <button class="ui tiny button" onclick="Client.signout()">Sign out</button>
-          <button class="ui tiny button" onclick="Client.toggleprolog()">Toggle Prolog</button>
-        </div>
         <div id="workDiv" class="sixteen wide column">
           <div id="blocklyDiv" style=""></div>
           <xml id="toolbox" style="display: none">
@@ -239,22 +228,21 @@
             </block>
           </xml>
         </div>
+        <div class="sixteen wide column center aligned ">
+          <button class="ui tiny button" onclick="saveWorkspace()">Save configuration</button>
+          <button class="ui tiny button" onclick="loadWorkspace()">Load configuration</button>
+          <button class="ui tiny button" onclick="sendCode()">Send rules!</button>
+          <button class="ui tiny button" onclick="Client.signout()">Sign out</button>
+          <button class="ui tiny button" onclick="Client.toggleprolog()">Toggle Prolog</button>
+        </div>
       </div>
 
 
     </div>
 
     <!-- Welcome div -->
-    <div class="five wide column rightinfo">
-      <h1>Welkom!</h1>
-      <p> Via deze weg kun je voor het eerst kennis maken met programmeren door
-          een eigen pokerbot te maken. Heb je al ervaring met dit programma?
-          Verbind dan meteen met een tafel door te knop links bovenaan te
-          gebruiken. Toch eerst wat meer uitleg? Start dan de stapsgewijze
-          tutorial door middel van de knop onderaan deze uitleg. </p>
-      <div class="ui teal disabled button">Start tutorial</div>
-    </div>
-    <div class="sixteen wide column bottomdata"></div>
+    <div id="bargraph" class="five wide column center aligned"></div>
+    <div id="bottomgraph" class="sixteen wide column center aligned dbred"></div>
   </div>
 
 
