@@ -394,8 +394,8 @@
                 <span class="field">
                   <button id="createtable" class="ui teal submit button">Maak tafel</button>
                 </span>
-                <div id="createerror" class="error"><br></div>
-                <div id="createlog" class="log"><br></div>
+                <div id="createTableLog" class="blue log"><br></div>
+                <div id="createTableError" class="red error"><br></div>
               </span>
             </p>
           </div>
@@ -409,19 +409,21 @@
       var table = $('#tablename').val();
       Server.connect(username, table);
     });
+
+    /**
+     *  Creates a new table.
+     */
     $('#createtable').click(function(e) {
-      if ($('#players').val() === '' || $('#tablecreatename').val() == '' || $('#tablepassword').val() == '') {
-        $('#createerror').html('Geef een tafelnaam, wachtwoord én aantal plaatsen.');
+      if ($('#players').val() === ''
+          || $('#tablecreatename').val() == ''
+          || $('#tablepassword').val() == '') {
+        Logger.error('Geef een tafelnaam, wachtwoord én aantal plaatsen.', 'CREATETABLE');
       } else {
         var table = $("#tablecreatename").val();
         var password = $('#tablepassword').val();
         var players = parseInt($('#players').val(), 10);
         API.createTable(table, password, players);
       }
-      console.log('Hello');
-      console.log($('#tablecreatename').val());
-      console.log($('#players').val());
-      console.log
       //
       //$('.ui.modal').modal('show');
     });

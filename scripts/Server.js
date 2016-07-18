@@ -17,10 +17,10 @@ var Server = {
         $('#tablestatus').html(label);
         $('.ui.page.dimmer').dimmer('hide');
       } else {
-        Logger.error(data['message']);
+        Logger.error(data['message'], 'SIGNIN');
       }
     }, error: function(error) {
-      Logger.error(error);
+      Logger.error(error, 'SIGNIN');
     }});
   },
 

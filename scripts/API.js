@@ -11,17 +11,17 @@ var API = {
   createTable: function(table, password, seats) {
     if (seats === parseInt(seats, 10)) {
       $.ajax({url: createTableURL, method: 'POST', success: function(result) {
-        $('#createerror').html('');
-        $('#createlog').html('Tafel "' + table + '" aangemaakt!<br />Je kan er nu aan plaatsnemen.');
+        Logger.hideCreateTableError();
+        Logger.log('Tafel "' + table + '" aangemaakt!<br />Je kan er nu aan plaatsnemen.', 'CREATETABLE');
       }, error: function(error) {
-        $('#createerror').html('Er is een probleem opgetreden...');
+        Logger.error('Er is een probleem opgetreden...', 'CREATETABLE');
       }, data: {
         'name': table,
         'password': password,
         'nbPlayers': seats
       }});
     } else {
-      $('#createerror').html('Ongeldig aantal plaatsen.');
+      Logger.error('Ongeldig aantal plaatsen.', 'CREATETABLE');
     }
   },
 
