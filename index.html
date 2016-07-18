@@ -26,12 +26,40 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
   <link rel="stylesheet" href="css/stylesheet.css"/>
 
-
+  <style>
+    .dbblue {
+      background-color: blue;
+    }
+    .dbred {
+      background-color: red;
+    }
+    .dbgreen {
+      background-color: green;
+    }
+    .dbpurple {
+      background-color: purple;
+    }
+    .dbyellow {
+      background-color: yellow;
+    }
+    .grid {
+      margin-top: 100px !important;
+      margin-bottom: 100px !important;
+    }
+  </style>
 
 
 
 </head>
 <body>
+
+  <div class="ui grid">
+    <div class="sixteen wide column dbred">data</div>
+    <div class="sixteen wide column dbblue">data</div>
+    <div class="eleven wide column dbgreen">data</div>
+    <div class="five wide column dbpurple">data</div>
+    <div class="sixteen wide column dbyellow">data</div>
+  </div>
 
   <!-- These divs are hidden initially but will be used for logging. -->
   <div id="errdiv" class="ui red label"></div>
@@ -330,7 +358,7 @@
       console.log('Hello');
       $('.ui.modal').modal('show');
     });
-    API.createTable('BartsTable', 'bart', 8);
+    //API.createTable('BartsTable', 'bart', 8);
   </script>
 
 </body>
