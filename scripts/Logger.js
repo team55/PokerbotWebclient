@@ -14,8 +14,8 @@ var Logger = {
    *  the global logs. This will mostly be done manually by the user.
    */
   hideGlobalLog: function() {
-    $('#globalLog').hide();
-    $('#globalLog').html('');
+    $('#logdiv').hide();
+    $('#logdiv').html('');
   },
 
   /**
@@ -23,8 +23,8 @@ var Logger = {
    *  the global errors. This will mostly be done manually by the user.
    */
   hideGlobalError: function() {
-    $('#globalError').hide();
-    $('#gloablError').html('');
+    $('#errdiv').hide();
+    $('#errdiv').html('');
   },
 
   /**
@@ -69,7 +69,7 @@ var Logger = {
   logIdentifierForStream: function(stream) {
     if (stream === "SIGNIN") { return "#signInLog"; }
     else if (stream === "CREATETABLE") { return "#createTableLog"; }
-    else { return "#globalLog"; }
+    else { return "#logdiv"; }
   },
 
   /**
@@ -78,7 +78,7 @@ var Logger = {
   errorIdentifierForStream: function(stream) {
     if (stream === "SIGNIN") { return "#signInError"; }
     else if (stream === "CREATETABLE") { return "#createTableError"; }
-    else { return "#globalError"; }
+    else { return "#errdiv"; }
   },
 
   /**
@@ -97,7 +97,7 @@ var Logger = {
    *  button to hide the error.
    */
   errorContentSuffixForStream: function(stream) {
-    if (!stream === "SIGNIN" || stream === "CREATETABLE") { return ""; }
+    if (stream === "SIGNIN" || stream === "CREATETABLE") { return ""; }
     return '<br /><button class="mini ui button" onclick="Logger.hideGlobalError()">Alright!</button>';
   },
 

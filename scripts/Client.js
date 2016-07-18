@@ -16,10 +16,13 @@ var Client = {
     $('#login').hide();
     $('#username').val('');
     $('#tablename').val('');
-    $('#status').html('Signed in as "' + username + '" on table "' + table + '".');
-    $('#controls').show();
-    $('#preview').show();
-    $('#workDiv').show();
+    var label = '<span class="ui image label"><img src="img/person.jpg">' + username + '<div class="detail">' + table + '<i onclick="disconnect()" class="delete icon"></i></div></span>';
+    $('#tablestatus').html(label);
+    $('.ui.page.dimmer').dimmer('hide');
+    Logger.hideSignInLog();
+    Logger.hideSignInError();
+    // TODO: LOAD THE TABLES (Example on the following lines);
+    $('#topgraph').html('<p>TABLE IS LOADING...</p>');
   },
 
   signout: function() {

@@ -95,6 +95,11 @@
       padding-left: 20px;
     }
 
+    .ui.modal {
+      width: 600px !important;
+      margin: 0 auto;
+    }
+
   </style>
 
 
@@ -102,16 +107,20 @@
 </head>
 <body>
 
+  <!-- These divs are hidden initially but will be used for logging. -->
+  <div id="errdiv" class="ui red label"></div>
+  <div id="logdiv" class="ui blue label"></div>
+
   <div class="ui grid">
 
     <!-- Sign in and status div -->
     <div class="sixteen wide column cleancol">
       <span id="toggledimmer" class="ui teal button">Ga naar een tafel</span>
-      <span id="tablestatus"></span>
+      <span id="tablestatus"><span class="ui label">Geen verbinding met een tafel</span></span>
     </div>
 
     <!-- Top data div -->
-    <div class="sixteen wide column topgraph">
+    <div id="topgraph" class="sixteen wide column topgraph">
       <p> Wanneer je verbonden bent met een tafel, <br /> zullen de resultaten
           hier worden weergegeven.</p>
     </div>
@@ -360,7 +369,8 @@
                 <span class="field">
                   <span id="connectbtn" class="ui teal submit button">Neem plaats</span>
                 </span>
-                <div id="connecterror" class="error"><br></div>
+                <div id="signInError" class="error"></div>
+                <div id="signInLog" class="error"></div>
               </span>
             </p>
           </div>
@@ -394,8 +404,8 @@
                 <span class="field">
                   <button id="createtable" class="ui teal submit button">Maak tafel</button>
                 </span>
-                <div id="createTableLog" class="blue log"><br></div>
-                <div id="createTableError" class="red error"><br></div>
+                <div id="createTableError" class="red error"></div>
+                <div id="createTableLog" class="blue log"></div>
               </span>
             </p>
           </div>
@@ -403,35 +413,36 @@
       </div>
     </div>
   </div>
-  <script>
-    $('#connectbtn').click(function() {
-      var username = $('#username').val();
-      var table = $('#tablename').val();
-      Server.connect(username, table);
-    });
 
-    /**
-     *  Creates a new table.
-     */
-    $('#createtable').click(function(e) {
-      if ($('#players').val() === ''
-          || $('#tablecreatename').val() == ''
-          || $('#tablepassword').val() == '') {
-        Logger.error('Geef een tafelnaam, wachtwoord én aantal plaatsen.', 'CREATETABLE');
-      } else {
-        var table = $("#tablecreatename").val();
-        var password = $('#tablepassword').val();
-        var players = parseInt($('#players').val(), 10);
-        API.createTable(table, password, players);
-      }
-      //
-      //$('.ui.modal').modal('show');
-    });
-    $('#toggledimmer').click(function(e) {
-      $('.ui.page.dimmer').dimmer('show');
-    });
-  </script>
+  <!-- Sign out modal -->
+  <div class="ui small modal">
+    <div class="header">
+      Verbinding verbreken?
+    </div>
+    <div class="content">
+      <div class="description">
+        <div class="ui header">Opgelet!</div>
+        <p> U staat op het punt de verbinding met de tafel te verbreken.
+            Indien u dit doet, is er geen enkele manier om opnieuw te verbinden
+            met de huidige speler. Indien je een tweede speler wilt besturen,
+            is het mogelijk om deze pagina opnieuw te openen in een extra tablad.
+            Op deze manier is het mogelijk meerdere spelers tegelijk te besturen. </p>
+        <p> Bent u zeker dat u de verbinding wilt verbreken? </p>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui black deny button">
+        Nee, toch niet.
+      </div>
+      <div id="disconnectbtn" class="ui positive right labeled icon button">
+        Ja, verbreek de verbinding.
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+  </div>
 
+  <!-- Controller for this page -->
+  <script src="scripts/Controller.js"></script>
 
 </body>
 </html>

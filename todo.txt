@@ -7,6 +7,14 @@ Notes:
   - We might need a 'logout' or 'disconnect' button? Right now it feels like
     you are 'locked' into the current account.
 
+Todo's:
+  - Load the different tables Server.js:49.
+  - Unload all graphs Controller.js:53.
+
+Ideas:
+  - Loading icon when signing in... Can take a while.
+
+
 // OLD:
 
 Todo's (ideas)

@@ -4,20 +4,48 @@
  *  to fetch debug logs (about the connection), send the prolog data and retrieve
  *  information about online tables.
  */
+
 var Server = {
 
+  /**
+   *  Creates a new table on the Server with the given table name, password
+   *  and maximum number of players. The function will only be executed if the
+   *  amount of seats is an integer.
+   */
+  createTable: function(table, password, seats) {
+    var createTableURL = 'http://bear.cs.kuleuven.be/pokerdemo/server/makeTable.php';
+    if (seats === parseInt(seats, 10)) {
+      $.ajax({url: createTableURL, method: 'POST', success: function(result) {
+        Logger.hideCreateTableError();
+        Logger.log('Tafel "' + table + '" aangemaakt!<br />Je kan er nu aan plaatsnemen.', 'CREATETABLE');
+      }, error: function(error) {
+        Logger.error('Er is een probleem opgetreden...', 'CREATETABLE');
+      }, data: {
+        'name': table,
+        'password': password,
+        'nbPlayers': seats
+      }});
+    } else {
+      Logger.error('Ongeldig aantal plaatsen.', 'CREATETABLE');
+    }
+  },
+
+  /**
+   *  Connects the given user to the given table with a GET request.
+   */
   connect: function(username, table) {
-    destination = "http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName=";
+    var destination = "http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName=";
     destination += table + "&playerName=" + username
     $.ajax({url: destination, success: function(result) {
-      var data = JSON.parse(result);
-      if (data['type'] === 'Acknowledge') {
-        Client.signin(username, table);
-        var label = '<a class="ui image label"><img src="img/person.jpg">' + username + '<div class="detail">' + table + '<i class="delete icon"></i></div></a>';
-        $('#tablestatus').html(label);
-        $('.ui.page.dimmer').dimmer('hide');
-      } else {
-        Logger.error(data['message'], 'SIGNIN');
+      try {
+        var data = JSON.parse(result);
+        if (data['type'] === 'Acknowledge') {
+          Client.signin(username, table);
+        } else {
+          Logger.error(data['message'], 'SIGNIN');
+        }
+      } catch (err) {
+        Logger.error('Woops, looks like something went wrong.', 'SIGNIN');
       }
     }, error: function(error) {
       Logger.error(error, 'SIGNIN');
@@ -42,6 +70,8 @@ var Server = {
     }, error: function(error) {
       // TODO: HANDLE ERROR. JUST LOG IT IN SOME DIV?
     }});
-  }
+  },
+
+
 
 }
