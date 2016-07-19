@@ -393,7 +393,7 @@ Blockly.Blocks['poker_cards'] = {
         .appendField(new Blockly.FieldDropdown([["hand", "handkaarten"], ["table", "tafelkaarten"], ["hand and table", "allekaarten"]]), "in");
     this.appendValueInput("cardlist")
         .setCheck("POKER_TYPE_CARD")
-        .appendField("contains the following cards");
+        .appendField("contains");
     this.setInputsInline(false);
     this.setOutput(true);
     this.setColour(rangecolor);

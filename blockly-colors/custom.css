@@ -152,7 +152,9 @@
 
 .blocklyScrollbarKnob {
   fill: #bdc3c7; /* SCROLL BAR COLORS */
+  opacity: .25;
 }
+
 
 .blocklyZoom>image {
   opacity: .4;
@@ -458,11 +460,11 @@
 }
 
 .blocklyScrollbarVertical > .blocklyScrollbarKnob {
-  width: 4px !important;
+  width: 8px !important;
 }
 
 .blocklyScrollbarHorizontal > .blocklyScrollbarKnob {
-  height: 4px !important;
+  height: 8px !important;
 }
 
 .blocklyTrash {

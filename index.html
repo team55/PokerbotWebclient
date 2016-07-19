@@ -106,8 +106,17 @@
     .header {
       width: 100% !important;
       text-align: center;
-      margin-top: 50px;
-      margin-bottom: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    h1 {
+      margin-top: 25px !important;
+    }
+
+    body, .cutbottom {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
     }
 
 
@@ -123,6 +132,10 @@
 </head>
 <body>
 
+  <!-- These divs are hidden initially but will be used for logging. -->
+  <div id="errdiv" class="ui red label"></div>
+  <div id="logdiv" class="ui blue label"></div>
+
   <div class="header">
     <h2 class="ui header">
       <img src="img/playing-cards.png">
@@ -133,11 +146,7 @@
     </h2>
   </div>
 
-  <!-- These divs are hidden initially but will be used for logging. -->
-  <div id="errdiv" class="ui red label"></div>
-  <div id="logdiv" class="ui blue label"></div>
-
-  <div class="ui grid">
+  <div class="ui page grid cutbottom">
 
     <!-- Sign in and status div -->
     <div class="sixteen wide column cleancol">
@@ -152,10 +161,10 @@
     </div>
 
     <!-- Blockly Interface -->
-    <div class="eleven wide column">
-      <div class="ui grid">
+    <div class="ten wide column">
+      <div class="ui grid cutbottom">
         <div id="workDiv" class="sixteen wide column">
-          <div id="blocklyDiv" style=""></div>
+          <div id="blocklyDiv"></div>
           <xml id="toolbox" style="display: none">
             <category name="Situations">
               <block type="is_preflop"></block>
@@ -246,45 +255,46 @@
             </category>
           </xml>
           <xml id="startBlocks" style="display: none">
-            <block type="custom_if" x="25" y="25">
+            <block type="custom_if" x="45" y="35">
               <value name="IF0">
-                <block type="logic_boolean">
-                  <field name="BOOL">TRUE</field>
+                <block type="and">
+                  <value name="A">
+                    <block type="is_preflop">
+                    </block>
+                  </value>
+                  <value name="B">
+                    <block type="is_dealer">
+                    </block>
+                  </value>
                 </block>
               </value>
               <statement name="DO0">
-                <block type="poker_call"></block>
+                <block type="poker_raise">
+                  <value name="amount">
+                    <block type="potsize">
+                    </block>
+                  </value>
+                </block>
               </statement>
+              <next>
+                <block type="poker_fold">
+                </block>
+              </next>
             </block>
           </xml>
         </div>
-        <div class="sixteen wide column center aligned ">
-          <button class="ui tiny button" onclick="saveWorkspace()">Save configuration</button>
-          <button class="ui tiny button" onclick="loadWorkspace()">Load configuration</button>
-          <button class="ui tiny button" onclick="sendCode()">Send rules!</button>
-          <button class="ui tiny button" onclick="Client.signout()">Sign out</button>
-          <button class="ui tiny button" onclick="Client.toggleprolog()">Toggle Prolog</button>
+        <div class="sixteen wide column right aligned">
+          <button class="ui mini button" onclick="saveWorkspace()">Save Blocks</button>
+          <button class="ui mini button" onclick="loadWorkspace()">Load Blocks</button>
+          <button id="rulesendbtn" class="ui small teal disabled button" onclick="sendCode()">Send rules!</button>
         </div>
       </div>
-
-
     </div>
 
-    <!-- Welcome div -->
-    <div id="bargraph" class="five wide column center aligned"></div>
-    <div id="bottomgraph" class="sixteen wide column center aligned dbred"></div>
-  </div>
+    <!-- Bar and Bottom Graph -->
+    <div id="bargraph" class="six wide column center aligned"></div>
+    <div id="bottomgraph" class="sixteen wide column center aligned"></div>
 
-
-
-
-
-  <!-- Here u see a preview of the Prolog code that will be sent to the Server. -->
-  <div id="preview">
-    <textarea id="textarea" rows="8" cols="30"></textarea>
-  </div>
-
-  <div id="playDiv">
   </div>
 
   <script>

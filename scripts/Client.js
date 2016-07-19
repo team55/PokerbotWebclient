@@ -24,6 +24,7 @@ var Client = {
     $('#topgraph').load('graphs/top.html');
     $('#bargraph').load('graphs/bar.html');
     $('#bottomgraph').load('graphs/bottom.html');
+    $('#rulesendbtn').removeClass('disabled');
   },
 
   signout: function() {
@@ -32,6 +33,8 @@ var Client = {
     $('#tablestatus').html('<span class="ui label">Geen verbinding met een tafel</span>');
     $('#topgraph').html('<p> Wanneer je verbonden bent met een tafel, <br /> zullen de resultaten hier worden weergegeven.</p>');
     $('#bargraph').load('elements/welcomebar.html');
+    $('#bottomgraph').html('');
+    $('#rulesendbtn').addClass('disabled');
   },
 
   toggleprolog: function() {
