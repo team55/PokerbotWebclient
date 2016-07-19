@@ -1,75 +1,74 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Top Graph</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="../scripts/Smoothie.js"></script>
-  </head>
-  <body>
-    <canvas id="topGraphCanvas" width="1200" height="200"></canvas>
-    <script>
+<script src="scripts/Smoothie.js"></script>
+<canvas id="topGraphCanvas" width="800" height="250"></canvas>
+<script>
 
-      var colors = [
-        'rgb(25, 180, 145)',
-        'rgb(41, 197, 102)',
-        'rgb(45, 141, 214)',
-        'rgb(144, 79, 173)',
-        'rgb(46, 64, 83)',
-        'rgb(22, 150, 122)',
-        'rgb(35, 164, 85)',
-        'rgb(36, 117, 176)',
-        'rgb(131, 60, 163)',
-        'rgb(39, 54, 70)'
-      ];
-      var fillcolor = 'rgba(0, 0, 0, 0)';
-      var linewidth = 3;
+  var colors = [
+    'rgb(25, 180, 145)',
+    'rgb(41, 197, 102)',
+    'rgb(45, 141, 214)',
+    'rgb(144, 79, 173)',
+    'rgb(46, 64, 83)',
+    'rgb(22, 150, 122)',
+    'rgb(35, 164, 85)',
+    'rgb(36, 117, 176)',
+    'rgb(131, 60, 163)',
+    'rgb(39, 54, 70)'
+  ];
+  var fillcolor = 'rgba(0, 0, 0, 0)';
+  var linewidth = 3;
 
-      var tois = 1;
-      var dataSets = null;
-      var DATASOURCE = 'http://bear.cs.kuleuven.be/pokerdemo/server/ObserveTable.php?tableName=Chilli';
+  var tois = 1;
+  var dataSets = null;
+  var DATASOURCE = 'http://bear.cs.kuleuven.be/pokerdemo/server/ObserveTable.php?tableName=Barcelona';
 
-      var parseData = function(data) {
-        var players = data['result']['player'];
-        if (dataSets == null) {
-          var smoothie = new SmoothieChart();
-          smoothie.streamTo(document.getElementById("topGraphCanvas"));
-          dataSets = new Array(players.length);
-          for(var i = 0; i < players.length; i++) {
-            dataSets[i] = new TimeSeries();
-            smoothie.addTimeSeries(dataSets[i], {
-              strokeStyle: colors[i],
-              fillStyle: fillStyle,
-              lineWidth: lineWidth
-            });
-          }
-          smoothie.streamTo(document.getElementById('topGraphCanvas'), tois * 2000);
+  var parseData = function(data) {
+    var players = data['result']['player'];
+    if (dataSets == null) {
+      var smoothie = new SmoothieChart({
+        grid: {
+          strokeStyle:'rgb(247, 247, 247)',
+          fillStyle:'rgb(247, 247, 247)',
+          lineWidth: 1,
+          millisPerLine: 250,
+          verticalSections: 6,
+        }, labels: {
+          fillStyle:'rgb(60, 0, 0)'
         }
-        for(var i = 0; i < players.length; i++) {
-          var player = players[i];
-          dataSets[i].append(new Date().getTime(), player['avg profit']);
-        }
-        setTimeout(function() {
-          fetchData();
-        }, tois * 1000);
+      });
+      smoothie.streamTo(document.getElementById("topGraphCanvas"));
+      dataSets = new Array(players.length);
+      for(var i = 0; i < players.length; i++) {
+        dataSets[i] = new TimeSeries();
+        smoothie.addTimeSeries(dataSets[i], {
+          strokeStyle: colors[i],
+          fillStyle: fillcolor,
+          lineWidth: linewidth
+        });
       }
-
-      var fetchData = function() {
-        $.ajax({ url: DATASOURCE, method: 'GET', success: function(result) {
-          try {
-            var data = $.parseJSON(result);
-            parseData(data);
-          } catch(error) {
-            console.error('Data received but error!: ' + error);
-          }
-        }, error: function(error) {
-          console.error('Unable to fetch data!: ' + error);
-        }});
-      }
-
+      smoothie.streamTo(document.getElementById('topGraphCanvas'), tois * 2000);
+    }
+    for(var i = 0; i < players.length; i++) {
+      var player = players[i];
+      dataSets[i].append(new Date().getTime(), player['avg profit']);
+    }
+    setTimeout(function() {
       fetchData();
-      smoothie.addTimeSeries(line1,
-        { strokeStyle:'rgb(0, 255, 0)', fillStyle:'rgba(0, 255, 0, 0.4)', lineWidth:3 });
-    </script>
-  </body>
-</html>
+    }, tois * 1000);
+  }
+
+  var fetchData = function() {
+    $.ajax({ url: DATASOURCE, method: 'GET', success: function(result) {
+      try {
+        var data = $.parseJSON(result);
+        parseData(data);
+      } catch(error) {
+        console.error('Data received but error!: ' + error);
+      }
+    }, error: function(error) {
+      console.error('Unable to fetch data!: ' + error);
+    }});
+  }
+
+  fetchData();
+  
+</script>

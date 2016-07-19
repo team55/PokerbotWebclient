@@ -1,32 +1,22 @@
 
-Schedule:
-  Todo's 18-07-2016:
-    - Fix sign in, sign out, create table, connect, send rules, etc.              DONE.
-    - Template all AJAX calls with default tables.                                DONE.
-    - Redesign some things (buttons etc) so it looks better.                      DONE.
-    - Finish the complete pre-connected view (without BLOCKLY).                   DONE.
-  Todo's 19-07-2016
-    - Find out how to EDIT BLOCKLY DESIGN. Check is via JS?                       DONE.
-    - Create the custom top-, bar- and bottom-graph.
-    - Make BLOCKLY focus on reconnect?                                            DONE.
-    - Finish the complete views (pre and post-connected INCL BLOCKLY).
-    - Refactor & Finish, make further schedule to start the Tutorials.
-    - Fix Load Blocks Issue.
-    - Complete Translate.
+Todo's:
+  - Resize top graph
+  - Add legend to top graph
+  - Change toolkit color of blockly
+  - Add side charts
+  - Add bottom charts
+  - Disable "Go to table" button when arrived
+  - Translate everything!
+  - Fix load block issue or just for debug purposes?
+  - Display warnings in case of overhead.
 
 Notes:
   - For now, table selection is done with an input box but would be cooler with
     a dropdown. In order to implement this, we need to fix the backend API.
   - When focus is on an input box, border-radius magically disappears?
   - Errors should be written in dutch (server-side).
-
-Todo's:
-  - Display warnings when overhead.
-
-Ideas:
   - Loading icon when signing in... Can take a while.
   - We can't see our rules atm. We can save these client side?
-  - New Header? Top is too empty...
 
 
 // OLD:
