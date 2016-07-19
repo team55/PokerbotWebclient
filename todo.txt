@@ -2,7 +2,6 @@
 Todo's (should be finished on 20/07):
   - Add side charts
   - Add bottom charts
-  - Disable "Go to table" button when arrived
   - Translate everything!
   - Fix load block issue or just for debug purposes?
   - Display warnings in case of overhead.

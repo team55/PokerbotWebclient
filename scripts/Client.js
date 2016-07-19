@@ -27,6 +27,7 @@ var Client = {
     $('#bargraph').load('graphs/bar.html');
     $('#bottomgraph').load('graphs/bottom.html');
     $('#rulesendbtn').removeClass('disabled');
+    $('#toggledimmer').addClass('disabled');
   },
 
   signout: function() {
@@ -38,6 +39,7 @@ var Client = {
     $('#bottomgraph').html('');
     $('#rulesendbtn').addClass('disabled');
     Blockly.svgResize(workspace);
+    $('#toggledimmer').removeClass('disabled');
   },
 
   toggleprolog: function() {
