@@ -8,17 +8,17 @@ Schedule:
   Todo's 19-07-2016
     - Find out how to EDIT BLOCKLY DESIGN. Check is via JS?                       DONE.
     - Create the custom top-, bar- and bottom-graph.
-    - Make BLOCKLY focus on reconnect?
+    - Make BLOCKLY focus on reconnect?                                            DONE.
     - Finish the complete views (pre and post-connected INCL BLOCKLY).
     - Refactor & Finish, make further schedule to start the Tutorials.
+    - Fix Load Blocks Issue.
+    - Complete Translate.
 
 Notes:
   - For now, table selection is done with an input box but would be cooler with
     a dropdown. In order to implement this, we need to fix the backend API.
   - When focus is on an input box, border-radius magically disappears?
   - Errors should be written in dutch (server-side).
-  - We might need a 'logout' or 'disconnect' button? Right now it feels like
-    you are 'locked' into the current account.
 
 Todo's:
   - Display warnings when overhead.

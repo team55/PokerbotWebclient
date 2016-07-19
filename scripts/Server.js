@@ -63,11 +63,22 @@ var Server = {
   },
 
   sendRule: function(username, table, code) {
+    $('#rulesendbtn').addClass('disabled');
+    console.log('sending');
     destination = "http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName=";
     destination += table + "&playerName=" + username + "&description=" + encodeURIComponent(code);
     $.ajax({url: destination, success: function(result) {
+      $('#sendstatuspusher').hide();
+      $('#sendstatus').transition('swing left');
+      window.setTimeout(function() {
+        $('#sendstatus').transition('swing left', function() {
+          $('#sendstatuspusher').show();
+          $('#rulesendbtn').removeClass('disabled');
+        });
+      }, 3000);
       // TODO: REPLY, LOG?
     }, error: function(error) {
+      $('#rulesendbtn').removeClass('disabled');
       // TODO: HANDLE ERROR. JUST LOG IT IN SOME DIV?
     }});
   },

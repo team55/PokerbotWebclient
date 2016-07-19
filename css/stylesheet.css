@@ -92,3 +92,105 @@ html, body {
   margin-top: 5px;
   margin-right: 20px;
 }
+
+.dbblue {
+  background-color: blue;
+}
+.dbred {
+  background-color: red;
+}
+.dbgreen {
+  background-color: green;
+}
+.dbpurple {
+  background-color: purple;
+}
+.dbyellow {
+  background-color: yellow;
+}
+
+
+#topgraph, #bargraph, #bottomgraph {
+  font-style: italic;
+}
+
+#bottomgraph {
+  padding-top: 25px;
+}
+
+#bargraph > p {
+  margin: 20px;
+  margin-right: 30px;
+}
+
+
+.rightinfo > p {
+  margin: 25px;
+}
+
+.cleancol {
+  padding: 0;
+}
+
+.grid {
+  margin-top: 0 !important;
+  margin-bottom: 100px !important;
+}
+
+.connect > span > span > input, .connect > span > span > span {
+  margin-top: 15px !important;
+}
+
+.dimmer {
+  background-color: rgba(0,0,0,0.95) !important;
+}
+
+.error {
+  color: #e74c3c;
+  font-style: italic;
+  margin-top: 15px;
+}
+
+.log {
+  color: #3498db;
+  font-style: italic;
+  margin-top: 15px;
+}
+
+#blocklyDiv {
+  height: 500px;
+  margin-left: 20px;
+}
+
+.buttons {
+  padding-left: 20px;
+}
+
+.ui.modal {
+  width: 600px !important;
+  margin: 0 auto;
+}
+
+.header {
+  width: 100% !important;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+h1 {
+  margin-top: 25px !important;
+}
+
+body, .cutbottom {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+#sendstatus {
+  color: #27ae60;
+  padding-top: 15px !important;
+  padding-right: 4px;
+  font-style: italic;
+  display: none;
+}

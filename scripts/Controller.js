@@ -4,6 +4,8 @@
  *  timelines for certain actions. It requires JQuery and Semantic UI to run.
  */
 
+var workspace;
+
 /**
 *  Checks if the 'Create-Table'-form has valid info to create a new table.
 *  Returns true if and only if no field equals an empty string.
@@ -55,8 +57,51 @@ $('#disconnectbtn').click(function(e) {
 });
 
 /**
+ *  Shows the XML of the current block structure (alert).
+ */
+var saveWorkspace = function() {
+  var xml = Blockly.Xml.workspaceToDom(workspace);
+  var xml_text = Blockly.Xml.domToText(xml);
+  alert(xml_text);
+}
+
+/**
+ *  Asks for XML of Block structure (alert) and creates it in the workspace.
+ */
+var loadWorkspace = function() {
+  var result = prompt("Enter xml");
+  var dom = Blockly.Xml.textToDom(result);
+  Blockly.Xml.domToWorkspace(workspace, dom);
+}
+
+/**
+ *  Sends the rules to the Server.
+ */
+var sendCode = function() {
+  if (Client.isSignedIn()) {
+    var code = Blockly.Prolog.workspaceToCode(workspace);
+    Server.sendRule(Client.username, Client.table, code);
+  } else {
+    console.err('Not signed in!');
+  }
+}
+
+/**
  *  Execute the following commands on load.
  */
 $(document).ready(function() {
   $('#bargraph').load('elements/welcomebar.html');
+  customWorkspace('blockly-colors/custom.css', function() {
+    workspace = Blockly.inject('blocklyDiv',
+        {media: 'blockly/media/',
+         toolbox: document.getElementById('toolbox')});
+    Blockly.Xml.domToWorkspace(workspace,
+            document.getElementById('startBlocks'));
+    function myUpdateFunction() {
+      var code = Blockly.Prolog.workspaceToCode(workspace);
+      // If you need the prolog code, it can be logged here.
+      //console.log(code);
+    }
+    workspace.addChangeListener(myUpdateFunction);
+  });
 });

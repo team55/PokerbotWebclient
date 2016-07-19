@@ -21,7 +21,9 @@ var Client = {
     $('.ui.page.dimmer').dimmer('hide');
     Logger.hideSignInLog();
     Logger.hideSignInError();
-    $('#topgraph').load('graphs/top.html');
+    $('#topgraph').load('graphs/top.html', function(r,s,x) {
+      Blockly.svgResize(workspace);
+    });
     $('#bargraph').load('graphs/bar.html');
     $('#bottomgraph').load('graphs/bottom.html');
     $('#rulesendbtn').removeClass('disabled');
@@ -35,6 +37,7 @@ var Client = {
     $('#bargraph').load('elements/welcomebar.html');
     $('#bottomgraph').html('');
     $('#rulesendbtn').addClass('disabled');
+    Blockly.svgResize(workspace);
   },
 
   toggleprolog: function() {

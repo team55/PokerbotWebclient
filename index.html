@@ -3,132 +3,20 @@
 <head>
   <meta charset="utf-8">
   <title>Pokerdemo, webclient</title>
-
-  <!-- Include the Blockly library. -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+  <link rel="stylesheet" href="css/stylesheet.css"/>
   <script src="blockly/blockly_compressed.js"></script>
   <script src="blockly/blocks_compressed.js"></script>
   <script src="blockly/msg/js/en.js"></script>
   <script src="blocks_poker.js"></script>
   <script src="generator_prolog.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="jquery-1.11.3.min.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
-
-
   <script src="blockly-colors/blocks.js"></script>
-
   <script src="scripts/Logger.js"></script>
   <script src="scripts/API.js"></script>
   <script src="scripts/Client.js"></script>
   <script src="scripts/Server.js"></script>
-
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
-  <link rel="stylesheet" href="css/stylesheet.css"/>
-
-  <style>
-    .dbblue {
-      background-color: blue;
-    }
-    .dbred {
-      background-color: red;
-    }
-    .dbgreen {
-      background-color: green;
-    }
-    .dbpurple {
-      background-color: purple;
-    }
-    .dbyellow {
-      background-color: yellow;
-    }
-
-
-    #topgraph, #bargraph, #bottomgraph {
-      font-style: italic;
-    }
-
-    #bargraph > p {
-      margin: 20px;
-      margin-right: 30px;
-    }
-
-
-    .rightinfo > p {
-      margin: 25px;
-    }
-
-    .cleancol {
-      padding: 0;
-    }
-
-    .grid {
-      margin-top: 0 !important;
-      margin-bottom: 100px !important;
-    }
-
-    .connect > span > span > input, .connect > span > span > span {
-      margin-top: 15px !important;
-    }
-
-    .dimmer {
-      background-color: rgba(0,0,0,0.95) !important;
-    }
-
-    .error {
-      color: #e74c3c;
-      font-style: italic;
-      margin-top: 15px;
-    }
-
-    .log {
-      color: #3498db;
-      font-style: italic;
-      margin-top: 15px;
-    }
-
-    #blocklyDiv {
-      height: 500px;
-      margin-left: 20px;
-    }
-
-    .buttons {
-      padding-left: 20px;
-    }
-
-    .ui.modal {
-      width: 600px !important;
-      margin: 0 auto;
-    }
-
-    .header {
-      width: 100% !important;
-      text-align: center;
-      padding-top: 50px;
-      padding-bottom: 50px;
-    }
-
-    h1 {
-      margin-top: 25px !important;
-    }
-
-    body, .cutbottom {
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
-    }
-
-
-
-  </style>
-
-  <script>
-
-  </script>
-
-
-
 </head>
 <body>
 
@@ -287,6 +175,8 @@
           <button class="ui mini button" onclick="saveWorkspace()">Save Blocks</button>
           <button class="ui mini button" onclick="loadWorkspace()">Load Blocks</button>
           <button id="rulesendbtn" class="ui small teal disabled button" onclick="sendCode()">Send rules!</button>
+          <div id="sendstatus" class="ui">Regel verzonden!<i class="send icon"></i></div>
+          <div id="sendstatuspusher"><br /></div>
         </div>
       </div>
     </div>
@@ -296,84 +186,6 @@
     <div id="bottomgraph" class="sixteen wide column center aligned"></div>
 
   </div>
-
-  <script>
-
-    var workspace;
-    customWorkspace('blockly-colors/custom.css', function() {
-      workspace = Blockly.inject('blocklyDiv',
-          {media: 'blockly/media/',
-           toolbox: document.getElementById('toolbox')});
-      Blockly.Xml.domToWorkspace(workspace,
-              document.getElementById('startBlocks'));
-      function myUpdateFunction() {
-        var code = Blockly.Prolog.workspaceToCode(workspace);
-        document.getElementById('textarea').value = code;
-      }
-      workspace.addChangeListener(myUpdateFunction);
-    });
-
-    // buttons
-    function connect() {
-      var username = $('#inputUser').val();
-      var table = $('#inputTable').val();
-      Server.connect(username, table);
-      /*
-       * Same Origin Policy disallows... only when run on same server
-      // send hello to webserver, if OK continue
-      $.ajax({
-        method: "POST",
-        url: "http://bear.cs.kuleuven.be/pokerdemo/server/hello.php",
-        data: { tableName: table, playerName: user }
-      })
-        .done(function( msg ) {
-          alert( "Got reply: " + msg );
-        });
-        *
-        */
-      // Fake with 'sending' iframe for now
-      //var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName="+table+"&playerName="+user+"\">This website uses iframes to show the game results.</iframe>";
-      //$('#debugDiv').html(faker);
-
-      // Receiving iframe
-      //var code = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName="+table+"\">This website uses iframes to show the game results.</iframe>";
-      //$('#playDiv').html(code);
-    }
-
-    function sendCode() {
-      //var user = $('#inputUser').val();
-      //var table = $('#inputTable').val();
-      // Generate Prolog code and submit it.
-
-      console.log(Client.username);
-      if (Client.isSignedIn()) {
-        var code = Blockly.Prolog.workspaceToCode(workspace);
-        API.sendRules(Client.username, Client.table, code);
-      } else {
-        console.err('Not signed in!');
-      }
-
-
-      // send to server
-      //var faker = "<iframe src=\"http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName="+table+"&playerName="+user+"&description="+encodeURIComponent(code)+"\">This website uses iframes to show the game results.</iframe>";
-      //$('#debugDiv').html(faker);
-    }
-
-    function saveWorkspace() {
-      var xml = Blockly.Xml.workspaceToDom(workspace);
-      var xml_text = Blockly.Xml.domToText(xml);
-      alert(xml_text);
-    }
-
-    function loadWorkspace() {
-      var result = prompt("Enter xml");
-      var dom = Blockly.Xml.textToDom(result);
-      Blockly.Xml.domToWorkspace(workspace, dom);
-    }
-  </script>
-
-
-
 
   <!-- This is the content dimmer to connect to a table -->
   <div class="ui page dimmer">
