@@ -54,7 +54,7 @@
         <div id="workDiv" class="sixteen wide column">
           <div id="blocklyDiv"></div>
           <xml id="toolbox" style="display: none">
-            <category name="Situations">
+            <category name="Situaties">
               <block type="is_preflop"></block>
               <block type="is_flop"></block>
               <block type="is_turn"></block>
@@ -65,7 +65,7 @@
               <block type="is_dealer"></block>
               <block type="logic_boolean"></block>
             </category>
-            <category name="Amounts">
+            <category name="Hoeveelheden">
               <block type="stacksize"></block>
               <block type="potsize"></block>
               <block type="active_players"></block>
@@ -78,7 +78,7 @@
               <block type="random"></block>
               <block type="math_number"></block>
             </category>
-            <category name="Comparators">
+            <category name="Vergelijkingen">
               <block type="greater_then"></block>
               <block type="greater_then_or_equal"></block>
               <block type="less_then"></block>
@@ -88,21 +88,21 @@
               <block type="or"></block>
               <block type="not"></block>
             </category>
-            <category name="Operations">
+            <category name="Bewerkingen">
               <block type="add"></block>
               <block type="substract"></block>
               <block type="multiply"></block>
               <block type="divide"></block>
             </category>
-            <category name="Sequence">
+            <category name="Voorwaarden">
               <block type="custom_if"></block>
             </category>
-            <category name="Actions">
+            <category name="Acties">
               <block type="poker_call"></block>
               <block type="poker_fold"></block>
               <block type="poker_raise"></block>
             </category>
-            <category name="Cards">
+            <category name="Kaarten">
               <block type="poker_cards"></block>
               <block type="poker_card">
                 <value name="arg_color">
@@ -192,9 +192,9 @@
           </xml>
         </div>
         <div class="sixteen wide column right aligned">
-          <button class="ui mini button" onclick="saveWorkspace()">Save Blocks</button>
-          <button class="ui mini button" onclick="loadWorkspace()">Load Blocks</button>
-          <button id="rulesendbtn" class="ui small teal disabled button" onclick="sendCode()">Send rules!</button>
+          <button class="ui mini button" onclick="saveWorkspace()">Blocks opslaan</button>
+          <button class="ui mini button" onclick="loadWorkspace()">Blocks openen</button>
+          <button id="rulesendbtn" class="ui small teal disabled button" onclick="sendCode()">Activeer Regel</button>
           <div id="sendstatus" class="ui">Regel verzonden!<i class="send icon"></i></div>
           <div id="sendstatuspusher"><br /></div>
         </div>
