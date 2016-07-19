@@ -1,7 +1,5 @@
 
-Todo's:
-  - Resize top graph
-  - Add legend to top graph
+Todo's (should be finished on 20/07):
   - Change toolkit color of blockly
   - Add side charts
   - Add bottom charts

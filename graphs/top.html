@@ -1,5 +1,15 @@
+<style>
+  #topGraphLegend {
+    max-width: 1000;
+    margin: 0 auto;
+  }
+  .info {
+    margin: 2px;
+  }
+</style>
 <script src="scripts/Smoothie.js"></script>
-<canvas id="topGraphCanvas" width="800" height="250"></canvas>
+<canvas id="topGraphCanvas" width="1000" height="250"></canvas>
+<div id="topGraphLegend"></div>
 <script>
 
   var colors = [
@@ -19,7 +29,7 @@
 
   var tois = 1;
   var dataSets = null;
-  var DATASOURCE = 'http://bear.cs.kuleuven.be/pokerdemo/server/ObserveTable.php?tableName=Barcelona';
+  var DATASOURCE = 'http://bear.cs.kuleuven.be/pokerdemo/server/ObserveTable.php?tableName=' + Client.table;
 
   var parseData = function(data) {
     var players = data['result']['player'];
@@ -47,9 +57,12 @@
       }
       smoothie.streamTo(document.getElementById('topGraphCanvas'), tois * 2000);
     }
+    $('#topGraphLegend').html('');
     for(var i = 0; i < players.length; i++) {
       var player = players[i];
       dataSets[i].append(new Date().getTime(), player['avg profit']);
+      var description = '<span class="info" style="color:'+colors[i]+';">'+players[i]['name']+'</span>';
+      $('#topGraphLegend').html($('#topGraphLegend').html() + description);
     }
     setTimeout(function() {
       fetchData();
@@ -70,5 +83,5 @@
   }
 
   fetchData();
-  
+
 </script>
