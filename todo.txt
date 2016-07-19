@@ -1,6 +1,5 @@
 
 Todo's (should be finished on 20/07):
-  - Change toolkit color of blockly
   - Add side charts
   - Add bottom charts
   - Disable "Go to table" button when arrived

@@ -208,11 +208,15 @@
 }
 
 .blocklyToolboxDiv {
-  background-color: #E5E4E5; /* Toolbox background color */
+  background-color: #E8E8E8; /* Toolbox background color */
   overflow-x: visible;
   overflow-y: auto;
   position: absolute;
   border-radius: 8px;
+  color: #645D5D;
+  font-family: serif;
+  font-style: oblique;
+  padding-top: 25px;
 }
 
 .blocklyTreeRoot {
@@ -460,11 +464,11 @@
 }
 
 .blocklyScrollbarVertical > .blocklyScrollbarKnob {
-  width: 8px !important;
+  width: 0px !important;
 }
 
 .blocklyScrollbarHorizontal > .blocklyScrollbarKnob {
-  height: 8px !important;
+  height: 0px !important;
 }
 
 .blocklyTrash {
