@@ -456,3 +456,15 @@
 .blocklyScrollbarBackground: hover+.blocklyScrollbarKnob,.blocklyScrollbarKnob: hover,.blocklyFlyout .blocklyScrollbarKnob {
   fill: #bbb;
 }
+
+.blocklyScrollbarVertical > .blocklyScrollbarKnob {
+  width: 4px !important;
+}
+
+.blocklyScrollbarHorizontal > .blocklyScrollbarKnob {
+  height: 4px !important;
+}
+
+.blocklyTrash {
+  opacity: 0 !important;
+}
