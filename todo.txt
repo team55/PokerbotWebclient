@@ -2,7 +2,7 @@
 Todo's (should be finished on 20/07):
   - Add side charts
   - Add bottom charts
-  - Translate everything!
+  - Fix legend issue
   - Fix load block issue or just for debug purposes?
   - Display warnings in case of overhead.
 
