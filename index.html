@@ -17,7 +17,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
 
 
-  <script src="scripts/CustomBlocks.js"></script>
+  <script src="blockly-colors/blocks.js"></script>
 
   <script src="scripts/Logger.js"></script>
   <script src="scripts/API.js"></script>
@@ -290,7 +290,7 @@
   <script>
 
     var workspace;
-    customWorkspace('css/blocks.css', function() {
+    customWorkspace('blockly-colors/custom.css', function() {
       workspace = Blockly.inject('blocklyDiv',
           {media: 'blockly/media/',
            toolbox: document.getElementById('toolbox')});
