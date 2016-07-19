@@ -1,8 +1,9 @@
-
-/* DO NOT CUSTOMIZE THIS SECTION */
+* {
+  outline: none !important;
+}
 
 .blocklySvg {
-  background-color: #fff;
+  background-color: #F7F7F7;
   outline: none;
   overflow: hidden;
 }
@@ -130,7 +131,7 @@
 }
 
 .blocklyMainBackground {
-  stroke-width: 1;
+  stroke-width: 0;
   stroke: #c6c6c6;
 }
 
@@ -150,7 +151,7 @@
 }
 
 .blocklyScrollbarKnob {
-  fill: #ccc;
+  fill: #bdc3c7; /* SCROLL BAR COLORS */
 }
 
 .blocklyZoom>image {
@@ -205,10 +206,11 @@
 }
 
 .blocklyToolboxDiv {
-  background-color: #ddd;
+  background-color: #E5E4E5; /* Toolbox background color */
   overflow-x: visible;
   overflow-y: auto;
   position: absolute;
+  border-radius: 8px;
 }
 
 .blocklyTreeRoot {
@@ -454,5 +456,3 @@
 .blocklyScrollbarBackground: hover+.blocklyScrollbarKnob,.blocklyScrollbarKnob: hover,.blocklyFlyout .blocklyScrollbarKnob {
   fill: #bbb;
 }
-
-/* CUSTOMIZATIONS */
