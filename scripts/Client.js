@@ -16,7 +16,7 @@ var Client = {
     $('#login').hide();
     $('#username').val('');
     $('#tablename').val('');
-    var label = '<i class="hide icon" onclick="toggleHeader()"></i><span class="ui image label"><img src="img/person.jpg">' + username + '<div class="detail">' + table + '<i onclick="disconnect()" class="delete icon"></i></div></span>';
+    var label = '<i id="toggleheaderbtn" class="unhide icon" onclick="toggleHeader()"></i><span class="ui image label"><img src="img/person.jpg">' + username + '<div class="detail">' + table + '<i onclick="disconnect()" class="delete icon"></i></div></span>';
     $('#tablestatus').html(label);
     $('.ui.page.dimmer').dimmer('hide');
     Logger.hideSignInLog();
@@ -28,18 +28,22 @@ var Client = {
     $('#bottomgraph').load('graphs/bottom.html');
     $('#rulesendbtn').removeClass('disabled');
     $('#toggledimmer').addClass('disabled');
+    toggleHeader();
   },
 
   signout: function() {
     this.username = '';
     this.table = '';
     $('#tablestatus').html('<span class="ui label">Geen verbinding met een tafel</span>');
-    $('#topgraph').html('<p> Wanneer je verbonden bent met een tafel, <br /> zullen de resultaten hier worden weergegeven.</p>');
+    $('#topgraph').html('');
     $('#bargraph').load('elements/welcomebar.html');
     $('#bottomgraph').html('');
     $('#rulesendbtn').addClass('disabled');
     Blockly.svgResize(workspace);
     $('#toggledimmer').removeClass('disabled');
+    if ($('#header').hasClass('hideme')) {
+      toggleHeader();
+    }
   },
 
   toggleprolog: function() {

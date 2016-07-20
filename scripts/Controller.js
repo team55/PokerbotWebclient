@@ -100,6 +100,13 @@ var toggleHeader = function() {
   } else {
     $('#toggledimmer').addClass('hideme');
   }
+  if ($('#toggleheaderbtn').hasClass('unhide')) {
+    $('#toggleheaderbtn').removeClass('unhide');
+    $('#toggleheaderbtn').addClass('hide');
+  } else {
+    $('#toggleheaderbtn').removeClass('hide');
+    $('#toggleheaderbtn').addClass('unhide');
+  }
   Blockly.svgResize(workspace);
 }
 

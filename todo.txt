@@ -1,8 +1,9 @@
 
 Todo's (should be finished on 20/07):
+  - Toolbox DESIGN (Colors?)
+
   - Add side charts
   - Add bottom charts
-  - Fix legend issue
   - Fix load block issue or just for debug purposes?
   - Display warnings in case of overhead.
 
