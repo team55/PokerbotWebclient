@@ -1,6 +1,6 @@
 
 Todo's (should be finished on 20/07):
-  - Display warnings in case of overhead.
+  - Fix issue with bottom graphs when new player sits down.
   - Fix auto ID errors in bottom part
   - Choose some cooler colors!
   - Fix load block issue or just for debug purposes?

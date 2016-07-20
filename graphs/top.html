@@ -13,6 +13,11 @@
 <script src="scripts/Smoothie.js"></script>
 <canvas id="topGraphCanvas" width="1000" height="175"></canvas>
 <div id="topGraphLegend"><span class="info"></span></div>
+<div id="gpswarning" class="ui raised segment hideme">
+  <p> Het gemiddelde aantal handen per seconde is enorm gedaald sinds de laatste
+      regels. Om de snelheid optimaal te houden is het verstandig om de volgende
+      regels simpeler te houden. </p>
+</div>
 <script>
 
   var colors = [
@@ -76,6 +81,13 @@
     $.ajax({ url: DATASOURCE, method: 'GET', success: function(result) {
       try {
         var data = $.parseJSON(result);
+        var gps = parseFloat(data['gamesPerSec']);
+        if (gps < 10 && $('#gpswarning').hasClass('hideme')) {
+          $('#gpswarning').removeClass('hideme');
+        } else if (gps > 10 && !$('#gpswarning').hasClass('hideme')) {
+          $('#gpswarning').addClass('hideme');
+        }
+        Blockly.svgResize(workspace);
         parseData(data);
       } catch(error) {
         console.error('Data received but error!: ' + error);

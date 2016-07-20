@@ -112,6 +112,7 @@ html, body {
 
 #topgraph, #bargraph, #bottomgraph {
   font-style: italic;
+  text-align: center;
 }
 
 #bottomgraph {
@@ -202,4 +203,14 @@ body, .cutbottom {
 .bottomgraphelement {
   display: inline-block;
   margin: 25px;
+}
+
+#gpswarning {
+  color: #e74c3c;
+  width: 75%;
+  padding-left: 125px;
+  padding-right: 125px;
+  margin-bottom: 0 !important;
+  margin: 0 auto !important;
+  margin-top: 25px !important;
 }

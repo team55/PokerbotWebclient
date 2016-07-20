@@ -30,6 +30,7 @@ var Client = {
     $('#rulesendbtn').removeClass('disabled');
     $('#toggledimmer').addClass('disabled');
     toggleHeader();
+    Blockly.svgResize(workspace);
   },
 
   signout: function() {
@@ -41,11 +42,11 @@ var Client = {
     $('#bottomgraph').html('');
     $('#rulesendbtn').addClass('disabled');
     //$('#blocklyDiv').height('500px');
-    Blockly.svgResize(workspace);
     $('#toggledimmer').removeClass('disabled');
     if ($('#header').hasClass('hideme')) {
       toggleHeader();
     }
+    Blockly.svgResize(workspace);
   },
 
   toggleprolog: function() {
