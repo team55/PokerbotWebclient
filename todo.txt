@@ -1,6 +1,5 @@
 
 Todo's (should be finished on 20/07):
-  - Add side charts
   - Add bottom charts
   - Fix load block issue or just for debug purposes?
   - Display warnings in case of overhead.
@@ -17,6 +16,10 @@ Notes for demo:
   - Loading icon when signing in... Can take a while.
   - For now, table selection is done with an input box but would be cooler with
     a dropdown. In order to implement this, we need to fix the backend API.
+
+  GRAPHS
+  - Fixed a rounding issue... Had too much detail!
+  - What is the basic rule? Weird for first graph...
 
   GENERAL
   - Errors should be written in Dutch (server-side).

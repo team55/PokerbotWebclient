@@ -102,13 +102,62 @@
     createMovesChart(result, total);
   }
 
+  /**
+   *  Creates the rulesChart with the data that is prepared by the
+   *  parseRuleChartData() function. Also the username will be set in the
+   *  rulesUsernameView.
+   */
+  function createRulesChart(data, total) {
+    $('#rulesUsernameView').html(Client.username);
+    var information = [], i = 0;
+    for(index in data) {
+      var value = Math.round((data[index]/total)*100);
+      var label = index + ' - ' + value + '%';
+      var element = {
+        value: value,
+        color: COLORS[i],
+        highlight: COLORS[i],
+        label: label
+      }
+      information.push(element);
+      i++;
+    }
+    var options = {
+      tooltipTemplate: "<%= label %>",
+      showTooltips: true,
+      animation: false
+    }
+    if (rulesChart != null) rulesChart.destroy();
+    var context = $('#RulesChart').get(0).getContext('2d');
+    rulesChart = new Chart(context).Pie(information, options);
+  }
+  function parseRuleChartData(raw) {
+    var list = raw['result']['player'];
+    var result = {};
+    var total = 0;
+    for(var i = 0; i < list.length; i++) {
+      if (list[i]['name'] == Client.username) {
+        var rules = list[i]['rulesUsed'];
+        for(var j = 0; j < rules.length; j++) {
+          result[rules[j]['name']] = rules[j]['times'];
+          total += rules[j]['times'];
+        }
+      }
+    }
+    createRulesChart(result, total);
+  }
 
-  function fetchCalculationTimePieChartData() {
+  /**
+   *  This function fetches the data and generates the three different
+   *  pie charts that will be displayed in the right side bar.
+   */
+  function fetchSideBarGraphsData() {
     $.ajax({ url: DATASOURCE, method: 'GET', success: function(result) {
       try {
         var data = $.parseJSON(result);
         parseCalculationTimePieChartData(data);
         parseMoveChartData(data);
+        parseRuleChartData(data);
       } catch(error) {
         console.error('Data received but error!: ' + error);
       }
@@ -117,12 +166,14 @@
     }});
   }
 
+  /**
+   *  Make sure the data keeps updating, also call the fetchSideBarGraphsData()
+   *  function once so there is no delay before the first draw.
+   */
   setInterval(function() {
-    fetchCalculationTimePieChartData();
+    fetchSideBarGraphsData();
   }, 2500);
-  fetchCalculationTimePieChartData();
-
-
+  fetchSideBarGraphsData();
 
   // TODO: THIS SHOULD BE DEFINED IN THE PARENT
   var COLORS = [
@@ -137,6 +188,5 @@
     'rgb(131, 60, 163)',
     'rgb(39, 54, 70)'
   ];
-
 
 </script>
