@@ -21,7 +21,7 @@ var Client = {
     $('.ui.page.dimmer').dimmer('hide');
     Logger.hideSignInLog();
     Logger.hideSignInError();
-    $('#blocklyDiv').height('725px');
+    //$('#blocklyDiv').height('725px');
     $('#topgraph').load('graphs/top.html', function(r,s,x) {
       Blockly.svgResize(workspace);
     });
@@ -40,7 +40,7 @@ var Client = {
     $('#bargraph').load('elements/welcomebar.html');
     $('#bottomgraph').html('');
     $('#rulesendbtn').addClass('disabled');
-    $('#blocklyDiv').height('500px');
+    //$('#blocklyDiv').height('500px');
     Blockly.svgResize(workspace);
     $('#toggledimmer').removeClass('disabled');
     if ($('#header').hasClass('hideme')) {
