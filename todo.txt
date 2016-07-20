@@ -1,19 +1,29 @@
 
 Todo's (should be finished on 20/07):
-  - Toolbox DESIGN (Colors?)
-
   - Add side charts
   - Add bottom charts
   - Fix load block issue or just for debug purposes?
   - Display warnings in case of overhead.
 
-Notes:
+Notes for demo:
+
+  BLOCKLY
+  - Design of BLOCKLY is pretty ugly, but couldn't find a decent color palette
+    for now. Should still be updated in the future.
+
+  CREATE TABLES / SIGN IN
+  - Double check password? Making a mistake is possible for now.
+  - There is no error if the table already exists...
+  - Loading icon when signing in... Can take a while.
   - For now, table selection is done with an input box but would be cooler with
     a dropdown. In order to implement this, we need to fix the backend API.
-  - When focus is on an input box, border-radius magically disappears?
-  - Errors should be written in dutch (server-side).
-  - Loading icon when signing in... Can take a while.
+
+  GENERAL
+  - Errors should be written in Dutch (server-side).
   - We can't see our rules atm. We can save these client side?
+
+  ISSUES
+  - When focus is on an input box, border-radius magically disappears?
 
 
 // OLD:

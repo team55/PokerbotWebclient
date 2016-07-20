@@ -8,7 +8,7 @@
       INCLUDE SCRIPTS/HIGHCHARTS.JS   -->
 
 <h3>Rekeningstijden per speler</h3>
-<canvas id="CalculationTime" width="250" height="250"></canvas>
+<canvas id="CalculationTime" width="200" height="200"></canvas>
 <script>
 
   var calculationTimeChart = null;
@@ -79,6 +79,7 @@
   setInterval(function() {
     fetchCalculationTimePieChartData();
   }, 2500);
+  fetchCalculationTimePieChartData();
 
 
 
