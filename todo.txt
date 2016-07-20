@@ -3,6 +3,7 @@ Todo's (should be finished on 20/07):
   - Add bottom charts
   - Fix load block issue or just for debug purposes?
   - Display warnings in case of overhead.
+  - Fix id errors
 
 Notes for demo:
 

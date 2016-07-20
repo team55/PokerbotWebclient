@@ -1,0 +1,126 @@
+
+<!--  This files uses the ChartJS library in order to display the different
+      pie charts. Make sure to include version 1.0.2 or below. The minified
+      file is added to the scripts folder. If this file is not included in the
+      parent file, the charts won't appear and might even damage other parts
+      of the webpage that require JavaScript. It also uses the Client instance
+      from the main page to determine which user is currently connected.  -->
+
+<div id="BottomMoveCharts"></div>
+
+<script>
+
+  // Define the charts to be in the global namespace.
+  var bottomCharts = [];
+
+  /**
+   *  Creates the movesChart with the data that is prepared by the
+   *  parseMoveChartData() function. Also the username will be set in the
+   *  movesUsernameView.
+   */
+  function createMovesCharts(players) {
+    if (bottomCharts.length == 0) {
+      bottomCharts = new Array(players.length);
+      console.log('INITIALIZE PLAYER GRAPHS (' + players.length + ')');
+      for(var i = 0; i < players.length; i++) {
+        var player = players[i];
+        console.log(player['name'] + '...');
+        var canvasId = 'BottomCanvas' + player['name'].replace('#', '');
+        console.log(canvasId);
+        var newDiv = '<div class="bottomgraphelement"><h4>Moves of ' + player['name'] + '</h4><canvas id="' + canvasId + '" width="100" height="100"></canvas></div>';
+        console.log(newDiv);
+        console.log($('#BottomMoveCharts').html());
+        $('#BottomMoveCharts').html($('#BottomMoveCharts').html() + newDiv);
+        console.log($('#BottomMoveCharts').html());
+      }
+    }
+
+    for(var i = 0; i < players.length; i++) {
+      var player = players[i];
+      var canvasId = 'BottomCanvas' + player['name'].replace('#', '').replace(',', ' ');
+      var data = player['result'];
+      var information = [], j = 0;
+      for(index in data) {
+        var value = Math.round((data[index]/player['total'])*100);
+        var label = index + ' - ' + value + '%';
+        var element = {
+          value: value,
+          color: COLORS[j],
+          highlight: COLORS[j],
+          label: label
+        }
+        information.push(element);
+        j++;
+      }
+      var options = {
+        tooltipTemplate: "<%= label %>",
+        tooltipFontSize: 8,
+        showTooltips: true,
+        animation: false
+      }
+      if (bottomCharts[i] != null) bottomCharts[i].destroy();
+      console.log(canvasId);
+
+      console.log('Fetching context for #' + canvasId);
+      var context = $('#' + canvasId).get(0).getContext('2d');
+      bottomCharts[i] = new Chart(context).Pie(information, options);
+      console.log(bottomCharts);
+    }
+
+
+  }
+  function parseMoveChartsData(raw) {
+    var list = raw['result']['player'];
+    var result = [];
+    for(var i = 0; i < list.length; i++) {
+      var player = { name: list[i]['name'], total: 0, result: {} };
+      player['result']['nbFolds'] = list[i]['nbFolds'];
+      player['result']['nbCalls'] = list[i]['nbCalls'];
+      player['result']['nbRaises'] = list[i]['nbRaises'];
+      player['total'] = player['result']['nbFolds'] + player['result']['nbCalls'] + player['result']['nbRaises'];
+      result.push(player);
+    }
+    createMovesCharts(result);
+  }
+
+  /**
+   *  This function fetches the data and generates the three different
+   *  pie charts that will be displayed in the right side bar.
+   */
+  function fetchBottomBarGraphsData() {
+    $.ajax({ url: DATASOURCE, method: 'GET', success: function(result) {
+      try {
+        var data = $.parseJSON(result);
+        parseMoveChartsData(data);
+      } catch(error) {
+        console.error('Data received but error!: ' + error);
+      }
+    }, error: function(error) {
+      console.error('Unable to fetch data!: ' + error);
+    }});
+  }
+
+  /**
+   *  Make sure the data keeps updating, also call the fetchBottomBarGraphsData()
+   *  function once so there is no delay before the first draw.
+   */
+  setInterval(function() {
+    fetchBottomBarGraphsData();
+  }, 2500);
+  fetchBottomBarGraphsData();
+
+  // TODO: THIS SHOULD BE DEFINED IN THE PARENT
+  var COLORS = [
+    'rgb(25, 180, 145)',
+    'rgb(41, 197, 102)',
+    'rgb(45, 141, 214)',
+    'rgb(144, 79, 173)',
+    'rgb(46, 64, 83)',
+    'rgb(22, 150, 122)',
+    'rgb(35, 164, 85)',
+    'rgb(36, 117, 176)',
+    'rgb(131, 60, 163)',
+    'rgb(39, 54, 70)'
+  ];
+
+</script>
