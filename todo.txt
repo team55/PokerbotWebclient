@@ -1,9 +1,9 @@
 
 Todo's (should be finished on 20/07):
-  - Add bottom charts
-  - Fix load block issue or just for debug purposes?
   - Display warnings in case of overhead.
-  - Fix id errors
+  - Fix auto ID errors in bottom part
+  - Choose some cooler colors!
+  - Fix load block issue or just for debug purposes?
 
 Notes for demo:
 
