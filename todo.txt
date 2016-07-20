@@ -1,7 +1,6 @@
 
-Todo's (should be finished on 20/07):
+Todo's:
   - Choose some cooler colors!
-  - Fix load block issue or just for debug purposes?
 
 Notes for demo:
 
@@ -26,60 +25,23 @@ Notes for demo:
 
   ISSUES
   - When focus is on an input box, border-radius magically disappears?
+  - Load blocks issue... Remove buttons?
 
 
-// OLD:
+// Future?:
 
-Todo's (ideas)
-
-REGULAR CLIENT
-- Switch to a JSON API                                          x
-- More logging on Client Side (Connections and code)            x
+Ideas:
 - Uploading BLOCKLY code to preview others? (db?)
-- More Stepwise Client Side                                     x
-- Layout of client site                                         x
-- Layout of different graphs
-    (stay in another view, should be loaded on multiple locs)
-- Disconnect button                                             x
-
-ADMIN CLIENT
-- Password? Anyone can spam new tables...
-- Possibility to open new tables (custom size)
+- More Stepwise Client Side
 - Load bots into the tables
-- Preconfigured in a list
+- Preconfigured in a list (the default bots)
 - Lock tables (hide tables) and unlock tables
-
-Extra's
 - Explanation of the graphs
 
-irl: box, expanation video, etc;
-
-Today (Start?):
-    - JSON API, check input, etc. Stable & secure!
-    - JS instance for easy use of the API.
-    - Some documentation for better overview.
-    - Client side AngularJS?
-    - Add some high level logging on the client side (API & Code).
-    - Layout of the client side page, with view for stats.
-    - Disconnect button!
-
-NOTES:
-    Should the 1-1 table be automatically created by user or admin?
-
-
-Design notes:
-
-STEP 1, TUTORIAL
-
-  1.  Callbot en if statement uitleggen
-      Make a high card (with examples)
-  2.  Make a pair, variables uitleggen
-  3.  #Raises om te limiteren
-  4. volgorde van statements, evt me de 3 of a kind
-  5. defeat bot
-
-
-
-1. Create all tables API.
-2. Connect to the new UI.
-    - Dropdown instead of input-box.
+Tutorial steps:
+1.  Callbot en if statement uitleggen
+    Make a high card (with examples)
+2.  Make a pair, variables uitleggen
+3.  #Raises om te limiteren
+4. volgorde van statements, evt me de 3 of a kind
+5. defeat bot
