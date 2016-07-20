@@ -23,7 +23,7 @@
       bottomCharts = new Array(players.length);
       for(var i = 0; i < players.length; i++) {
         var player = players[i];
-        var canvasId = 'BottomCanvas' + player['name'].replace('#', '');
+        var canvasId = 'BottomCanvas' + player['name'].replace(/[^0-9a-z]/gi, '')
         var newDiv = '<div class="bottomgraphelement"><h4>Moves of ' + player['name'] + '</h4><canvas id="' + canvasId + '" width="100" height="100"></canvas></div>';
         $('#BottomMoveCharts').html($('#BottomMoveCharts').html() + newDiv);
       }
