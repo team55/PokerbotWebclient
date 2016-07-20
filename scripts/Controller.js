@@ -87,6 +87,23 @@ var sendCode = function() {
 }
 
 /**
+ *  Function to hide and show the header when signed in.
+ */
+var toggleHeader = function() {
+  if ($('#header').hasClass('hideme')) {
+    $('#header').removeClass('hideme');
+  } else {
+    $('#header').addClass('hideme');
+  }
+  if ($('#toggledimmer').hasClass('hideme')) {
+    $('#toggledimmer').removeClass('hideme');
+  } else {
+    $('#toggledimmer').addClass('hideme');
+  }
+  Blockly.svgResize(workspace);
+}
+
+/**
  *  Execute the following commands on load.
  */
 $(document).ready(function() {

@@ -16,7 +16,7 @@ var Client = {
     $('#login').hide();
     $('#username').val('');
     $('#tablename').val('');
-    var label = '<span class="ui image label"><img src="img/person.jpg">' + username + '<div class="detail">' + table + '<i onclick="disconnect()" class="delete icon"></i></div></span>';
+    var label = '<i class="hide icon" onclick="toggleHeader()"></i><span class="ui image label"><img src="img/person.jpg">' + username + '<div class="detail">' + table + '<i onclick="disconnect()" class="delete icon"></i></div></span>';
     $('#tablestatus').html(label);
     $('.ui.page.dimmer').dimmer('hide');
     Logger.hideSignInLog();

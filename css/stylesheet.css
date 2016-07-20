@@ -194,3 +194,7 @@ body, .cutbottom {
   font-style: italic;
   display: none;
 }
+
+.hideme {
+  display: none;
+}
