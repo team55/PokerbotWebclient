@@ -84,7 +84,7 @@
       animation: false
     }
     if (movesChart != null) movesChart.destroy();
-    var context = $('#movesChart').get(0).getContext('2d');
+    var context = $('#MovesChart').get(0).getContext('2d');
     movesChart = new Chart(context).Pie(information, options);
   }
   function parseMoveChartData(raw) {
