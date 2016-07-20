@@ -7,34 +7,12 @@
             includes in different modules.
       INCLUDE SCRIPTS/HIGHCHARTS.JS   -->
 
-<canvas id="CalculationTime" width="100" height="100"></canvas>
+<h3>Rekeningstijden per speler</h3>
+<canvas id="CalculationTime" width="250" height="250"></canvas>
 <script>
 
-  /**
-   *  Define the CalculationTimeChart here!
-   *  All the data will be loaded afterwards.
-   */
-/*
-  var calculationTimeChart = new Highcharts.Chart({
-    chart: {
-      renderTo: 'CalculationTimeChart',
-      type: 'pie'
-    },
-    title: {
-      text: 'Rekentijd per speler'
-    },
-    series: [{
-      type: 'pie',
-      name: 'Times',
-      data: []
-    }],
-    plotOptions: {
-      pie: { shadow: false }
-    }
-  });
-*/
+  var calculationTimeChart = null;
 
-/*
   var COLORS = [
     'rgb(25, 180, 145)',
     'rgb(41, 197, 102)',
@@ -48,45 +26,41 @@
     'rgb(39, 54, 70)'
   ];
 
-  function createCalculationTimePieChart(data) {
-    var information = {
-      labels: [],
-      datasets: [{
-        data: [],
-        backgroundColor: []
-      }]
-    };
-    var i = 0;
+  function createCalculationTimePieChart(data, total) {
+    var information = [], i = 0;
     for(index in data) {
-      information['labels'].push(index);
-      information['datasets'][0]['data'].push(data[index]);
-      information['datasets'][0]['backgroundColor'].push(COLORS[i]);
+      var value = Math.round((data[index]/total)*100);
+      var label = index + ' - ' + value + '%';
+      var element = {
+        value: value,
+        color: COLORS[i],
+        highlight: COLORS[i],
+        label: label
+      }
+      information.push(element);
       i++;
     }
-    var ctx = $('#CalculationTime');
-    document.getElementById("CalculationTime").getContext("2d").clearRect(0, 0, 1000, 1000);
-    var calculationTimePieChart = new Chart(ctx, {
-      type: 'pie',
-      data: information,
-      tooltip: { enabled: false },
-      options: {
-        tooltips: {
-          enabled: false
-        },
-        animation: {
-          animateRotate: false
-        }
-      }
-    });
+    var options = {
+      tooltipTemplate: "<%= label %>",
+      showTooltips: true,
+      animation: false
+    }
+    if (calculationTimeChart != null) {
+      calculationTimeChart.destroy();
+    }
+    var context = $('#CalculationTime').get(0).getContext('2d');
+    calculationTimeChart = new Chart(context).Pie(information, options);
   }
 
   function parseCalculationTimePieChartData(raw) {
     var list = raw['result']['player'];
     var result = {};
+    var total = 0;
     for(var i = 0; i < list.length; i++) {
       result[list[i]['name']] = list[i]['time used'];
+      total += list[i]['time used'];
     }
-    createCalculationTimePieChart(result);
+    createCalculationTimePieChart(result, total);
   }
 
   function fetchCalculationTimePieChartData() {
@@ -104,33 +78,11 @@
 
   setInterval(function() {
     fetchCalculationTimePieChartData();
-  }, 2000);
-
-  */
-
-  var data = [
-    {
-        value: 300,
-        color:"#F7464A",
-        highlight: "#FF5A5E"
-    },
-    {
-        value: 50,
-        color: "#46BFBD",
-        highlight: "#5AD3D1"
-    },
-    {
-        value: 100,
-        color: "#FDB45C",
-        highlight: "#FFC870"
-    }
-]
+  }, 2500);
 
 
-var options = {}
 
-var context = $('#CalculationTime').get(0).getContext('2d');
-var chart = new Chart(context).Pie(data, options);
+
 
 
 
