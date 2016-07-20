@@ -1,8 +1,8 @@
 
 Todo's (should be finished on 20/07):
-  - Fix issue with bottom graphs when new player sits down.
   - Choose some cooler colors!
   - Fix load block issue or just for debug purposes?
+  - Add Footer
 
 Notes for demo:
 

@@ -41,7 +41,7 @@ $('#createtable').click(function(e) {
  *  Connect the user to the table with the data of the 'Connect'-form.
  */
 $('#connectbtn').click(function(e) {
-  var username = $('#username').val();
+  var username = $('#username').val().replace(' ', '');
   var table = $('#tablename').val();
   Server.connect(username, table);
 });
