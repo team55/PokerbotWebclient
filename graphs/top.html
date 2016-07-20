@@ -60,7 +60,7 @@
     $('#topGraphLegend').html('');
     for(var i = 0; i < players.length; i++) {
       var player = players[i];
-      dataSets[i].append(new Date().getTime(), player['avg profit']);
+      dataSets[i].append(new Date().getTime(), Math.round(player['avg profit'] * 100) / 100);
       var description = '<span class="info" style="color:'+colors[i]+';">'+players[i]['name']+'</span>';
       $('#topGraphLegend').html($('#topGraphLegend').html() + description);
     }
