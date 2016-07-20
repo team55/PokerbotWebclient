@@ -1,31 +1,29 @@
 
-<!--  In order to load this file into the main page, make sure that the
-      Highcharts library is included before this file. If this is not the
-      case, the charts won't render and might even cause all the JS to
-      stop executing on the parent page.
-      TODO: Include it here? But might cause problems with multiple
-            includes in different modules.
-      INCLUDE SCRIPTS/HIGHCHARTS.JS   -->
+<!--  This files uses the ChartJS library in order to display the different
+      pie charts. Make sure to include version 1.0.2 or below. The minified
+      file is added to the scripts folder. If this file is not included in the
+      parent file, the charts won't appear and might even damage other parts
+      of the webpage that require JavaScript. It also uses the Client instance
+      from the main page to determine which user is currently connected.  -->
 
-<h3>Rekeningstijden per speler</h3>
+<h3>Rekentijd per speler</h3>
 <canvas id="CalculationTime" width="200" height="200"></canvas>
+<h3>Moves van <span id="movesUsernameView"><span></h3>
+<canvas id="MovesChart" width="200" height="200"></canvas>
+<h3>Gevuurde regels van <span id="rulesUsernameView"></span></h3>
+<canvas id="RulesChart" width="200" height="200"></canvas>
+
 <script>
 
+  // Define the charts to be in the global namespace.
   var calculationTimeChart = null;
+  var movesChart = null;
+  var rulesChart = null;
 
-  var COLORS = [
-    'rgb(25, 180, 145)',
-    'rgb(41, 197, 102)',
-    'rgb(45, 141, 214)',
-    'rgb(144, 79, 173)',
-    'rgb(46, 64, 83)',
-    'rgb(22, 150, 122)',
-    'rgb(35, 164, 85)',
-    'rgb(36, 117, 176)',
-    'rgb(131, 60, 163)',
-    'rgb(39, 54, 70)'
-  ];
-
+  /**
+   *  Creates the calculationTimeChart with the data that is prepared by the
+   *  parseCalculationTimePieChartData() function.
+   */
   function createCalculationTimePieChart(data, total) {
     var information = [], i = 0;
     for(index in data) {
@@ -45,13 +43,10 @@
       showTooltips: true,
       animation: false
     }
-    if (calculationTimeChart != null) {
-      calculationTimeChart.destroy();
-    }
+    if (calculationTimeChart != null) calculationTimeChart.destroy();
     var context = $('#CalculationTime').get(0).getContext('2d');
     calculationTimeChart = new Chart(context).Pie(information, options);
   }
-
   function parseCalculationTimePieChartData(raw) {
     var list = raw['result']['player'];
     var result = {};
@@ -63,11 +58,57 @@
     createCalculationTimePieChart(result, total);
   }
 
+  /**
+   *  Creates the movesChart with the data that is prepared by the
+   *  parseMoveChartData() function. Also the username will be set in the
+   *  movesUsernameView.
+   */
+  function createMovesChart(data, total) {
+    $('#movesUsernameView').html(Client.username);
+    var information = [], i = 0;
+    for(index in data) {
+      var value = Math.round((data[index]/total)*100);
+      var label = index + ' - ' + value + '%';
+      var element = {
+        value: value,
+        color: COLORS[i],
+        highlight: COLORS[i],
+        label: label
+      }
+      information.push(element);
+      i++;
+    }
+    var options = {
+      tooltipTemplate: "<%= label %>",
+      showTooltips: true,
+      animation: false
+    }
+    if (movesChart != null) movesChart.destroy();
+    var context = $('#movesChart').get(0).getContext('2d');
+    movesChart = new Chart(context).Pie(information, options);
+  }
+  function parseMoveChartData(raw) {
+    var list = raw['result']['player'];
+    var result = {};
+    var total = 0;
+    for(var i = 0; i < list.length; i++) {
+      if (list[i]['name'] == Client.username) {
+        result['nbFolds'] = list[i]['nbFolds'];
+        result['nbCalls'] = list[i]['nbCalls'];
+        result['nbRaises'] = list[i]['nbRaises'];
+        total = result['nbFolds'] + result['nbCalls'] + result['nbRaises'];
+      }
+    }
+    createMovesChart(result, total);
+  }
+
+
   function fetchCalculationTimePieChartData() {
     $.ajax({ url: DATASOURCE, method: 'GET', success: function(result) {
       try {
         var data = $.parseJSON(result);
         parseCalculationTimePieChartData(data);
+        parseMoveChartData(data);
       } catch(error) {
         console.error('Data received but error!: ' + error);
       }
@@ -83,8 +124,19 @@
 
 
 
-
-
+  // TODO: THIS SHOULD BE DEFINED IN THE PARENT
+  var COLORS = [
+    'rgb(25, 180, 145)',
+    'rgb(41, 197, 102)',
+    'rgb(45, 141, 214)',
+    'rgb(144, 79, 173)',
+    'rgb(46, 64, 83)',
+    'rgb(22, 150, 122)',
+    'rgb(35, 164, 85)',
+    'rgb(36, 117, 176)',
+    'rgb(131, 60, 163)',
+    'rgb(39, 54, 70)'
+  ];
 
 
 </script>
