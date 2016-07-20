@@ -115,9 +115,6 @@ html, body {
   text-align: center;
 }
 
-#bottomgraph {
-  padding-top: 25px;
-}
 
 #bargraph > p {
   margin: 20px;
@@ -159,7 +156,7 @@ html, body {
 }
 
 #blocklyDiv {
-  height: 500px;
+  height: 425px;
   margin-left: 20px;
 }
 
@@ -213,4 +210,11 @@ body, .cutbottom {
   margin-bottom: 0 !important;
   margin: 0 auto !important;
   margin-top: 25px !important;
+}
+
+.footer {
+  margin-bottom: 50px;
+  text-align: center;
+  font-style: italic;
+  color: black;
 }

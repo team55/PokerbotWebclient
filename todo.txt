@@ -2,7 +2,6 @@
 Todo's (should be finished on 20/07):
   - Choose some cooler colors!
   - Fix load block issue or just for debug purposes?
-  - Add Footer
 
 Notes for demo:
 
