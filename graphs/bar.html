@@ -33,6 +33,8 @@
     }
   });
 */
+
+/*
   var COLORS = [
     'rgb(25, 180, 145)',
     'rgb(41, 197, 102)',
@@ -62,10 +64,15 @@
       i++;
     }
     var ctx = $('#CalculationTime');
+    document.getElementById("CalculationTime").getContext("2d").clearRect(0, 0, 1000, 1000);
     var calculationTimePieChart = new Chart(ctx, {
       type: 'pie',
       data: information,
+      tooltip: { enabled: false },
       options: {
+        tooltips: {
+          enabled: false
+        },
         animation: {
           animateRotate: false
         }
@@ -98,5 +105,33 @@
   setInterval(function() {
     fetchCalculationTimePieChartData();
   }, 2000);
+
+  */
+
+  var data = [
+    {
+        value: 300,
+        color:"#F7464A",
+        highlight: "#FF5A5E"
+    },
+    {
+        value: 50,
+        color: "#46BFBD",
+        highlight: "#5AD3D1"
+    },
+    {
+        value: 100,
+        color: "#FDB45C",
+        highlight: "#FFC870"
+    }
+]
+
+
+var options = {}
+
+var context = $('#CalculationTime').get(0).getContext('2d');
+var chart = new Chart(context).Pie(data, options);
+
+
 
 </script>
