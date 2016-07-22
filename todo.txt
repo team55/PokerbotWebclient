@@ -17,6 +17,7 @@ Todo's:
   - Add drop down menu to select table.
   - Add server side error when table already exists.
   - Translate Server-side errors.
+  - Fix cross-origin issue.
 
 // Future?:
 
