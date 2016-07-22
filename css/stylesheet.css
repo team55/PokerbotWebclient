@@ -156,7 +156,7 @@ html, body {
 }
 
 #blocklyDiv {
-  height: 425px;
+  height: 475px;
   margin-left: 20px;
 }
 
@@ -219,17 +219,40 @@ body, .cutbottom {
   color: black;
 }
 
-#bargraph > span > p {
+#bargraph > span > p, #bargraph > p {
   text-align: justify;
   margin-top: 25px;
   margin-bottom: 35px;
 }
 
+#bargraph > .button, #bargraph > span > div > .button {
+  margin-bottom: 45px;
+}
+
 .green {
-  color: #27ae60;
   font-size: 25px;
 }
 
 #Step1ACompleted, #Step1BCompleted, #Step1CCompleted, #Step2Completed, #Step3Completed, #Step4ACompleted, #Step4BCompleted, #Step5Completed {
   display: none;
+}
+
+
+
+#bargraph {
+  margin-top: 28px !important;
+}
+
+.tutorialinfo {
+  background-color: #ecf0f1;
+  border: solid 3px #bdc3c7;
+  border-radius: 2px;
+  height: 475px;
+}
+
+.tutorialsuccess {
+  background-color: #2ecc71;
+  border: solid 3px #27ae60;
+  border-radius: 2px;
+  height: 475px;
 }

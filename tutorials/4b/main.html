@@ -2,7 +2,7 @@
 <span id="Step4BDescription">
   <p> We moeten het vorige probleem nu proberen op te lossen. Dit is mogelijk
       door eerst na te gaan of er een three of a kind ligt en dan pas te kijken
-      of er een paar aanwezig is. Zie je waarom? Probeer dit maar eens!
+      of er een paar aanwezig is. Zie je waarom? Probeer dit maar eens! </p>
       <div class="ui buttons">
         <button class="ui teal button">Toon tips</button>
         <div class="or" data-text="of"></div>
@@ -12,8 +12,8 @@
 <span id="Step4BCompleted">
   <span class="green">Gefeliciteerd!</span>
   <p> Je bent er helemaal klaar voor! In stap 5 is het de bedoeling een automatische
-      pokerbot te verslaan. Veel geluk!
-      <button class="ui small teal button" onclick="step4BChecker.next()">Laat maar komen!</button>
+      pokerbot te verslaan. Veel geluk! </p>
+      <button class="ui small grey button" onclick="step4BChecker.next()">Laat maar komen!</button>
 </span>
 <script>
   var step4BChecker = {
@@ -22,11 +22,15 @@
       if (!this.isCompleted) {
         $('#Step4BDescription').hide();
         $('#Step4BCompleted').show();
+        $('#bargraph').removeClass('tutorialinfo');
+        $('#bargraph').addClass('tutorialsuccess');
         this.isCompleted = true;
       }
     },
     next: function() {
       $('#bargraph').load('tutorials/5/main.html');
+      $('#bargraph').removeClass('tutorialsuccess');
+      $('#bargraph').addClass('tutorialinfo');
     }
   }
   function check4b() {

@@ -21,7 +21,7 @@
       er toch in geslaagd om deze tot een goed einde te brengen. In stap 4 gaan we
       eens kijken hoe we een moeilijkere hand kunnen definiëren. Daarna ben je er klaar
       voor en kunnen we je loslaten op de pokerbot! </p>
-      <button class="ui small teal button" onclick="step3Checker.next()">Volgende stap!</button>
+      <button class="ui small grey button" onclick="step3Checker.next()">Volgende stap!</button>
 </span>
 <script>
   var step3Checker = {
@@ -30,11 +30,15 @@
       if (!this.isCompleted) {
         $('#Step3Description').hide();
         $('#Step3Completed').show();
+        $('#bargraph').removeClass('tutorialinfo');
+        $('#bargraph').addClass('tutorialsuccess');
         this.isCompleted = true;
       }
     },
     next: function() {
       $('#bargraph').load('tutorials/4a/main.html');
+      $('#bargraph').removeClass('tutorialsuccess');
+      $('#bargraph').addClass('tutorialinfo');
     }
   }
   function check3() {

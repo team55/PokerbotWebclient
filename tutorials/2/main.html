@@ -18,7 +18,7 @@
       met de acties van de tegenstanders en wat meer uitleg over bepaalde constructies.
       We komen nu al dichter bij stap 5, waar je een automatische pokerbot zult moeten
       verslaan! </p>
-      <button class="ui small teal button" onclick="step2Checker.next()">Volgende stap!</button>
+      <button class="ui small grey button" onclick="step2Checker.next()">Volgende stap!</button>
 </span>
 <script>
   var step2Checker = {
@@ -27,11 +27,15 @@
       if (!this.isCompleted) {
         $('#Step2Description').hide();
         $('#Step2Completed').show();
+        $('#bargraph').removeClass('tutorialinfo');
+        $('#bargraph').addClass('tutorialsuccess');
         this.isCompleted = true;
       }
     },
     next: function() {
       $('#bargraph').load('tutorials/3/main.html');
+      $('#bargraph').removeClass('tutorialsuccess');
+      $('#bargraph').addClass('tutorialinfo');
     }
   }
   function check2() {

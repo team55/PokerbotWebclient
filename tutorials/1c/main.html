@@ -20,7 +20,7 @@
       bepaalde relaties tussen verschillende kaarten zullen definiëren (zoals
       zelfde rank, zelfde kleur, verschillende rank etc). We komen steeds dichter
       en dichter de vaardigheden die je nodig hebt om een echte pokerbot te maken! </p>
-      <button class="ui small teal button" onclick="step1CChecker.next()">Volgende stap!</button>
+      <button class="ui small grey button" onclick="step1CChecker.next()">Volgende stap!</button>
 </span>
 <script>
   var step1CChecker = {
@@ -29,11 +29,15 @@
       if (!this.isCompleted) {
         $('#Step1CDescription').hide();
         $('#Step1CCompleted').show();
+        $('#bargraph').removeClass('tutorialinfo');
+        $('#bargraph').addClass('tutorialsuccess');
         this.isCompleted = true;
       }
     },
     next: function() {
       $('#bargraph').load('tutorials/2/main.html');
+      $('#bargraph').removeClass('tutorialsuccess');
+      $('#bargraph').addClass('tutorialinfo');
     }
   }
   function check1C() {

@@ -3,8 +3,9 @@
 }
 
 .blocklySvg {
-  background-color: #E8E8E8;
-  border-radius: 8px;
+  background-color: #ecf0f1;
+  border-radius: 2px;
+  border: 3px solid #bdc3c7;
   outline: none;
   overflow: hidden;
 }
@@ -209,12 +210,13 @@
 }
 
 .blocklyToolboxDiv {
-  background-color: #918F91; /* Toolbox background color */
+  background-color: #95a5a6; /* Toolbox background color */
   overflow-x: visible;
   overflow-y: auto;
   position: absolute;
-  border-radius: 8px;
+  border-radius: 2px;
   color: #FFFFFF;
+  border: 3px solid #7f8c8d;
   font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   text-transform: none;
   text-shadow: none;

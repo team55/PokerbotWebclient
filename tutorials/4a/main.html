@@ -7,7 +7,7 @@
       we callen en hierna stopt onze regel meteen. Er wordt niet meer gekeken naar
       wat er na deze regel komt. We hebben op dit moment een if statement om na te gaan
       of we een paar hebben. Maak nu hier onder een tweede if statement dat nagaat
-      of we <p>three of a kind</p> hebben. In dit geval moet er geraised worden naar de stackgrootte. </p>
+      of we <b>three of a kind</b> hebben. In dit geval moet er geraised worden naar de stackgrootte. </p>
       <div class="ui buttons">
         <button class="ui teal button">Toon tips</button>
         <div class="or" data-text="of"></div>
@@ -23,7 +23,7 @@
       dus indien de speler three of a kind heeft zal de eerste voorwaarde altijd vuren
       en zal het programma dus nooit aan de tweede regel beginnen! In de volgende stap
       zullen we dit proberen op te lossen. </p>
-      <button class="ui small teal button" onclick="step4AChecker.next()">Volgende stap!</button>
+      <button class="ui small grey button" onclick="step4AChecker.next()">Volgende stap!</button>
 </span>
 <script>
   var step4AChecker = {
@@ -32,11 +32,15 @@
       if (!this.isCompleted) {
         $('#Step4ADescription').hide();
         $('#Step4ACompleted').show();
+        $('#bargraph').removeClass('tutorialinfo');
+        $('#bargraph').addClass('tutorialsuccess');
         this.isCompleted = true;
       }
     },
     next: function() {
       $('#bargraph').load('tutorials/4b/main.html');
+      $('#bargraph').removeClass('tutorialsuccess');
+      $('#bargraph').addClass('tutorialinfo');
     }
   }
   function check4a() {
