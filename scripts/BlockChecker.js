@@ -5,6 +5,8 @@ var BlockChecker = {
     var ca = this.clean(a), cb = this.clean(b);
     console.log(ca);
     console.log(cb);
+    console.log(ca === cb);
+    console.log('---------------');
     return ca === cb;
   },
 

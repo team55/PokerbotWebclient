@@ -126,7 +126,6 @@ $(document).ready(function() {
       //console.log(code);
     }
     workspace.addChangeListener(myUpdateFunction);
-    //$('#bargraph').load('elements/welcomebar.html');
-    $('#bargraph').load('tutorials/1a/main.html');
+    $('#bargraph').load('elements/welcomebar.html');
   });
 });

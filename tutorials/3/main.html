@@ -1,0 +1,48 @@
+<h1>Stap 3</h1>
+<span id="Step3Description">
+  <p> Wist je dat je ook een if statement in een if statement kunt plaatsen? We gaan
+      dit nu doen aangezien we een geneste voorwaarde willen definiëren. We behouden
+      de regel van stap twee, maar passen deze aan om te voldoen aan het volgende.
+      Indien er wel degelijk een paar op tafel of in de hand ligt, dan moeten we
+      een tweede check gaan uitvoeren. Deze houdt in dat indien er <b>strikt meer dan 3
+      raises</b> geweest zijn, de bot zal callen. Indien dit niet het geval is,
+      <b>raisen we naar de potgrootte</b>. Indien onze eerste voorwaarde (deze van
+      het paar) niet voldaan is, zullen we <b>altijd folden</b>. Opmerking: Let er op
+      dat je zeker geneste if statements gebruikt! </p>
+      <div class="ui buttons">
+        <button class="ui teal button">Toon tips</button>
+        <div class="or" data-text="of"></div>
+        <button class="ui red button">Geef op</button>
+      </div>
+</span>
+<span id="Step3Completed">
+  <span class="green">Gefeliciteerd!</span>
+  <p> Deze stap was al een stuk moeilijker dan de voorgaande stappen, maar je bent
+      er toch in geslaagd om deze tot een goed einde te brengen. In stap 4 gaan we
+      eens kijken hoe we een moeilijkere hand kunnen definiëren. Daarna ben je er klaar
+      voor en kunnen we je loslaten op de pokerbot! </p>
+      <button class="ui small teal button" onclick="step3Checker.next()">Volgende stap!</button>
+</span>
+<script>
+  var step3Checker = {
+    isCompleted: false,
+    complete: function() {
+      if (!this.isCompleted) {
+        $('#Step3Description').hide();
+        $('#Step3Completed').show();
+        this.isCompleted = true;
+      }
+    },
+    next: function() {
+      $('#bargraph').load('tutorials/4/main.html');
+    }
+  }
+  function check3() {
+    var solution1 = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="18" y="30"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><value name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></value></block></value><statement name="DO0"><block type="custom_if"><value name="IF0"><block type="greater_then"><value name="A"><block type="number_of_raises"></block></value><value name="B"><block type="math_number"><field name="NUM">3</field></block></value></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></next></block></statement><next><block type="poker_fold"></block></next></block></xml>';
+    var solution2 = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="18" y="30"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><value name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></value></block></value><statement name="DO0"><block type="custom_if"><value name="IF0"><block type="less_then"><value name="A"><block type="math_number"><field name="NUM">3</field></block></value><value name="B"><block type="number_of_raises"></block></value></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></next></block></statement><next><block type="poker_fold"></block></next></block></xml>';
+    var xml = Blockly.Xml.workspaceToDom(workspace);
+    var provided = Blockly.Xml.domToText(xml);
+    if (BlockChecker.equals(provided, solution1) || BlockChecker.equals(provided, solution2)) { step3Checker.complete(); }
+  }
+  workspace.addChangeListener(check3);
+</script>

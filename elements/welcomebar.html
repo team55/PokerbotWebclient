@@ -4,4 +4,9 @@
     Verbind dan meteen met een tafel door te knop links bovenaan te
     gebruiken. Toch eerst wat meer uitleg? Start dan de stapsgewijze
     tutorial door middel van de knop onderaan deze uitleg. </p>
-<div class="ui teal button">Start tutorial</div>
+<div id="starttutorial" class="ui teal button">Start tutorial</div>
+<script>
+  $('#starttutorial').click(function(e) {
+    $('#bargraph').load('tutorials/1a/main.html');
+  });
+</script>
