@@ -12,6 +12,7 @@ Todo's:
   - categorieen sorteren op popu, kaarten acties ook meer naar boven
 
   - Move the XML out of the main.html files.
+  - Solution click to zoom.
 
 Notes for demo:
 
