@@ -11,6 +11,8 @@ Todo's:
   - rekentijd als onderste grafiek zetten
   - categorieen sorteren op popu, kaarten acties ook meer naar boven
 
+  - Move the XML out of the main.html files.
+
 Notes for demo:
 
   BLOCKLY
