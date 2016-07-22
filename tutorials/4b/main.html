@@ -1,0 +1,40 @@
+<h1>Stap 4b</h1>
+<span id="Step4BDescription">
+  <p> We moeten het vorige probleem nu proberen op te lossen. Dit is mogelijk
+      door eerst na te gaan of er een three of a kind ligt en dan pas te kijken
+      of er een paar aanwezig is. Zie je waarom? Probeer dit maar eens!
+      <div class="ui buttons">
+        <button class="ui teal button">Toon tips</button>
+        <div class="or" data-text="of"></div>
+        <button class="ui red button">Geef op</button>
+      </div>
+</span>
+<span id="Step4BCompleted">
+  <span class="green">Gefeliciteerd!</span>
+  <p> Je bent er helemaal klaar voor! In stap 5 is het de bedoeling een automatische
+      pokerbot te verslaan. Veel geluk!
+      <button class="ui small teal button" onclick="step4BChecker.next()">Laat maar komen!</button>
+</span>
+<script>
+  var step4BChecker = {
+    isCompleted: false,
+    complete: function() {
+      if (!this.isCompleted) {
+        $('#Step4BDescription').hide();
+        $('#Step4BCompleted').show();
+        this.isCompleted = true;
+      }
+    },
+    next: function() {
+      $('#bargraph').load('tutorials/5/main.html');
+    }
+  }
+  function check4b() {
+    var solution1 = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="-72" y="-23"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><value name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></next></block></value></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="stacksize"></block></value></block></statement><next><block type="custom_if"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><value name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></value></block></value><statement name="DO0"><block type="custom_if"><value name="IF0"><block type="less_then"><value name="A"><block type="math_number"><field name="NUM">3</field></block></value><value name="B"><block type="number_of_raises"></block></value></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></next></block></statement><next><block type="poker_fold"></block></next></block></next></block></xml>';
+    var solution2 = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="-72" y="-23"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><value name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></next></block></value></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="stacksize"></block></value></block></statement><next><block type="custom_if"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><value name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></value></block></value><statement name="DO0"><block type="custom_if"><value name="IF0"><block type="less_then"><value name="A"><block type="math_number"><field name="NUM">3</field></block></value><value name="B"><block type="number_of_raises"></block></value></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></next></block></statement><next><block type="poker_fold"></block></next></block></next></block></xml>';
+    var xml = Blockly.Xml.workspaceToDom(workspace);
+    var provided = Blockly.Xml.domToText(xml);
+    if (BlockChecker.equals(provided, solution1) || BlockChecker.equals(provided, solution2)) { step4BChecker.complete(); }
+  }
+  workspace.addChangeListener(check4b);
+</script>
