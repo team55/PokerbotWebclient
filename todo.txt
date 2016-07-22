@@ -14,7 +14,8 @@ Todo's:
   - Move the XML out of the main.html files.
   - Solution click to zoom.
   - Add solutions to problems after step 1c.
-  - If you copy a block, then remove it, blockly crashes?
+  - If you copy a block, then remove it, blockly crashes.
+  - Change the 'tip' of step 3. It is the one of 4A.
 
 Notes for demo:
 

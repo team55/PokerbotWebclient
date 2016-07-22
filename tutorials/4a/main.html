@@ -1,5 +1,9 @@
+
+<!-- Step title -->
 <h1>Stap 4a</h1>
-<span id="Step4ADescription">
+
+<!-- Step description -->
+<span id="step-4a-description">
   <p> Een laatste belangrijke eigenschap van regels is dat wanneer een actie
       uitgevoerd wordt, de hele regel stopt. Dit wil zeggen dat de volgende voorwaarden
       dan niet meer uitgevoerd of nagegaan worden. Stel dus dat in het vorig voorbeeld
@@ -9,12 +13,18 @@
       of we een paar hebben. Maak nu hier onder een tweede if statement dat nagaat
       of we <b>three of a kind</b> hebben. In dit geval moet er geraised worden naar de stackgrootte. </p>
       <div class="ui buttons">
-        <button class="ui teal button">Toon tips</button>
+        <button id="step-4a-tips-btn" class="ui green button">
+          Toon tip
+        </button>
         <div class="or" data-text="of"></div>
-        <button class="ui red button">Geef op</button>
+        <button id="step-4a-resign-btn" class="ui red button">
+          Geef op
+        </button>
       </div>
 </span>
-<span id="Step4ACompleted">
+
+<!-- Step success -->
+<span id="step-4a-success">
   <span class="green">Gefeliciteerd!</span>
   <p> Het leek misschien raar dat dit zo een makkelijke opgave was, maar er zit meer
       achter! Wat als we je nu vertelden dat de regel die nagaat of je three of a kind
@@ -23,32 +33,137 @@
       dus indien de speler three of a kind heeft zal de eerste voorwaarde altijd vuren
       en zal het programma dus nooit aan de tweede regel beginnen! In de volgende stap
       zullen we dit proberen op te lossen. </p>
-      <button class="ui small grey button" onclick="step4AChecker.next()">Volgende stap!</button>
+      <button class="ui small grey button" onclick="step4AChecker.next()">
+        Volgende stap!
+      </button>
 </span>
+
+<!-- Step fail -->
+<span id="step-4a-fail">
+  <span class="congrats">Oops!</span>
+  <p> Probeer het nu eens zelf! </p>
+      <div><img width='150' class="solution" src="tutorials/4a/solution.png" />
+      </div>
+      <button id="step-4a-restart-btn" class="ui small grey button">
+        Probeer opnieuw!
+      </button>
+</span>
+
+<!-- Step tips -->
+<div id="step-4a-tips" class="ui dimmer">
+  <div class="content">
+    <div class="center">
+      <h2 class="ui inverted icon header">
+        <i class="help icon"></i>
+        Tip
+      </h2>
+      <p class="diminfo"> Je kan het huidige if statement gewoon kopiëren en er
+          onder plakken. Hierna kan je nog een derde kaart toevoegen en ervoor
+          zorgen dat ook deze rank tot groep 1 behoort! Vergeet niet om daarna nog
+          het tweede (geneste) if statement te verwijderen. </p>
+      <div id="step-4a-hide-tips-btn" class="ui grey button">
+        Bedankt!
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+
+  /**
+   *  Shows the description div and hides all others, updates CSS.
+   */
+  var show4ADescription = function() {
+    $('#step-4a-description').show();
+    $('#step-4a-success').hide();
+    $('#step-4a-fail').hide();
+    $('#bargraph').addClass('tutorialinfo');
+    $('#bargraph').removeClass('tutorialsuccess');
+    $('#bargraph').removeClass('tutorialfailed');
+    $('#step-4a-tips').dimmer('hide');
+  }
+
+  /**
+   *  Shows the success div and hides all others, updates CSS.
+   */
+  var show4ASuccess = function() {
+    $('#step-4a-description').hide();
+    $('#step-4a-success').show();
+    $('#step-4a-fail').hide();
+    $('#bargraph').removeClass('tutorialinfo');
+    $('#bargraph').addClass('tutorialsuccess');
+    $('#bargraph').removeClass('tutorialfailed');
+    $('#step-4a-tips').dimmer('hide');
+  }
+
+  /**
+   *  Shows the fail div and hides all others, updates CSS.
+   */
+  var show4AFail = function() {
+    $('#step-4a-description').hide();
+    $('#step-4a-success').hide();
+    $('#step-4a-fail').show();
+    $('#bargraph').removeClass('tutorialinfo');
+    $('#bargraph').removeClass('tutorialsuccess');
+    $('#bargraph').addClass('tutorialfailed');
+    $('#step-4a-tips').dimmer('hide');
+  }
+
+  /**
+   *  Shows the tips view.
+   */
+  var show4ATips = function() {
+    $('#step-4a-tips').dimmer('show');
+  }
+
+  /**
+   *  Hides the tips view.
+   */
+  var hide4ATips = function() {
+    $('#step-4a-tips').dimmer('hide');
+  }
+
+  /**
+   *  Checks if the step is completed and makes sure it does not happen
+   *  multiple times.
+   */
   var step4AChecker = {
     isCompleted: false,
     complete: function() {
-      if (!this.isCompleted) {
-        $('#Step4ADescription').hide();
-        $('#Step4ACompleted').show();
-        $('#bargraph').removeClass('tutorialinfo');
-        $('#bargraph').addClass('tutorialsuccess');
-        this.isCompleted = true;
-      }
+      if (!this.isCompleted) show4ASuccess();
+      this.isCompleted = true;
     },
     next: function() {
+      show4ADescription();
       $('#bargraph').load('tutorials/4b/main.html');
-      $('#bargraph').removeClass('tutorialsuccess');
-      $('#bargraph').addClass('tutorialinfo');
     }
   }
-  function check4a() {
+
+  /**
+   *  Add listener to check if the new blocks are correct for this step.
+   */
+  workspace.addChangeListener(function() {
     var solution1 = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="3" y="16"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><value name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></value></block></value><statement name="DO0"><block type="custom_if"><value name="IF0"><block type="greater_then"><value name="A"><block type="number_of_raises"></block></value><value name="B"><block type="math_number"><field name="NUM">3</field></block></value></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></next></block></statement><next><block type="custom_if"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><value name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></next></block></value></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="stacksize"></block></value></block></statement><next><block type="poker_fold"></block></next></block></next></block></xml>';
     var solution2 = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="3" y="16"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><value name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></value></block></value><statement name="DO0"><block type="custom_if"><value name="IF0"><block type="less_then"><value name="A"><block type="math_number"><field name="NUM">3</field></block></value><value name="B"><block type="number_of_raises"></block></value></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></next></block></statement><next><block type="custom_if"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><value name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></next></block></value></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="stacksize"></block></value></block></statement><next><block type="poker_fold"></block></next></block></next></block></xml>';
     var xml = Blockly.Xml.workspaceToDom(workspace);
     var provided = Blockly.Xml.domToText(xml);
     if (BlockChecker.equals(provided, solution1) || BlockChecker.equals(provided, solution2)) { step4AChecker.complete(); }
-  }
-  workspace.addChangeListener(check4a);
+  });
+
+  $('#step-4a-tips-btn').click(function(e) {
+    show4ATips();
+  });
+
+  $('#step-4a-hide-tips-btn').click(function(e) {
+    hide4ATips();
+  });
+
+  $('#step-4a-resign-btn').click(function(e) {
+    show4AFail();
+  });
+
+  $('#step-4a-restart-btn').click(function(e) {
+    show4ADescription();
+  });
+
 </script>
