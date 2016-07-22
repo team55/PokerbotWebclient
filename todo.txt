@@ -15,7 +15,9 @@ Todo's:
   - Solution click to zoom.
   - Add solutions to problems after step 1c.
   - If you copy a block, then remove it, blockly crashes.
-  - Change the 'tip' of step 3. It is the one of 4A.
+  - Finish step 5.
+  - Fix step 4b solution checkers.
+  - Fix layout of regular gameplay.
 
 Notes for demo:
 
