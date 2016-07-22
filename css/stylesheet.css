@@ -233,7 +233,8 @@ body, .cutbottom {
   font-size: 25px;
 }
 
-#Step1ACompleted, #Step1BCompleted, #Step1CCompleted, #Step2Completed, #Step3Completed, #Step4ACompleted, #Step4BCompleted, #Step5Completed {
+#Step1ACompleted, #Step1BCompleted, #Step1CCompleted, #Step2Completed, #Step3Completed, #Step4ACompleted, #Step4BCompleted, #Step5Completed,
+#Step1AFailed {
   display: none;
 }
 
@@ -257,7 +258,23 @@ body, .cutbottom {
   height: 475px;
 }
 
+.tutorialfailed {
+  background-color: #e74c3c;
+  border: solid 3px #c0392b;
+  border-radius: 2px;
+  height: 475px;
+}
+
 #stoptutorial {
   display: none;
   margin-left: 20px;
+}
+
+p.diminfo {
+  padding: 35px;
+  text-align: justify;
+}
+
+.solution {
+  margin-bottom: 25px;
 }

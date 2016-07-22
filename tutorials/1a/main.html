@@ -7,9 +7,9 @@
       een regel te maken die zegt dat we <b>enkel callen</b> indien het
       <b>preflop</b> is.  </p>
       <div class="ui buttons">
-        <button class="ui green button">Toon tips</button>
+        <button id="Step1ATipsButton" class="ui green button">Toon tips</button>
         <div class="or" data-text="of"></div>
-        <button class="ui red button">Geef op</button>
+        <button id="Step1AGiveUpButton" class="ui red button">Geef op</button>
       </div>
 
 </span>
@@ -22,14 +22,40 @@
       nog niet leeg! Je kan deze code waarschijnlijk hergebruiken in de volgende stappen. </p>
       <button class="ui small grey button" onclick="step1AChecker.next()">Volgende stap!</button>
 </span>
+<span id="Step1AFailed">
+  <span class="green">Oops!</span>
+  <p> We laten jou dan wel de oplossing zien, maar we raden toch aan om deze stap
+      opnieuw te proberen. Het is belangrijk dat je de stappen zelf maakt om zo
+      vertrouwd te raken met het maken van verschillende regels. </p>
+      <div><img width='150' class="solution" src="tutorials/1a/solution.png" /></div>
+      <button id="Step1ATryAgain" class="ui small grey button">Probeer opnieuw!</button>
+</span>
+<div id="step1ATips" class="ui dimmer">
+  <div class="content">
+    <div class="center">
+      <h2 class="ui inverted icon header">
+        <i class="help icon"></i>
+        Help!
+      </h2>
+      <p class="diminfo"> Onder 'situaties' vind je een block da 'waar' is wanneer we pre flop zijn.
+          Dit block is logischerwijs 'is preflop' genoemd. Je kan dit gebruiken in
+          combinatie met het if statement. Daarna is het ook mogelijk om de call
+          actie in dit if statement te slepen. </p>
+      <div class="ui grey button" onclick="$('#step1ATips').dimmer('hide');">Bedankt!</div>
+    </div>
+  </div>
+</div>
 <script>
   var step1AChecker = {
     isCompleted: false,
     complete: function() {
       if (!this.isCompleted) {
+        $('#step1ATips').dimmer('hide');
         $('#Step1ADescription').hide();
+        $('#Step1AFailed').hide();
         $('#Step1ACompleted').show();
         $('#bargraph').removeClass('tutorialinfo');
+        $('#bargraph').removeClass('tutorialfailed');
         $('#bargraph').addClass('tutorialsuccess');
         this.isCompleted = true;
       }
@@ -47,4 +73,19 @@
     if (BlockChecker.equals(provided, solution)) { step1AChecker.complete(); }
   }
   workspace.addChangeListener(check1A);
+  $('#Step1ATipsButton').click(function(e) {
+    $('#step1ATips').dimmer('show');
+  });
+  $('#Step1AGiveUpButton').click(function(e) {
+    $('#Step1ADescription').hide();
+    $('#Step1AFailed').show();
+    $('#bargraph').removeClass('tutorialinfo');
+    $('#bargraph').addClass('tutorialfailed');
+  });
+  $('#Step1ATryAgain').click(function(e) {
+    $('#Step1ADescription').show();
+    $('#Step1AFailed').hide();
+    $('#bargraph').removeClass('tutorialfailed');
+    $('#bargraph').addClass('tutorialinfo');
+  });
 </script>
