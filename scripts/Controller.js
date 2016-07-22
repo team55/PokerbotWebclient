@@ -50,10 +50,24 @@ $('#connectbtn').click(function(e) {
  *  Make a user disconnect if he wants to.
  */
 var disconnect = function() {
-  $('.ui.modal').modal('show');
+  $('#disconnectmodal').modal('show');
 }
 $('#disconnectbtn').click(function(e) {
   Client.signout();
+});
+
+/**
+ *  Stop de tutorial.
+ */
+$('#stoptutorial').click(function(e) {
+  $('#stoptutorialmodal').modal('show');
+});
+$('#stoptutorialbutton').click(function(e) {
+  $('#stoptutorial').hide();
+  $('#toggledimmer').removeClass('disabled');
+  $('#bargraph').load('elements/welcomebar.html');
+  $('#bargraph').removeClass('tutorialsuccess');
+  $('#bargraph').addClass('tutorialinfo');
 });
 
 /**

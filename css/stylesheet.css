@@ -256,3 +256,8 @@ body, .cutbottom {
   border-radius: 2px;
   height: 475px;
 }
+
+#stoptutorial {
+  display: none;
+  margin-left: 20px;
+}

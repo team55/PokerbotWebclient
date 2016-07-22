@@ -45,6 +45,7 @@
     <!-- Sign in and status div -->
     <div class="sixteen wide column cleancol">
       <span id="toggledimmer" class="ui teal button">Ga naar een tafel</span>
+      <span id="stoptutorial" class="ui red button">Stop tutorial</span>
       <span id="tablestatus"><span class="ui label">Geen verbinding met een tafel</span></span>
     </div>
 
@@ -206,7 +207,7 @@
     </div>
 
     <!-- Bar and Bottom Graph -->
-    <div id="bargraph" class="five wide column center aligned"></div>
+    <div id="bargraph" class="five wide column center aligned tutorialinfo"></div>
     <div id="bottomgraph"  class="sixteen wide column center aligned"></div>
 
     <div class="sixteen wide column center aligned footer"><b>PokerBot</b> door <b>Innovation Labs</b></div>
@@ -277,7 +278,7 @@
   </div>
 
   <!-- Sign out modal -->
-  <div class="ui small modal">
+  <div id="disconnectmodal" class="ui small modal">
     <div class="header">
       Verbinding verbreken?
     </div>
@@ -297,6 +298,32 @@
         Nee, toch niet.
       </div>
       <div id="disconnectbtn" class="ui positive right labeled icon button">
+        Ja, verbreek de verbinding.
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stop tutorial modal -->
+  <div id="stoptutorialmodal" class="ui small modal">
+    <div class="header">
+      Tutorial stoppen?
+    </div>
+    <div class="content">
+      <div class="description">
+        <div class="ui header">Opgelet!</div>
+        <p> U staat op het punt de tutorial stop te zetten. Indien u dit doet
+            wordt u terug gebracht naar de hoofdpagina en zal alle voortgang die
+            u heeft gemaakt verloren gaan. Wanneer u de tutorial opnieuw stopt, zal
+            u terug opnieuw moeten beginnen vanaf stap 1a.
+        <p> Bent u zeker dat u de tutorial wilt verlaten? </p>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui black deny button">
+        Nee, toch niet.
+      </div>
+      <div id="stoptutorialbutton" class="ui positive right labeled icon button">
         Ja, verbreek de verbinding.
         <i class="checkmark icon"></i>
       </div>
