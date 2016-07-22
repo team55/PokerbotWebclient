@@ -1,4 +1,8 @@
+
+<!-- Step title -->
 <h1>Stap 1a</h1>
+
+<!-- Step description -->
 <span id="step-1a-description">
   <p> We starten door kennis te maken met if-statements. Ze zijn de kern van elk
       programma, aangezien ze ons in staat stellen om keuzes te maken. Zo kunnen
@@ -15,8 +19,9 @@
           Geef op
         </button>
       </div>
-
 </span>
+
+<!-- Step success -->
 <span id="step-1a-success">
   <span class="congrats">Gefeliciteerd!</span>
   <p> De regel die je hebt aangemaakt is inderdaad een die enkel zal callen
@@ -29,6 +34,8 @@
         Volgende stap!
       </button>
 </span>
+
+<!-- Step fail -->
 <span id="step-1a-fail">
   <span class="congrats">Oops!</span>
   <p> We laten jou dan wel de oplossing zien, maar we raden toch aan om deze
@@ -40,6 +47,8 @@
         Probeer opnieuw!
       </button>
 </span>
+
+<!-- Step tips -->
 <div id="step-1a-tips" class="ui dimmer">
   <div class="content">
     <div class="center">
@@ -58,8 +67,12 @@
     </div>
   </div>
 </div>
+
 <script>
 
+  /**
+   *  Shows the description div and hides all others, updates CSS.
+   */
   var show1ADescription = function() {
     $('#step-1a-description').show();
     $('#step-1a-success').hide();
@@ -70,6 +83,9 @@
     $('#step-1a-tips').dimmer('hide');
   }
 
+  /**
+   *  Shows the success div and hides all others, updates CSS.
+   */
   var show1ASuccess = function() {
     $('#step-1a-description').hide();
     $('#step-1a-success').show();
@@ -80,6 +96,9 @@
     $('#step-1a-tips').dimmer('hide');
   }
 
+  /**
+   *  Shows the fail div and hides all others, updates CSS.
+   */
   var show1AFail = function() {
     $('#step-1a-description').hide();
     $('#step-1a-success').hide();
@@ -90,14 +109,24 @@
     $('#step-1a-tips').dimmer('hide');
   }
 
+  /**
+   *  Shows the tips view.
+   */
   var show1ATips = function() {
     $('#step-1a-tips').dimmer('show');
   }
 
+  /**
+   *  Hides the tips view.
+   */
   var hide1ATips = function() {
     $('#step-1a-tips').dimmer('hide');
   }
 
+  /**
+   *  Checks if the step is completed and makes sure it does not happen
+   *  multiple times.
+   */
   var step1AChecker = {
     isCompleted: false,
     complete: function() {
@@ -110,6 +139,9 @@
     }
   }
 
+  /**
+   *  Add listener to check if the new blocks are correct for this step.
+   */
   workspace.addChangeListener(function() {
     var solution = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="122" y="95"><value name="IF0"><block type="is_preflop"></block></value><statement name="DO0"><block type="poker_call"></block></statement></block></xml>';
     var xml = Blockly.Xml.workspaceToDom(workspace);
