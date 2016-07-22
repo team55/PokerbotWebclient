@@ -6,6 +6,11 @@ Todo's:
     - hand-checker (eerst xml?)
   - Choose some cooler colors!
 
+  - Automatisch plaatsnemen aan een tafel na het aanmaken ervan.
+  - Titel voor de grafiek bovenaan.
+  - rekentijd als onderste grafiek zetten
+  - categorieen sorteren op popu, kaarten acties ook meer naar boven
+
 Notes for demo:
 
   BLOCKLY
