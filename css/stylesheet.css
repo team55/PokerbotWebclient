@@ -233,8 +233,8 @@ body, .cutbottom {
   font-size: 25px;
 }
 
-#step-1a-success, #Step1BCompleted, #Step1CCompleted, #Step2Completed, #Step3Completed, #Step4ACompleted, #Step4BCompleted, #Step5Completed,
-#step-1a-fail {
+#step-1a-success, #step-1b-success, #Step1CCompleted, #Step2Completed, #Step3Completed, #Step4ACompleted, #Step4BCompleted, #Step5Completed,
+#step-1a-fail, #step-1b-fail {
   display: none;
 }
 

@@ -1,5 +1,9 @@
+
+<!-- Step title -->
 <h1>Stap 1b</h1>
-<span id="Step1BDescription">
+
+<!-- Step description -->
+<span id="step-1b-description">
   <p> We hebben zonet een regel gemaakt die callt wanneer het preflop is. Een
       belangrijke eigenschap van programma's is dat wanneer er niet voldaan is
       aan een bepaalde eigenschap de code er onder verder wordt uitgevoerd.
@@ -7,12 +11,18 @@
       <b>niet preflop</b> is, we zullen <b>folden</b>. Tip: dit kan dus met maar
       één enkel block toe te voegen! </p>
       <div class="ui buttons">
-        <button class="ui teal button">Toon tips</button>
+        <button id="step-1b-tips-btn" class="ui green button">
+          Toon tips
+        </button>
         <div class="or" data-text="of"></div>
-        <button class="ui red button">Geef op</button>
+        <button id="step-1b-resign-btn" class="ui red button">
+          Geef op
+        </button>
       </div>
 </span>
-<span id="Step1BCompleted">
+
+<!-- Step success -->
+<span id="step-1b-success">
   <span class="green">Gefeliciteerd!</span>
   <p> Dat was makkelijk, niet? Dit is een zeer belangrijke eigenschap dus het
       is belangrijk dat je dit goed door hebt. Wanneer we dit in meer
@@ -21,31 +31,139 @@
       voorwaarde niet voldaan is, wordt de tweede nagegaan, enzoverder. In de
       stap 1c zullen we kaart situaties koppelen aan de voorwaarde van een if
       statement. </p>
-      <button class="ui small grey button" onclick="step1BChecker.next()">Volgende stap!</button>
+      <button class="ui small grey button" onclick="step1BChecker.next()">
+        Volgende stap!
+      </button>
 </span>
+
+<!-- Step fail -->
+<span id="step-1b-fail">
+  <span class="congrats">Oops!</span>
+  <p> We laten jou dan wel de oplossing zien, maar we raden toch aan om deze
+      stap opnieuw te proberen. Het is belangrijk dat je de stappen zelf maakt
+      om zo vertrouwd te raken met het maken van verschillende regels. </p>
+      <div><img width='150' class="solution" src="tutorials/1b/solution.png" />
+      </div>
+      <button id="step-1b-restart-btn" class="ui small grey button">
+        Probeer opnieuw!
+      </button>
+</span>
+
+<!-- Step tips -->
+<div id="step-1b-tips" class="ui dimmer">
+  <div class="content">
+    <div class="center">
+      <h2 class="ui inverted icon header">
+        <i class="help icon"></i>
+        Tips!
+      </h2>
+      <p class="diminfo"> Het is mogelijk om de fold actie gewoon onder het if
+          statement te hangen! Wanneer de voorwaarde van het if statement nu
+          niet wordt gevuurd, zal het gewoon er onder verder gaan!  </p>
+      <div id="step-1b-hide-tips-btn" class="ui grey button">
+        Bedankt!
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <script>
+
+  /**
+   *  Shows the description div and hides all others, updates CSS.
+   */
+  var show1BDescription = function() {
+    $('#step-1b-description').show();
+    $('#step-1b-success').hide();
+    $('#step-1b-fail').hide();
+    $('#bargraph').addClass('tutorialinfo');
+    $('#bargraph').removeClass('tutorialsuccess');
+    $('#bargraph').removeClass('tutorialfailed');
+    $('#step-1b-tips').dimmer('hide');
+  }
+
+  /**
+   *  Shows the success div and hides all others, updates CSS.
+   */
+  var show1BSuccess = function() {
+    $('#step-1b-description').hide();
+    $('#step-1b-success').show();
+    $('#step-1b-fail').hide();
+    $('#bargraph').removeClass('tutorialinfo');
+    $('#bargraph').addClass('tutorialsuccess');
+    $('#bargraph').removeClass('tutorialfailed');
+    $('#step-1b-tips').dimmer('hide');
+  }
+
+  /**
+   *  Shows the fail div and hides all others, updates CSS.
+   */
+  var show1BFail = function() {
+    $('#step-1b-description').hide();
+    $('#step-1b-success').hide();
+    $('#step-1b-fail').show();
+    $('#bargraph').removeClass('tutorialinfo');
+    $('#bargraph').removeClass('tutorialsuccess');
+    $('#bargraph').addClass('tutorialfailed');
+    $('#step-1b-tips').dimmer('hide');
+  }
+
+  /**
+   *  Shows the tips view.
+   */
+  var show1BTips = function() {
+    $('#step-1b-tips').dimmer('show');
+  }
+
+  /**
+   *  Hides the tips view.
+   */
+  var hide1BTips = function() {
+    $('#step-1b-tips').dimmer('hide');
+  }
+
+  /**
+   *  Checks if the step is completed and makes sure it does not happen
+   *  multiple times.
+   */
   var step1BChecker = {
     isCompleted: false,
     complete: function() {
-      if (!this.isCompleted) {
-        $('#Step1BDescription').hide();
-        $('#Step1BCompleted').show();
-        $('#bargraph').removeClass('tutorialinfo');
-        $('#bargraph').addClass('tutorialsuccess');
-        this.isCompleted = true;
-      }
+      if (!this.isCompleted) show1BSuccess();
+      this.isCompleted = true;
     },
     next: function() {
+      show1BDescription();
       $('#bargraph').load('tutorials/1c/main.html');
-      $('#bargraph').removeClass('tutorialsuccess');
-      $('#bargraph').addClass('tutorialinfo');
     }
   }
-  function check1B() {
+
+  /**
+   *  Add listener to check if the new blocks are correct for this step.
+   */
+  workspace.addChangeListener(function () {
     var solution = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="55" y="50"><value name="IF0"><block type="is_preflop"></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>';
     var xml = Blockly.Xml.workspaceToDom(workspace);
     var provided = Blockly.Xml.domToText(xml);
     if (BlockChecker.equals(provided, solution)) { step1BChecker.complete(); }
-  }
-  workspace.addChangeListener(check1B);
+  });
+
+  $('#step-1b-tips-btn').click(function(e) {
+    show1BTips();
+  });
+
+  $('#step-1b-hide-tips-btn').click(function(e) {
+    hide1BTips();
+  });
+
+  $('#step-1b-resign-btn').click(function(e) {
+    show1BFail();
+  });
+
+  $('#step-1b-restart-btn').click(function(e) {
+    show1BDescription();
+  });
+
 </script>
