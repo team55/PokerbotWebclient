@@ -1,48 +1,164 @@
+
+<!-- Step title -->
 <h1>Stap 2</h1>
-<span id="Step2Description">
+
+<!-- Step description -->
+<span id="step-2-description">
   <p> In deze stap gaan we een regel maken die enkel zal <b>callen indien we een
       paar</b> hebben (twee kaarten met dezelfde rank). Dit paar mag <b>zowel op
       tafel als in onze hand</b> zitten. Indien er geen paar te vinden is, moeten we
       <b>folden</b>! Opmerking: gebruik tijdens de opstelling groep 1 om de ranks
       te definiëren. </p>
       <div class="ui buttons">
-        <button class="ui teal button">Toon tips</button>
+        <button id="step-2-tips-btn" class="ui green button">
+          Toon tips
+        </button>
         <div class="or" data-text="of"></div>
-        <button class="ui red button">Geef op</button>
+        <button id="step-2-resign-btn" class="ui red button">
+          Geef op
+        </button>
       </div>
 </span>
-<span id="Step2Completed">
+
+<!-- Step success -->
+<span id="step-2-success">
   <span class="green">Gefeliciteerd!</span>
   <p> Je hebt het tempo te pakken! Je weet hoe je moet werken met if statements en
       je kan al kaart situaties modelleren! In de volgende stappen gaan we rekening houden
       met de acties van de tegenstanders en wat meer uitleg over bepaalde constructies.
       We komen nu al dichter bij stap 5, waar je een automatische pokerbot zult moeten
       verslaan! </p>
-      <button class="ui small grey button" onclick="step2Checker.next()">Volgende stap!</button>
+      <button class="ui small grey button" onclick="step2Checker.next()">
+        Volgende stap!
+      </button>
 </span>
+
+<!-- Step fail -->
+<span id="step-2-fail">
+  <span class="congrats">Oops!</span>
+  <p> Probeer het nu eens zelf! </p>
+      <div><img width='150' class="solution" src="tutorials/2/solution.png" />
+      </div>
+      <button id="step-2-restart-btn" class="ui small grey button">
+        Probeer opnieuw!
+      </button>
+</span>
+
+<!-- Step tips -->
+<div id="step-2-tips" class="ui dimmer">
+  <div class="content">
+    <div class="center">
+      <h2 class="ui inverted icon header">
+        <i class="help icon"></i>
+        Tip
+      </h2>
+      <p class="diminfo"> Je kan meerdere kaarten aan de 'kaarthouder' block
+          toevoegen. Op deze manier kan je dan groepen aan de rankings toevoegen.
+          Door beide kaarten aan bijvoorbeeld groep 1 toe te voegen, zullen deze
+          dezelfde rank hebben. Waardes uit 1 groep zijn steeds gelijk. </p>
+      <div id="step-2-hide-tips-btn" class="ui grey button">
+        Bedankt!
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+
+  /**
+   *  Shows the description div and hides all others, updates CSS.
+   */
+  var show2Description = function() {
+    $('#step-2-description').show();
+    $('#step-2-success').hide();
+    $('#step-2-fail').hide();
+    $('#bargraph').addClass('tutorialinfo');
+    $('#bargraph').removeClass('tutorialsuccess');
+    $('#bargraph').removeClass('tutorialfailed');
+    $('#step-2-tips').dimmer('hide');
+  }
+
+  /**
+   *  Shows the success div and hides all others, updates CSS.
+   */
+  var show2Success = function() {
+    $('#step-2-description').hide();
+    $('#step-2-success').show();
+    $('#step-2-fail').hide();
+    $('#bargraph').removeClass('tutorialinfo');
+    $('#bargraph').addClass('tutorialsuccess');
+    $('#bargraph').removeClass('tutorialfailed');
+    $('#step-2-tips').dimmer('hide');
+  }
+
+  /**
+   *  Shows the fail div and hides all others, updates CSS.
+   */
+  var show2Fail = function() {
+    $('#step-2-description').hide();
+    $('#step-2-success').hide();
+    $('#step-2-fail').show();
+    $('#bargraph').removeClass('tutorialinfo');
+    $('#bargraph').removeClass('tutorialsuccess');
+    $('#bargraph').addClass('tutorialfailed');
+    $('#step-2-tips').dimmer('hide');
+  }
+
+  /**
+   *  Shows the tips view.
+   */
+  var show2Tips = function() {
+    $('#step-2-tips').dimmer('show');
+  }
+
+  /**
+   *  Hides the tips view.
+   */
+  var hide2Tips = function() {
+    $('#step-2-tips').dimmer('hide');
+  }
+
+  /**
+   *  Checks if the step is completed and makes sure it does not happen
+   *  multiple times.
+   */
   var step2Checker = {
     isCompleted: false,
     complete: function() {
-      if (!this.isCompleted) {
-        $('#Step2Description').hide();
-        $('#Step2Completed').show();
-        $('#bargraph').removeClass('tutorialinfo');
-        $('#bargraph').addClass('tutorialsuccess');
-        this.isCompleted = true;
-      }
+      if (!this.isCompleted) show2Success();
+      this.isCompleted = true;
     },
     next: function() {
+      show2Description();
       $('#bargraph').load('tutorials/3/main.html');
-      $('#bargraph').removeClass('tutorialsuccess');
-      $('#bargraph').addClass('tutorialinfo');
     }
   }
-  function check2() {
+
+
+  /**
+   *  Add listener to check if the new blocks are correct for this step.
+   */
+  workspace.addChangeListener(function() {
     var solution = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="13" y="40"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><value name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></value></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>';
     var xml = Blockly.Xml.workspaceToDom(workspace);
     var provided = Blockly.Xml.domToText(xml);
     if (BlockChecker.equals(provided, solution)) { step2Checker.complete(); }
-  }
-  workspace.addChangeListener(check2);
+  });
+
+  $('#step-2-tips-btn').click(function(e) {
+    show2Tips();
+  });
+
+  $('#step-2-hide-tips-btn').click(function(e) {
+    hide2Tips();
+  });
+
+  $('#step-2-resign-btn').click(function(e) {
+    show2Fail();
+  });
+
+  $('#step-2-restart-btn').click(function(e) {
+    show2Description();
+  });
+
 </script>

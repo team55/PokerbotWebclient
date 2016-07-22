@@ -233,12 +233,13 @@ body, .cutbottom {
   font-size: 25px;
 }
 
-#step-1a-success, #step-1b-success, #step-1c-success, #Step2Completed, #Step3Completed, #Step4ACompleted, #Step4BCompleted, #Step5Completed,
-#step-1a-fail, #step-1b-fail, #step-1c-fail {
+#step-1a-success, #step-1b-success, #step-1c-success, #step-2-success, #Step3Completed, #Step4ACompleted, #Step4BCompleted, #Step5Completed,
+#step-1a-fail, #step-1b-fail, #step-1c-fail, #step-2-fail {
   display: none;
 }
 
-#step-1a-fail > p, #step-1b-fail > p, #step-1c-fail > p {
+#step-1a-fail > p, #step-1b-fail > p, #step-1c-fail > p,
+#step-2-fail > p {
   width: 100% !important;
   text-align: center !important;
   margin: 0 auto !important;
