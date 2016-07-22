@@ -114,7 +114,6 @@ var toggleHeader = function() {
  *  Execute the following commands on load.
  */
 $(document).ready(function() {
-  $('#bargraph').load('elements/welcomebar.html');
   customWorkspace('blockly-colors/custom.css', function() {
     workspace = Blockly.inject('blocklyDiv',
         {media: 'blockly/media/',
@@ -127,5 +126,7 @@ $(document).ready(function() {
       //console.log(code);
     }
     workspace.addChangeListener(myUpdateFunction);
+    //$('#bargraph').load('elements/welcomebar.html');
+    $('#bargraph').load('tutorials/1a/main.html');
   });
 });

@@ -1,5 +1,9 @@
 
 Todo's:
+  - tutorials
+    - uitleg per tutorial stap
+    - meerdere manieren om tutorial op te lossen?
+    - hand-checker (eerst xml?)
   - Choose some cooler colors!
 
 Notes for demo:
