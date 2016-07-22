@@ -1,49 +1,22 @@
 
 Todo's:
-  - tutorials
-    - uitleg per tutorial stap
-    - meerdere manieren om tutorial op te lossen?
-    - hand-checker (eerst xml?)
-  - Choose some cooler colors!
-
-  - Automatisch plaatsnemen aan een tafel na het aanmaken ervan.
-  - Titel voor de grafiek bovenaan.
-  - rekentijd als onderste grafiek zetten
-  - categorieen sorteren op popu, kaarten acties ook meer naar boven
-
   - Move the XML out of the main.html files.
-  - Solution click to zoom.
+  - Solution should be click to zoom.
   - Add solutions to problems after step 1c.
-  - If you copy a block, then remove it, blockly crashes.
+  - Add full screen support for the blockly workspace (or resize).
+  - If you copy a block, then remove it, blockly crashes (blockly issue?).
   - Finish step 5.
   - Fix step 4b solution checkers.
   - Fix layout of regular gameplay.
-
-Notes for demo:
-
-  BLOCKLY
-  - Design of BLOCKLY is pretty ugly, but couldn't find a decent color palette
-    for now. Should still be updated in the future.
-
-  CREATE TABLES / SIGN IN
-  - Double check password? Making a mistake is possible for now.
-  - There is no error if the table already exists...
-  - Loading icon when signing in... Can take a while.
-  - For now, table selection is done with an input box but would be cooler with
-    a dropdown. In order to implement this, we need to fix the backend API.
-
-  GRAPHS
-  - Fixed a rounding issue... Had too much detail!
-  - What is the basic rule? Weird for first graph...
-
-  GENERAL
-  - Errors should be written in Dutch (server-side).
-  - We can't see our rules atm. We can save these client side?
-
-  ISSUES
-  - When focus is on an input box, border-radius magically disappears?
-  - Load blocks issue... Remove buttons?
-
+  - Choose some better colors for graphs.
+  - Add legends to the different graphs.
+  - Automatically assign seats when table is created.
+  - Add title to the top graph.
+  - Calculation time as bottom graph in the side bar.
+  - Change the order of the blocks based on the 'popularity'.
+  - Add drop down menu to select table.
+  - Add server side error when table already exists.
+  - Translate Server-side errors.
 
 // Future?:
 
@@ -54,11 +27,3 @@ Ideas:
 - Preconfigured in a list (the default bots)
 - Lock tables (hide tables) and unlock tables
 - Explanation of the graphs
-
-Tutorial steps:
-1.  Callbot en if statement uitleggen
-    Make a high card (with examples)
-2.  Make a pair, variables uitleggen
-3.  #Raises om te limiteren
-4. volgorde van statements, evt me de 3 of a kind
-5. defeat bot
