@@ -4,11 +4,283 @@
 
 <!-- Step description -->
 <span id="step-5-description">
-  <p> Versla de pokerbot! Deze stap is nog niet klaar... Je kan de tutorial verlaten
-      met behulp van de 'verlaat tutorial' links bovenaan de pagina. </p>
-  <div class="ui buttons">
-    <button class="ui green disabled button">Toon tips</button>
-    <div class="or" data-text="of"></div>
-    <button class="ui red disabled button">Geef op</button>
-  </div>
+  <p> Versla de pokerbot! Bovenaan deze pagina zie je een grafiek met de gemiddelde
+      winst per hand van zowel jou als de computer. Probeer nu regels te bouwen
+      om hem te verslaan! Wanneer een regel klaar is, klik dan op 'Start regel'
+      en kijk of hij goed genoeg is. Tip: De pokerbot gaat elke hand all in (raised
+      naar zijn stackgrootte), dus probeer enkel all in te gaan indien je een goede
+      hand hebt. </p>
+  <button id="start-step-5-btn" class="ui green button">Start!</button>
+  <button id="send-step-5-btn" class="ui green button hideme">Start regel</button>
+  <button id="stop-step-5-btn" class="ui red button hideme">Geef op</button>
 </span>
+
+<!-- Step success -->
+<span id="step-5-success">
+  <span class="congrats">Gefeliciteerd!</span>
+  <p> Je bent gewonnen! Je hebt de tutorial succesvol afgewerkt. </p>
+</span>
+
+<!-- Step fail -->
+<span id="step-5-fail">
+  <span class="congrats">Oops!</span>
+  <p> We laten jou dan wel de oplossing zien, maar we raden toch aan om deze
+      stap opnieuw te proberen. Het is belangrijk dat je de stappen zelf maakt
+      om zo vertrouwd te raken met het maken van verschillende regels. </p>
+  <button id="step-5-restart-btn" class="ui small grey button">
+    Probeer opnieuw!
+  </button>
+</span>
+
+<!-- Step tips -->
+<div id="step-5-tips" class="ui dimmer">
+  <div class="content">
+    <div class="center">
+      <h2 class="ui inverted icon header">
+        <i class="help icon"></i>
+        Tip
+      </h2>
+      <p class="diminfo"> Onder 'situaties' vind je een block da 'waar' is
+          wanneer we pre flop zijn. Dit block is logischerwijs 'is preflop'
+          genoemd. Je kan dit gebruiken in combinatie met het if statement.
+          Daarna is het ook mogelijk om de call actie in dit if statement te
+          slepen. </p>
+      <div id="step-5-hide-tips-btn" class="ui grey button">
+        Bedankt!
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  /**
+   *  Shows the description div and hides all others, updates CSS.
+   */
+  var show5Description = function() {
+    $('#step-5-description').show();
+    $('#step-5-success').hide();
+    $('#step-5-fail').hide();
+    $('#bargraph').addClass('tutorialinfo');
+    $('#bargraph').removeClass('tutorialsuccess');
+    $('#bargraph').removeClass('tutorialfailed');
+    $('#step-5-tips').dimmer('hide');
+  }
+
+  /**
+   *  Shows the success div and hides all others, updates CSS.
+   */
+  var show5Success = function() {
+    $('#step-5-description').hide();
+    $('#step-5-success').show();
+    $('#step-5-fail').hide();
+    $('#bargraph').removeClass('tutorialinfo');
+    $('#bargraph').addClass('tutorialsuccess');
+    $('#bargraph').removeClass('tutorialfailed');
+    $('#step-5-tips').dimmer('hide');
+  }
+
+  /**
+   *  Shows the fail div and hides all others, updates CSS.
+   */
+  var show5Fail = function() {
+    $('#step-5-description').hide();
+    $('#step-5-success').hide();
+    $('#step-5-fail').show();
+    $('#bargraph').removeClass('tutorialinfo');
+    $('#bargraph').removeClass('tutorialsuccess');
+    $('#bargraph').addClass('tutorialfailed');
+    $('#step-5-tips').dimmer('hide');
+  }
+
+  /**
+   *  Shows the tips view.
+   */
+  var show5Tips = function() {
+    $('#step-5-tips').dimmer('show');
+  }
+
+  /**
+   *  Hides the tips view.
+   */
+  var hide5Tips = function() {
+    $('#step-5-tips').dimmer('hide');
+  }
+
+  var step5Sequencer = {
+
+    playername: 'You',
+    computername: 'Robot',
+    tableID: null,
+    tablePassword: null,
+    completed: false,
+
+    handleError: function(error) {
+      console.error(error);
+    },
+
+    randomStr: function() {
+      var str = '';
+      var pss = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      for(var i = 0; i < 10; i++) {
+        str += pss.charAt(Math.floor(Math.random() * pss.length));
+      }
+      return str;
+    },
+
+    prepare: function() {
+      $('#stoptutorial').addClass('disabled');
+    },
+
+    initTableID: function() {
+      this.tableID = 'Step5TableID-' + this.randomStr();
+    },
+
+    initTablePassword: function() {
+      this.tablePassword = 'Step5TablePassword-' + this.randomStr();
+    },
+
+    initTable: function(callback) {
+      var createTableURL = 'http://bear.cs.kuleuven.be/pokerdemo/server/makeTable.php';
+      $.ajax({url: createTableURL, method: 'POST', success: function(result) {
+        callback();
+      }, error: function(error) {
+        this.handleError(error);
+      }, data: {
+        'name': this.tableID,
+        'password': this.tablePassword,
+        'nbPlayers': 2
+      }});
+    },
+
+    connect: function(username, callback) {
+      var destination = "http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName=";
+      destination += this.tableID + "&playerName=" + username;
+      $.ajax({url: destination, success: function(result) {
+        try {
+          var data = JSON.parse(result);
+          if (data['type'] === 'Acknowledge') {
+            callback();
+          } else {
+            this.handleError(data['message']);
+          }
+        } catch(error) {
+          this.handleError(error);
+        }
+      }, error: function(error) {
+        this.handleError(error);
+      }});
+    },
+
+    sendRule: function(user, rule, callback) {
+      var destination = "http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName=";
+      destination += this.tableID + "&playerName=" + user + "&description=" + encodeURIComponent(rule);
+      console.log(destination);
+      $.ajax({url: destination, success: function(result) {
+        callback();
+      }, error: function(error) {
+        this.handleError(error);
+      }});
+    },
+
+    sendDefaultRule: function(callback) {
+      $.get('tutorials/5/default.pl', function(data) {
+        step5Sequencer.sendRule(step5Sequencer.computername, data, function() {
+          console.log('done');
+        })
+      });
+    },
+
+    checkForWin: function() {
+      if (this.completed) return;
+      var DATASOURCE = 'http://bear.cs.kuleuven.be/pokerdemo/server/ObserveTable.php?tableName=' + this.tableID;
+      $.ajax({url: DATASOURCE, method: 'GET', success: function(result) {
+        try {
+          var data = $.parseJSON(result);
+          var players = data['result']['player'];
+          var userScore, computerScore;
+          for(var i = 0; i < players.length; i++) {
+            if (players[i]['name'] === step5Sequencer.playername) {
+              userScore = players[i]['avg profit'];
+            } else {
+              computerScore = players[i]['avg profit'];
+            }
+          }
+          if (userScore > computerScore) {
+            step5Sequencer.complete();
+          }
+        } catch(error) {
+          step5Sequencer.handleError(error);
+        }
+      }, error: function(error) {
+        step5Sequencer.handleError(error);
+      }});
+    },
+
+    complete: function() {
+      if (!this.completed) {
+        this.completed = true;
+        $('#stoptutorial').removeClass('disabled');
+        show5Success();
+      }
+    },
+
+    start: function(callback) {
+      step5Sequencer.prepare();
+      step5Sequencer.initTableID();
+      step5Sequencer.initTablePassword();
+      console.log(this.tableID);
+      console.log(this.tablePassword);
+      step5Sequencer.initTable(function() {
+        step5Sequencer.connect(step5Sequencer.playername, function() {
+          step5Sequencer.connect(step5Sequencer.computername, function() {
+            Client.table = step5Sequencer.tableID;
+            $('#topgraph').load('graphs/top.html', function(r,s,x) {
+              Blockly.svgResize(workspace);
+              step5Sequencer.sendDefaultRule();
+              callback();
+            });
+          });
+        });
+      });
+    },
+
+  };
+
+  $('#start-step-5-btn').click(function() {
+    $('#start-step-5-btn').addClass('loading');
+    step5Sequencer.start(function() {
+      $('#start-step-5-btn').removeClass('loading');
+      $('#start-step-5-btn').addClass('hideme');
+      $('#send-step-5-btn').removeClass('hideme');
+      $('#stop-step-5-btn').removeClass('hideme');
+      setInterval(function() {
+        step5Sequencer.checkForWin();
+      }, 2500);
+    });
+  });
+
+  $('#send-step-5-btn').click(function(e) {
+    var code = Blockly.Prolog.workspaceToCode(workspace);
+    step5Sequencer.sendRule(step5Sequencer.playername, code, function() {
+      console.log('Regel verzonden');
+    });
+  });
+
+  $('#step-5-tips-btn').click(function(e) {
+    show5Tips();
+  });
+
+  $('#step-5-hide-tips-btn').click(function(e) {
+    hide5Tips();
+  });
+
+  $('#step-5-resign-btn').click(function(e) {
+    show5Fail();
+  });
+
+  $('#step-5-restart-btn').click(function(e) {
+    show5Description();
+  });
+
+</script>

@@ -35,7 +35,7 @@ var Server = {
    */
   connect: function(username, table) {
     var destination = "http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName=";
-    destination += table + "&playerName=" + username
+    destination += table + "&playerName=" + username;
     $.ajax({url: destination, success: function(result) {
       try {
         var data = JSON.parse(result);
@@ -64,7 +64,6 @@ var Server = {
 
   sendRule: function(username, table, code) {
     $('#rulesendbtn').addClass('disabled');
-    console.log('sending');
     destination = "http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName=";
     destination += table + "&playerName=" + username + "&description=" + encodeURIComponent(code);
     $.ajax({url: destination, success: function(result) {

@@ -68,6 +68,13 @@ $('#stoptutorialbutton').click(function(e) {
   $('#bargraph').load('elements/welcomebar.html');
   $('#bargraph').removeClass('tutorialsuccess');
   $('#bargraph').addClass('tutorialinfo');
+  $('#topgraph').html('');
+  Blockly.svgResize(workspace);
+  try {
+
+  } catch(error) {
+    console.error(error);
+  }
 });
 
 /**
