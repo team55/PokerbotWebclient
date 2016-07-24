@@ -41,7 +41,7 @@
   <p> We laten jou dan wel de oplossing zien, maar we raden toch aan om deze
       stap opnieuw te proberen. Het is belangrijk dat je de stappen zelf maakt
       om zo vertrouwd te raken met het maken van verschillende regels. </p>
-  <div><img width='150' class="solution" src="tutorials/1a/solution.png" />
+  <div><img id="step-1a-solution-preview" width='150' class="solution" src="tutorials/1a/solution.png" />
   </div>
   <button id="step-1a-restart-btn" class="ui small grey button">
     Probeer opnieuw!
@@ -169,6 +169,11 @@
 
   $('#step-1a-restart-btn').click(function(e) {
     show1ADescription();
+  });
+
+  $('#step-1a-solution-preview').click(function(e) {
+    $('#solution-zoom-img').attr('src', 'tutorials/1a/solution.png');
+    $('#solution-zoom').dimmer('show');
   });
 
 </script>

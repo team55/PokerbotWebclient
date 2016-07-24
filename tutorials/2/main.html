@@ -37,7 +37,7 @@
 <span id="step-2-fail">
   <span class="congrats">Oops!</span>
   <p> Probeer het nu eens zelf! </p>
-      <div><img width='150' class="solution" src="tutorials/2/solution.png" />
+      <div><img id="step-2-solution-preview" width='150' class="solution" src="tutorials/2/solution.png" />
       </div>
       <button id="step-2-restart-btn" class="ui small grey button">
         Probeer opnieuw!
@@ -165,6 +165,11 @@
 
   $('#step-2-restart-btn').click(function(e) {
     show2Description();
+  });
+
+  $('#step-2-solution-preview').click(function(e) {
+    $('#solution-zoom-img').attr('src', 'tutorials/2/solution.png');
+    $('#solution-zoom').dimmer('show');
   });
 
 </script>

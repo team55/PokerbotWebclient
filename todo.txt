@@ -7,7 +7,6 @@ Notes:
       security purposes. We should make it easy to deploy on the server.
 
 Todo's:
-  - Solution should be click to zoom.
   - If you copy a block, then remove it, blockly crashes (blockly issue).
   - Choose some better colors for graphs.
   - Add legends to the different graphs.

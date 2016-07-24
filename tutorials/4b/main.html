@@ -32,7 +32,7 @@
 <span id="step-4b-fail">
   <span class="congrats">Oops!</span>
   <p> Probeer het nu eens zelf! </p>
-  <div><img width='150' class="solution" src="tutorials/4b/solution.png" />
+  <div><img id="step-4b-solution-preview" width='150' class="solution" src="tutorials/4b/solution.png" />
   </div>
   <button id="step-4b-restart-btn" class="ui small grey button">
     Probeer opnieuw!
@@ -161,6 +161,11 @@
 
   $('#step-4b-restart-btn').click(function(e) {
     show4BDescription();
+  });
+
+  $('#step-4b-solution-preview').click(function(e) {
+    $('#solution-zoom-img').attr('src', 'tutorials/4b/solution.png');
+    $('#solution-zoom').dimmer('show');
   });
 
 </script>

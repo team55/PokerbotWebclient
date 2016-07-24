@@ -287,6 +287,10 @@ p.diminfo {
   margin-bottom: 25px;
 }
 
+.solution:hover {
+  cursor: pointer; 
+}
+
 .fullscreen {
   height: 475px !important;
 }
