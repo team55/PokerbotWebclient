@@ -5,7 +5,6 @@ Todo's:
         // Customize this with Semantic-ui dimmer?
   - Add solutions to problems after step 1c.
   - If you copy a block, then remove it, blockly crashes (blockly issue?).
-  - Finish step 5.
   - Fix layout of regular gameplay.
   - Choose some better colors for graphs.
   - Add legends to the different graphs.
