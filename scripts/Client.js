@@ -32,7 +32,7 @@ var Client = {
     $('#detailedviewbtn').removeClass('hideme');
     toggleHeader();
     Blockly.svgResize(workspace);
-    callback();
+    if (callback) callback();
   },
 
   signout: function() {

@@ -18,7 +18,7 @@ var Server = {
       $.ajax({url: createTableURL, method: 'POST', success: function(result) {
         Logger.hideCreateTableError();
         Logger.log('Tafel "' + table + '" aangemaakt!<br />Je kan er nu aan plaatsnemen.', 'CREATETABLE');
-        callback();
+        if (callback) callback();
       }, error: function(error) {
         Logger.error('Er is een probleem opgetreden...', 'CREATETABLE');
       }, data: {

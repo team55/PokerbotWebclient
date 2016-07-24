@@ -159,7 +159,7 @@
     initTable: function(callback) {
       var createTableURL = 'http://bear.cs.kuleuven.be/pokerdemo/server/makeTable.php';
       $.ajax({url: createTableURL, method: 'POST', success: function(result) {
-        callback();
+        if (callback) callback();
       }, error: function(error) {
         this.handleError(error);
       }, data: {
@@ -172,7 +172,7 @@
     killTable: function(callback) {
       var url = 'http://bear.cs.kuleuven.be/pokerdemo/server/killTable.php';
       $.ajax({url: url, method:  'POST', success: function(result) {
-        callback();
+        if (callback) callback();
       }, error: function(error) {
         step5Sequencer.handleError(error);
       }, data: {
@@ -188,7 +188,7 @@
         try {
           var data = JSON.parse(result);
           if (data['type'] === 'Acknowledge') {
-            callback();
+            if (callback) callback();
           } else {
             this.handleError(data['message']);
           }
@@ -205,7 +205,7 @@
       destination += this.tableID + "&playerName=" + user + "&description=" + encodeURIComponent(rule);
       console.log(destination);
       $.ajax({url: destination, success: function(result) {
-        callback();
+        if (callback) callback();
       }, error: function(error) {
         this.handleError(error);
       }});
@@ -266,7 +266,7 @@
             $('#topgraph').load('graphs/top.html', function(r,s,x) {
               Blockly.svgResize(workspace);
               step5Sequencer.sendDefaultRule();
-              callback();
+              if (callback) callback();
             });
           });
         });
