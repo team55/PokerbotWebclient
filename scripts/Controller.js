@@ -67,11 +67,15 @@ $('#stoptutorialbutton').click(function(e) {
   $('#toggledimmer').removeClass('disabled');
   $('#bargraph').load('elements/welcomebar.html');
   $('#bargraph').removeClass('tutorialsuccess');
+  $('#bargraph').removeClass('tutorialfailed');
   $('#bargraph').addClass('tutorialinfo');
   $('#topgraph').html('');
   Blockly.svgResize(workspace);
   try {
-
+    step5Sequencer.killTable(function() {
+      step5Sequencer.completed = true;
+      console.log('Table removed!');
+    });
   } catch(error) {
     console.error(error);
   }

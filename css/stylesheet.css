@@ -294,3 +294,8 @@ p.diminfo {
 .fullscreen-margin {
   margin-right: 25px !important;
 }
+
+.arrow.up.icon {
+  padding: 0 !important;
+  margin: 0 !important;
+}
