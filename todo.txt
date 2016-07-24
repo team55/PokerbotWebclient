@@ -8,7 +8,6 @@ Notes:
 
 Todo's:
   - Add legends to the different graphs.
-  - Resize when stopping tutorial in fullscreen.
   - Remove trash.
   - Remove ugly numbers graph.
   - Callback is undefined

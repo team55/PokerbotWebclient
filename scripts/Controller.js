@@ -111,9 +111,8 @@ $('#stoptutorialbutton').click(function(e) {
       step5Sequencer.completed = true;
       console.log('Table removed!');
     });
-  } catch(error) {
-    console.error(error);
-  }
+  } catch(error) {}
+  if (isFullscreenWorkspace()) { toggleFullscreenWorkspace(); }
 });
 
 /**
