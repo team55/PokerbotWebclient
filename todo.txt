@@ -14,7 +14,6 @@ Todo's:
   - Choose some better colors for graphs.
   - Add legends to the different graphs.
   - Change the order of the blocks based on the 'popularity'.
-  - Add drop down menu to select table.
   - Add server side error when table already exists.
   - Translate Server-side errors.
   - Catch 'invalid prolog' error server side.

@@ -34,7 +34,9 @@ $('#createtable').click(function(e) {
     var table = $('#tablecreatename').val();
     var password = $('#tablepassword').val();
     var players = parseInt($('#players').val(), 10);
-    Server.createTable(table, password, players, function() {});
+    Server.createTable(table, password, players, function() {
+      updateTables();
+    });
   } else {
     Logger.error('Opgegeven data is ongeldig of tekort.', 'CREATETABLE');
   }
@@ -47,6 +49,7 @@ $('#createtableandsit').click(function(e) {
     Server.createTable(table, password, players, function() {
       var username = $('#tablecreateusername').val();
       Server.connect(username, table);
+      updateTables();
     });
   } else {
     Logger.error('Opgegeven data is ongeldig of tekort.', 'CREATETABLE');
@@ -59,7 +62,13 @@ $('#createtableandsit').click(function(e) {
 $('#connectbtn').click(function(e) {
   var username = $('#username').val().replace(' ', '');
   var table = $('#tablename').val();
-  Server.connect(username, table);
+  console.log(username);
+  console.log(table);
+  if (!(username === '' || table === '')) {
+    Server.connect(username, table);
+  } else {
+    Logger.error('Ongeldige gegevens.', 'SIGNIN');
+  }
 });
 
 /**
@@ -176,6 +185,31 @@ var toggleFullscreenWorkspace = function() {
   }
   Blockly.svgResize(workspace);
 };
+
+/**
+ *  Updates the tables to the new table list.
+ */
+var updateTables = function() {
+  var url = 'http://bear.cs.kuleuven.be/pokerdemo/server/get_tables.php';
+  $.get(url, function(result) {
+    try {
+      var data = $.parseJSON(result);
+      var converted = {};
+      for(var i = 0; i < data['tables'].length; i++)
+        converted[data['tables'][i]['name']] = data['tables'][i]['name'];
+      $('#tablename').html($('<option></option>').attr('value','').text('Kies een tafel'));
+      $.each(converted, function(key, value) {
+        $('#tablename').append($('<option></option>').attr('value', key).text(value));
+      });
+    } catch(error) {
+      console.error(error);
+    }
+  });
+};
+$('#refreshtables').click(function(e) {
+  updateTables();
+});
+
 /**
  *  Execute the following commands on load.
  */
@@ -194,4 +228,5 @@ $(document).ready(function() {
     workspace.addChangeListener(myUpdateFunction);
     $('#bargraph').load('elements/welcomebar.html');
   });
+  updateTables();
 });

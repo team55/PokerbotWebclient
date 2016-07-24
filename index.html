@@ -228,10 +228,15 @@
                   <input id="username" type="text" placeholder="Gebruikersnaam">
                 </span>
                 <span class="field">
-                  <input id="tablename" type="text" placeholder="Tafelnaam">
+                  <select id="tablename" class="ui search dropdown">
+                    <option value="">Kies een tafel</option>
+                  </select>
                 </span>
                 <span class="field">
-                  <span id="connectbtn" class="ui teal submit button">Neem plaats</span>
+                  <div class="ui buttons">
+                    <span id="refreshtables" class="ui orange submit button"><i class="refresh icon"></i></span>
+                    <span id="connectbtn" class="ui teal submit button">Neem plaats</span>
+                  </div>
                 </span>
                 <div id="signInError" class="error"></div>
                 <div id="signInLog" class="error"></div>
