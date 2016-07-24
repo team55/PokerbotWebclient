@@ -15,7 +15,7 @@ var Server = {
   createTable: function(table, password, seats) {
     var createTableURL = 'http://bear.cs.kuleuven.be/pokerdemo/server/makeTable.php';
     if (seats === parseInt(seats, 10)) {
-      $.ajax({url: createTableURL, method: 'POST', success: function(result) {
+      $.ajax({url: createTableURL, method: 'POST', dataType: 'jsonp', success: function(result) {
         Logger.hideCreateTableError();
         Logger.log('Tafel "' + table + '" aangemaakt!<br />Je kan er nu aan plaatsnemen.', 'CREATETABLE');
       }, error: function(error) {

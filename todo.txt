@@ -6,6 +6,9 @@ Todo's:
   - If you copy a block, then remove it, blockly crashes.
         // This is a blockly issue.
         // Possible to fix?
+
+  - Fix cross-origin issue.
+
   - Choose some better colors for graphs.
   - Add legends to the different graphs.
   - Automatically assign seats when table is created.
@@ -13,7 +16,6 @@ Todo's:
   - Add drop down menu to select table.
   - Add server side error when table already exists.
   - Translate Server-side errors.
-  - Fix cross-origin issue.
   - Catch 'invalid prolog' error server side.
   - Find some bottlenecks on server?
   - Add show/hide for bottom graphs in game.
