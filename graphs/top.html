@@ -79,9 +79,7 @@
         }
         Blockly.svgResize(workspace);
         parseData(data);
-      } catch(error) {
-        console.error('Data received but error!: ' + error);
-      }
+      } catch(error) {}
     }, error: function(error) {
       console.error('Unable to fetch data!: ' + error);
     }});

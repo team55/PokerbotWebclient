@@ -8,7 +8,6 @@ Notes:
 
 Todo's:
   - Add legends to the different graphs.
-  - Data received but error! For last call when stopped.
 
 Server-side Todo's:
   - Add server side error when table already exists.
