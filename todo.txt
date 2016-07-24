@@ -3,7 +3,6 @@ Todo's:
   - Solution should be click to zoom.
         // Can't find a nice way to do this...
         // Customize this with Semantic-ui dimmer?
-  - Add solutions to problems after step 1c.
   - If you copy a block, then remove it, blockly crashes (blockly issue?).
   - Fix layout of regular gameplay.
   - Choose some better colors for graphs.
