@@ -1,0 +1,16 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="custom_if" x="92" y="159">
+    <value name="IF0">
+      <block type="is_preflop">
+      </block>
+    </value>
+    <statement name="DO0">
+      <block type="poker_call">
+      </block>
+    </statement>
+    <next>
+      <block type="poker_fold">
+      </block>
+    </next>
+  </block>
+</xml>

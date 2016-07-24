@@ -13,7 +13,7 @@ var BlockChecker = {
   clean: function(a) {
     var noX = a.replace(/x="(-)*[0-9]*"/g, '');
     var noY = noX.replace(/y="(-)*[0-9]*"/g, '');
-    return noY.replace(' ', '');
+    return noY.replace(/(\r\n|\n|\r|\t| )/gm,"");
   }
 
 }

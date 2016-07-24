@@ -1,12 +1,10 @@
 
 Todo's:
-  - Move the XML out of the main.html files.
   - Solution should be click to zoom.
   - Add solutions to problems after step 1c.
   - Add full screen support for the blockly workspace (or resize).
   - If you copy a block, then remove it, blockly crashes (blockly issue?).
   - Finish step 5.
-  - Fix step 4b solution checkers.
   - Fix layout of regular gameplay.
   - Choose some better colors for graphs.
   - Add legends to the different graphs.
@@ -18,6 +16,8 @@ Todo's:
   - Add server side error when table already exists.
   - Translate Server-side errors.
   - Fix cross-origin issue.
+  - Catch 'invalid prolog' error server side.
+  - Find some bottlenecks on server?
 
 // Future?:
 

@@ -141,11 +141,14 @@
   /**
    *  Add listener to check if the new blocks are correct for this step.
    */
-  workspace.addChangeListener(function() {
-    var solution = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="-3" y="53"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><value name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">12</field></block></value></block></value></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>';
-    var xml = Blockly.Xml.workspaceToDom(workspace);
-    var provided = Blockly.Xml.domToText(xml);
-    if (BlockChecker.equals(provided, solution)) { step1CChecker.complete(); }
+  var solution1C;
+  $.get('tutorials/1c/solution.xml', function(data) {
+    solution1C = data;
+    workspace.addChangeListener(function () {
+      var xml = Blockly.Xml.workspaceToDom(workspace);
+      var provided = Blockly.Xml.domToText(xml);
+      if (BlockChecker.equals(provided, solution1C)) { step1CChecker.complete(); }
+    });
   });
 
   $('#step-1c-tips-btn').click(function(e) {

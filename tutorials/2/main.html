@@ -138,11 +138,14 @@
   /**
    *  Add listener to check if the new blocks are correct for this step.
    */
-  workspace.addChangeListener(function() {
-    var solution = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="13" y="40"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><value name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></value></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>';
-    var xml = Blockly.Xml.workspaceToDom(workspace);
-    var provided = Blockly.Xml.domToText(xml);
-    if (BlockChecker.equals(provided, solution)) { step2Checker.complete(); }
+  var solution2;
+  $.get('tutorials/2/solution.xml', function(data) {
+    solution2 = data;
+    workspace.addChangeListener(function () {
+      var xml = Blockly.Xml.workspaceToDom(workspace);
+      var provided = Blockly.Xml.domToText(xml);
+      if (BlockChecker.equals(provided, solution2)) { step2Checker.complete(); }
+    });
   });
 
   $('#step-2-tips-btn').click(function(e) {
