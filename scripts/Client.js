@@ -10,7 +10,7 @@ var Client = {
   table: "",
   showprolog: false,
 
-  signin: function(username, table) {
+  signin: function(username, table, callback) {
     this.username = username;
     this.table = table;
     $('#login').hide();
@@ -31,6 +31,7 @@ var Client = {
     $('#toggledimmer').addClass('disabled');
     toggleHeader();
     Blockly.svgResize(workspace);
+    callback();
   },
 
   signout: function() {

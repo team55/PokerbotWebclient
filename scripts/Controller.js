@@ -30,18 +30,22 @@ $('#toggledimmer').click(function(e) {
  *  Create a new table using the data of the 'Create-Table'-form.
  */
 $('#createtable').click(function(e) {
+  $('#createtable').addClass('loading');
   if (isValidCreateTableForm()) {
     var table = $('#tablecreatename').val();
     var password = $('#tablepassword').val();
     var players = parseInt($('#players').val(), 10);
     Server.createTable(table, password, players, function() {
       updateTables();
+      $('#createtable').removeClass('loading');
     });
   } else {
     Logger.error('Opgegeven data is ongeldig of tekort.', 'CREATETABLE');
+    $('#createtable').removeClass('loading');
   }
 });
 $('#createtableandsit').click(function(e) {
+  $('#createtableandsit').addClass('loading');
   if (isValidCreateTableAndSitForm()) {
     var table = $('#tablecreatename').val();
     var password = $('#tablepassword').val();
@@ -50,9 +54,11 @@ $('#createtableandsit').click(function(e) {
       var username = $('#tablecreateusername').val();
       Server.connect(username, table);
       updateTables();
+      $('#createtableandsit').removeClass('loading');
     });
   } else {
     Logger.error('Opgegeven data is ongeldig of tekort.', 'CREATETABLE');
+    $('#createtableandsit').removeClass('loading');
   }
 });
 
@@ -60,14 +66,18 @@ $('#createtableandsit').click(function(e) {
  *  Connect the user to the table with the data of the 'Connect'-form.
  */
 $('#connectbtn').click(function(e) {
+  $('#connectbtn').addClass('loading');
   var username = $('#username').val().replace(' ', '');
   var table = $('#tablename').val();
   console.log(username);
   console.log(table);
   if (!(username === '' || table === '')) {
-    Server.connect(username, table);
+    Server.connect(username, table, function() {
+      $('#connectbtn').removeClass('loading');
+    });
   } else {
     Logger.error('Ongeldige gegevens.', 'SIGNIN');
+    $('#connectbtn').removeClass('loading');
   }
 });
 

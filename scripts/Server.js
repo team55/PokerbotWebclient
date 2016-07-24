@@ -34,14 +34,14 @@ var Server = {
   /**
    *  Connects the given user to the given table with a GET request.
    */
-  connect: function(username, table) {
+  connect: function(username, table, callback) {
     var destination = "http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName=";
     destination += table + "&playerName=" + username;
     $.ajax({url: destination, success: function(result) {
       try {
         var data = JSON.parse(result);
         if (data['type'] === 'Acknowledge') {
-          Client.signin(username, table);
+          Client.signin(username, table, callback);
         } else {
           Logger.error(data['message'], 'SIGNIN');
         }
