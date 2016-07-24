@@ -1,10 +1,10 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="custom_if" x="3" y="16">
+  <block type="custom_if" x="56" y="212">
     <value name="IF0">
       <block type="poker_cards">
         <field name="in">allekaarten
         </field>
-        <value name="cardlist">
+        <statement name="cardlist">
           <block type="poker_card">
             <value name="arg_color">
               <block type="poker_color_any">
@@ -39,7 +39,7 @@
               </block>
             </next>
           </block>
-        </value>
+        </statement>
       </block>
     </value>
     <statement name="DO0">
@@ -78,7 +78,7 @@
           <block type="poker_cards">
             <field name="in">allekaarten
             </field>
-            <value name="cardlist">
+            <statement name="cardlist">
               <block type="poker_card">
                 <value name="arg_color">
                   <block type="poker_color_any">
@@ -131,7 +131,7 @@
                   </block>
                 </next>
               </block>
-            </value>
+            </statement>
           </block>
         </value>
         <statement name="DO0">
