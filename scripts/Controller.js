@@ -220,6 +220,19 @@ $('#refreshtables').click(function(e) {
   updateTables();
 });
 
+var toggleDetailedView = function() {
+  if (!$('#bottomgraph').hasClass('hideme')) {
+    $('html, body').animate({scrollTop:0}, 'slow', function() {
+      $('#bottomgraph').addClass('hideme');
+      $('#detailedviewbtn').html('Toon details');
+    });
+  } else {
+    $('#bottomgraph').removeClass('hideme');
+    $('#detailedviewbtn').html('Verberg details');
+    $('html, body').animate({scrollTop:$(document).height()}, 'slow');
+  }
+}
+
 /**
  *  Execute the following commands on load.
  */

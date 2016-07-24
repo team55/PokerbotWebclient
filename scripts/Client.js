@@ -29,6 +29,7 @@ var Client = {
     $('#bottomgraph').load('graphs/bottom.html');
     $('#rulesendbtn').removeClass('disabled');
     $('#toggledimmer').addClass('disabled');
+    $('#detailedviewbtn').removeClass('hideme');
     toggleHeader();
     Blockly.svgResize(workspace);
     callback();
@@ -44,6 +45,7 @@ var Client = {
     $('#rulesendbtn').addClass('disabled');
     //$('#blocklyDiv').height('500px');
     $('#toggledimmer').removeClass('disabled');
+    $('#detailedviewbtn').addClass('hideme');
     if ($('#header').hasClass('hideme')) {
       toggleHeader();
     }
