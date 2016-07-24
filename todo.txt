@@ -9,6 +9,7 @@ Notes:
 Todo's:
   - Add legends to the different graphs.
   - Resize when stopping tutorial in fullscreen.
+  - Fix new solution images.
 
 Server-side Todo's:
   - Add server side error when table already exists.
