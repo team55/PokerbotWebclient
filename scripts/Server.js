@@ -12,12 +12,13 @@ var Server = {
    *  and maximum number of players. The function will only be executed if the
    *  amount of seats is an integer.
    */
-  createTable: function(table, password, seats) {
+  createTable: function(table, password, seats, callback) {
     var createTableURL = 'http://bear.cs.kuleuven.be/pokerdemo/server/makeTable.php';
     if (seats === parseInt(seats, 10)) {
-      $.ajax({url: createTableURL, method: 'POST', dataType: 'jsonp', success: function(result) {
+      $.ajax({url: createTableURL, method: 'POST', success: function(result) {
         Logger.hideCreateTableError();
         Logger.log('Tafel "' + table + '" aangemaakt!<br />Je kan er nu aan plaatsnemen.', 'CREATETABLE');
+        callback();
       }, error: function(error) {
         Logger.error('Er is een probleem opgetreden...', 'CREATETABLE');
       }, data: {

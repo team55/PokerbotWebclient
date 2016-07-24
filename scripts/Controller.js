@@ -15,6 +15,9 @@ var isValidCreateTableForm = function() {
             || $('#tablepassword').val() === ''
             || $('#tablecreatename').val() === '' );
 }
+var isValidCreateTableAndSitForm = function() {
+  return !($('#tablecreateusername').val() === '') && isValidCreateTableForm();
+}
 
 /**
  *  Show the dimmer on the page with the options to log in or create a table.
@@ -31,7 +34,20 @@ $('#createtable').click(function(e) {
     var table = $('#tablecreatename').val();
     var password = $('#tablepassword').val();
     var players = parseInt($('#players').val(), 10);
-    Server.createTable(table, password, players);
+    Server.createTable(table, password, players, function() {});
+  } else {
+    Logger.error('Opgegeven data is ongeldig of tekort.', 'CREATETABLE');
+  }
+});
+$('#createtableandsit').click(function(e) {
+  if (isValidCreateTableAndSitForm()) {
+    var table = $('#tablecreatename').val();
+    var password = $('#tablepassword').val();
+    var players = parseInt($('#players').val(), 10);
+    Server.createTable(table, password, players, function() {
+      var username = $('#tablecreateusername').val();
+      Server.connect(username, table);
+    });
   } else {
     Logger.error('Opgegeven data is ongeldig of tekort.', 'CREATETABLE');
   }

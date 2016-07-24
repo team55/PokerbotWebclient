@@ -246,6 +246,9 @@
             <p class="ui inverted connect">
               <span class="ui form">
                 <span class="field">
+                  <input id="tablecreateusername" type="text" placeholder="Gebruikersnaam">
+                </span>
+                <span class="field">
                   <input id="tablecreatename" type="text" placeholder="Tafelnaam">
                 </span>
                 <span class="field">
@@ -266,7 +269,11 @@
                   </select>
                 </span>
                 <span class="field">
-                  <button id="createtable" class="ui teal submit button">Maak tafel</button>
+                  <div class="ui buttons">
+                    <button id="createtable" class="ui orange submit button">Maak tafel</button>
+                    <button id="createtableandsit" class="ui teal submit button">Maak tafel &amp; Ga zitten</button>
+                  </div>
+
                 </span>
                 <div id="createTableError" class="red error"></div>
                 <div id="createTableLog" class="blue log"></div>
