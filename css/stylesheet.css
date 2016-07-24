@@ -303,9 +303,3 @@ p.diminfo {
   padding: 0 !important;
   margin: 0 !important;
 }
-
-* {
-    -moz-user-select: none !important;
-    -webkit-user-select: none !important;
-    user-select: none !important;
-}
