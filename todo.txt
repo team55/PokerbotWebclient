@@ -9,16 +9,16 @@ Notes:
 Todo's:
   - Solution should be click to zoom.
   - If you copy a block, then remove it, blockly crashes (blockly issue).
-
-
   - Choose some better colors for graphs.
   - Add legends to the different graphs.
   - Change the order of the blocks based on the 'popularity'.
+  - Add show/hide for bottom graphs in game.
+
+Server-side Todo's:
   - Add server side error when table already exists.
   - Translate Server-side errors.
   - Catch 'invalid prolog' error server side.
   - Find some bottlenecks on server?
-  - Add show/hide for bottom graphs in game.
 
 // Future?:
 
