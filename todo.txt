@@ -9,8 +9,10 @@ Notes:
 Todo's:
   - Add legends to the different graphs.
   - Resize when stopping tutorial in fullscreen.
-  - Fix new solution images.
   - Remove trash.
+  - Remove ugly numbers graph.
+  - Callback is undefined
+  - Data received but error! For last call when stopped.
 
 Server-side Todo's:
   - Add server side error when table already exists.

@@ -238,7 +238,7 @@ body, .cutbottom {
 #step-1a-fail > p, #step-1b-fail > p, #step-1c-fail > p,
 #step-2-fail > p, #step-3-fail > p, #step-4a-fail > p, #step-4b-fail > p, #step-5-fail > p {
   width: 100% !important;
-  text-align: center !important;
+  text-align: justify !important;
   margin: 0 auto !important;
   margin-bottom: 25px !important;
   margin-top: 25px !important;

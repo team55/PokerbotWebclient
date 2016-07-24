@@ -4,12 +4,12 @@
 
 <!-- Step description -->
 <span id="step-1c-description">
-  <p> Je bent aangekomen in het laatste deel van stap 1. We gaan verder op onze
+  <p> Je bent aangekomen in het laatste deel van de eerste stap. We gaan verder op onze
       vorige regel en gaan enkel de voorwaarde aanpassen. Het callen mag enkel
-      gebeuren indien we een kaart in onze handen hebben die een <b>Queen of
-      hoger</b> is. Er zijn speciale blocks die het mogelijk maken om kaarten
+      gebeuren indien we een kaart in onze hand hebben die een Queen of
+      hoger is. Er zijn speciale blocks die het mogelijk maken om kaarten
       te definiëren die in je hand moeten zitten. Een kaart bestaat uit een
-      rank en een kleur. We moeten dus een block voor de rank gebruiken die
+      rank en een kleur. We moeten dus een blok voor de rank gebruiken die
       zegt dat ze <b>groter of gelijk aan een Queen</b> moet zijn. </p>
       <div class="ui buttons">
         <button id="step-1c-tips-btn" class="ui green button">
@@ -25,11 +25,11 @@
 <!-- Step success -->
 <span id="step-1c-success">
   <span class="congrats">Gefeliciteerd!</span>
-  <p> Je hebt net je eerste, op kaarten gebaseerde, situatie gemodeleert en daar
+  <p> Je hebt net je eerste op kaarten gebaseerde situatie gemodelleerd en daar
       correct op gereageerd! Op dit moment ben je klaar voor stap twee, waar we
       bepaalde relaties tussen verschillende kaarten zullen definiëren (zoals
       zelfde rank, zelfde kleur, verschillende rank etc). We komen steeds dichter
-      en dichter de vaardigheden die je nodig hebt om een echte pokerbot te
+      en dichter bij de vaardigheden die je nodig hebt om een echte pokerbot te
       maken! </p>
       <button class="ui small grey button" onclick="step1CChecker.next()">
         Volgende stap!
@@ -39,8 +39,10 @@
 <!-- Step fail -->
 <span id="step-1c-fail">
   <span class="congrats">Oops!</span>
-  <p> Probeer het nu eens zelf! </p>
-      <div><img id="step-1c-solution-preview" width='200' class="solution" src="tutorials/1c/solution.png" />
+  <p> We laten jou dan wel de oplossing zien, maar we raden toch aan om deze
+      stap opnieuw te proberen. Het is belangrijk dat je de stappen zelf maakt
+      om zo vertrouwd te raken met het maken van verschillende regels. </p>
+      <div><img id="step-1c-solution-preview" width='150' class="solution" src="tutorials/1c/solution.png" />
       </div>
       <button id="step-1c-restart-btn" class="ui small grey button">
         Probeer opnieuw!
@@ -55,10 +57,10 @@
         <i class="help icon"></i>
         Tip
       </h2>
-      <p class="diminfo"> Onder 'kaarten' vind je een block dat nagaat of
+      <p class="diminfo"> Onder 'kaarten' vind je een blok dat nagaat of
           een bepaald kaart (of meerdere) in je hand zitten of niet. Je kan dit
-          combineren met een kaarten-block (bruine block). Het is nu mogelijk
-          om hier een block in te zetten dat zegt dat de rank groter of gelijk
+          combineren met een kaarten-blok (bruin). Het is nu mogelijk
+          om hier een blok in te zetten dat zegt dat de rank groter of gelijk
           moet zijn aan een Queen! </p>
       <div id="step-1c-hide-tips-btn" class="ui grey button">
         Bedankt!
