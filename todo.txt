@@ -3,7 +3,9 @@ Todo's:
   - Solution should be click to zoom.
         // Can't find a nice way to do this...
         // Customize this with Semantic-ui dimmer?
-  - If you copy a block, then remove it, blockly crashes (blockly issue?).
+  - If you copy a block, then remove it, blockly crashes.
+        // This is a blockly issue.
+        // Possible to fix?
   - Fix layout of regular gameplay.
   - Choose some better colors for graphs.
   - Add legends to the different graphs.
