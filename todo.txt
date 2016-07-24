@@ -8,7 +8,6 @@ Notes:
 
 Todo's:
   - Add legends to the different graphs.
-  - Remove trash.
   - Remove ugly numbers graph.
   - Callback is undefined
   - Data received but error! For last call when stopped.

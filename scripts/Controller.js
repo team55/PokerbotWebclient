@@ -239,6 +239,7 @@ $(document).ready(function() {
   customWorkspace('blockly-colors/custom.css', function() {
     workspace = Blockly.inject('blocklyDiv',
         {media: 'blockly/media/',
+         trashcan: false,
          toolbox: document.getElementById('toolbox')});
     Blockly.Xml.domToWorkspace(workspace,
             document.getElementById('startBlocks'));
