@@ -128,7 +128,10 @@
   var step3Checker = {
     isCompleted: false,
     complete: function() {
-      if (!this.isCompleted) show3Success();
+      if (!this.isCompleted) {
+        if(isFullscreenWorkspace()) { toggleFullscreenWorkspace(); }
+        show3Success();
+      }
       this.isCompleted = true;
     },
     next: function() {

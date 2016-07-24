@@ -125,6 +125,31 @@ var toggleHeader = function() {
 }
 
 /**
+ *  Go fullscreen.
+ */
+var isFullscreenWorkspace = function() {
+  return $('#blocklyDiv').hasClass('fullscreen');
+};
+var toggleFullscreenWorkspace = function() {
+  console.log('going fullscreen');
+  if (!$('#blocklyDiv').hasClass('fullscreen')) {
+    $('#blocklyDiv').addClass('fullscreen fullscreen-margin');
+    $('#blocks-bar').removeClass('eleven wide column');
+    $('#blocks-bar').addClass('sixteen wide column');
+    $('#bargraph').addClass('hideme');
+    $('#controls').addClass('fullscreen-margin');
+    $('#resize-btn').html('Verklein');
+  } else {
+    $('#blocklyDiv').removeClass('fullscreen fullscreen-margin');
+    $('#blocks-bar').removeClass('sixteen wide column');
+    $('#blocks-bar').addClass('eleven wide column');
+    $('#bargraph').removeClass('hideme');
+    $('#rulesendbtn').removeClass('fullscreen-margin');
+    $('#resize-btn').html('Vergroot');
+  }
+  Blockly.svgResize(workspace);
+};
+/**
  *  Execute the following commands on load.
  */
 $(document).ready(function() {

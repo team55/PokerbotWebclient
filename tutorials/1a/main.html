@@ -130,7 +130,10 @@
   var step1AChecker = {
     isCompleted: false,
     complete: function() {
-      if (!this.isCompleted) show1ASuccess();
+      if (!this.isCompleted) {
+        if(isFullscreenWorkspace()) { toggleFullscreenWorkspace(); }
+        show1ASuccess();
+      }
       this.isCompleted = true;
     },
     next: function() {

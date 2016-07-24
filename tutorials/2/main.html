@@ -125,7 +125,10 @@
   var step2Checker = {
     isCompleted: false,
     complete: function() {
-      if (!this.isCompleted) show2Success();
+      if (!this.isCompleted) {
+        if(isFullscreenWorkspace()) { toggleFullscreenWorkspace(); }
+        show2Success();
+      }
       this.isCompleted = true;
     },
     next: function() {

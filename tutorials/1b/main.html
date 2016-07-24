@@ -131,7 +131,10 @@
   var step1BChecker = {
     isCompleted: false,
     complete: function() {
-      if (!this.isCompleted) show1BSuccess();
+      if (!this.isCompleted) {
+        if(isFullscreenWorkspace()) { toggleFullscreenWorkspace(); }
+        show1BSuccess();
+      }
       this.isCompleted = true;
     },
     next: function() {

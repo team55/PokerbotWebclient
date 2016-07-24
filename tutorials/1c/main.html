@@ -129,8 +129,11 @@
   var step1CChecker = {
     isCompleted: false,
     complete: function() {
-      if (!this.isCompleted) show1CSuccess();
-        this.isCompleted = true;
+      if (!this.isCompleted) {
+        if(isFullscreenWorkspace()) { toggleFullscreenWorkspace(); }
+        show1CSuccess();
+      }
+      this.isCompleted = true;
     },
     next: function() {
       show1CDescription();

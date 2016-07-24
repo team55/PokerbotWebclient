@@ -54,7 +54,7 @@
     </div>
 
     <!-- Blockly Interface -->
-    <div class="eleven wide column">
+    <div id="blocks-bar" class="eleven wide column">
       <div class="ui grid cutbottom">
         <div id="workDiv" class="sixteen wide segment column">
           <div id="blocklyDiv"></div>
@@ -196,9 +196,10 @@
             </block>
           </xml>
         </div>
-        <div class="sixteen wide column right aligned">
+        <div id="controls" class="sixteen wide column right aligned">
           <button class="ui mini button" onclick="saveWorkspace()">Blocks opslaan</button>
           <button class="ui mini button" onclick="loadWorkspace()">Blocks openen</button>
+          <button id="resize-btn" class="ui mini button" onclick="toggleFullscreenWorkspace()">Vergroot</button>
           <button id="rulesendbtn" class="ui small teal disabled button" onclick="sendCode()">Activeer Regel</button>
           <div id="sendstatus" class="ui">Regel verzonden!<i class="send icon"></i></div>
           <div id="sendstatuspusher"><br /></div>

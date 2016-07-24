@@ -61,9 +61,6 @@ html, body {
   text-align: center;
 }
 
-#controls, #preview {
-  display: none;
-}
 
 /* New Stuff */
 
@@ -194,7 +191,7 @@ body, .cutbottom {
 }
 
 .hideme {
-  display: none;
+  display: none !important;
 }
 
 .bottomgraphelement {
@@ -288,4 +285,12 @@ p.diminfo {
   border-radius: 2px;
   border: 3px solid #bdc3c7;
   margin-bottom: 25px;
+}
+
+.fullscreen {
+  height: 475px !important;
+}
+
+.fullscreen-margin {
+  margin-right: 25px !important;
 }

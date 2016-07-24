@@ -118,7 +118,10 @@
   var step4BChecker = {
     isCompleted: false,
     complete: function() {
-      if (!this.isCompleted) show4BSuccess();
+      if (!this.isCompleted) {
+        if(isFullscreenWorkspace()) { toggleFullscreenWorkspace(); }
+        show4BSuccess();
+      }
       this.isCompleted = true;
     },
     next: function() {
