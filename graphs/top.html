@@ -21,18 +21,6 @@
 </div>
 <script>
 
-  var colors = [
-    'rgb(25, 180, 145)',
-    'rgb(41, 197, 102)',
-    'rgb(45, 141, 214)',
-    'rgb(144, 79, 173)',
-    'rgb(46, 64, 83)',
-    'rgb(22, 150, 122)',
-    'rgb(35, 164, 85)',
-    'rgb(36, 117, 176)',
-    'rgb(131, 60, 163)',
-    'rgb(39, 54, 70)'
-  ];
   var fillcolor = 'rgba(0, 0, 0, 0)';
   var linewidth = 3;
 
@@ -59,7 +47,7 @@
       for(var i = 0; i < players.length; i++) {
         dataSets[i] = new TimeSeries();
         smoothie.addTimeSeries(dataSets[i], {
-          strokeStyle: colors[i],
+          strokeStyle: GRAPH_COLORS[i],
           fillStyle: fillcolor,
           lineWidth: linewidth
         });
@@ -70,7 +58,7 @@
     for(var i = 0; i < players.length; i++) {
       var player = players[i];
       dataSets[i].append(new Date().getTime(), Math.round(player['avg profit'] * 100) / 100);
-      var description = '<span class="info" style="color:'+colors[i]+';">'+players[i]['name']+'</span>';
+      var description = '<span class="info" style="color:'+GRAPH_COLORS[i]+';">'+players[i]['name']+'</span>';
       $('#topGraphLegend').html($('#topGraphLegend').html() + description);
     }
     setTimeout(function() {

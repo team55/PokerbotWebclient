@@ -17,6 +17,7 @@ const GRAPH_COLORS = [
   'rgb(228, 126, 48)',    // CARROT
   'rgb(127, 140, 141)',   // ASBESTOS
   'rgb(240, 195, 48)',    // SUN FLOWER
+  'rgb(190, 58, 49)',     // POMEGRANATE
   'rgb(149, 165, 166)',   // CONCRETE
   'rgb(35, 159, 133)',    // GREEN SEA
   'rgb(141, 72, 171)',    // WISTERIA
@@ -26,6 +27,5 @@ const GRAPH_COLORS = [
   'rgb(45, 62, 79)',      // MIDNIGHT BLUE
   'rgb(47, 129, 183)',    // BELIZE HOLE
   'rgb(251, 252, 252)',   // CLOUDS
-  'rgb(190, 58, 49)',     // POMEGRANATE
   'rgb(209, 84, 25)'      // PUMPKIN
 ];

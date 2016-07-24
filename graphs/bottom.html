@@ -41,8 +41,8 @@
         var label = index + ' - ' + value + '%';
         var element = {
           value: value,
-          color: COLORS[j],
-          highlight: COLORS[j],
+          color: GRAPH_COLORS[j],
+          highlight: GRAPH_COLORS[j],
           label: label
         }
         information.push(element);
@@ -101,18 +101,6 @@
   }, 2500);
   fetchBottomBarGraphsData();
 
-  // TODO: THIS SHOULD BE DEFINED IN THE PARENT
-  var COLORS = [
-    'rgb(25, 180, 145)',
-    'rgb(41, 197, 102)',
-    'rgb(45, 141, 214)',
-    'rgb(144, 79, 173)',
-    'rgb(46, 64, 83)',
-    'rgb(22, 150, 122)',
-    'rgb(35, 164, 85)',
-    'rgb(36, 117, 176)',
-    'rgb(131, 60, 163)',
-    'rgb(39, 54, 70)'
-  ];
+
 
 </script>
