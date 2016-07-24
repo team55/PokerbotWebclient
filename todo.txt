@@ -1,13 +1,15 @@
 
+Notes:
+  CROSS-ORIGIN ISSUE:
+    - Should be fixed when it runs on the server.
+    - Local website runs in Safari tho.
+    - We can't set the Access-Control-Allow-Origin header on server for
+      security purposes. We should make it easy to deploy on the server.
+
 Todo's:
   - Solution should be click to zoom.
-        // Can't find a nice way to do this...
-        // Customize this with Semantic-ui dimmer?
-  - If you copy a block, then remove it, blockly crashes.
-        // This is a blockly issue.
-        // Possible to fix?
+  - If you copy a block, then remove it, blockly crashes (blockly issue).
 
-  - Fix cross-origin issue.
 
   - Choose some better colors for graphs.
   - Add legends to the different graphs.
