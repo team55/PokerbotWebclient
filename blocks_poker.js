@@ -389,13 +389,17 @@ var cardcolor = 20;
 Blockly.Blocks['poker_cards'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("kaarten in ")
+        .appendField("kaarten in ");
+    this.appendDummyInput()
+      .setAlign(Blockly.ALIGN_RIGHT)
         .appendField(new Blockly.FieldDropdown([["hand", "handkaarten"], ["tafel", "tafelkaarten"], ["hand en tafel", "allekaarten"]]), "in");
-    this.appendValueInput("cardlist")
-        .setCheck("POKER_TYPE_CARD")
-        .appendField("contains");
-    this.setInputsInline(false);
-    this.setOutput(true);
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_CENTRE)
+        .appendField(' bevatten');
+    this.appendStatementInput('cardlist')
+        .setCheck('POKER_TYPE_CARD');
+    this.setInputsInline(true);
+    this.setOutput(true, "Boolean");
     this.setColour(rangecolor);
     this.setTooltip('Gaat na indien de gegeven kaarten in de hand, op tafel, of in beide zitten.');
   }
@@ -403,7 +407,7 @@ Blockly.Blocks['poker_cards'] = {
 Blockly.Blocks['poker_card'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("card with");
+        .appendField("card with ");
     this.appendValueInput("arg_color")
         .setCheck("POKER_TYPE_COLOR")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -412,7 +416,7 @@ Blockly.Blocks['poker_card'] = {
         .setCheck("POKER_TYPE_RANK")
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("rank:");
-    this.setOutput(true, "POKER_TYPE_CARD");
+    this.setOutput(false, "POKER_TYPE_CARD");
     this.setInputsInline(false);
     this.setPreviousStatement(true, "POKER_TYPE_CARD");
     this.setNextStatement(true, "POKER_TYPE_CARD");

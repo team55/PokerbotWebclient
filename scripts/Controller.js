@@ -244,9 +244,11 @@ $(document).ready(function() {
     Blockly.Xml.domToWorkspace(workspace,
             document.getElementById('startBlocks'));
     function myUpdateFunction() {
+
       var code = Blockly.Prolog.workspaceToCode(workspace);
       // If you need the prolog code, it can be logged here.
-      //console.log(code);
+      console.log(code);
+      console.log(Blockly.Xml.workspaceToDom(workspace));
     }
     workspace.addChangeListener(myUpdateFunction);
     $('#bargraph').load('elements/welcomebar.html');

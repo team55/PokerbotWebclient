@@ -7,8 +7,8 @@ Notes:
       security purposes. We should make it easy to deploy on the server.
 
 Todo's:
-  - If you copy a block, then remove it, blockly crashes (blockly issue).
   - Add legends to the different graphs.
+  - Resize when stopping tutorial in fullscreen.
 
 Server-side Todo's:
   - Add server side error when table already exists.
