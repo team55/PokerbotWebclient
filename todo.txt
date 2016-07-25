@@ -25,6 +25,7 @@ Server-side Todo's:
   - Translate Server-side errors.
   - Catch 'invalid prolog' error server side.
   - Find some bottlenecks on server?
+  - A lot of desanitizing should still be done.
 
 // Future?:
 

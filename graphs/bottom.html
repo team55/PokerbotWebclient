@@ -85,7 +85,8 @@
         var data = $.parseJSON(result);
         parseMoveChartsData(data);
       } catch(error) {
-        console.error('Data received but error!: ' + error);
+        console.error('Data received on bottom but error!: ' + error);
+        console.log(result);
       }
     }, error: function(error) {
       console.error('Unable to fetch data!: ' + error);
