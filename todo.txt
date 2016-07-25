@@ -1,26 +1,12 @@
 
-Notes:
-  CROSS-ORIGIN ISSUE:
-    - Should be fixed when it runs on the server.
-    - Local website runs in Safari tho.
-    - We can't set the Access-Control-Allow-Origin header on server for
-      security purposes. We should make it easy to deploy on the server.
-  TOP CHART:
-    - No range, but we can add the values to the legend. This might
-      be a nicer way to display concrete values.
-  SIDE CHARTS:
-    - No idea how to display extra legend. Is too crowded, I think we should
-      fix it by just using tooltips.
-
 Todo's:
-  - Fix smaller labels in bargraph.
-  - Add legend to bargraph.
-  - Auto hide bottom on default.
-  - Fix 'Activate Rule' button margin on fullscreen.
-  - Remove save and load buttons (comment).
-  - Shorten long names.
-  - XMLHttp zeker naar string in comparison!
-  - bar legends
+  - Finish refactoring.
+  - Update content.
+  - Auto-Generated tips.
+
+SKYPE:
+  - Add legend to charts on side and bottom (how?).
+  - Top chart can be in labels (Good?).
 
 Server-side Todo's:
   - Add server side error when table already exists.
