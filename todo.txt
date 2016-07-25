@@ -7,7 +7,15 @@ Notes:
       security purposes. We should make it easy to deploy on the server.
 
 Todo's:
-  - Add legends to the different graphs.
+  - Header not toggled on default.
+  - Update top graph size.
+  - Add margins to numbers in top graph.
+  - Rewrite text of the sign out modal.
+  - Fix smaller labels in bargraph.
+  - Add legend to bargraph.
+  - Auto hide bottom on default.
+  - Fix 'Activate Rule' button margin on fullscreen.
+  - Remove save and load buttons (comment).
 
 Server-side Todo's:
   - Add server side error when table already exists.
