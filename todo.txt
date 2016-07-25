@@ -8,6 +8,9 @@ Notes:
   TOP CHART:
     - No range, but we can add the values to the legend. This might
       be a nicer way to display concrete values.
+  SIDE CHARTS:
+    - No idea how to display extra legend. Is too crowded, I think we should
+      fix it by just using tooltips.
 
 Todo's:
   - Fix smaller labels in bargraph.

@@ -4,11 +4,33 @@
  *  The client instance also stores a username and table when the user
  *  is connected to a table.
  */
+
+const USERNAME_MAX_LENGTH = 12;
+const USERNAME_MAX_SERVER_LENGTH = 20;
+const USERNAME_SUFFIX = '...';
+
 var Client = {
 
   username: "",
   table: "",
   showprolog: false,
+
+  serverUsername: function() {
+    if (this.username.length > USERNAME_MAX_SERVER_LENGTH) {
+      return this.username.substring(0, USERNAME_MAX_SERVER_LENGTH);
+    } else {
+      return this.username;
+    }
+  },
+
+  formattedUsername: function() {
+    if (this.username.length < USERNAME_MAX_LENGTH) {
+      return this.username;
+    } else {
+      var baseSize = USERNAME_MAX_LENGTH - USERNAME_SUFFIX.length;
+      return this.username.substring(0, baseSize) + USERNAME_SUFFIX;
+    }
+  },
 
   signin: function(username, table, callback) {
     this.username = username;
@@ -16,7 +38,7 @@ var Client = {
     $('#login').hide();
     $('#username').val('');
     $('#tablename').val('');
-    var label = '<i id="toggleheaderbtn" class="unhide icon" onclick="toggleHeader()"></i><span class="ui image label"><img src="img/person.jpg">' + username + '<div class="detail">' + table + '<i onclick="disconnect()" class="delete icon"></i></div></span>';
+    var label = '<i id="toggleheaderbtn" class="unhide icon" onclick="toggleHeader()"></i><span class="ui image label"><img src="img/person.jpg">' + this.formattedUsername() + '<div class="detail">' + table + '<i onclick="disconnect()" class="delete icon"></i></div></span>';
     $('#tablestatus').html(label);
     $('.ui.page.dimmer').dimmer('hide');
     Logger.hideSignInLog();

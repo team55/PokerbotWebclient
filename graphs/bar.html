@@ -40,6 +40,7 @@
     }
     var options = {
       tooltipTemplate: "<%= label %>",
+      tooltipFontSize: 8,
       showTooltips: true,
       animation: false
     }
@@ -64,7 +65,7 @@
    *  movesUsernameView.
    */
   function createMovesChart(data, total) {
-    $('#movesUsernameView').html(Client.username);
+    $('#movesUsernameView').html(Client.formattedUsername());
     var information = [], i = 0;
     for(index in data) {
       var value = Math.round((data[index]/total)*100);
@@ -80,6 +81,7 @@
     }
     var options = {
       tooltipTemplate: "<%= label %>",
+      tooltipFontSize: 8,
       showTooltips: true,
       animation: false
     }
@@ -92,7 +94,7 @@
     var result = {};
     var total = 0;
     for(var i = 0; i < list.length; i++) {
-      if (list[i]['name'] == Client.username) {
+      if (list[i]['name'] == Client.serverUsername()) {
         result['nbFolds'] = list[i]['nbFolds'];
         result['nbCalls'] = list[i]['nbCalls'];
         result['nbRaises'] = list[i]['nbRaises'];
@@ -108,7 +110,7 @@
    *  rulesUsernameView.
    */
   function createRulesChart(data, total) {
-    $('#rulesUsernameView').html(Client.username);
+    $('#rulesUsernameView').html(Client.formattedUsername());
     var information = [], i = 0;
     for(index in data) {
       var value = Math.round((data[index]/total)*100);
@@ -124,6 +126,7 @@
     }
     var options = {
       tooltipTemplate: "<%= label %>",
+      tooltipFontSize: 8,
       showTooltips: true,
       animation: false
     }
@@ -136,7 +139,8 @@
     var result = {};
     var total = 0;
     for(var i = 0; i < list.length; i++) {
-      if (list[i]['name'] == Client.username) {
+      if (list[i]['name'] == Client.serverUsername()) {
+        console.log('in');
         var rules = list[i]['rulesUsed'];
         for(var j = 0; j < rules.length; j++) {
           result[rules[j]['name']] = rules[j]['times'];
