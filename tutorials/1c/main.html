@@ -148,7 +148,7 @@
    */
   var solution1C;
   $.get('tutorials/1c/solution.xml', function(data) {
-    solution1C = data;
+    solution1C = Utils.xmlToString(data);
     workspace.addChangeListener(function () {
       var xml = Blockly.Xml.workspaceToDom(workspace);
       var provided = Blockly.Xml.domToText(xml);

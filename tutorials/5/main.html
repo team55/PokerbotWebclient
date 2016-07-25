@@ -164,7 +164,7 @@
     },
 
     killTable: function(callback) {
-      SERVER.killTable(this.tableID, this.tablePassword, {
+      SERVER.killTable(SERVER._desanitize(this.tableID), this.tablePassword, {
         success: callback,
         fail: step5Sequencer.handleError
       });
@@ -201,7 +201,7 @@
     },
 
     sendDefaultRule: function(callback) {
-      $.get('tutorials/5/default.pl', function(data) {
+      $.get('tutorials/5/default.txt', function(data) {
         step5Sequencer.sendRule(step5Sequencer.computername, data, function() {
           console.log('done');
         })
