@@ -2,7 +2,6 @@
 /**
  *  This file folds the SERVER_CORE instance which is the bottom layer to
  *  communicate with the server. This file requires JQUERY.
- *  TODO: Call fail with fail message, success with data.
  */
 
 const CREATE_TABLE_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/makeTable.php';
