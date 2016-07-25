@@ -12,7 +12,7 @@
 </style>
 <script src="scripts/Smoothie.js"></script>
 <h3>Gemiddelde winst per hand</h3>
-<canvas id="topGraphCanvas" width="1000" height="175"></canvas>
+<canvas id="topGraphCanvas" width="750" height="175"></canvas>
 <div id="topGraphLegend"><span class="info"></span></div>
 <div id="gpswarning" class="ui raised segment hideme">
   <p> Het gemiddelde aantal handen per seconde is enorm gedaald sinds de laatste
@@ -21,17 +21,19 @@
 </div>
 <script>
 
+
   var fillcolor = 'rgba(0, 0, 0, 0)';
   var linewidth = 3;
 
   var tois = 1;
   var dataSets = null;
+  var smoothie = null;
   var DATASOURCE = 'http://bear.cs.kuleuven.be/pokerdemo/server/ObserveTable.php?tableName=' + Client.table;
 
   var parseData = function(data) {
     var players = data['result']['player'];
     if (dataSets == null) {
-      var smoothie = new SmoothieChart({
+      smoothie = new SmoothieChart({
         grid: {
           strokeStyle:'rgb(247, 247, 247)',
           fillStyle:'rgb(247, 247, 247)',
@@ -39,6 +41,7 @@
           millisPerLine: 250,
           verticalSections: 6,
         }, labels: {
+          disabled: true,
           fillStyle:'rgba(0, 0, 0, 0.25)',
           fontStyle: 'Arial'
         }
@@ -63,6 +66,7 @@
       $('#topGraphLegend').html($('#topGraphLegend').html() + description);
     }
     setTimeout(function() {
+      console.log(smoothie);
       fetchData();
     }, tois * 1000);
   }

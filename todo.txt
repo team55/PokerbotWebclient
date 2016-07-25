@@ -5,10 +5,11 @@ Notes:
     - Local website runs in Safari tho.
     - We can't set the Access-Control-Allow-Origin header on server for
       security purposes. We should make it easy to deploy on the server.
+  TOP CHART:
+    - No range, but we can add the values to the legend. This might
+      be a nicer way to display concrete values.
 
 Todo's:
-  - Update top graph size.
-  - Add margins to numbers in top graph.
   - Rewrite text of the sign out modal.
   - Fix smaller labels in bargraph.
   - Add legend to bargraph.
