@@ -1,91 +1,99 @@
 
 /**
- *  This file holds the SERVER instance to handle all server side
- *  communications. It is used as an interface for the server, mainly used
- *  by the CLIENT instance.
+ *  This file holds the SERVER instance to handle server side communications
+ *  that are not dependent on the user (See SESSION for that). It is used as an
+ *  interface for the server to create, kill and fetch data of tables that
+ *  are running on the server.
  */
 
- const CREATE_TABLE_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/makeTable.php'
-
-
 /**
- *  This server instance should be globally available and provides an interface
+ *  This SERVER instance should be globally available and provides an interface
  *  to communicate with the real server. The instance does not hold any data.
- *  ALL requests to the server should be sent via this instance.
+ *  This instance, together with the SESSION instance, should be responsible
+ *  for all server-side communications. This instance uses SERVER_CORE, but
+ *  SERVER_CORE may NEVER be called directly.
  */
 var SERVER = {
 
   /**
-   *  Creates a new table on the Server with the given table name, password
-   *  and maximum number of players. The function will only be executed if the
-   *  amount of seats is an integer.
+   *  Creates a new table with given name, password and number of seats.
+   *  The success, fail and final callbacks will be called in the corresponding
+   *  cases.
+   *  @param  tablename   The name of the new table.
+   *  @param  password    The password of the new table.
+   *  @param  seats       The number of seats at the new table.
+   *  @param  success     Callback when succeeded.
+   *  @param  fail        Callback when failed.
+   *  @param  final       Callback when finished.
    */
   createTable: function(tablename, password, seats, success, fail, final) {
-    $.ajax({url: createTableURL, method: 'POST', success: function(result) {
-      Logger.hideCreateTableError();
-      Logger.log('Tafel "' + table + '" aangemaakt!<br />Je kan er nu aan plaatsnemen.', 'CREATETABLE');
-      if (callback) callback();
-    }, error: function(error) {
-      Logger.error('Er is een probleem opgetreden...', 'CREATETABLE');
-    }, data: {
-      'name': table,
-      'password': password,
-      'nbPlayers': seats
-    }});
+    var ct = SERVER._desanitize(tablename);
+    var cp = SERVER._desanitize(password);
+    var cs = SERVER._desanitize(seats);
+    if (ct === '' || cp === '' || cs === '') {
+      console.error('Invalid data to create table');
+      if (fail) fail('Invalid data to create table');
+      if (final) final();
+    } else {
+      SERVER_CORE.createTable(ct, cp, cs, success, fail, final);
+    }
   },
 
   /**
-   *  Connects the given user to the given table with a GET request.
+   *  Kills the table with the given name in case its password is correct.
+   *  The success, fail and final callbacks will be called in the corresponding
+   *  cases.
+   *  @param  tablename   The name of the table.
+   *  @param  password    The password of the table.
+   *  @param  success     Callback when succeeded.
+   *  @param  fail        Callback when failed.
+   *  @param  final       Callback when finished.
    */
-  connect: function(username, table, callback) {
-    var destination = "http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName=";
-    destination += table + "&playerName=" + username;
-    $.ajax({url: destination, success: function(result) {
-      try {
-        var data = JSON.parse(result);
-        if (data['type'] === 'Acknowledge') {
-          Client.signin(username, table, callback);
-        } else {
-          Logger.error(data['message'], 'SIGNIN');
-        }
-      } catch (err) {
-        Logger.error('Woops, looks like something went wrong.', 'SIGNIN');
-      }
-    }, error: function(error) {
-      Logger.error(error, 'SIGNIN');
-    }});
+  killTable: function(tablename, password, success, fail, final) {
+    var ct = SERVER._desanitize(tablename);
+    var cp = SERVER._desanitize(password);
+    if (ct === '' || cp === '') {
+      console.error('Invalid data to kill table');
+      if (fail) fail('Invalid data to kill table');
+      if (final) final();
+    } else {
+      SERVER_CORE.killTable(ct, cp, success, fail, final);
+    }
   },
 
-  tableData: function(table) {
-    destination = "http://bear.cs.kuleuven.be/pokerdemo/server/watchTable.php?tableName=";
-    destination += table;
-    $.ajax({url: destination, success: function(result) {
-      // TODO: TABLE DATA RECEIVED, SHOULD LOAD IN SOME DIV.
-    }, error: function(error) {
-      // TODO: HANDLE ERROR. JUST LOG IT IN SOME DIV?
-    }});
+  /**
+   *  Gets the results of that table represented by the given tablename. The
+   *  result will be passed to the success callback. The functions fail and
+   *  final will be called in the corresponding cases.
+   *  @param  tablename   The table to get the data from.
+   *  @param  success     Callback when succeeded.
+   *  @param  fail        Callback when failed.
+   *  @param  final       Callback when finished.
+   */
+  getTableData: function(tablename, success, fail, final) {
+    var ct = SERVER._desanitize(tablename);
+    if (ct === '') {
+      console.error('Invalid data to fetch data from');
+      if (fail) fail('Invalid data to fetch data from');
+      if (final) final();
+    } else {
+      SERVER_CORE.getTableData(ct, success, fail, final);
+    }
   },
 
-  sendRule: function(username, table, code) {
-    $('#rulesendbtn').addClass('disabled');
-    destination = "http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName=";
-    destination += table + "&playerName=" + username + "&description=" + encodeURIComponent(code);
-    $.ajax({url: destination, success: function(result) {
-      $('#sendstatuspusher').hide();
-      $('#sendstatus').transition('swing left');
-      window.setTimeout(function() {
-        $('#sendstatus').transition('swing left', function() {
-          $('#sendstatuspusher').show();
-          $('#rulesendbtn').removeClass('disabled');
-        });
-      }, 3000);
-      // TODO: REPLY, LOG?
-    }, error: function(error) {
-      $('#rulesendbtn').removeClass('disabled');
-      // TODO: HANDLE ERROR. JUST LOG IT IN SOME DIV?
-    }});
+  /**
+   *  Returns the data of all the tables on the server. The success, fail and
+   *  final callbacks will be called in the corresponding cases.
+   *  @param  success     Callback when succeeded.
+   *  @param  fail        Callback when failed.
+   *  @param  final       Callback when finished.
+   */
+  getTableList: function(success, fail, final) {
+    SERVER_CORE.getTableList(success, fail, final);
   },
 
-
+  _desanitize: function(str) {
+    return str.replace(/\W|_/g, '');
+  }
 
 }
