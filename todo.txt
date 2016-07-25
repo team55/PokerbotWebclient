@@ -7,7 +7,6 @@ Notes:
       security purposes. We should make it easy to deploy on the server.
 
 Todo's:
-  - Header not toggled on default.
   - Update top graph size.
   - Add margins to numbers in top graph.
   - Rewrite text of the sign out modal.

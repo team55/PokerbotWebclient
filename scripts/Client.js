@@ -30,7 +30,6 @@ var Client = {
     $('#rulesendbtn').removeClass('disabled');
     $('#toggledimmer').addClass('disabled');
     $('#detailedviewbtn').removeClass('hideme');
-    toggleHeader();
     Blockly.svgResize(workspace);
     if (callback) callback();
   },
