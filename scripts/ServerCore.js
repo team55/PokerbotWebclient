@@ -42,13 +42,13 @@ var SERVER_CORE = {
     $.ajax({ url: CREATE_TABLE_URL, method: 'POST', data: data,
       success: function(result) {
         console.log('Successfully created table');
-        if ('success' in options) options.success(result);
-        if ('final' in options) options.final();
+        if ('success' in options && options.success != undefined) options.success(result);
+        if ('final' in options && options.final != undefined) options.final();
       },
       error: function(error) {
         console.error('Unable to create table');
-        if ('fail' in options) options.fail(error);
-        if ('final' in options) options.final();
+        if ('fail' in options && options.fail != undefined) options.fail(error);
+        if ('final' in options && options.final != undefined) options.final();
       }
     });
   },
@@ -70,13 +70,13 @@ var SERVER_CORE = {
     $.ajax({ url: KILL_TABLE_URL, method: 'POST', data: data,
       success: function(result) {
         console.log('Successfully killed table');
-        if ('success' in options) options.success(result);
-        if ('final' in options) options.final();
+        if ('success' in options && options.success != undefined) options.success(result);
+        if ('final' in options && options.final != undefined) options.final();
       },
       error: function(error) {
         console.error('Unable to kill table');
-        if ('fail' in options) options.fail(error);
-        if ('final' in options) options.final();
+        if ('fail' in options && options.fail != undefined) options.fail(error);
+        if ('final' in options && options.final != undefined) options.final();
       }
     });
   },
@@ -100,19 +100,20 @@ var SERVER_CORE = {
           var data = $.parseJSON(result);
           if (data['type'] === 'Acknowledge') {
             console.log('Connected successfully');
-            if ('success' in options) options.success(data);
+            if ('success' in options && options.success != undefined) options.success(data);
           } else if (fail) {
             console.error('Unable to connect');
-            if ('fail' in options) options.fail(data['message']);
+            if ('fail' in options && options.fail != undefined) options.fail(data['message']);
           }
         } catch(error) {
-          if ('fail' in options) options.fail();
+          if ('fail' in options && options.fail != undefined) options.fail();
         }
-        if ('final' in options) options.final();
+        console.log(options);
+        if ('final' in options && options.final != undefined) options.final();
       },
       error: function(error) {
         console.error('Unable to send connect request ' + error);
-        if ('fail' in options) options.fail();
+        if ('fail' in options && options.fail != undefined) options.fail();
         if ('final'in options) options.final();
       }
     });
@@ -138,13 +139,13 @@ var SERVER_CORE = {
     $.ajax({ url: destination,
       success: function(result) {
         console.log('Sent rule!');
-        if ('success' in options) options.success();
-        if ('final' in options) options.final();
+        if ('success' in options && options.success != undefined) options.success();
+        if ('final' in options && options.final != undefined) options.final();
       },
       error: function(error) {
         console.error('Unable to send rule!');
-        if ('fail' in options) options.fail(error);
-        if ('final' in options) options.final();
+        if ('fail' in options && options.fail != undefined) options.fail(error);
+        if ('final' in options && options.final != undefined) options.final();
       }
     });
   },
@@ -167,17 +168,17 @@ var SERVER_CORE = {
         try {
           var data = $.parseJSON(result);
           console.log('Received valid table data');
-          if ('success' in options) options.success(data);
+          if ('success' in options && options.success != undefined) options.success(data);
         } catch(error) {
           console.error('Received invalid table data' + error);
-          if ('fail' in options) options.fail(error);
+          if ('fail' in options && options.fail != undefined) options.fail(error);
         }
-        if ('final' in options) options.final();
+        if ('final' in options && options.final != undefined) options.final();
       },
       error: function(error) {
         console.error('Unable to get table data ' + error);
-        if ('fail' in options) options.fail(error);
-        if ('final' in options) options.final();
+        if ('fail' in options && options.fail != undefined) options.fail(error);
+        if ('final' in options && options.final != undefined) options.final();
       }
     });
   },
@@ -197,17 +198,17 @@ var SERVER_CORE = {
         try {
           var data = $.parseJSON(result);
           console.log('Received table list');
-          if('success' in options) options.success(data);
+          if('success' in options && options.success != undefined) options.success(data);
         } catch(error) {
           console.error('Received invalid table list ' + error);
-          if ('fail' in options) options.fail(error);
+          if ('fail' in options && options.fail != undefined) options.fail(error);
         }
-        if ('final' in options) options.final();
+        if ('final' in options && options.final != undefined) options.final();
       },
       error: function(error) {
         console.error('Unable to receive table list');
-        if ('fail' in options) options.fail(error);
-        if ('final' in options) options.final();
+        if ('fail' in options && options.fail != undefined) options.fail(error);
+        if ('final' in options && options.final != undefined) options.final();
       }
     });
   }
