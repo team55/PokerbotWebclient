@@ -83,7 +83,7 @@ html, body {
   margin-left: 20px;
 }
 
-#tablestatus {
+#table-status {
   font-style: italic;
   float:right;
   margin-top: 5px;
@@ -306,4 +306,15 @@ p.diminfo {
 .arrow.up.icon, .refresh.icon {
   padding: 0 !important;
   margin: 0 !important;
+}
+
+#topGraphLegend {
+  max-width: 800px !important;
+  margin: 0 auto;
+}
+.info {
+  margin: 2px;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding-top: 8px;
 }

@@ -1,5 +1,5 @@
 
-<!--  This files uses the ChartJS library in order to display the different
+<!--  This file uses the ChartJS library in order to display the different
       pie charts. Make sure to include version 1.0.2 or below. The minified
       file is added to the scripts folder. If this file is not included in the
       parent file, the charts won't appear and might even damage other parts
@@ -23,8 +23,10 @@
   /**
    *  Creates the calculationTimeChart with the data that is prepared by the
    *  parseCalculationTimePieChartData() function.
+   *  @param  data  The data to display.
+   *  @param  total The total value (sum of all values).
    */
-  function createCalculationTimePieChart(data, total) {
+  var createCalculationTimePieChart = function(data, total) {
     var information = [], i = 0;
     for(index in data) {
       var value = Math.round((data[index]/total)*100);
@@ -48,7 +50,14 @@
     var context = $('#CalculationTime').get(0).getContext('2d');
     calculationTimeChart = new Chart(context).Pie(information, options);
   }
-  function parseCalculationTimePieChartData(raw) {
+
+  /**
+   *  Function that parses the raw data (as received from the server) to the
+   *  data that is needed in order to display it in the CalculationChart.
+   *  @param  raw   The JSON formatted data as received from the server.
+   */
+  var parseCalculationTimePieChartData = function(raw) {
+    LOGGER.trace('Called parseCalculationTimePieChartData() in bar chart.');
     var list = raw['result']['player'];
     var result = {};
     var total = 0;
@@ -63,9 +72,11 @@
    *  Creates the movesChart with the data that is prepared by the
    *  parseMoveChartData() function. Also the username will be set in the
    *  movesUsernameView.
+   *  @param  data  The data to display.
+   *  @param  total The total value (sum of all values).
    */
-  function createMovesChart(data, total) {
-    $('#movesUsernameView').html(Client.formattedUsername());
+  var createMovesChart = function(data, total) {
+    $('#movesUsernameView').html(SESSION.getAbbreviatedUsername());
     var information = [], i = 0;
     for(index in data) {
       var value = Math.round((data[index]/total)*100);
@@ -88,13 +99,20 @@
     if (movesChart != null) movesChart.destroy();
     var context = $('#MovesChart').get(0).getContext('2d');
     movesChart = new Chart(context).Pie(information, options);
-  }
-  function parseMoveChartData(raw) {
+  };
+
+  /**
+   *  Function that parses the raw data (as received from the server) to the
+   *  data that is needed in order to display it in the MovesChart.
+   *  @param  raw   The JSON formatted data as received from the server.
+   */
+  var parseMoveChartData = function(raw) {
+    LOGGER.trace('Called parseMoveChartData() in bar chart.');
     var list = raw['result']['player'];
     var result = {};
     var total = 0;
     for(var i = 0; i < list.length; i++) {
-      if (list[i]['name'] == Client.serverUsername()) {
+      if (list[i]['name'] == SESSION.getServerUsername()) {
         result['nbFolds'] = list[i]['nbFolds'];
         result['nbCalls'] = list[i]['nbCalls'];
         result['nbRaises'] = list[i]['nbRaises'];
@@ -102,15 +120,17 @@
       }
     }
     createMovesChart(result, total);
-  }
+  };
 
   /**
    *  Creates the rulesChart with the data that is prepared by the
    *  parseRuleChartData() function. Also the username will be set in the
    *  rulesUsernameView.
+   *  @param  data  The data to display.
+   *  @param  total The total value (sum of all values).
    */
-  function createRulesChart(data, total) {
-    $('#rulesUsernameView').html(Client.formattedUsername());
+  var createRulesChart = function(data, total) {
+    $('#rulesUsernameView').html(SESSION.getAbbreviatedUsername());
     var information = [], i = 0;
     for(index in data) {
       var value = Math.round((data[index]/total)*100);
@@ -133,14 +153,20 @@
     if (rulesChart != null) rulesChart.destroy();
     var context = $('#RulesChart').get(0).getContext('2d');
     rulesChart = new Chart(context).Pie(information, options);
-  }
-  function parseRuleChartData(raw) {
+  };
+
+  /**
+   *  Function that parses the raw data (as received from the server) to the
+   *  data that is needed in order to display it in the RuleChart.
+   *  @param  raw   The JSON formatted data as received from the server.
+   */
+  var parseRuleChartData = function(raw) {
+    LOGGER.trace('Called parseRuleChartData() in bar chart.');
     var list = raw['result']['player'];
     var result = {};
     var total = 0;
     for(var i = 0; i < list.length; i++) {
-      if (list[i]['name'] == Client.serverUsername()) {
-        console.log('in');
+      if (list[i]['name'] == SESSION.getServerUsername()) {
         var rules = list[i]['rulesUsed'];
         for(var j = 0; j < rules.length; j++) {
           result[rules[j]['name']] = rules[j]['times'];
@@ -155,29 +181,34 @@
    *  This function fetches the data and generates the three different
    *  pie charts that will be displayed in the right side bar.
    */
-  function fetchSideBarGraphsData() {
-    $.ajax({ url: DATASOURCE, method: 'GET', success: function(result) {
-      try {
-        var data = $.parseJSON(result);
-        parseCalculationTimePieChartData(data);
-        parseMoveChartData(data);
-        parseRuleChartData(data);
-      } catch(error) {
-        console.error('Data received but error!: ' + error);
+  var fetchDataForBarCharts = function() {
+    LOGGER.trace('Called fetchDataForBarCharts() in bar chart.');
+    SERVER.getTableData(SESSION.getRawTablename(), {
+      success: function(result) {
+        LOGGER.trace('SERVER.getTableData() called success()!');
+        try {
+          var data = $.parseJSON(result);
+          parseCalculationTimePieChartData(data);
+          parseMoveChartData(data);
+          parseRuleChartData(data);
+          setTimeout(function() {
+            fetchDataForBarCharts();
+          }, 2500);
+        } catch(error) { LOGGER.error('BarChart crashed: ' + error); }
+      },
+      fail: function(error) {
+        LOGGER.error('Unable to fetch data for bar chart: ' + error);
       }
-    }, error: function(error) {
-      console.error('Unable to fetch data!: ' + error);
-    }});
-  }
+    });
+  };
 
   /**
-   *  Make sure the data keeps updating, also call the fetchSideBarGraphsData()
-   *  function once so there is no delay before the first draw.
+   *  When everything is loaded, start fetching the data for the bar charts so
+   *  they can start displaying the data in real time.
    */
-  setInterval(function() {
-    fetchSideBarGraphsData();
-  }, 2500);
-  fetchSideBarGraphsData();
+  $(document).ready(function() {
+    fetchDataForBarCharts();
+  });
 
 
 </script>

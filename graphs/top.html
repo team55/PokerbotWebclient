@@ -1,16 +1,3 @@
-<style>
-  #topGraphLegend {
-    max-width: 1000;
-    margin: 0 auto;
-  }
-  .info {
-    margin: 2px;
-    margin-left: 4px;
-    margin-right: 4px;
-    padding-top: 8px;
-  }
-</style>
-<script src="scripts/Smoothie.js"></script>
 <h3>Gemiddelde winst per hand</h3>
 <canvas id="topGraphCanvas" width="750" height="175"></canvas>
 <div id="topGraphLegend"><span class="info"></span></div>
@@ -21,42 +8,43 @@
 </div>
 <script>
 
-
-  var fillcolor = 'rgba(0, 0, 0, 0)';
-  var linewidth = 3;
-
-  var tois = 1;
+  const MINIMAL_GAMES_PER_SECONDS = 10;
   var dataSets = null;
   var smoothie = null;
 
-  var parseData = function(data) {
-    var players = data['result']['player'];
-    if (dataSets == null) {
-      smoothie = new SmoothieChart({
-        grid: {
-          strokeStyle:'rgb(247, 247, 247)',
-          fillStyle:'rgb(247, 247, 247)',
-          lineWidth: 1,
-          millisPerLine: 250,
-          verticalSections: 6,
-        }, labels: {
-          disabled: true,
-          fillStyle:'rgba(0, 0, 0, 0.25)',
-          fontStyle: 'Arial'
-        }
+  /**
+   *  This functions initializes the top chart for the given list of players.
+   *  The list of players should be in the same format as received from the
+   *  server.
+   *  @param  players   JSON object with the data of the players.
+   */
+  var initializeTopChart = function(players) {
+    smoothie = new SmoothieChart({
+      grid: { strokeStyle:'rgb(247, 247, 247)', fillStyle:'rgb(247, 247, 247)',
+              lineWidth: 1, millisPerLine: 250, verticalSections: 6 },
+      labels: { disabled: true }
+    });
+    smoothie.streamTo(document.getElementById("topGraphCanvas"));
+    dataSets = new Array(players.length);
+    for(var i = 0; i < players.length; i++) {
+      dataSets[i] = new TimeSeries();
+      smoothie.addTimeSeries(dataSets[i], {
+        strokeStyle: GRAPH_COLORS[i],
+        fillStyle: 'rgba(0, 0, 0, 0)',
+        lineWidth: 3
       });
-      smoothie.streamTo(document.getElementById("topGraphCanvas"));
-      dataSets = new Array(players.length);
-      for(var i = 0; i < players.length; i++) {
-        dataSets[i] = new TimeSeries();
-        smoothie.addTimeSeries(dataSets[i], {
-          strokeStyle: GRAPH_COLORS[i],
-          fillStyle: fillcolor,
-          lineWidth: linewidth
-        });
-      }
-      smoothie.streamTo(document.getElementById('topGraphCanvas'), tois * 2000);
     }
+    smoothie.streamTo(document.getElementById('topGraphCanvas'), 2000);
+  }
+
+  /**
+   *  Receives the data and displays it in the top chart to give real time info
+   *  about the average profit per hand.
+   *  @param  data  JSON parsed data received from the server.
+   */
+  var useTopChartData = function(data) {
+    var players = data['result']['player'];
+    if (dataSets == null) initializeTopChart(players);
     $('#topGraphLegend').html('');
     for(var i = 0; i < players.length; i++) {
       var player = players[i];
@@ -65,35 +53,59 @@
       $('#topGraphLegend').html($('#topGraphLegend').html() + description);
     }
     setTimeout(function() {
-      fetchData();
-    }, tois * 1000);
+      fetchDataForTopChart();
+    }, 1000);
   }
 
-  var fetchData = function() {
-    LOGGER.trace('Called fetchData() in top chart.');
+
+  /**
+   *  This function will check if the number of games per second is big enough
+   *  to keep playing (aka above MINIMAL_GAMES_PER_SECONDS). If this is not the
+   *  case, it will display a warning.
+   *  @param  data  The JSON parsed data received from the server.
+   */
+  var checkGamesPerSecond = function(data) {
+    LOGGER.trace('Function checkGamesPerSecond() is called in TopChart.');
+    var rate = parseFloat(data['gamesPerSec']);
+    if (rate < MINIMAL_GAMES_PER_SECONDS) {
+      LOGGER.warn('Games per second is too low!');
+      if ($('#gpswarning').hasClass('hideme'))
+        $('#gpswarning').removeClass('hideme');
+    } else if (rate > MINIMAL_GAMES_PER_SECONDS) {
+      if (!$('#gpswarning').hasClass('hideme'))
+        $('#gpswarning').addClass('hideme');
+    }
+  };
+
+  /**
+   *  This function will use the SERVER instance to fetch the information
+   *  of the table where the user is currently connected to (can be found in the
+   *  SESSION variable).
+   */
+  var fetchDataForTopChart = function() {
+    LOGGER.trace('Called fetchDataForTopChart() in top chart.');
     SERVER.getTableData(SESSION.getRawTablename(), {
       success: function(result) {
         LOGGER.trace('SERVER.getTableData() called success()!');
         try {
           var data = $.parseJSON(result);
-          LOGGER.trace('OK!!!!!!!');
-          console.log(data);
-          var gps = parseFloat(data['gamesPerSec']);
-          if (gps < 10 && $('#gpswarning').hasClass('hideme')) {
-            $('#gpswarning').removeClass('hideme');
-          } else if (gps > 10 && !$('#gpswarning').hasClass('hideme')) {
-            $('#gpswarning').addClass('hideme');
-          }
-          Blockly.svgResize(workspace);
-          parseData(data);
-        } catch(error) {}
+          checkGamesPerSecond(data);
+          UIHANDLER.resizeWorkspace();
+          useTopChartData(data);
+        } catch(error) { LOGGER.error('TopChart crashed: ' + error); }
       },
       fail: function(error) {
         LOGGER.error('Unable to fetch data for top chart: ' + error);
       }
     });
-  }
+  };
 
-  fetchData();
+  /**
+   *  When everything is loaded, start fetching the data for the top chart so
+   *  it can start displaying the data in real time.
+   */
+  $(document).ready(function() {
+    fetchDataForTopChart();
+  });
 
 </script>
