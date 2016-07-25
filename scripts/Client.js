@@ -111,7 +111,7 @@ var CLIENT = {
       if (success) success();
       if (final) final();
     }
-  }
+  },
 
   _initInterfaceOnConnect: function() {
     CLIENT._restoreSignInForm();

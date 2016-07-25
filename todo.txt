@@ -19,6 +19,7 @@ Todo's:
   - Fix 'Activate Rule' button margin on fullscreen.
   - Remove save and load buttons (comment).
   - Shorten long names.
+  - XMLHttp zeker naar string in comparison!
 
 Server-side Todo's:
   - Add server side error when table already exists.
