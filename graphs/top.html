@@ -28,7 +28,6 @@
   var tois = 1;
   var dataSets = null;
   var smoothie = null;
-  var DATASOURCE = 'http://bear.cs.kuleuven.be/pokerdemo/server/ObserveTable.php?tableName=' + Client.table;
 
   var parseData = function(data) {
     var players = data['result']['player'];
@@ -71,21 +70,28 @@
   }
 
   var fetchData = function() {
-    $.ajax({ url: DATASOURCE, method: 'GET', success: function(result) {
-      try {
-        var data = $.parseJSON(result);
-        var gps = parseFloat(data['gamesPerSec']);
-        if (gps < 10 && $('#gpswarning').hasClass('hideme')) {
-          $('#gpswarning').removeClass('hideme');
-        } else if (gps > 10 && !$('#gpswarning').hasClass('hideme')) {
-          $('#gpswarning').addClass('hideme');
-        }
-        Blockly.svgResize(workspace);
-        parseData(data);
-      } catch(error) {}
-    }, error: function(error) {
-      console.error('Unable to fetch data!: ' + error);
-    }});
+    LOGGER.trace('Called fetchData() in top chart.');
+    SERVER.getTableData(SESSION.getRawTablename(), {
+      success: function(result) {
+        LOGGER.trace('SERVER.getTableData() called success()!');
+        try {
+          var data = $.parseJSON(result);
+          LOGGER.trace('OK!!!!!!!');
+          console.log(data);
+          var gps = parseFloat(data['gamesPerSec']);
+          if (gps < 10 && $('#gpswarning').hasClass('hideme')) {
+            $('#gpswarning').removeClass('hideme');
+          } else if (gps > 10 && !$('#gpswarning').hasClass('hideme')) {
+            $('#gpswarning').addClass('hideme');
+          }
+          Blockly.svgResize(workspace);
+          parseData(data);
+        } catch(error) {}
+      },
+      fail: function(error) {
+        LOGGER.error('Unable to fetch data for top chart: ' + error);
+      }
+    });
   }
 
   fetchData();

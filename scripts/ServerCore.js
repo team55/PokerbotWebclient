@@ -99,8 +99,7 @@ var SERVER_CORE = {
         try {
           var data = $.parseJSON(result);
           if (data['type'] === 'Acknowledge') {
-            console.log('Connected successfully');
-            if ('success' in options && !(options.success === undefined)) options.success(data);
+            if ('success' in options && !(options.success === undefined)) options.success(result);
           } else if (fail) {
             console.error('Unable to connect');
             if ('fail' in options && !(options.fail === undefined)) options.fail(data['message']);
@@ -160,15 +159,14 @@ var SERVER_CORE = {
    *  @option   final       Callback when finished.
    */
   getTableData: function(tablename, options) {
+    LOGGER.trace('SERVER_CORE.getTableData() is called.');
     options = options || {};
     var destination = TABLE_DATA_URL + tablename;
-    console.log('Sending request for table data ' + destination);
     $.ajax({ url: destination,
       success: function(result) {
         try {
           var data = $.parseJSON(result);
-          console.log('Received valid table data');
-          if ('success' in options && !(options.success === undefined)) options.success(data);
+          if ('success' in options && !(options.success === undefined)) options.success(result);
         } catch(error) {
           console.error('Received invalid table data' + error);
           if ('fail' in options && !(options.fail === undefined)) options.fail(error);
@@ -198,7 +196,7 @@ var SERVER_CORE = {
         try {
           var data = $.parseJSON(result);
           console.log('Received table list');
-          if('success' in options && !(options.success === undefined)) options.success(data);
+          if('success' in options && !(options.success === undefined)) options.success(result);
         } catch(error) {
           console.error('Received invalid table list ' + error);
           if ('fail' in options && !(options.fail === undefined)) options.fail(error);
