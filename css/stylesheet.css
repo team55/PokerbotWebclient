@@ -244,7 +244,7 @@ body, .cutbottom {
   text-align: justify !important;
   margin: 0 auto !important;
   margin-bottom: 25px !important;
-  margin-top: 25px !important;
+  margin-top: 0 !important;
   margin-left: 20px !important;
   margin-right: 20px !important;
 }

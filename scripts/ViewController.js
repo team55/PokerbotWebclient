@@ -22,7 +22,6 @@ var updateTableSelectionList = function() {
   });
 };
 $('#refresh-tables-btn').click(function(e) {
- LOGGER.trace('Clicked refresh tables button.');
  UIHANDLER.hideSignInError();
  UIHANDLER.startTableListRefreshing();
  updateTableSelectionList();
@@ -193,7 +192,7 @@ $('#stoptutorialbutton').click(function(e) {
       console.log('Table removed!');
     });
   } catch(error) {}
-  if (isFullscreenWorkspace()) { toggleFullscreenWorkspace(); }
+  UIHANDLER.disableFullscreenWorkspace();
 });
 
 

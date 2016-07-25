@@ -131,7 +131,7 @@
     isCompleted: false,
     complete: function() {
       if (!this.isCompleted) {
-        if(isFullscreenWorkspace()) { toggleFullscreenWorkspace(); }
+        UIHANDLER.disableFullscreenWorkspace();
         show1ASuccess();
       }
       this.isCompleted = true;

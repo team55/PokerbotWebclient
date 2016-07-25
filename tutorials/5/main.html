@@ -157,57 +157,46 @@
     },
 
     initTable: function(callback) {
-      var createTableURL = 'http://bear.cs.kuleuven.be/pokerdemo/server/makeTable.php';
-      $.ajax({url: createTableURL, method: 'POST', success: function(result) {
-        if (callback) callback();
-      }, error: function(error) {
-        this.handleError(error);
-      }, data: {
-        'name': this.tableID,
-        'password': this.tablePassword,
-        'nbPlayers': 2
-      }});
+      SERVER.createTable(this.tableID, this.tablePassword, '2', {
+        success: callback,
+        fail: step5Sequencer.handleError
+      });
     },
 
     killTable: function(callback) {
-      var url = 'http://bear.cs.kuleuven.be/pokerdemo/server/killTable.php';
-      $.ajax({url: url, method:  'POST', success: function(result) {
-        if (callback) callback();
-      }, error: function(error) {
-        step5Sequencer.handleError(error);
-      }, data: {
-        'tableName': step5Sequencer.tableID,
-        'password': step5Sequencer.tablePassword
-      }})
+      SERVER.killTable(this.tableID, this.tablePassword, {
+        success: callback,
+        fail: step5Sequencer.handleError
+      });
     },
 
     connect: function(username, callback) {
       var destination = "http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName=";
-      destination += this.tableID + "&playerName=" + username;
+      destination += SERVER._desanitize(this.tableID) + "&playerName=" + username;
       $.ajax({url: destination, success: function(result) {
         try {
           var data = JSON.parse(result);
           if (data['type'] === 'Acknowledge') {
             if (callback) callback();
           } else {
-            this.handleError(data['message']);
+            step5Sequencer.handleError(data['message']);
           }
         } catch(error) {
-          this.handleError(error);
+          step5Sequencer.handleError(error);
         }
       }, error: function(error) {
-        this.handleError(error);
+        step5Sequencer.handleError(error);
       }});
     },
 
     sendRule: function(user, rule, callback) {
       var destination = "http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName=";
-      destination += this.tableID + "&playerName=" + user + "&description=" + encodeURIComponent(rule);
+      destination += SERVER._desanitize(this.tableID) + "&playerName=" + user + "&description=" + encodeURIComponent(rule);
       console.log(destination);
       $.ajax({url: destination, success: function(result) {
         if (callback) callback();
       }, error: function(error) {
-        this.handleError(error);
+        step5Sequencer.handleError(error);
       }});
     },
 
@@ -221,7 +210,7 @@
 
     checkForWin: function() {
       if (this.completed) return;
-      var DATASOURCE = 'http://bear.cs.kuleuven.be/pokerdemo/server/ObserveTable.php?tableName=' + this.tableID;
+      var DATASOURCE = 'http://bear.cs.kuleuven.be/pokerdemo/server/ObserveTable.php?tableName=' + SERVER._desanitize(this.tableID);
       $.ajax({url: DATASOURCE, method: 'GET', success: function(result) {
         try {
           var data = $.parseJSON(result);
@@ -247,6 +236,7 @@
 
     complete: function() {
       if (!this.completed) {
+        UIHANDLER.disableFullscreenWorkspace();
         this.completed = true;
         $('#stoptutorial').removeClass('disabled');
         show5Success();
@@ -262,7 +252,7 @@
       step5Sequencer.initTable(function() {
         step5Sequencer.connect(step5Sequencer.playername, function() {
           step5Sequencer.connect(step5Sequencer.computername, function() {
-            Client.table = step5Sequencer.tableID;
+            SESSION._tablename = step5Sequencer.tableID;
             $('#topgraph').load('graphs/top.html', function(r,s,x) {
               Blockly.svgResize(workspace);
               step5Sequencer.sendDefaultRule();
