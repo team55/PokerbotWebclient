@@ -1,34 +1,37 @@
 
 /**
- *  This Server instance can be used to communicate with the server. It is used
- *  to fetch debug logs (about the connection), send the prolog data and retrieve
- *  information about online tables.
+ *  This file holds the SERVER instance to handle all server side
+ *  communications. It is used as an interface for the server, mainly used
+ *  by the CLIENT instance.
  */
 
-var Server = {
+ const CREATE_TABLE_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/makeTable.php'
+
+
+/**
+ *  This server instance should be globally available and provides an interface
+ *  to communicate with the real server. The instance does not hold any data.
+ *  ALL requests to the server should be sent via this instance.
+ */
+var SERVER = {
 
   /**
    *  Creates a new table on the Server with the given table name, password
    *  and maximum number of players. The function will only be executed if the
    *  amount of seats is an integer.
    */
-  createTable: function(table, password, seats, callback) {
-    var createTableURL = 'http://bear.cs.kuleuven.be/pokerdemo/server/makeTable.php';
-    if (seats === parseInt(seats, 10)) {
-      $.ajax({url: createTableURL, method: 'POST', success: function(result) {
-        Logger.hideCreateTableError();
-        Logger.log('Tafel "' + table + '" aangemaakt!<br />Je kan er nu aan plaatsnemen.', 'CREATETABLE');
-        if (callback) callback();
-      }, error: function(error) {
-        Logger.error('Er is een probleem opgetreden...', 'CREATETABLE');
-      }, data: {
-        'name': table,
-        'password': password,
-        'nbPlayers': seats
-      }});
-    } else {
-      Logger.error('Ongeldig aantal plaatsen.', 'CREATETABLE');
-    }
+  createTable: function(tablename, password, seats, success, fail, final) {
+    $.ajax({url: createTableURL, method: 'POST', success: function(result) {
+      Logger.hideCreateTableError();
+      Logger.log('Tafel "' + table + '" aangemaakt!<br />Je kan er nu aan plaatsnemen.', 'CREATETABLE');
+      if (callback) callback();
+    }, error: function(error) {
+      Logger.error('Er is een probleem opgetreden...', 'CREATETABLE');
+    }, data: {
+      'name': table,
+      'password': password,
+      'nbPlayers': seats
+    }});
   },
 
   /**
