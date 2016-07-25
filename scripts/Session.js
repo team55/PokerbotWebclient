@@ -86,68 +86,70 @@ var SESSION = {
    *  Connects the user with given username to the table with the given
    *  tablename. The functions success, fail and final will be called in their
    *  corresponding cases.
-   *  @param  username    The user that wants to connect.
-   *  @param  tablename   The table the user wants to connect to.
-   *  @param  success     Callback when succeeded.
-   *  @param  fail        Callback when failed.
-   *  @param  final       Callback when finished.
+   *  @param    username    The user that wants to connect.
+   *  @param    tablename   The table the user wants to connect to.
+   *  @option   success     Callback when succeeded.
+   *  @option   fail        Callback when failed.
+   *  @option   final       Callback when finished.
    */
-  connect: function(username, tablename, success, fail, final) {
+  connect: function(username, tablename, options) {
+    options = options || {};
     var cleanUsername = SESSION._desanitize(username);
     var cleanTablename = SESSION._desanitize(tablename);
     if (cleanUsername === '' || cleanTablename === '') {
       console.error('Invalid data provided');
-      if (fail) fail('Invalid data provided');
-      if (final) final();
+      if ('fail' in options) options.fail('Invalid data provided');
+      if ('final' in options) options.final();
     } else {
       SERVER_CORE.connect(cleanUsername, cleanTablename, function() {
         SESSION._username = cleanUsername;
         SESSION._tablename = cleanTablename;
         console.log('Connected');
-        if (success) success();
-      }, fail, final);
+        if ('success' in options) options.success();
+      }, options.fail, options.final);
     }
   },
 
   /**
    *  Disconnects the user if there is one. The functions success, fail and
    *  final will be called in their corresponding cases.
-   *  @param  success     Callback when succeeded.
-   *  @param  fail        Callback when failed.
-   *  @param  final       Callback when finished.
+   *  @option   success     Callback when succeeded.
+   *  @option   fail        Callback when failed.
+   *  @option   final       Callback when finished.
    */
-  disconnect: function(success, fail, final) {
+  disconnect: function(options) {
     if (!SESSION.isConnected()) {
       console.error('Not connected');
-      if (fail) fail('Not connected');
+      if ('fail' in options) options.fail('Not connected');
     } else {
       SESSION._username = DEFAULT_USERNAME_VALUE;
       SESSION._tablename = DEFAULT_TABLENAME_VALUE;
       console.log('Disconnected');
-      if (success) success();
+      if ('success' in options) options.success();
     }
-    if (final) final();
+    if ('final' in options) options.final();
   },
 
   /**
    *  Sends the given rule to the connected user. If no user is connected, the
    *  function will fail. The success, fail and final functions will be called
    *  in their corresponding cases.
-   *  @param  success     Callback when succeeded.
-   *  @param  fail        Callback when failed.
-   *  @param  final       Callback when finished.
+   *  @option   success     Callback when succeeded.
+   *  @option   fail        Callback when failed.
+   *  @option   final       Callback when finished.
    */
-  sendRule: function(rule, success, fail, final) {
+  sendRule: function(rule, options) {
     if (!SESSION.isConnected()) {
       console.error('No user connected to send rule to');
-      if (fail) fail('No user connected to send rule to');
+      if ('fail' in options) options.fail('No user connected to send rule to');
+      if ('final' in options) options.final();
     } else {
       SERVER_CORE.sendRule(SESSION._username, SESSION.tableName, rule,
         function() {
           console.log('Rule sent');
-          if (success) success();
+          if ('success' in options) options.success();
         },
-      fail, final);
+      options.fail, options.final);
     }
   },
 
