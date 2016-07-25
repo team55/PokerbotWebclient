@@ -10,7 +10,6 @@ Notes:
       be a nicer way to display concrete values.
 
 Todo's:
-  - Rewrite text of the sign out modal.
   - Fix smaller labels in bargraph.
   - Add legend to bargraph.
   - Auto hide bottom on default.
