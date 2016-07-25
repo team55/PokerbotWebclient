@@ -16,6 +16,7 @@ Todo's:
   - Auto hide bottom on default.
   - Fix 'Activate Rule' button margin on fullscreen.
   - Remove save and load buttons (comment).
+  - Shorten long names.
 
 Server-side Todo's:
   - Add server side error when table already exists.
