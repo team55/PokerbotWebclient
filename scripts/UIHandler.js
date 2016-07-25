@@ -4,6 +4,7 @@
 var UIHANDLER = {
 
   updateViewsAfterConnectionEstablished: function() {
+    LOGGER.trace('UIHANDLER.updateViewsAfterConnectionEstablished() called.');
     UIHANDLER.updateHeaderAfterConnectionEstablished();
     UIHANDLER.updateButtonsAfterConnectionEstablished();
     UIHANDLER.includeGraphsAfterConnectionEstablished();
@@ -13,6 +14,7 @@ var UIHANDLER = {
   },
 
   updateHeaderAfterConnectionEstablished: function() {
+    LOGGER.trace('UIHANDLER.updateHeaderAfterConnectionEstablished() called.');
     var label = '\
       <i class="unhide icon" onclick="toggleHeader()"></i>\
       <span class="ui image label">\
@@ -25,12 +27,14 @@ var UIHANDLER = {
   },
 
   updateButtonsAfterConnectionEstablished: function() {
+    LOGGER.trace('UIHANDLER.updateButtonsAfterConnectionEstablished() called.');
     $('#toggledimmer').addClass('disabled');
     $('#rulesendbtn').removeClass('disabled');
     $('#detailedviewbtn').removeClass('hideme');
   },
 
   includeGraphsAfterConnectionEstablished: function(callback) {
+    LOGGER.trace('UIHANDLER.includeGraphsAfterConnectionEstablished() called.');
     UIHANDLER.includeTopGraph(function() {
       UIHANDLER.includeBarGraph(function() {
         $('#bottomgraph').addClass('hideme');
@@ -43,18 +47,22 @@ var UIHANDLER = {
   },
 
   includeTopGraph: function(callback) {
+    LOGGER.trace('UIHANDLER.includeTopGraph() called.');
     $('#topgraph').load('graphs/top.html', callback);
   },
 
   includeBarGraph: function(callback) {
+    LOGGER.trace('UIHANDLER.includeBarGraph() called.');
     $('#bargraph').load('graphs/bar.html', callback);
   },
 
   includeBottomGraph: function(callback) {
+    LOGGER.trace('UIHANDLER.includeBottomGraph() called.');
     $('#bottomgraph').load('graphs/bottom.html', callback);
   },
 
   makeConnectedTransition: function() {
+    LOGGER.trace('UIHANDLER.makeConnectedTransition() called.');
     $('.ui.page.dimmer').dimmer('hide');
     // TODO: Remove logger and replace with JQUERY
     Logger.hideSignInLog();
@@ -62,10 +70,12 @@ var UIHANDLER = {
   },
 
   clearConnectionForm: function() {
+    LOGGER.trace('UIHANDLER.clearConnectionForm() called.');
     $('#username').val('');
   },
 
   resizeWorkspace: function() {
+    LOGGER.trace('UIHANDLER.resizeWorkspace() called.');
     Blockly.svgResize(workspace);
   },
 
