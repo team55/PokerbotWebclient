@@ -19,23 +19,24 @@ var SERVER = {
    *  Creates a new table with given name, password and number of seats.
    *  The success, fail and final callbacks will be called in the corresponding
    *  cases.
-   *  @param  tablename   The name of the new table.
-   *  @param  password    The password of the new table.
-   *  @param  seats       The number of seats at the new table.
-   *  @param  success     Callback when succeeded.
-   *  @param  fail        Callback when failed.
-   *  @param  final       Callback when finished.
+   *  @param    tablename   The name of the new table.
+   *  @param    password    The password of the new table.
+   *  @param    seats       The number of seats at the new table.
+   *  @option   success     Callback when succeeded.
+   *  @option   fail        Callback when failed.
+   *  @option   final       Callback when finished.
    */
-  createTable: function(tablename, password, seats, success, fail, final) {
+  createTable: function(tablename, password, seats, options) {
+    options = options || {};
     var ct = SERVER._desanitize(tablename);
     var cp = SERVER._desanitize(password);
     var cs = SERVER._desanitize(seats);
     if (ct === '' || cp === '' || cs === '') {
       console.error('Invalid data to create table');
-      if (fail) fail('Invalid data to create table');
-      if (final) final();
+      if ('fail' in options) options.fail('Invalid data to create table');
+      if ('final' in options) options.final();
     } else {
-      SERVER_CORE.createTable(ct, cp, cs, success, fail, final);
+      SERVER_CORE.createTable(ct, cp, cs, options);
     }
   },
 
@@ -43,21 +44,22 @@ var SERVER = {
    *  Kills the table with the given name in case its password is correct.
    *  The success, fail and final callbacks will be called in the corresponding
    *  cases.
-   *  @param  tablename   The name of the table.
-   *  @param  password    The password of the table.
-   *  @param  success     Callback when succeeded.
-   *  @param  fail        Callback when failed.
-   *  @param  final       Callback when finished.
+   *  @param    tablename   The name of the table.
+   *  @param    password    The password of the table.
+   *  @option   success     Callback when succeeded.
+   *  @option   fail        Callback when failed.
+   *  @option   final       Callback when finished.
    */
-  killTable: function(tablename, password, success, fail, final) {
+  killTable: function(tablename, password, options) {
+    options = options || {};
     var ct = SERVER._desanitize(tablename);
     var cp = SERVER._desanitize(password);
     if (ct === '' || cp === '') {
       console.error('Invalid data to kill table');
-      if (fail) fail('Invalid data to kill table');
-      if (final) final();
+      if ('fail' in options) options.fail('Invalid data to kill table');
+      if ('final' in options) options.final();
     } else {
-      SERVER_CORE.killTable(ct, cp, success, fail, final);
+      SERVER_CORE.killTable(ct, cp, options);
     }
   },
 
@@ -65,31 +67,32 @@ var SERVER = {
    *  Gets the results of that table represented by the given tablename. The
    *  result will be passed to the success callback. The functions fail and
    *  final will be called in the corresponding cases.
-   *  @param  tablename   The table to get the data from.
-   *  @param  success     Callback when succeeded.
-   *  @param  fail        Callback when failed.
-   *  @param  final       Callback when finished.
+   *  @param    tablename   The table to get the data from.
+   *  @option   success     Callback when succeeded.
+   *  @option   fail        Callback when failed.
+   *  @option   final       Callback when finished.
    */
-  getTableData: function(tablename, success, fail, final) {
+  getTableData: function(tablename, options) {
+    options = options || {};
     var ct = SERVER._desanitize(tablename);
     if (ct === '') {
       console.error('Invalid data to fetch data from');
-      if (fail) fail('Invalid data to fetch data from');
-      if (final) final();
+      if ('fail' in options) options.fail('Invalid data to fetch data from');
+      if ('final' in options) options.final();
     } else {
-      SERVER_CORE.getTableData(ct, success, fail, final);
+      SERVER_CORE.getTableData(ct, options);
     }
   },
 
   /**
    *  Returns the data of all the tables on the server. The success, fail and
    *  final callbacks will be called in the corresponding cases.
-   *  @param  success     Callback when succeeded.
-   *  @param  fail        Callback when failed.
-   *  @param  final       Callback when finished.
+   *  @option   success     Callback when succeeded.
+   *  @option   fail        Callback when failed.
+   *  @option   final       Callback when finished.
    */
-  getTableList: function(success, fail, final) {
-    SERVER_CORE.getTableList(success, fail, final);
+  getTableList: function(options) {
+    SERVER_CORE.getTableList(options);
   },
 
   _desanitize: function(str) {

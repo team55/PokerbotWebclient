@@ -101,12 +101,16 @@ var SESSION = {
       if ('fail' in options) options.fail('Invalid data provided');
       if ('final' in options) options.final();
     } else {
-      SERVER_CORE.connect(cleanUsername, cleanTablename, function() {
-        SESSION._username = cleanUsername;
-        SESSION._tablename = cleanTablename;
-        console.log('Connected');
-        if ('success' in options) options.success();
-      }, options.fail, options.final);
+      SERVER_CORE.connect(cleanUsername, cleanTablename, {
+        success: function() {
+          SESSION._username = cleanUsername;
+          SESSION._tablename = cleanTablename;
+          console.log('Connected');
+          if ('success' in options) options.success();
+        },
+        fail: options.fail,
+        final: options.final
+      });
     }
   },
 
@@ -144,12 +148,14 @@ var SESSION = {
       if ('fail' in options) options.fail('No user connected to send rule to');
       if ('final' in options) options.final();
     } else {
-      SERVER_CORE.sendRule(SESSION._username, SESSION.tableName, rule,
-        function() {
+      SERVER_CORE.sendRule(SESSION._username, SESSION.tableName, rule, {
+        success: function() {
           console.log('Rule sent');
           if ('success' in options) options.success();
         },
-      options.fail, options.final);
+        fail: options.fail,
+        final: options.final
+      });
     }
   },
 
