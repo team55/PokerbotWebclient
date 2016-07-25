@@ -61,7 +61,13 @@
 
 
   }
-  function parseMoveChartsData(raw) {
+
+  /**
+   *  This function parses the data as received from the server to valid data
+   *  to contruct the bottom graphs.
+   *  @param    raw   The JSON formatted data as received from the server.
+   */
+  var parseBottomMoveChartsData = function(raw) {
     var list = raw['result']['player'];
     var result = [];
     for(var i = 0; i < list.length; i++) {
@@ -79,29 +85,32 @@
    *  This function fetches the data and generates the three different
    *  pie charts that will be displayed in the right side bar.
    */
-  function fetchBottomBarGraphsData() {
-    $.ajax({ url: DATASOURCE, method: 'GET', success: function(result) {
-      try {
-        var data = $.parseJSON(result);
-        parseMoveChartsData(data);
-      } catch(error) {
-        console.error('Data received on bottom but error!: ' + error);
-        console.log(result);
+  var fetchBottomBarGraphsData = function() {
+    SERVER.getTableData(SESSION.getRawTablename(), {
+      success: function(result) {
+        try {
+          var data = $.parseJSON(result);
+          parseBottomMoveChartsData(data);
+          setTimeout(function() {
+            fetchBottomBarGraphsData();
+          }, 2500);
+        } catch(error) {}
+      },
+      fail: function(error) {
+        if (error != 'Ongeldige tafelnaam.') {
+          LOGGER.error(error);
+        }
       }
-    }, error: function(error) {
-      console.error('Unable to fetch data!: ' + error);
-    }});
-  }
+    });
+  };
 
   /**
-   *  Make sure the data keeps updating, also call the fetchBottomBarGraphsData()
-   *  function once so there is no delay before the first draw.
+   *  When everything is loaded, start fetching the data for the bottom charts so
+   *  they can start displaying the data in real time.
    */
-  setInterval(function() {
+  $(document).ready(function() {
     fetchBottomBarGraphsData();
-  }, 2500);
-  fetchBottomBarGraphsData();
-
+  });
 
 
 </script>

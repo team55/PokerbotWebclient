@@ -57,7 +57,6 @@
     }, 1000);
   }
 
-
   /**
    *  This function will check if the number of games per second is big enough
    *  to keep playing (aka above MINIMAL_GAMES_PER_SECONDS). If this is not the
@@ -65,10 +64,8 @@
    *  @param  data  The JSON parsed data received from the server.
    */
   var checkGamesPerSecond = function(data) {
-    LOGGER.trace('Function checkGamesPerSecond() is called in TopChart.');
     var rate = parseFloat(data['gamesPerSec']);
     if (rate < MINIMAL_GAMES_PER_SECONDS) {
-      LOGGER.warn('Games per second is too low!');
       if ($('#gpswarning').hasClass('hideme'))
         $('#gpswarning').removeClass('hideme');
     } else if (rate > MINIMAL_GAMES_PER_SECONDS) {
@@ -83,19 +80,19 @@
    *  SESSION variable).
    */
   var fetchDataForTopChart = function() {
-    LOGGER.trace('Called fetchDataForTopChart() in top chart.');
     SERVER.getTableData(SESSION.getRawTablename(), {
       success: function(result) {
-        LOGGER.trace('SERVER.getTableData() called success()!');
         try {
           var data = $.parseJSON(result);
           checkGamesPerSecond(data);
           UIHANDLER.resizeWorkspace();
           useTopChartData(data);
-        } catch(error) { LOGGER.error('TopChart crashed: ' + error); }
+        } catch(error) {}
       },
       fail: function(error) {
-        LOGGER.error('Unable to fetch data for top chart: ' + error);
+        if (error != 'Ongeldige tafelnaam.') {
+          LOGGER.error(error);
+        }
       }
     });
   };

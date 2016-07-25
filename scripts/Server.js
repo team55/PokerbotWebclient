@@ -31,9 +31,8 @@ var SERVER = {
     var ct = SERVER._desanitize(tablename);
     var cp = SERVER._desanitize(password);
     var cs = SERVER._desanitize(seats);
-    if (ct === '' || cp === '' || cs === '') {
-      console.error('Invalid data to create table');
-      if ('fail' in options && !(options.fail === undefined)) options.fail('Invalid data to create table');
+    if (ct === '' || cp === '' || !(/^\d+$/.test(cs))) {
+      if ('fail' in options && !(options.fail === undefined)) options.fail('Ongeldige data opgegeven.');
       if ('final' in options && !(options.final === undefined)) options.final();
     } else {
       SERVER_CORE.createTable(ct, cp, cs, options);
@@ -55,7 +54,6 @@ var SERVER = {
     var ct = SERVER._desanitize(tablename);
     var cp = SERVER._desanitize(password);
     if (ct === '' || cp === '') {
-      console.error('Invalid data to kill table');
       if ('fail' in options && !(options.fail === undefined)) options.fail('Invalid data to kill table');
       if ('final' in options && !(options.final === undefined)) options.final();
     } else {
@@ -76,8 +74,7 @@ var SERVER = {
     options = options || {};
     var ct = SERVER._desanitize(tablename);
     if (ct === '') {
-      console.error('Invalid data to fetch data from');
-      if ('fail' in options && !(options.fail === undefined)) options.fail('Invalid data to fetch data from');
+      if ('fail' in options && !(options.fail === undefined)) options.fail('Ongeldige tafelnaam.');
       if ('final' in options && !(options.final === undefined)) options.final();
     } else {
       SERVER_CORE.getTableData(ct, options);
@@ -96,6 +93,7 @@ var SERVER = {
   },
 
   _desanitize: function(str) {
+    if (str === undefined) return '';
     return str.replace(/\W|_/g, '');
   }
 

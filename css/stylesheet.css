@@ -110,6 +110,7 @@ html, body {
 #topgraph, #bargraph, #bottomgraph {
   font-style: italic;
   text-align: center;
+  padding-top: 16px;
 }
 
 
@@ -144,6 +145,7 @@ html, body {
   color: #e74c3c;
   font-style: italic;
   margin-top: 15px;
+  display: none;
 }
 
 .log {
@@ -182,7 +184,7 @@ body, .cutbottom {
   padding-bottom: 0 !important;
 }
 
-#sendstatus {
+#send-status {
   color: #27ae60;
   padding-top: 15px !important;
   padding-right: 4px;
@@ -296,7 +298,7 @@ p.diminfo {
 }
 
 .fullscreen {
-  height: 550px !important;
+  height: 650px !important;
 }
 
 .fullscreen-margin {
@@ -311,10 +313,14 @@ p.diminfo {
 #topGraphLegend {
   max-width: 800px !important;
   margin: 0 auto;
+  padding-top: 16px !important;
 }
 .info {
   margin: 2px;
   margin-left: 4px;
   margin-right: 4px;
-  padding-top: 8px;
 }
+ .mid {
+   margin: 0 auto !important;
+   padding: 0 !important;
+ }

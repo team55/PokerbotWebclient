@@ -93,27 +93,32 @@ var SESSION = {
    *  @option   final       Callback when finished.
    */
   connect: function(username, tablename, options) {
-    LOGGER.trace('SESSION.connect() is called.');
     options = options || {};
     var cleanUsername = SESSION._desanitize(username);
     var cleanTablename = SESSION._desanitize(tablename);
     if (cleanUsername === '' || cleanTablename === '') {
-      console.error('Invalid data provided');
-      if ('fail' in options && !(options.fail === undefined)) options.fail('Invalid data provided');
+      if ('fail' in options && !(options.fail === undefined)) options.fail('Ongeldige data ingevoerd.');
       if ('final' in options && !(options.final === undefined)) options.final();
     } else {
       SERVER_CORE.connect(cleanUsername, cleanTablename, {
         success: function() {
-          LOGGER.trace('SERVER_CORE.connect() called success()!');
           SESSION._username = cleanUsername;
           SESSION._tablename = cleanTablename;
-          console.log('Connected');
           if ('success' in options && !(options.success === undefined)) options.success();
         },
         fail: options.fail,
         final: options.final
       });
     }
+  },
+
+  /**
+   *  Checker to see if this is valid data to connect.
+   */
+  isValidDataToConnect: function(username, tablename) {
+    var cleanUsername = SESSION._desanitize(username);
+    var cleanTablename = SESSION._desanitize(tablename);
+    return !(cleanUsername === '' || cleanTablename === '');
   },
 
   /**
@@ -125,12 +130,10 @@ var SESSION = {
    */
   disconnect: function(options) {
     if (!SESSION.isConnected()) {
-      console.error('Not connected');
       if ('fail' in options && !(options.fail === undefined)) options.fail('Not connected');
     } else {
       SESSION._username = DEFAULT_USERNAME_VALUE;
       SESSION._tablename = DEFAULT_TABLENAME_VALUE;
-      console.log('Disconnected');
       if ('success' in options && !(options.success === undefined)) options.success();
     }
     if ('final' in options && !(options.final === undefined)) options.final();
@@ -146,13 +149,11 @@ var SESSION = {
    */
   sendRule: function(rule, options) {
     if (!SESSION.isConnected()) {
-      console.error('No user connected to send rule to');
       if ('fail' in options && !(options.fail === undefined)) options.fail('No user connected to send rule to');
       if ('final' in options && !(options.final === undefined)) options.final();
     } else {
-      SERVER_CORE.sendRule(SESSION._username, SESSION.tableName, rule, {
+      SERVER_CORE.sendRule(SESSION._username, SESSION._tablename, rule, {
         success: function() {
-          console.log('Rule sent');
           if ('success' in options && !(options.success === undefined)) options.success();
         },
         fail: options.fail,
@@ -162,6 +163,7 @@ var SESSION = {
   },
 
   _desanitize: function(str) {
+    if (str === undefined) return str;
     return str.replace(/\W|_/g, '');
   }
 

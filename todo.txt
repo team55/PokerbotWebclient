@@ -20,6 +20,7 @@ Todo's:
   - Remove save and load buttons (comment).
   - Shorten long names.
   - XMLHttp zeker naar string in comparison!
+  - bar legends
 
 Server-side Todo's:
   - Add server side error when table already exists.

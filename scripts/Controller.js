@@ -84,12 +84,7 @@ $('#connectbtn').click(function(e) {
 /**
  *  Make a user disconnect if he wants to.
  */
-var disconnect = function() {
-  $('#disconnectmodal').modal('show');
-}
-$('#disconnectbtn').click(function(e) {
-  Client.signout();
-});
+
 
 /**
  *  Stop de tutorial.

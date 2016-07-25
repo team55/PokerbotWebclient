@@ -38,15 +38,12 @@ var SERVER_CORE = {
   createTable: function(tablename, password, seats, options) {
     options = options || {};
     var data = { 'name':tablename, 'password':password, 'nbPlayers':seats};
-    console.log('Sending request to create table with data ' + data);
     $.ajax({ url: CREATE_TABLE_URL, method: 'POST', data: data,
       success: function(result) {
-        console.log('Successfully created table');
         if ('success' in options && !(options.success === undefined)) options.success(result);
         if ('final' in options && !(options.final === undefined)) options.final();
       },
-      error: function(error) {
-        console.error('Unable to create table');
+      error: function(xhr, error, thrown) {
         if ('fail' in options && !(options.fail === undefined)) options.fail(error);
         if ('final' in options && !(options.final === undefined)) options.final();
       }
@@ -66,15 +63,12 @@ var SERVER_CORE = {
   killTable: function(tablename, password, options) {
     options = options || {};
     var data = { 'tableName':tablename, 'password':password };
-    console.log('Sending request to kill table with data ' + data);
     $.ajax({ url: KILL_TABLE_URL, method: 'POST', data: data,
       success: function(result) {
-        console.log('Successfully killed table');
         if ('success' in options && !(options.success === undefined)) options.success(result);
         if ('final' in options && !(options.final === undefined)) options.final();
       },
-      error: function(error) {
-        console.error('Unable to kill table');
+      error: function(xhr, error, thrown) {
         if ('fail' in options && !(options.fail === undefined)) options.fail(error);
         if ('final' in options && !(options.final === undefined)) options.final();
       }
@@ -92,7 +86,6 @@ var SERVER_CORE = {
    *  @option   final       Callback when finished.
    */
   connect: function(username, tablename, options) {
-    LOGGER.trace('SERVER_CORE.connect() is called.');
     var destination = CONNECT_URL + tablename + CONNECT_URL_SUFFIX + username;
     $.ajax({ url: destination,
       success: function(result) {
@@ -100,18 +93,15 @@ var SERVER_CORE = {
           var data = $.parseJSON(result);
           if (data['type'] === 'Acknowledge') {
             if ('success' in options && !(options.success === undefined)) options.success(result);
-          } else if (fail) {
-            console.error('Unable to connect');
+          } else if ('fail' in options && !(options.fail === undefined)) {
             if ('fail' in options && !(options.fail === undefined)) options.fail(data['message']);
           }
         } catch(error) {
           if ('fail' in options && !(options.fail === undefined)) options.fail(error);
         }
-        console.log(options);
         if ('final' in options && !(options.final === undefined)) options.final();
       },
-      error: function(error) {
-        console.error('Unable to send connect request ' + error);
+      error: function(xhr, error, thrown) {
         if ('fail' in options && !(options.fail === undefined)) options.fail(error);
         if ('final'in options) options.final();
       }
@@ -134,15 +124,12 @@ var SERVER_CORE = {
     var destination = SEND_RULE_URL + tablename;
     destination += SEND_RULE_FIRST_SUFFIX + username + SEND_RULE_SECOND_SUFFIX;
     destination += encodeURIComponent(rule);
-    console.log('Sending request for rule ' + destination);
     $.ajax({ url: destination,
       success: function(result) {
-        console.log('Sent rule!');
         if ('success' in options && !(options.success === undefined)) options.success();
         if ('final' in options && !(options.final === undefined)) options.final();
       },
-      error: function(error) {
-        console.error('Unable to send rule!');
+      error: function(xhr, error, thrown) {
         if ('fail' in options && !(options.fail === undefined)) options.fail(error);
         if ('final' in options && !(options.final === undefined)) options.final();
       }
@@ -159,7 +146,6 @@ var SERVER_CORE = {
    *  @option   final       Callback when finished.
    */
   getTableData: function(tablename, options) {
-    LOGGER.trace('SERVER_CORE.getTableData() is called.');
     options = options || {};
     var destination = TABLE_DATA_URL + tablename;
     $.ajax({ url: destination,
@@ -168,13 +154,11 @@ var SERVER_CORE = {
           var data = $.parseJSON(result);
           if ('success' in options && !(options.success === undefined)) options.success(result);
         } catch(error) {
-          console.error('Received invalid table data' + error);
           if ('fail' in options && !(options.fail === undefined)) options.fail(error);
         }
         if ('final' in options && !(options.final === undefined)) options.final();
       },
-      error: function(error) {
-        console.error('Unable to get table data ' + error);
+      error: function(xhr, error, thrown) {
         if ('fail' in options && !(options.fail === undefined)) options.fail(error);
         if ('final' in options && !(options.final === undefined)) options.final();
       }
@@ -190,21 +174,17 @@ var SERVER_CORE = {
    */
   getTableList: function(options) {
     options = options || {};
-    console.log('Sending request to get all tables');
     $.ajax({ url: TABLE_LIST_URL,
       success: function(result) {
         try {
           var data = $.parseJSON(result);
-          console.log('Received table list');
           if('success' in options && !(options.success === undefined)) options.success(result);
         } catch(error) {
-          console.error('Received invalid table list ' + error);
           if ('fail' in options && !(options.fail === undefined)) options.fail(error);
         }
         if ('final' in options && !(options.final === undefined)) options.final();
       },
-      error: function(error) {
-        console.error('Unable to receive table list');
+      error: function(xhr, error, thrown) {
         if ('fail' in options && !(options.fail === undefined)) options.fail(error);
         if ('final' in options && !(options.final === undefined)) options.final();
       }

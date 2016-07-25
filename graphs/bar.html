@@ -1,11 +1,3 @@
-
-<!--  This file uses the ChartJS library in order to display the different
-      pie charts. Make sure to include version 1.0.2 or below. The minified
-      file is added to the scripts folder. If this file is not included in the
-      parent file, the charts won't appear and might even damage other parts
-      of the webpage that require JavaScript. It also uses the Client instance
-      from the main page to determine which user is currently connected.  -->
-
 <h3>Zetten van <span id="movesUsernameView"><span></h3>
 <canvas id="MovesChart" width="90" height="90"></canvas>
 <h3>Gevuurde regels van <span id="rulesUsernameView"></span></h3>
@@ -57,7 +49,6 @@
    *  @param  raw   The JSON formatted data as received from the server.
    */
   var parseCalculationTimePieChartData = function(raw) {
-    LOGGER.trace('Called parseCalculationTimePieChartData() in bar chart.');
     var list = raw['result']['player'];
     var result = {};
     var total = 0;
@@ -107,7 +98,6 @@
    *  @param  raw   The JSON formatted data as received from the server.
    */
   var parseMoveChartData = function(raw) {
-    LOGGER.trace('Called parseMoveChartData() in bar chart.');
     var list = raw['result']['player'];
     var result = {};
     var total = 0;
@@ -161,7 +151,6 @@
    *  @param  raw   The JSON formatted data as received from the server.
    */
   var parseRuleChartData = function(raw) {
-    LOGGER.trace('Called parseRuleChartData() in bar chart.');
     var list = raw['result']['player'];
     var result = {};
     var total = 0;
@@ -182,10 +171,8 @@
    *  pie charts that will be displayed in the right side bar.
    */
   var fetchDataForBarCharts = function() {
-    LOGGER.trace('Called fetchDataForBarCharts() in bar chart.');
     SERVER.getTableData(SESSION.getRawTablename(), {
       success: function(result) {
-        LOGGER.trace('SERVER.getTableData() called success()!');
         try {
           var data = $.parseJSON(result);
           parseCalculationTimePieChartData(data);
@@ -194,10 +181,12 @@
           setTimeout(function() {
             fetchDataForBarCharts();
           }, 2500);
-        } catch(error) { LOGGER.error('BarChart crashed: ' + error); }
+        } catch(error) {}
       },
       fail: function(error) {
-        LOGGER.error('Unable to fetch data for bar chart: ' + error);
+        if (error != 'Ongeldige tafelnaam.') {
+          LOGGER.error(error);
+        }
       }
     });
   };

@@ -219,12 +219,10 @@
           </xml>
         </div>
         <div id="controls" class="sixteen wide column right aligned">
-          <button class="ui mini button" onclick="saveWorkspace()">Blocks opslaan</button>
-          <button class="ui mini button" onclick="loadWorkspace()">Blocks openen</button>
           <button id="detailedviewbtn" class="ui mini button hideme" onclick="toggleDetailedView()">Toon details</button>
           <button id="resize-btn" class="ui mini button" onclick="toggleFullscreenWorkspace()">Vergroot</button>
-          <button id="rulesendbtn" class="ui small teal disabled button" onclick="sendCode()">Activeer Regel</button>
-          <div id="sendstatus" class="ui">Regel verzonden!<i class="send icon"></i></div>
+          <button id="rule-send-btn" class="ui small teal disabled button">Activeer Regel</button>
+          <div id="send-status" class="ui red">Activatie mislukt...</i></div>
           <div id="sendstatuspusher"><br /></div>
         </div>
       </div>
@@ -253,18 +251,17 @@
                   <input id="username" type="text" placeholder="Gebruikersnaam">
                 </span>
                 <span class="field">
-                  <select id="tablename" class="ui search dropdown">
+                  <select id="tablename" class="ui dropdown">
                     <option value="">Kies een tafel</option>
                   </select>
                 </span>
                 <span class="field">
                   <div class="ui buttons">
-                    <span id="refreshtables" class="ui orange submit button"><i class="refresh icon"></i></span>
+                    <span id="refresh-tables-btn" class="ui orange submit button"><i class="refresh icon"></i></span>
                     <span id="connect-btn" class="ui teal submit button">Neem plaats</span>
                   </div>
                 </span>
-                <div id="signInError" class="error"></div>
-                <div id="signInLog" class="error"></div>
+                <div id="sign-in-error" class="error"></div>
               </span>
             </p>
           </div>
@@ -276,16 +273,16 @@
             <p class="ui inverted connect">
               <span class="ui form">
                 <span class="field">
-                  <input id="tablecreateusername" type="text" placeholder="Gebruikersnaam">
+                  <input id="table-create-username" type="text" placeholder="Gebruikersnaam">
                 </span>
                 <span class="field">
-                  <input id="tablecreatename" type="text" placeholder="Tafelnaam">
+                  <input id="table-create-tablename" type="text" placeholder="Tafelnaam">
                 </span>
                 <span class="field">
-                  <input id="tablepassword" type="password" placeholder="Wachtwoord">
+                  <input id="table-password" type="password" placeholder="Wachtwoord">
                 </span>
                 <span class="field">
-                  <select id="players" class="ui search dropdown">
+                  <select id="table-players" class="ui search dropdown">
                     <option value="">Aantal plaatsen</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -299,14 +296,14 @@
                   </select>
                 </span>
                 <span class="field">
-                  <div class="ui buttons">
-                    <button id="createtable" class="ui orange submit button">Maak tafel</button>
-                    <button id="createtableandsit" class="ui teal submit button">Maak tafel &amp; Ga zitten</button>
+                  <div class="ui buttons center aligned mid">
+                    <button id="create-table-btn" class="ui orange submit button">Maak tafel</button>
+                    <button id="create-table-and-connect-btn" class="ui teal submit button">Maak tafel &amp; Ga zitten</button>
                   </div>
 
                 </span>
-                <div id="createTableError" class="red error"></div>
-                <div id="createTableLog" class="blue log"></div>
+                <div id="create-table-error" class="red error"></div>
+                <div id="create-table-log" class="blue log"></div>
               </span>
             </p>
           </div>
@@ -335,7 +332,7 @@
       <div class="ui black deny button">
         Nee, toch niet.
       </div>
-      <div id="disconnectbtn" class="ui positive right labeled icon button">
+      <div onclick="disconnect()" class="ui positive right labeled icon button">
         Ja, verbreek de verbinding.
         <i class="checkmark icon"></i>
       </div>
@@ -377,7 +374,6 @@
     </div>
   </div>
 
-  <script src="scripts/Controller.js"></script>
 
   <script src="scripts/ServerCore.js"></script>
   <script src="scripts/Session.js"></script>
