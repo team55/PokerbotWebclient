@@ -23,6 +23,8 @@
   <script src="scripts/Server.js"></script>
   <script src="scripts/BlockChecker.js"></script>
 
+
+
   <!-- Include the main GRAPH_COLORS constant -->
   <script src="scripts/Colors.js"></script>
 
@@ -50,7 +52,7 @@
     <div class="sixteen wide column cleancol">
       <span id="toggledimmer" class="ui teal button">Ga naar een tafel</span>
       <span id="stoptutorial" class="ui red button">Stop tutorial</span>
-      <span id="tablestatus"><span class="ui label">Geen verbinding met een tafel</span></span>
+      <span id="table-status"><span class="ui label">Geen verbinding met een tafel</span></span>
     </div>
 
     <!-- Top data div -->
@@ -242,7 +244,7 @@
                 <span class="field">
                   <div class="ui buttons">
                     <span id="refreshtables" class="ui orange submit button"><i class="refresh icon"></i></span>
-                    <span id="connectbtn" class="ui teal submit button">Neem plaats</span>
+                    <span id="connect-btn" class="ui teal submit button">Neem plaats</span>
                   </div>
                 </span>
                 <div id="signInError" class="error"></div>
@@ -360,6 +362,12 @@
   </div>
 
   <script src="scripts/Controller.js"></script>
+
+  <script src="scripts/ServerCore.js"></script>
+  <script src="scripts/Session.js"></script>
+  <script src="scripts/Server.js"></script>
+  <script src="scripts/UIHandler.js"></script>
+  <script src="scripts/ViewController.js"></script>
 
 </body>
 </html>

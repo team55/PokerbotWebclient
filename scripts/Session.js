@@ -59,7 +59,7 @@ var SESSION = {
    *  already be desanitized in the connection process.
    *  @return   The raw username.
    */
-  rawUsername: function() {
+  getRawUsername: function() {
     return SESSION._username;
   },
 
@@ -68,7 +68,7 @@ var SESSION = {
    *  already be desanitized in the connection process.
    *  @return   The raw tablename.
    */
-  rawTablename: function() {
+  getRawTablename: function() {
     return SESSION._tablename;
   },
 
