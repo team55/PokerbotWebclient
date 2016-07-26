@@ -3,6 +3,7 @@ Todo's:
   - Finish refactoring.
   - Update content.
   - Auto-Generated tips.
+  - Img height of resign view.
 
 SKYPE:
   - Add legend to charts on side and bottom (how?).
