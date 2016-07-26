@@ -87,9 +87,7 @@
           setTimeout(function() {
             fetchBottomBarGraphsData();
           }, 2500);
-        } catch(error) {
-          console.error(error);
-        }
+        } catch(error) {}
       },
       fail: function(error) {
         if (error != 'Ongeldige tafelnaam.') {
