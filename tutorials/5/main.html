@@ -253,7 +253,7 @@
         step5Sequencer.connect(step5Sequencer.playername, function() {
           step5Sequencer.connect(step5Sequencer.computername, function() {
             SESSION._tablename = step5Sequencer.tableID;
-            $('#topgraph').load('graphs/top.html', function(r,s,x) {
+            $('#topgraph').load('elements/top.html', function(r,s,x) {
               Blockly.svgResize(workspace);
               step5Sequencer.sendDefaultRule();
               if (callback) callback();

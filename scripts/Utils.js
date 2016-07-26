@@ -1,16 +1,25 @@
 
 var Utils = {
-  xmlToString: function(xmlData) {
 
+  xmlToString: function(xmlData) {
       var xmlString;
-      //IE
-      if (window.ActiveXObject){
+      if (window.ActiveXObject) {
           xmlString = xmlData.xml;
-      }
-      // code for Mozilla, Firefox, Opera, etc.
-      else{
+      } else {
           xmlString = (new XMLSerializer()).serializeToString(xmlData);
       }
       return xmlString;
+  },
+
+  equalBlocks: function(a, b) {
+    var ca = this.clean(a), cb = this.clean(b);
+    return ca === cb;
+  },
+
+  cleanBlock: function(a) {
+    var noX = a.replace(/x="(-)*[0-9]*"/g, '');
+    var noY = noX.replace(/y="(-)*[0-9]*"/g, '');
+    return noY.replace(/(\r\n|\n|\r|\t| )/gm,"");
   }
+
 };

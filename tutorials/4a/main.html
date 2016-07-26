@@ -157,7 +157,7 @@
       workspace.addChangeListener(function() {
         var xml = Blockly.Xml.workspaceToDom(workspace);
         var provided = Blockly.Xml.domToText(xml);
-        if (BlockChecker.equals(provided, solution4A1) || BlockChecker.equals(provided, solution4A2)) { step4AChecker.complete(); }
+        if (Utils.equalBlocks(provided, solution4A1) || Utils.equalBlocks(provided, solution4A2)) { step4AChecker.complete(); }
       });
     });
   });

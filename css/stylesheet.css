@@ -61,9 +61,6 @@ html, body {
   text-align: center;
 }
 
-
-/* New Stuff */
-
 .connect {
   width: 300px !important;
   margin: 0 auto;
@@ -105,7 +102,6 @@ html, body {
 .dbyellow {
   background-color: yellow;
 }
-
 
 #topgraph, #bargraph, #bottomgraph {
   font-style: italic;
@@ -320,7 +316,18 @@ p.diminfo {
   margin-left: 4px;
   margin-right: 4px;
 }
- .mid {
-   margin: 0 auto !important;
-   padding: 0 !important;
- }
+
+.mid {
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+/* Side bar */
+
+.ui.bulleted.list {
+  margin-bottom: 35px;
+}
+
+.ui.bulleted.list > .item {
+  margin: 0px 25px 0px 25px;
+}

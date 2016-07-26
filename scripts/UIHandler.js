@@ -47,15 +47,15 @@ var UIHANDLER = {
   },
 
   includeTopGraph: function(callback) {
-    $('#topgraph').load('graphs/top.html', callback);
+    $('#topgraph').load('elements/top.html', callback);
   },
 
   includeBarGraph: function(callback) {
-    $('#bargraph').load('graphs/bar.html', callback);
+    $('#bargraph').load('elements/bar.html', callback);
   },
 
   includeBottomGraph: function(callback) {
-    $('#bottomgraph').load('graphs/bottom.html', callback);
+    $('#bottomgraph').load('elements/bottom.html', callback);
   },
 
   makeConnectedTransition: function() {
