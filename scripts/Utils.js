@@ -1,4 +1,9 @@
 
+/**
+ * Simple helper class with basic functions that can be used in the different
+ * steps of the tutorial. It holds functions like xmlToString, equalBlocks and
+ * cleanBlocks (to prepare them for comparison).
+ */
 var Utils = {
 
   xmlToString: function(xmlData) {

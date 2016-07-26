@@ -1,4 +1,6 @@
 
+var workspace;
+
 /******************************************************************************
 
                                   SIGN IN SECTION
@@ -125,6 +127,22 @@ var toggleHeader = function() {
   UIHANDLER.toggleHeader();
 };
 
+// Connect sequence to stop tutorial request.
+$('#stoptutorial').click(function(e) {
+  UIHANDLER.showTutorialModal();
+});
+
+// Connects sequence to stop tutorial.
+$('#stoptutorialbutton').click(function(e) {
+  UIHANDLER.stopTutorial();
+  try {
+    step5Sequencer.killTable(function() {
+      step5Sequencer.completed = true;
+    });
+  } catch(error) {}
+  UIHANDLER.disableFullscreenWorkspace();
+});
+
 /******************************************************************************
 
                                 CONTROL FUNCTIONS
@@ -161,52 +179,6 @@ var toggleDetailedView = function() {
  ******************************************************************************/
 
 $(document).ready(function(e) {
-  updateTableSelectionList();
-});
-
- /******************************************************************************
-
-                              END OF REFACTORED CODE
-
- ******************************************************************************/
-
-
-
-
-
-$('#stoptutorial').click(function(e) {
-  $('#stoptutorialmodal').modal('show');
-});
-$('#stoptutorialbutton').click(function(e) {
-  $('#stoptutorial').hide();
-  $('#toggledimmer').removeClass('disabled');
-  $('#bargraph').load('elements/welcomebar.html');
-  $('#bargraph').removeClass('tutorialsuccess');
-  $('#bargraph').removeClass('tutorialfailed');
-  $('#bargraph').addClass('tutorialinfo');
-  $('#topgraph').html('');
-  Blockly.svgResize(workspace);
-  try {
-    step5Sequencer.killTable(function() {
-      step5Sequencer.completed = true;
-      console.log('Table removed!');
-    });
-  } catch(error) {}
-  UIHANDLER.disableFullscreenWorkspace();
-});
-
-
-
-
-
-
-
-
-
-/**
- *  Execute the following commands on load.
- */
-$(document).ready(function() {
   customWorkspace('blockly-colors/custom.css', function() {
     workspace = Blockly.inject('blocklyDiv',
         {media: 'blockly/media/',
@@ -215,11 +187,9 @@ $(document).ready(function() {
     Blockly.Xml.domToWorkspace(workspace,
             document.getElementById('startBlocks'));
     function myUpdateFunction() {
-
       var code = Blockly.Prolog.workspaceToCode(workspace);
       // If you need the prolog code, it can be logged here.
       //console.log(code);
-      //console.log(Blockly.Xml.workspaceToDom(workspace));
     }
     workspace.addChangeListener(myUpdateFunction);
     $('#bargraph').load('elements/welcomebar.html');
@@ -227,4 +197,8 @@ $(document).ready(function() {
   updateTableSelectionList();
 });
 
-// TODO end
+ /******************************************************************************
+
+                              END OF REFACTORED CODE
+
+ ******************************************************************************/
