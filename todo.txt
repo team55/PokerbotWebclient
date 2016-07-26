@@ -20,6 +20,9 @@ SKYPE:
   - Check for location of blocks in tips.
   - Add leave table option.
   - Move Disconnect button and change table status.
+  - Count the number of used tips.
+  - Beat Pokerbot button.
+  - Fix header signout issue.
 
 Server-side Todo's:
   - Add server side error when table already exists.
