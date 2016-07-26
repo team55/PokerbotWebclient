@@ -50,12 +50,24 @@ var UIHANDLER = {
 
     includeTopGraph: function (callback) {
         $('#topgraph')
-            .load('elements/top.html', callback);
+            .load('elements/top.html', function() {
+              $('#TopLoader').show();
+              setTimeout(function() {
+                $('#TopLoader').hide();
+              }, 2000);
+              callback();
+            });
     },
 
     includeBarGraph: function (callback) {
         $('#bargraph')
-            .load('elements/bar.html', callback);
+            .load('elements/bar.html', function() {
+              $('#BarLoader').show();
+              setTimeout(function() {
+                $('#BarLoader').hide();
+              }, 1000);
+              callback();
+            });
     },
 
     includeBottomGraph: function (callback) {
@@ -355,15 +367,16 @@ var UIHANDLER = {
         }
         $('#detailedviewbtn')
             .html('Verberg details');
+            /*
         $('html, body')
             .animate({
                 scrollTop: $(document)
                     .height()
-            }, 'slow');
+            }, 'slow');*/
     },
 
     hideDetailedView: function () {
-        $('html, body')
+        /*$('html, body')
             .animate({
                 scrollTop: 0
             }, 'slow', function () {
@@ -371,7 +384,9 @@ var UIHANDLER = {
                     .hide();
                 $('#detailedviewbtn')
                     .html('Toon details');
-            });
+            });*/
+            $('#bottomgraph')
+                .hide();
     },
 
     showTutorialModal: function () {

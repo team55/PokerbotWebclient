@@ -247,9 +247,19 @@ body, .cutbottom {
 
 
 
-#bargraph {
+#bargraph, #BarLoader {
   margin-top: 14px !important;
   margin-right: 20px !important;
+}
+
+#BarLoader {
+  margin: 28px 28px 45px 16px !important;
+  width: 90%;
+  height: 475px;
+}
+
+#TopLoader, #BarLoader {
+  display: none;
 }
 
 .tutorialinfo {
@@ -330,4 +340,8 @@ p.diminfo {
 
 .ui.bulleted.list > .item {
   margin: 0px 25px 0px 25px;
+}
+
+.rounded: {
+  border-radius: 8px !important;
 }
