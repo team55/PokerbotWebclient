@@ -24,6 +24,22 @@ SKYPE:
   - Beat Pokerbot button.
   - Fix header signout issue.
 
+Todo's after first test:
+  - Difference between real 'else' and just pasting under if not explained.
+  - Difference between specific rank and rank ++ not explained.
+  - Copy paste explanation.
+  - 'Kaarthouder' needs better explanation.
+  - No dropdown explanation for 'Kaarthouder'.
+  - Hide Step5 tables in UI.
+  - Make tips for dropdown blocks.
+  - What is 'middenste if' in step 3?
+  - Too much text.
+  - Moving of workspace not clear...
+  - Default action is fold! (wasn't obvious).
+  - Clear workspace button.
+  - Make translation better!
+  - The challenge is good, should be explained more in the beginning.
+
 Server-side Todo's:
   - Add server side error when table already exists.
   - Translate Server-side errors.
