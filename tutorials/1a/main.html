@@ -94,6 +94,7 @@
   <span class="congrats">Gefeliciteerd!</span>
   <p> De regel die je hebt aangemaakt is correct. In stap 1b zullen we ook
       rekening houden indien het niet preflop is. </p>
+      <i class="huge yellow trophy icon"></i><br /><br /><br />
       <button class="ui small grey button" onclick="step1AChecker.next()">
         Volgende stap!
       </button>
@@ -128,10 +129,6 @@
 </div>
 
 <script>
-
-
-
-
 
   /**
    *  Shows the description div and hides all others, updates CSS.
@@ -348,6 +345,7 @@
   $('#step-1a-part-3-btn').click(function(e) {
     $('#step-1a-part-3').hide();
     show1ADescription();
+    workspace.clear();
   });
 
 </script>
