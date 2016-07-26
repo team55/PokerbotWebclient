@@ -200,7 +200,10 @@
       this.isCompleted = true;
     },
     next: function() {
-      show1ADescription();
+      $('#bargraph').addClass('tutorialinfo');
+      $('#bargraph').removeClass('tutorialsuccess');
+      $('#bargraph').removeClass('tutorialfailed');
+      $('#step-1a-tips').dimmer('hide');
       $('#bargraph').load('tutorials/1b/main.html');
     }
   }

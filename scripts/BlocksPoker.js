@@ -392,7 +392,7 @@ Blockly.Blocks['poker_cards'] = {
         .appendField("kaarten in ");
     this.appendDummyInput()
       .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField(new Blockly.FieldDropdown([["hand", "handkaarten"], ["tafel", "tafelkaarten"], ["hand en tafel", "allekaarten"]]), "in");
+        .appendField(new Blockly.FieldDropdown([["hand", "handkaarten"], ["tafel", "tafelkaarten"], ["hand of tafel", "allekaarten"]]), "in");
     this.appendDummyInput()
         .setAlign(Blockly.ALIGN_CENTRE)
         .appendField(' bevatten');

@@ -147,7 +147,10 @@
       this.isCompleted = true;
     },
     next: function() {
-      show2Description();
+      $('#bargraph').addClass('tutorialinfo');
+      $('#bargraph').removeClass('tutorialsuccess');
+      $('#bargraph').removeClass('tutorialfailed');
+      $('#step-2-tips').dimmer('hide');
       $('#bargraph').load('tutorials/3/main.html');
     }
   }

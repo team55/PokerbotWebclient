@@ -1,14 +1,14 @@
 
 SKYPE:
+  s- Jump between steps in tutorial.
   - Add legend to charts on side and bottom (how?).
   - Top chart can be in labels (Good?).
   - If extra time... Move to Sass?
-  - Fades instead of hide & show? Might look more robust.
+  s- Fades instead of hide & show? Might look more robust.
   - Step 5 ideas?
   - Disconnect, seat open?
-  - Cookie to end Tutorial.
+  s- Cookie to end Tutorial.
   - Tips can have a better system for scalability.
-  - Jump between steps in tutorial.
 
 Server-side Todo's:
   - Add server side error when table already exists.

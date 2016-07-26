@@ -162,7 +162,10 @@
       this.isCompleted = true;
     },
     next: function() {
-      show1CDescription();
+      $('#bargraph').addClass('tutorialinfo');
+      $('#bargraph').removeClass('tutorialsuccess');
+      $('#bargraph').removeClass('tutorialfailed');
+      $('#step-1c-tips').dimmer('hide');
       $('#bargraph').load('tutorials/2/main.html');
     }
   }
