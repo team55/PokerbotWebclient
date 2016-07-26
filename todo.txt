@@ -2,11 +2,15 @@
 SKYPE:
   - Difference between 2 and 3 is too big.
     - Learn the 'raise' action before step 3.
+  - Add explanation of bar graph in step 4.
+  - Add explanation to step 5.
+  - Add level option to step 5.
   - Explain 'stacksize'.
   - Add back button to steps in tutorial.
   - Jump between steps in tutorial.
   - Add legend to charts on side and bottom (how?).
   - Top chart can be in labels (Good?).
+  - Fix bar loading margin.
   - If extra time... Move to Sass?
   - Fades instead of hide & show? Might look more robust.
   - Step 5 ideas?
@@ -14,6 +18,8 @@ SKYPE:
   - Cookie to end Tutorial.
   - Tips can have a better system for scalability.
   - Check for location of blocks in tips.
+  - Add leave table option.
+  - Move Disconnect button and change table status.
 
 Server-side Todo's:
   - Add server side error when table already exists.
@@ -21,6 +27,7 @@ Server-side Todo's:
   - Catch 'invalid prolog' error server side.
   - Find some bottlenecks on server?
   - A lot of desanitizing should still be done.
+  - Rolling average in bar charts should be faster.
 
 // Future?:
 
