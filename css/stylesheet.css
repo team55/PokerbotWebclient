@@ -240,7 +240,7 @@ body, .cutbottom {
   text-align: justify !important;
   margin: 0 auto !important;
   margin-bottom: 25px !important;
-  margin-top: 0 !important;
+  margin-top: 25px !important;
   margin-left: 20px !important;
   margin-right: 20px !important;
 }
@@ -339,7 +339,8 @@ p.diminfo {
 }
 
 .ui.bulleted.list > .item {
-  margin: 0px 25px 0px 25px;
+  margin: 0px 30px 0px 20px;
+  text-align: justify;
 }
 
 .rounded: {

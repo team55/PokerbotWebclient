@@ -7,17 +7,25 @@
 var Utils = {
 
   xmlToString: function(xmlData) {
-      var xmlString;
-      if (window.ActiveXObject) {
-          xmlString = xmlData.xml;
-      } else {
-          xmlString = (new XMLSerializer()).serializeToString(xmlData);
+      if (typeof xmlData === 'string') return xmlData;
+      try {
+        var xmlString;
+        if (window.ActiveXObject) {
+            xmlString = xmlData.xml;
+        } else {
+            xmlString = (new XMLSerializer()).serializeToString(xmlData);
+        }
+        return xmlString;
+      } catch(error) {
+        console.error(error);
       }
-      return xmlString;
   },
 
   equalBlocks: function(a, b) {
-    var ca = this.clean(a), cb = this.clean(b);
+    var ca = this.cleanBlock(a), cb = this.cleanBlock(b);
+    console.log(ca);
+    console.log(cb);
+    console.log('---------------');
     return ca === cb;
   },
 

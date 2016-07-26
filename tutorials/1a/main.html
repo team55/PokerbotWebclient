@@ -2,14 +2,82 @@
 <!-- Step title -->
 <h1>Stap 1a</h1>
 
+<!-- Step preface -->
+<span id="step-1a-preface">
+  <p> In stap 1 zullen we kennis maken met een if statement. In de volgende delen
+      zullen we zien wat: </p>
+      <div class="ui bulleted list">
+        <div class="item">  Een voorwaarde is. </div>
+        <div class="item">  Een actie is. </div>
+        <div class="item">  Waarom 'if' zo belangrijk is. </div>
+        <div class="item">  Hoe we een 'if' maken met blokjes. </div>
+      </div>
+      <div class="ui buttons">
+        <button id="step-1a-preface-btn" class="ui teal button">
+          Verder
+        </button>
+      </div>
+</span>
+
+<span id="step-1a-part-1">
+  <p> Een voorwaarde is een gegeven dat waar of fout kan zijn. Hieronder vind je
+      enkele algemene voorbeelden van voorwaarden. Weet jij welke waar zijn? </p>
+      <div class="ui bulleted list">
+        <div class="item">  De zon schijnt. </div>
+        <div class="item">  Het is 11u. </div>
+        <div class="item">  Ik heb een Aas in mijn hand. </div>
+        <div class="item">  De flop is nog niet gedeeld. </div>
+      </div>
+      <div class="ui buttons">
+        <button id="step-1a-part-1-btn" class="ui teal button">
+          Verder
+        </button>
+      </div>
+</span>
+<span id="step-1a-part-2">
+  <p> Naast voorwaarden zijn er ook acties. Een actie is iets, zoals het woord al
+      doet vermoeden, wat uitgevoerd kan worden. Hier zijn ook weer enkele
+      voorbeelden van hedendaagse acties: </p>
+      <div class="ui bulleted list">
+        <div class="item">  Ik fiets. </div>
+        <div class="item">  Jij maakt een examen. </div>
+        <div class="item">  Wij gaan zitten op een bank. </div>
+        <div class="item">  Ik call. </div>
+      </div>
+      <div class="ui buttons">
+        <button id="step-1a-part-2-btn" class="ui teal button">
+          Verder
+        </button>
+      </div>
+</span>
+<span id="step-1a-part-3">
+  <p> Kijk maar eens rond tussen de blokjes om gewend te raken aan hun structuur.
+      Zo kun je verschillende voorwaarden terugvinden onder 'voorwaarden' en
+      acties onder 'acties'. </p>
+  <p> Dankzij de 'if' kunnen we nu keuzes maken en een verband leggen tussen
+      deze voorwaardes en acties. We kunnen bijvoorbeeld zeggen: 'Indien de zon
+      schijnt, ga ik fietsen'. </p>
+      <div class="ui buttons">
+        <button id="step-1a-part-3-btn" class="ui teal button">
+          Verder
+        </button>
+      </div>
+</span>
+
+<script>
+
+</script>
+
 <!-- Step description -->
 <span id="step-1a-description">
-  <p> We starten door kennis te maken met if statements. Ze zijn de kern van elk
-      programma aangezien ze ons in staat stellen om keuzes te maken. Zo kunnen
-      bepaalde acties enkel uitgevoerd worden indien er voldaan is aan
-      een vooraf opgelegde voorwaarde. Maak je workspace leeg en probeer zelf eens
-      een regel te maken die zegt dat we <b>enkel callen</b> indien het
-      <b>preflop</b> is.  </p>
+  <p> Probeer nu zelf eens een 'if' te maken met de gegeven blokjes die het
+      volgende voorstelt: 'Als het preflop is, dan call ik'. Je kan hier
+      gebruik maken van: </p>
+      <div class="ui bulleted list">
+        <div class="item">  Een 'is preflop' voorwaarde. </div>
+        <div class="item">  Een 'call' actie. </div>
+        <div class="item">  Een 'if' statement. </div>
+      </div>
       <div class="ui buttons">
         <button id="step-1a-tips-btn" class="ui green button">
           Toon tip
@@ -24,12 +92,8 @@
 <!-- Step success -->
 <span id="step-1a-success">
   <span class="congrats">Gefeliciteerd!</span>
-  <p> De regel die je hebt aangemaakt is inderdaad een die enkel zal callen
-      indien het preflop is. Laten we een stap verder gaan en kennis maken met
-      geavanceerde if statements. Hier zullen we er ook rekening mee houden wat
-      er gaat gebeuren indien de voorwaarde niet voldaan is. Let op, maak je
-      workspace nog niet leeg! Je kan deze code waarschijnlijk hergebruiken in
-      de volgende stappen.  </p>
+  <p> De regel die je hebt aangemaakt is correct. In stap 1b zullen we ook
+      rekening houden indien het niet preflop is. </p>
       <button class="ui small grey button" onclick="step1AChecker.next()">
         Volgende stap!
       </button>
@@ -38,9 +102,8 @@
 <!-- Step fail -->
 <span id="step-1a-fail">
   <span class="congrats">Oops!</span>
-  <p> We laten jou dan wel de oplossing zien, maar we raden toch aan om deze
-      stap opnieuw te proberen. Het is belangrijk dat je de stappen zelf maakt
-      om zo vertrouwd te raken met het maken van verschillende regels. </p>
+  <p> Probeer nu eens zelf deze oplossing na te maken. Het is belangrijk dat je
+      dit voorbeeld goed snapt voor de volgende stappen.</p>
   <div><img id="step-1a-solution-preview" width='150' class="solution" src="tutorials/1a/solution.png" />
   </div>
   <button id="step-1a-restart-btn" class="ui small grey button">
@@ -56,11 +119,7 @@
         <i class="help icon"></i>
         Tip
       </h2>
-      <p class="diminfo"> Onder 'situaties' vind je een blok dat 'waar' is
-          wanneer we preflop zijn. Dit blok is logischerwijs 'is preflop'
-          genoemd. Je kan dit gebruiken in combinatie met het if statement.
-          Daarna is het ook mogelijk om de call actie in dit if statement te
-          slepen. </p>
+      <p id="step-1a-tip-text" class="diminfo"></p>
       <div id="step-1a-hide-tips-btn" class="ui grey button">
         Bedankt!
       </div>
@@ -69,6 +128,10 @@
 </div>
 
 <script>
+
+
+
+
 
   /**
    *  Shows the description div and hides all others, updates CSS.
@@ -81,6 +144,7 @@
     $('#bargraph').removeClass('tutorialsuccess');
     $('#bargraph').removeClass('tutorialfailed');
     $('#step-1a-tips').dimmer('hide');
+    step1AChecker.isStarted = true;
   }
 
   /**
@@ -129,7 +193,9 @@
    */
   var step1AChecker = {
     isCompleted: false,
+    isStarted: false,
     complete: function() {
+      if (!this.isStarted) { return; }
       if (!this.isCompleted) {
         UIHANDLER.disableFullscreenWorkspace();
         show1ASuccess();
@@ -155,10 +221,6 @@
     });
   });
 
-  $('#step-1a-tips-btn').click(function(e) {
-    show1ATips();
-  });
-
   $('#step-1a-hide-tips-btn').click(function(e) {
     hide1ATips();
   });
@@ -174,6 +236,118 @@
   $('#step-1a-solution-preview').click(function(e) {
     $('#solution-zoom-img').attr('src', 'tutorials/1a/solution.png');
     $('#solution-zoom').dimmer('show');
+  });
+
+  /* New part for multiple steps */
+
+  var step1ATips = [{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/is_preflop/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'is preflop\' voorwaarde nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'voorwaarden\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/is_preflop/g) || []).length;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere \'is preflop\' voorwaarden toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keet dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_call/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'call\' actie nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'acties\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_call/g) || []).length;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere \'call\' voorwaarden toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keet dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/custom_if/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'if\' nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'if\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/custom_if/g) || []).length;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere \'if\' statements toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keet dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/block/g) || []).length;
+        return count > 6;
+      },
+      text: ' Je hebt te veel blokken in je workspace, probeer er enkele te\
+              verwijderen. Dit zal je workspace zo compact mogelijk houden.'
+    },{
+      valid: function() {
+        return true;
+      },
+      text: ' Je hebt alle blokken al gevonden, je moet ze enkel nog op de juiste\
+              manier in elkaar zien te puzzelen!'
+    }
+  ];
+
+  $('#step-1a-tips-btn').click(function(e) {
+    for(var i = 0; i < step1ATips.length; i++) {
+      var tip = step1ATips[i];
+      if (tip.valid()) {
+        $('#step-1a-tip-text').html(tip.text);
+        i = step1ATips.length;
+      }
+    }
+    show1ATips();
+  });
+
+  $('#step-1a-part-1').hide();
+  $('#step-1a-part-2').hide();
+  $('#step-1a-part-3').hide();
+  $('#step-1a-description').hide();
+  $('#step-1a-preface-btn').click(function(e) {
+    $('#step-1a-preface').hide();
+    $('#step-1a-part-1').show();
+  });
+  $('#step-1a-part-1-btn').click(function(e) {
+    $('#step-1a-part-1').hide();
+    $('#step-1a-part-2').show();
+  });
+  $('#step-1a-part-2-btn').click(function(e) {
+    $('#step-1a-part-2').hide();
+    $('#step-1a-part-3').show();
+  });
+  $('#step-1a-part-3-btn').click(function(e) {
+    $('#step-1a-part-3').hide();
+    show1ADescription();
   });
 
 </script>

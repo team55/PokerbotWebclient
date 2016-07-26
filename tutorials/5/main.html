@@ -192,7 +192,6 @@
     sendRule: function(user, rule, callback) {
       var destination = "http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName=";
       destination += SERVER._desanitize(this.tableID) + "&playerName=" + user + "&description=" + encodeURIComponent(rule);
-      console.log(destination);
       $.ajax({url: destination, success: function(result) {
         if (callback) callback();
       }, error: function(error) {
@@ -203,7 +202,6 @@
     sendDefaultRule: function(callback) {
       $.get('tutorials/5/default.txt', function(data) {
         step5Sequencer.sendRule(step5Sequencer.computername, data, function() {
-          console.log('done');
         })
       });
     },
@@ -247,8 +245,6 @@
       step5Sequencer.prepare();
       step5Sequencer.initTableID();
       //step5Sequencer.initTablePassword();
-      console.log(this.tableID);
-      console.log(this.tablePassword);
       step5Sequencer.initTable(function() {
         step5Sequencer.connect(step5Sequencer.playername, function() {
           step5Sequencer.connect(step5Sequencer.computername, function() {
@@ -281,7 +277,6 @@
   $('#step-5-send-btn').click(function(e) {
     var code = Blockly.Prolog.workspaceToCode(workspace);
     step5Sequencer.sendRule(step5Sequencer.playername, code, function() {
-      console.log('Regel verzonden');
     });
   });
 
