@@ -1,5 +1,7 @@
 
 SKYPE:
+  - Difference between 2 and 3 is too big.
+    - Learn the 'raise' action before step 3.
   - Add back button to steps in tutorial.
   - Jump between steps in tutorial.
   - Add legend to charts on side and bottom (how?).
