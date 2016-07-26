@@ -39,6 +39,7 @@ Todo's after first test:
   - Clear workspace button.
   - Make translation better!
   - The challenge is good, should be explained more in the beginning.
+  - Make toolbox buttons more feel like buttons.
 
 Server-side Todo's:
   - Add server side error when table already exists.
