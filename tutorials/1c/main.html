@@ -2,15 +2,44 @@
 <!-- Step title -->
 <h1>Stap 1c</h1>
 
+<!-- Step preface -->
+<span id="step-1c-preface">
+  <p> Een voorwaarde gebaseerd op kaarten, wat is dat nu juist? Herinner je je nog
+      de voorwaarden van in de introductie? We zullen er nog eens enkele opsommen: </p>
+      <div class="ui bulleted list">
+        <div class="item">  Het regent. </div>
+        <div class="item">  Mijn pull is blauw. </div>
+        <div class="item">  Ik heb twee Azen. </div>
+        <div class="item">  Ik heb een Queen of hoger in mijn hand. </div>
+      </div>
+      <div class="ui buttons">
+        <button id="step-1c-preface-btn" class="ui teal button">
+          Verder
+        </button>
+      </div>
+</span>
+
+<span id="step-1c-part-1">
+  <p> Om een voorwaarde te specifiëren in verband met kaarten, moeten we gebruik
+      maken van de 'kaartenhouder'. Dit is het eerste blok in de 'kaarten' sectie.  </p>
+  <p> Je kan hier heel simpel kaarten aan toevoegen om de voorwaarde specifieker
+      te maken. Kan je zelf vinden hoe je ook de rank van de kaart bepaald? </p>
+      <div class="ui buttons">
+        <button id="step-1c-part-1-btn" class="ui teal button">
+          Verder
+        </button>
+      </div>
+</span>
+
+
 <!-- Step description -->
 <span id="step-1c-description">
-  <p> Je bent aangekomen in het laatste deel van de eerste stap. We gaan verder op onze
-      vorige regel en gaan enkel de voorwaarde aanpassen. Het callen mag enkel
-      gebeuren indien we een kaart in onze hand hebben die een Queen of
-      hoger is. Er zijn speciale blocks die het mogelijk maken om kaarten
-      te definiëren die in je hand moeten zitten. Een kaart bestaat uit een
-      rank en een kleur. We moeten dus een blok voor de rank gebruiken die
-      zegt dat ze <b>groter of gelijk aan een Queen</b> moet zijn. </p>
+  <p> Dit laatste voorbeeld is eentje dat we gaan namaken. We willen de volgende
+      regel bekomen: </p>
+      <div class="ui bulleted list">
+        <div class="item">  Indien ik een Queen of hoger in mijn hand heb, call. </div>
+        <div class="item">  In elk ander geval: fold. </div>
+      </div>
       <div class="ui buttons">
         <button id="step-1c-tips-btn" class="ui green button">
           Toon tip
@@ -25,12 +54,9 @@
 <!-- Step success -->
 <span id="step-1c-success">
   <span class="congrats">Gefeliciteerd!</span>
-  <p> Je hebt net je eerste op kaarten gebaseerde situatie gemodelleerd en daar
-      correct op gereageerd! Op dit moment ben je klaar voor stap twee, waar we
-      bepaalde relaties tussen verschillende kaarten zullen definiëren (zoals
-      zelfde rank, zelfde kleur, verschillende rank etc). We komen steeds dichter
-      en dichter bij de vaardigheden die je nodig hebt om een echte pokerbot te
-      maken! </p>
+  <p> Je hebt net je eerste op kaarten gebaseerde situatie gemaakt! Laten we
+      deze kennis in de volgende stappen uitbreiden. </p>
+      <i class="huge yellow trophy icon"></i><br /><br /><br />
       <button class="ui small grey button" onclick="step1CChecker.next()">
         Volgende stap!
       </button>
@@ -39,9 +65,8 @@
 <!-- Step fail -->
 <span id="step-1c-fail">
   <span class="congrats">Oops!</span>
-  <p> We laten jou dan wel de oplossing zien, maar we raden toch aan om deze
-      stap opnieuw te proberen. Het is belangrijk dat je de stappen zelf maakt
-      om zo vertrouwd te raken met het maken van verschillende regels. </p>
+  <p> Probeer nu eens zelf deze oplossing na te maken. Het is belangrijk dat je
+      dit voorbeeld goed snapt voor de volgende stappen.</p>
       <div><img id="step-1c-solution-preview" width='150' class="solution" src="tutorials/1c/solution.png" />
       </div>
       <button id="step-1c-restart-btn" class="ui small grey button">
@@ -57,11 +82,7 @@
         <i class="help icon"></i>
         Tip
       </h2>
-      <p class="diminfo"> Onder 'kaarten' vind je een blok dat nagaat of
-          een bepaald kaart (of meerdere) in je hand zitten of niet. Je kan dit
-          combineren met een kaarten-blok (bruin). Het is nu mogelijk
-          om hier een blok in te zetten dat zegt dat de rank groter of gelijk
-          moet zijn aan een Queen! </p>
+      <p id="step-1c-tip-text" class="diminfo"></p>
       <div id="step-1c-hide-tips-btn" class="ui grey button">
         Bedankt!
       </div>
@@ -82,6 +103,7 @@
     $('#bargraph').removeClass('tutorialsuccess');
     $('#bargraph').removeClass('tutorialfailed');
     $('#step-1c-tips').dimmer('hide');
+    step1CChecker.isStarted = true;
   }
 
   /**
@@ -130,7 +152,9 @@
    */
   var step1CChecker = {
     isCompleted: false,
+    isStarted: false,
     complete: function() {
+      if (!this.isStarted) { return; }
       if (!this.isCompleted) {
         UIHANDLER.disableFullscreenWorkspace();
         show1CSuccess();
@@ -175,6 +199,166 @@
   $('#step-1c-solution-preview').click(function(e) {
     $('#solution-zoom-img').attr('src', 'tutorials/1c/solution.png');
     $('#solution-zoom').dimmer('show');
+  });
+
+  var step1CTips = [{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_cards/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'kaarthouder\' voorwaarde nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'kaarten\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_cards/g) || []).length;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere \'kaarthouder\' voorwaarden toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keet dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_card"/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'kaart\' voorwaarde nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'kaarten\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_card"/g) || []).length;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere \'kaart\' voorwaarden toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keet dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_rank"/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'rank\' voorwaarde nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'kaarten\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_rank"/g) || []).length;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere \'rank\' voorwaarden toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keet dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_call/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'call\' actie nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'acties\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_call/g) || []).length;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere \'call\' voorwaarden toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keet dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_fold/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'fold\' actie nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'acties\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_fold/g) || []).length;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere \'fold\' voorwaarden toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keet dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/custom_if/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'if\' nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'if\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/custom_if/g) || []).length;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere \'if\' statements toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keet dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/block/g) || []).length;
+        return count > 14;
+      },
+      text: ' Je hebt te veel blokken in je workspace, probeer er enkele te\
+              verwijderen. Dit zal je workspace zo compact mogelijk houden.'
+    },{
+      valid: function() {
+        return true;
+      },
+      text: ' Je hebt alle blokken al gevonden, je moet ze enkel nog op de juiste\
+              manier in elkaar zien te puzzelen!'
+    }
+  ];
+
+  $('#step-1c-part-1').hide();
+  $('#step-1c-description').hide();
+  $('#step-1c-preface-btn').click(function(e) {
+    $('#step-1c-preface').hide();
+    $('#step-1c-part-1').show();
+  });
+  $('#step-1c-part-1-btn').click(function(e) {
+    $('#step-1c-part-1').hide();
+    show1CDescription();
+  });
+
+  $('#step-1c-tips-btn').click(function(e) {
+    for(var i = 0; i < step1CTips.length; i++) {
+      var tip = step1CTips[i];
+      if (tip.valid()) {
+        $('#step-1c-tip-text').html(tip.text);
+        i = step1CTips.length;
+      }
+    }
+    show1CTips();
   });
 
 </script>
