@@ -11,6 +11,10 @@
    *  movesUsernameView.
    */
   function createMovesCharts(players) {
+    if (mainBottomError > 0) {
+      $('#BottomMoveCharts').html('');
+      mainBottomError = 0;
+    }
     if (bottomCharts.length == 0) {
       bottomCharts = new Array(players.length);
       for(var i = 0; i < players.length; i++) {
@@ -77,8 +81,11 @@
    *  This function fetches the data and generates the three different
    *  pie charts that will be displayed in the right side bar.
    */
+  var mainBottomError = 0;
   var fetchBottomBarGraphsData = function() {
-    console.log('called');
+    if (mainBottomError > 0) {
+      bottomCharts = [];
+    }
     SERVER.getTableData(SESSION.getRawTablename(), {
       success: function(result) {
         try {
@@ -87,7 +94,7 @@
           setTimeout(function() {
             fetchBottomBarGraphsData();
           }, 2500);
-        } catch(error) {}
+        } catch(error) { mainBottomError = 1; }
       },
       fail: function(error) {
         if (error != 'Ongeldige tafelnaam.') {
