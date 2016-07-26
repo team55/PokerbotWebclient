@@ -8,6 +8,7 @@ SKYPE:
   - Add legend to charts on side and bottom (how?).
   - Top chart can be in labels (Good?).
   - If extra time... Move to Sass?
+  - Fades instead of hide & show? Might look more robust.
 
 Server-side Todo's:
   - Add server side error when table already exists.
