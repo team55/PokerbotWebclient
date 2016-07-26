@@ -4,9 +4,7 @@
 
 <!-- Step description -->
 <span id="step-5-description">
-  <p> Versla de pokerbot! Wanneer je op start klikt zal je bovenaan deze pagina
-      een grafiek met de gemiddelde winst per hand zien van zowel jou als de computer.
-      Probeer nu regels te bouwen om hem te verslaan! Wanneer een regel klaar is,
+  <p> Versla de pokerbot! Probeer nu regels te bouwen om hem te verslaan! Wanneer een regel klaar is,
       klik dan op de groene pijl en kijk of hij goed genoeg is. Tip: De pokerbot
       gaat elke hand all in (raised naar zijn stackgrootte), dus probeer enkel
       all in te gaan indien je een goede hand hebt. </p>
@@ -275,8 +273,13 @@
   });
 
   $('#step-5-send-btn').click(function(e) {
+    $('#step-5-send-btn').addClass('loading');
     var code = Blockly.Prolog.workspaceToCode(workspace);
     step5Sequencer.sendRule(step5Sequencer.playername, code, function() {
+      setTimeout(function() {
+        $('#step-5-send-btn').removeClass('loading');
+      }, 1000);
+
     });
   });
 
@@ -307,5 +310,7 @@
     $('#solution-zoom-img').attr('src', 'tutorials/5/solution.png');
     $('#solution-zoom').dimmer('show');
   });
+
+  workspace.clear();
 
 </script>

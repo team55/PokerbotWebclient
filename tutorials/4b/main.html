@@ -2,11 +2,47 @@
 <!-- Step title -->
 <h1>Stap 4b</h1>
 
+<!-- Step preface -->
+<span id="step-4b-preface">
+  <p> Denk eens even terug aan de manier waarop je een paar hebt gechecked. Indien twee
+      kaarten dezelfde rank hebben, heb je een paar gevonden! </p>
+  <p> Maar het probleem is dat indien we een three of een kind hebben, de voorwaarde van
+      het paar ook waar zal zijn. Zie je waarom?
+      <div class="ui buttons">
+        <button id="step-4b-preface-btn" class="ui teal button">
+          Verder
+        </button>
+      </div>
+</span>
+
+<span id="step-4b-part-1">
+  <p> Dat is een probleem! Onze tweede check zal nooit uitgevoerd worden indien er
+      een three of a kind ligt aangezien de eerste voorwaarde al waar was! </p>
+  <p> Hoe lossen we dit op? </p>
+      <div class="ui buttons">
+        <button id="step-4b-part-1-btn" class="ui teal button">
+          Verder
+        </button>
+      </div>
+</span>
+
+
+<span id="step-4b-part-2">
+  <p> De voorwaarde van het paar vuurt dan wel wanneer er een three of a kind ligt,
+      maar andersom nooit! Het is onmogelijk dat er drie dezelfde kaarten liggen,
+      maar geen twee dezelfde. </p>
+      <div class="ui buttons">
+        <button id="step-4b-part-2-btn" class="ui teal button">
+          Verder
+        </button>
+      </div>
+</span>
+
 <!-- Step description -->
 <span id="step-4b-description">
-  <p> We moeten het vorige probleem nu proberen op te lossen. Dit is mogelijk
-      door eerst na te gaan of er een three of a kind ligt en dan pas te kijken
-      of er een paar aanwezig is. Zie je waarom? Probeer dit maar eens! </p>
+  <p> Probeer nu de if statements van plaats te wisselen zodat dit probleem is
+      opgelost. Hierna ben je klaar om het op te nemen tegen onze zelfgemaakte
+      pokerbot! </p>
       <div class="ui buttons">
         <button id="step-4b-tips-btn" class="ui green button">
           Toon tip
@@ -21,9 +57,8 @@
 <!-- Step success -->
 <span id="step-4b-success">
   <span class="congrats">Gefeliciteerd!</span>
-  <p> Je bent er helemaal klaar voor! In stap 5 is het de bedoeling een automatische
-      pokerbot te verslaan. Je bent nu op een punt gekoment dat je genoeg weet
-      om dit voor elkaar te krijgen. Toch te moeilijk? Kijk eens bij je buur! Veel geluk! </p>
+  <p> Je bent er helemaal klaar voor! Veel geluk! </p>
+      <i class="huge yellow trophy icon"></i><br /><br /><br />
       <button class="ui small grey button" onclick="step4BChecker.next()">
         Laat maar komen!
       </button>
@@ -32,9 +67,8 @@
 <!-- Step fail -->
 <span id="step-4b-fail">
   <span class="congrats">Oops!</span>
-  <p> We laten jou dan wel de oplossing zien, maar we raden toch aan om deze
-      stap opnieuw te proberen. Het is belangrijk dat je de stappen zelf maakt
-      om zo vertrouwd te raken met het maken van verschillende regels. </p>
+  <p> Probeer nu eens zelf deze oplossing na te maken. Het is belangrijk dat je
+      dit voorbeeld goed snapt voor de volgende stappen.</p>
   <div><img id="step-4b-solution-preview" width='150' class="solution" src="tutorials/4b/solution.png" />
   </div>
   <button id="step-4b-restart-btn" class="ui small grey button">
@@ -50,8 +84,7 @@
         <i class="help icon"></i>
         Tip
       </h2>
-      <p class="diminfo"> Je kan simpelweg het tweede if statement boven het eerste
-          plaatsen! Let wel op dat de onderste actie onderaan blijft. </p>
+      <p id="step-4b-tip-text" class="diminfo"></p>
       <div id="step-4b-hide-tips-btn" class="ui grey button">
         Bedankt!
       </div>
@@ -72,6 +105,7 @@
     $('#bargraph').removeClass('tutorialsuccess');
     $('#bargraph').removeClass('tutorialfailed');
     $('#step-4b-tips').dimmer('hide');
+    step4BChecker.isStarted = true;
   }
 
   /**
@@ -120,7 +154,9 @@
    */
   var step4BChecker = {
     isCompleted: false,
+    isStarted: false,
     complete: function() {
+      if (!this.isStarted) { return; }
       if (!this.isCompleted) {
         UIHANDLER.disableFullscreenWorkspace();
         show4BSuccess();
@@ -150,10 +186,6 @@
     });
   });
 
-  $('#step-4b-tips-btn').click(function(e) {
-    show4BTips();
-  });
-
   $('#step-4b-hide-tips-btn').click(function(e) {
     hide4BTips();
   });
@@ -170,5 +202,347 @@
     $('#solution-zoom-img').attr('src', 'tutorials/4b/solution.png');
     $('#solution-zoom').dimmer('show');
   });
+
+
+
+  var step4BTips = [{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_cards/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'kaarthouder\' voorwaarde nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'kaarten\' in de toolbox aan de linkerkant.'
+    },{
+        valid: function() {
+          var xml = Blockly.Xml.workspaceToDom(workspace);
+          var provided = Blockly.Xml.domToText(xml);
+          var count = (provided.match(/poker_cards/g) || []).length;
+          return count < 2;
+        },
+        text: 'Je hebt de \'kaarthouder\' voorwaarde nog maar één keer toegevoegd aan je\
+                  workspace. Deze heb je echter twee keer nodig. Je kan het vinden onder\
+                  \'kaarten\' in de toolbox aan de linkerkant.'
+      },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_cards/g) || []).length;
+        return count > 2;
+      },
+      text: 'Je hebt meerdere \'kaarthouder\' voorwaarden toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keer dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_card"/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'kaart\' voorwaarde nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'kaarten\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_card"/g) || []).length;
+        return count < 5;
+      },
+      text: 'Je hebt nog niet genoeg \'kaart\' voorwaarden toegevoegd aan je\
+                workspace. Deze heb je echter vijf keer nodig. Je kan het vinden onder\
+                \'kaarten\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_card"/g) || []).length;
+        return count > 5;
+      },
+      text: 'Je hebt te vaak de \'kaart\' voorwaarde toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar vijf \
+            keer dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_rank_same"/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'Zelfde Groep (rank)\' voorwaarde nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'kaarten\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_rank_same"/g) || []).length;
+        return count < 5;
+      },
+      text: 'Je hebt nog niet genoeg \'Zelfde Groep (rank)\' voorwaarden toegevoegd aan je\
+                workspace. Deze heb je echter vijf keer nodig. Je kan het vinden onder\
+                \'kaarten\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_rank_same"/g) || []).length;
+        return count > 5;
+      },
+      text: 'Je hebt te vaak de \'Zelfde Groep (rank)\' voorwaarde toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar vijf \
+            keer dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_call/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'call\' actie nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'acties\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_call/g) || []).length;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere \'call\' acties toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keer dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_raise/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'raise\' actie nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'acties\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_raise/g) || []).length;
+        return count < 2;
+      },
+      text: 'Je hebt maar één keer een \'raise\' actie toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je er echter twee nodig.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_raise/g) || []).length;
+        return count > 2;
+      },
+      text: 'Je hebt meerdere \'raise\' acties toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar twee \
+            keer dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_fold/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'fold\' actie nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'acties\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/poker_fold/g) || []).length;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere \'fold\' acties toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keer dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/number_of_raises/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'aantal raises\' hoeveelheid nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'hoeveelheden\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/number_of_raises/g) || []).length;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere \'aantal raises\' hoeveelheden toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keer dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/math_number/g) || []).length;
+        return count < 6;
+      },
+      text: 'Je hebt de \'number\' hoeveelheid nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'hoeveelheden\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/math_number/g) || []).length;
+        return count > 6;
+      },
+      text: 'Je hebt meerdere \'number\' hoeveelheden toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keer dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/stacksize/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'stackgrootte\' hoeveelheid nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'hoeveelheden\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/stacksize/g) || []).length;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere \'stackgrootte\' hoeveelheden toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keer dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/potsize/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'potgrootte\' hoeveelheid nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'hoeveelheden\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/potsize/g) || []).length;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere \'potgrootte\' hoeveelheden toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            keer dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var lc = (provided.match(/less_then/g) || []).length;
+        var gc = (provided.match(/greater_then"/g) || []).length;
+        var count = lc + gc;
+        return count < 1;
+      },
+      text: 'Je hebt nog geen vergelijking toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'vergelijkingen\' in de toolbox aan de linkerkant. Gebruik de\
+                \'strikt groter\' of \'strikt kleiner\' vergelijking.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var lc = (provided.match(/less_then/g) || []).length;
+        var gc = (provided.match(/greater_then"/g) || []).length;
+        var count = lc + gc;
+        return count > 1;
+      },
+      text: 'Je hebt meerdere vergelijkingen toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar één \
+            vergelijking nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/custom_if/g) || []).length;
+        return count < 1;
+      },
+      text: 'Je hebt de \'if\' nog niet toegevoegd aan je\
+                workspace. Deze heb je echter wel nodig. Je kan het vinden onder\
+                \'if\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/custom_if/g) || []).length;
+        return count < 3;
+      },
+      text: 'Je hebt de \'if\' nog geen drie keer toegevoegd aan je\
+                workspace. Deze heb je echter drie keer nodig. Je kan het vinden onder\
+                \'if\' in de toolbox aan de linkerkant.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/custom_if/g) || []).length;
+        return count > 3;
+      },
+      text: 'Je hebt meer dan drie \'if\' statements toegevoegd aan je \
+            workspace. Om deze opdracht te voltooien heb je echter maar drie \
+            keer dit blok nodig! Je kan de andere gerust verwijderen.'
+    },{
+      valid: function() {
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        var count = (provided.match(/block/g) || []).length;
+        return count > 68;
+      },
+      text: ' Je hebt te veel blokken in je workspace, probeer er enkele te\
+              verwijderen. Dit zal je workspace zo compact mogelijk houden.'
+    },{
+      valid: function() {
+        return true;
+      },
+      text: ' Je hebt alle blokken al gevonden, je moet ze enkel nog op de juiste\
+              manier in elkaar zien te puzzelen!'
+    }
+  ];
+
+  $('#step-4b-part-1').hide();
+    $('#step-4b-part-2').hide();
+  $('#step-4b-description').hide();
+  $('#step-4b-preface-btn').click(function(e) {
+    $('#step-4b-preface').hide();
+    $('#step-4b-part-1').show();
+  });
+  $('#step-4b-part-1-btn').click(function(e) {
+    $('#step-4b-part-1').hide();
+    $('#step-4b-part-2').show();
+  });
+  $('#step-4b-part-2-btn').click(function(e) {
+    $('#step-4b-part-2').hide();
+    show4BDescription();
+  });
+
+  $('#step-4b-tips-btn').click(function(e) {
+    for(var i = 0; i < step4BTips.length; i++) {
+      var tip = step4BTips[i];
+      if (tip.valid()) {
+        $('#step-4b-tip-text').html(tip.text);
+        i = step4BTips.length;
+      }
+    }
+    show4BTips();
+  });
+
 
 </script>
