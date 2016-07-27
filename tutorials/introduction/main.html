@@ -1,0 +1,379 @@
+
+<!-- NEW STEP -->
+
+<span class="tutorial-step step-interaction hide-toolbox">
+  <span class="step-description">
+  	<p> We beginnen met een simpel voorbeeld. Wanneer een speler raised, moet
+        hij ook aantonen met welke hoeveelheid hij wil raisen. </p>
+    <p> Probeer de blokken in elkaar te klikken zodat de blokken deze actie
+        perfect voorstellen. </p>
+  </span>
+	<div class="ui buttons">
+		<button class="ui green icon button next-step-view disabled">
+      <i class="arrow right icon"></i>
+    </button>
+	</div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_raise" x="197" y="111"></block><block type="potsize" x="372" y="115"></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_raise" x="197" y="111"><value name="amount"><block type="potsize"></block></value></block></xml>
+		</span>
+	</span>
+</span>
+
+<!-- NEW STEP -->
+
+<span class="tutorial-step step-interaction hide-toolbox">
+  <span class="step-description">
+    <p> Een kaart heeft steeds een rang en een kleur. We gebruiken het bruine
+        blok om een kaart te maken. Het 'elke kleur' blok kan eender welke
+        kleur voorstellen. Het 'elke rang' blok kan eender welke rang
+        voorstellen. </p>
+    <p> Probeer de blokken in elkaar te klikken zodat we een kaart bekomen die
+        eender welke rang of kleur kan hebben. </p>
+  </span>
+	<div class="ui buttons">
+		<button class="ui red icon button back-step-view">
+      <i class="arrow left icon"></i>
+    </button>
+		<button class="ui teal icon button next-step-view disabled">
+      <i class="arrow right icon"></i>
+    </button>
+	</div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_color_any" x="392" y="88"></block><block type="poker_card" x="213" y="103"></block><block type="poker_rank_any" x="393" y="168"></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_card" x="213" y="103"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value></block></xml>
+		</span>
+	</span>
+</span>
+
+<!-- NEW STEP -->
+
+<span class="tutorial-step clear-workspace hide-toolbox">
+  <span class="step-description">
+    <p> Indien we meerdere waarden hebben die we aan elkaar gelijk willen
+        stellen, is het mogelijk deze in dezelfde groep te plaatsen. Het gebruik
+        van groepen is zeer belangrijk in dit programma. </p>
+    <p> Zo kun je bijvoorbeeld een paar voorstellen door de rang van beide
+        kaarten in één enkele groep te plaatsen. </p>
+  </span>
+	<div class="ui buttons">
+		<button class="ui red icon button back-step-view">
+      <i class="arrow left icon"></i>
+    </button>
+		<button class="ui teal icon button next-step-view">
+      <i class="arrow right icon"></i>
+    </button>
+	</div>
+</span>
+
+<!-- NEW STEP -->
+
+<span class="tutorial-step step-interaction hide-toolbox">
+  <span class="step-description">
+    <p> Probeer nu zelf eens een paar te maken door de rang van beide kaarten
+        in dezelfde groep te plaatsen. </p>
+  </span>
+	<div class="ui buttons">
+		<button class="ui red icon button back-step-view">
+      <i class="arrow left icon"></i>
+    </button>
+		<button class="ui teal icon button next-step-view disabled">
+      <i class="arrow right icon"></i>
+    </button>
+	</div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="119" y="43"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value></block></next></block></statement></block><block type="poker_rank_same" x="313" y="267"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block><block type="poker_rank_same" x="310" y="331"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="119" y="43"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></statement></block></xml>
+		</span>
+	</span>
+</span>
+
+<!-- NEW STEP -->
+
+<span class="tutorial-step step-interaction hide-toolbox">
+  <span class="step-description">
+    <p> We kunnen nu hetzelfde doen voor de kleur van de kaarten. Door ze in
+        dezelfde groep te plaatsen, zullen de kleuren gelijk zijn aan elkaar. </p>
+    <p> Sleep de groepen op hun juiste plaats om ervoor  te zorgen dat de kleur
+        van beide kaarten gelijk is. </p>
+  </span>
+	<div class="ui buttons">
+		<button class="ui red icon button back-step-view">
+      <i class="arrow left icon"></i>
+    </button>
+		<button class="ui teal icon button next-step-view disabled">
+      <i class="arrow right icon"></i>
+    </button>
+	</div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="122" y="51"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_rank"><block type="poker_rank_any"></block></value></block></next></block></statement></block><block type="poker_color_same" x="335" y="252"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block><block type="poker_color_same" x="337" y="323"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="122" y="51"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value></block></next></block></statement></block></xml>
+		</span>
+	</span>
+</span>
+
+
+<!-- NEW STEP -->
+
+<span class="tutorial-step step-interaction hide-toolbox">
+  <span class="step-description">
+    <p> De huidige constructie zal enkel waar zijn indien er een paar in de
+        speler zijn hand zit, maar niet op tafel. </p>
+    <p> Probeer nu met behulp van de dropdown-menu dit aan te passen zodat ook
+        een paar op tafel gedetecteerd wordt. </p>
+  </span>
+	<div class="ui buttons">
+		<button class="ui red icon button back-step-view">
+      <i class="arrow left icon"></i>
+    </button>
+		<button class="ui teal icon button next-step-view disabled">
+      <i class="arrow right icon"></i>
+    </button>
+	</div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="122" y="51"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value></block></next></block></statement></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="141" y="85"><field name="in">allekaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value></block></next></block></statement></block></xml>
+		</span>
+	</span>
+</span>
+
+<!-- NEW STEP -->
+
+<span class="tutorial-step clear-workspace hide-toolbox">
+  <span class="step-description">
+    <p> We kunnen zeggen dat de rang van een kaart
+        gelijk moet zijn aan deze van een bepaalde groep <b>plus 1</b>. </p>
+    <p> Wanneer we willen dat beide kaarten 2 waarden verschillen (bv. een 8
+        en een 10) dan beginnen we met de eerste waarde in Groep 1 te plaatsen.
+        Hierna zetten we de waarde van de tweede kaart gelijk aan <b>'Groep 1'
+        + 2</b>. </p>
+    <p> Geen zorgen! Alles wordt duidelijk met volgend voorbeeld. </p>
+  </span>
+	<div class="ui buttons">
+		<button class="ui red icon button back-step-view">
+      <i class="arrow left icon"></i>
+    </button>
+		<button class="ui teal icon button next-step-view">
+      <i class="arrow right icon"></i>
+    </button>
+	</div>
+</span>
+
+
+<!-- NEW STEP -->
+
+<span class="tutorial-step step-interaction hide-toolbox">
+  <span class="step-description">
+    <p> Probeer nu zelf eens de definitie te maken van twee kaarten, waarvan
+        de rang van de tweede kaart <b>twee punten hoger is</b> als deze van de
+        eerste. </p>
+  </span>
+	<div class="ui buttons">
+		<button class="ui red icon button back-step-view">
+      <i class="arrow left icon"></i>
+    </button>
+		<button class="ui teal icon button next-step-view disabled">
+      <i class="arrow right icon"></i>
+    </button>
+	</div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="21" y="26"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value></block></next></block></statement></block><block type="poker_rank_same" x="118" y="255"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block><block type="math_number" x="372" y="274"><field name="NUM">2</field></block><block type="poker_rank_incr" x="120" y="323"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="21" y="26"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_incr"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value><value name="incr"><block type="math_number"><field name="NUM">2</field></block></value></block></value></block></next></block></statement></block></xml>
+		</span>
+	</span>
+</span>
+
+
+<!-- NEW STEP -->
+
+<span class="tutorial-step step-interaction hide-toolbox">
+  <span class="step-description">
+    <p> Een blok verwijderen kan je door gebruik te maken van de delete of
+        backspace knop. Probeer zelf maar eens alle blokken te verwijderen! </p>
+  </span>
+	<div class="ui buttons">
+		<button class="ui red icon button back-step-view">
+      <i class="arrow left icon"></i>
+    </button>
+		<button class="ui teal icon button next-step-view disabled">
+      <i class="arrow right icon"></i>
+    </button>
+	</div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_card" x="53" y="72"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_incr"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value><value name="incr"><block type="math_number"><field name="NUM">2</field></block></value></block></value></block><block type="poker_call" x="73" y="307"></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml"></xml>
+		</span>
+	</span>
+</span>
+
+
+<!-- NEW STEP -->
+
+<span class="tutorial-step step-interaction hide-toolbox">
+  <span class="step-description">
+    <p> Als laatste willen we je ook nog meegeven dat het mogelijk is om
+        blokken te kopiëren en te plakken! Dit kan enorm handig zijn in
+        de toekomst wanneer je grote combinaties van blokken meerdere
+        keren nodig hebt. </p>
+    <p> Probeer zelf deze kaart maar eens de dupliceren. </p>
+  </span>
+	<div class="ui buttons">
+		<button class="ui red icon button back-step-view">
+      <i class="arrow left icon"></i>
+    </button>
+		<button class="ui teal icon button next-step-view disabled">
+      <i class="arrow right icon"></i>
+    </button>
+	</div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_card" x="33" y="62"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml">
+      	<block type="poker_card">
+      		<value name="arg_color">
+      			<block type="poker_color_any">
+      			</block>
+      		</value>
+      		<value name="arg_rank">
+      			<block type="poker_rank_any">
+      			</block>
+      		</value>
+      	</block>
+      	<block type="poker_card">
+      		<value name="arg_color">
+      			<block type="poker_color_any">
+      			</block>
+      		</value>
+      		<value name="arg_rank">
+      			<block type="poker_rank_any">
+      			</block>
+      		</value>
+      	</block>
+      </xml>
+		</span>
+	</span>
+</span>
+
+<!-- NEW STEP -->
+
+<span class="tutorial-step clear-workspace">
+  <span class="step-description">
+    <p> Tot zo ver de inleiding. In de volgende stappen zal ook nog duidelijk
+        worden waarvoor alle verschillende blokken in de toolbox dienen. </p>
+    <p> Kijk gerust zelf al maar eens even rond welke blokken er allemaal
+        beschikbaar zijn! </p>
+  </span>
+	<div class="ui buttons">
+		<button class="ui red icon button back-step-view">
+      <i class="arrow left icon"></i>
+    </button>
+		<button class="ui teal icon button next-step-view">
+      Volgende stap
+    </button>
+	</div>
+</span>
+
+<script>
+
+  // workspace should be available.
+
+  var currentView = 1;
+  var finishedStep = 0;
+
+  function isSolved() {
+    finishedStep = currentView;
+    redraw();
+  }
+
+  function checkSolved() {
+    $('.tutorial-step').each(function(index) {
+      if (index == (currentView - 1) && $(this).hasClass('step-interaction')) {
+        var solution = $(this).find('.workspace-solution').first().html();
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var provided = Blockly.Xml.domToText(xml);
+        if (Utils.equalBlocks(solution, provided)) {
+          isSolved();
+        }
+      }
+    });
+  }
+  workspace.addChangeListener(checkSolved);
+
+  function redraw() {
+    console.log('REDRAW');
+    console.log(currentView);
+    console.log(finishedStep);
+    $('.tutorial-step').each(function(index){
+      if (index == (currentView - 1)) {
+        $(this).show();
+        if ($(this).hasClass('hide-toolbox')) {
+          $('.blocklyToolboxDiv').hide();
+        } else {
+          $('.blocklyToolboxDiv').show();
+        }
+        if ($(this).hasClass('clear-workspace')) workspace.clear();
+        if ($(this).hasClass('step-interaction')) {
+          var data = $(this).find('.workspace-data').first().html();
+          if (finishedStep < currentView) {
+            $(this).find('.next-step-view').addClass('disabled');
+            workspace.clear();
+            var dom = Blockly.Xml.textToDom(data);
+            Blockly.Xml.domToWorkspace(workspace, dom);
+          } else {
+            $(this).find('.next-step-view').removeClass('disabled');
+          }
+        }
+      } else { $(this).hide(); }
+    });
+  }
+
+
+  function finished() {
+    currentView = $('.tutorial-step').length;
+    console.log('step finished');
+  }
+
+
+  $('.next-step-view').click(function(e) {
+    currentView++;
+    finishedStep = currentView - 1;
+    if (currentView > $('.tutorial-step').length) { finished(); }
+    else { redraw(); }
+  });
+
+  $('.back-step-view').click(function(e) {
+    currentView--;
+    finishedStep = currentView - 1;
+    if (currentView < 1) { console.error('Went too much back.'); }
+    else { redraw(); }
+  });
+
+  redraw();
+
+
+
+
+</script>

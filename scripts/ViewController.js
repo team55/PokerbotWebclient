@@ -202,3 +202,63 @@ $(document).ready(function(e) {
                               END OF REFACTORED CODE
 
  ******************************************************************************/
+
+ var TutorialController = {
+   current: 0,
+   steps: [
+     'stap 1: Inleiding',
+     'stap 2: Als X, dan Y',
+     'stap 3: Complexe handen',
+     'stap 4: Sequenties',
+     'stap 5: Versla een bot'
+   ],
+   locations: [
+     'introduction',
+     'stap 2: Als X, dan Y',
+     'stap 3: Complexe handen',
+     'stap 4: Sequenties',
+     'stap 5: Versla een bot'
+   ],
+   currentTitle: function() {
+     var str = this.steps[this.current - 1];
+     var elems = (str[0].toUpperCase() + str.slice(1)).split(':');
+     return elems[elems.length-1].trim();
+   },
+   final: 'finished',
+
+   start: function() {
+     this.current = 1;
+     $('#bargraph').load('tutorials/container.html', function() {
+       TutorialController.injectChapter(1);
+       $('#tutorial-title').html(TutorialController.currentTitle());
+       $.each(TutorialController.steps, function(index, element) {
+         console.log('eh');
+         $('#tutorial-chapter-select').append('<option value="'+element+'">'+element[0].toUpperCase() + element.slice(1)+'</option>');
+       });
+     });
+
+   },
+
+   injectChapter: function(i) {
+     i = Math.abs(i);
+     if (i > this.steps.length) return;
+     var step = this.locations[i - 1];
+     $('#tutorial-container').load('tutorials/'+step+'/main.html', function() {
+       TutorialController.createStepSwitcher();
+       TutorialController.current = i;
+     });
+   },
+
+   createStepSwitcher: function() {
+     console.log('count:' + $('.tutorial-step').length);
+   },
+
+   next: function() {
+     this.current++;
+     if (this.current <= this.steps.length) {
+       var step = this.steps[this.current - 1];
+       var location = 'tutorials/' + step + '/main.html';
+       $('#bargraph').load(location);
+     }
+   }
+ };

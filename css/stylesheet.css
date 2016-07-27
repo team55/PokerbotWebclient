@@ -346,3 +346,12 @@ p.diminfo {
 .rounded: {
   border-radius: 8px !important;
 }
+
+.step-data {
+  display: none !important;
+}
+
+.step-description > p {
+  margin: 0px 25px 15px 25px;
+  text-align: justify;
+}
