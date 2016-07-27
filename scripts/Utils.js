@@ -22,6 +22,8 @@ var Utils = {
   },
 
   equalBlocks: function(a, b) {
+    console.log(typeof a);
+    console.log(typeof b);
     var ca = this.cleanBlock(a), cb = this.cleanBlock(b);
     console.log(a);
     console.log(ca);

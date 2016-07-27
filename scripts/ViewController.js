@@ -246,6 +246,7 @@ $(document).ready(function(e) {
      $('#tutorial-container').load('tutorials/'+step+'/main.html', function() {
        TutorialController.createStepSwitcher();
        TutorialController.current = i;
+       TutorialController._initializeNewChapter();
      });
    },
 
@@ -260,5 +261,89 @@ $(document).ready(function(e) {
        var location = 'tutorials/' + step + '/main.html';
        $('#bargraph').load(location);
      }
-   }
+   },
+
+
+
+
+   _currentView: 1,
+   _finishedStep: 0,
+
+   _initializeNewChapter: function() {
+     this._initializeNextStepButtons();
+     this._initializeBackStepButtons();
+     this._redraw();
+     workspace.addChangeListener(this._checkForSolution);
+   },
+   _initializeNextStepButtons: function() {
+     $('.next-step-view').click(function(e) {
+       TutorialController._currentView++;
+       TutorialController._finishedStep = TutorialController._currentView - 1;
+       if (TutorialController._currentView > $('.tutorial-step').length) {
+         TutorialController._chapterFinished();
+       } else { TutorialController._redraw(); }
+     });
+   },
+   _initializeBackStepButtons: function() {
+     $('.back-step-view').click(function(e) {
+       TutorialController._currentView--;
+       TutorialController._finishedStep = TutorialController._currentView - 1;
+       if (TutorialController._currentView < 1) { console.error('Tut.: 1'); }
+       else { TutorialController._redraw(); }
+     });
+   },
+
+   _chapterFinished: function() {
+     this._currentView = $('.tutorial-step').length;
+     console.error('Chapter finished but no callback provided.');
+   },
+
+   _checkForSolution: function() {
+     $('.tutorial-step').each(function(index) {
+       if (index == (TutorialController._currentView - 1)
+            && $(this).hasClass('step-interaction')) {
+              var solution = $(this).find('.workspace-solution').first().html();
+              var markup = Blockly.Xml.workspaceToDom(workspace);
+              var provided = Blockly.Xml.domToText(markup);
+              if (Utils.equalBlocks(solution, provided))
+                TutorialController._reportSolution();
+            }
+     });
+   },
+   _reportSolution: function() {
+     this._finishedStep = this._currentView;
+     this._redraw();
+   },
+
+   _redraw: function() {
+     $('.tutorial-step').each(function(index) {
+       if (index == (TutorialController._currentView - 1)) {
+         $(this).show();
+         $('.blocklyToolboxDiv').hide();
+         if (!$(this).hasClass('hide-toolbox')) $('.blocklyToolboxDiv').show();
+         if ($(this).hasClass('clear-workspace')) workspace.clear();
+         if ($(this).hasClass('step-interaction')) {
+           if (TutorialController._finishedStep < TutorialController._currentView) {
+             $(this).find('.next-step-view').addClass('disabled');
+             workspace.clear();
+             var data = $(this).find('.workspace-data').first().html();
+             var dom = Blockly.Xml.textToDom(data);
+             Blockly.Xml.domToWorkspace(workspace, dom);
+           } else {
+             $(this).find('.next-step-view').removeClass('disabled');
+           }
+         }
+       } else { $(this).hide(); }
+     });
+   },
+
+
+
+
+
+
+
+
+
+
  };
