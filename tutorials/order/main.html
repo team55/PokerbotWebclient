@@ -1,0 +1,54 @@
+
+<span class="tutorial-step step-interaction no-success">
+  <span class="step-description">
+    <p>
+      Als laatste willen we je nog wat bijbrengen over de volgorde van de if statements.
+      Het is belangrijk hier rekening mee te houden.
+    </p>
+    <p>
+      Neem het volgende scenario: heb je een kaart die groter is als een 10? Call dan.
+      Heb je een Aas? Raise dan naar de potgrootte! Indien geen van beide waar is,
+      fold dan. In je workspace zie je hier een voorbeeld van.
+    </p>
+  </span>
+  <div class="ui buttons">
+		<button class="ui blue icon button next-step-view disabled">
+      Volgende
+    </button>
+  </div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="46" y="25"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">10</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="custom_if"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">=:=</field><field name="rank">14</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></statement><next><block type="poker_fold"></block></next></block></next></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="46" y="25"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">10</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="custom_if"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">=:=</field><field name="rank">14</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></statement><next><block type="poker_fold"></block></next></block></next></block></xml>
+		</span>
+	</span>
+</span>
+
+<span class="tutorial-step step-interaction">
+  <span class="step-description">
+    <span class="on-success">
+      <i class="huge yellow trophy icon"></i>
+      <br /><br /><br />
+    </span>
+    <p>
+      Het probleem hiermee is echter dat indien we een Aas hebben, we zullen
+      callen. Zie je waarom?
+    </p>
+    <p> Probeer dit dus op te lossen zonder blokken toe te voegen of te verwijderen!</p>
+  </span>
+  <div class="ui buttons">
+		<button class="ui blue icon button next-step-view disabled">
+      Volgende
+    </button>
+  </div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="46" y="25"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">10</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="custom_if"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">=:=</field><field name="rank">14</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></statement><next><block type="poker_fold"></block></next></block></next></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="4" y="31"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">=:=</field><field name="rank">14</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></statement><next><block type="custom_if"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">10</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></next></block></xml>
+		</span>
+	</span>
+</span>

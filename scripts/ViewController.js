@@ -220,6 +220,12 @@ var TutorialController = {
   },{
     name: 'Stap 2: Als X, dan Y',
     path: 'ifstatement'
+  },{
+    name: 'Stap 3: Zinvolle regels',
+    path: 'firstrules'
+  },{
+    name: 'Stap 4: Volgorde',
+    path: 'order'
   }],
 
   /**

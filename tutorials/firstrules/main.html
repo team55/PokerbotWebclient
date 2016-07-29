@@ -1,0 +1,86 @@
+
+<span class="tutorial-step step-interaction">
+  <span class="step-description">
+    <span class="on-success">
+      <i class="huge yellow trophy icon"></i>
+      <br /><br /><br />
+    </span>
+    <p>
+      Vanaf nu zul je steeds zelf toegang hebben tot de toolbox. Het kan dus zijn
+      dat je blokken nodig hebt die nog niet in de workspace staan. </p>
+    <p>
+      Probeer nu het gegeven if statement eens aan te passen om te zorgen dat je
+      callt indien je een paar hebt (in plaats van met een Queen of hoger). Anders
+      fold je.
+    </p>
+  </span>
+  <div class="ui buttons">
+		<button class="ui blue icon button next-step-view disabled">
+      Volgende
+    </button>
+  </div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="51" y="49"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">12</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="292" y="120"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>
+		</span>
+	</span>
+</span>
+
+<span class="tutorial-step step-interaction">
+  <span class="step-description">
+    <span class="on-success">
+      <i class="huge yellow trophy icon"></i>
+      <br /><br /><br />
+    </span>
+    <p>
+      Je hebt tot nu toe enkel nog maar een paar gemaakt. Probeer nu zelf eens,
+      op dezelfde manier, three of a kind te maken. Je moet nu dus de waarde
+      van 3 kaarten in groep 1 zetten.
+    </p>
+  </span>
+  <div class="ui buttons">
+		<button class="ui blue icon button next-step-view disabled">
+      Volgende
+    </button>
+  </div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="55" y="30"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="72" y="37"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></next></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>
+		</span>
+	</span>
+</span>
+
+<span class="tutorial-step step-interaction">
+  <span class="step-description">
+    <span class="on-success">
+      <i class="huge yellow trophy icon"></i>
+      <br /><br /><br />
+    </span>
+    <p>
+      Je beseft zonet dat een three of a kind eigenlijk goed genoeg is om all-in
+      te gaan!
+    </p>
+    <p>
+      Pas de regel aan zodat je raised naar je stackgrootte.
+    </p>
+  </span>
+  <div class="ui buttons">
+		<button class="ui blue icon button next-step-view disabled">
+      Volgende
+    </button>
+  </div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="72" y="37"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></next></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="17" y="24"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></next></block></statement></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="stacksize"></block></value></block></statement><next><block type="poker_fold"></block></next></block></xml>
+		</span>
+	</span>
+</span>
