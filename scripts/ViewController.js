@@ -414,7 +414,7 @@ var TutorialController = {
     if (this.currentChapter == this.chapters.length) {
       this.finish();
     } else {
-      this.nextChapter();
+      this.setChapter(this.currentChapter + 1);
     }
   },
 

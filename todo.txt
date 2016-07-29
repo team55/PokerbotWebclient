@@ -6,14 +6,8 @@ Tutorial Structure:
     - Add explanation to step 5.
     - Add levels to step 5.
     - Step 5 ideas?
-    - Tips can have a better system for scalability.
-    - Check for location of blocks in tips.
-    - Count the number of used tips.
     - Difference between real 'else' and just pasting under if not explained.
-    - Make tips for dropdown blocks.
     - What is 'middenste if' in step 3?
-    - The challenge is good, should be explained more in the beginning.
-
 
 SKYPE:
   - Add legend to charts on side and bottom (how?).
