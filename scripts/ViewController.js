@@ -420,6 +420,7 @@ var TutorialController = {
 
   _chapterSwitch: function() {
     var value = parseInt($('#tutorial-chapter-select').val(), 10) + 1;
+    $('#topgraph').html('');
     TutorialController.setChapter(value);
   }
 
