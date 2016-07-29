@@ -2,39 +2,16 @@
 Tutorial Structure:
   Notes:
     - Difference between 2 and 3 is too big.
-      - Learn the 'raise' action before step 3.
     - Add explanation of bar graph in step 4.
     - Add explanation to step 5.
     - Add levels to step 5.
-    - Explain 'stacksize'.
-    - Add back button to steps in tutorial.
-    - Jump between steps in tutorial.
     - Step 5 ideas?
-    - Cookie to end Tutorial.
     - Tips can have a better system for scalability.
     - Check for location of blocks in tips.
     - Count the number of used tips.
     - Difference between real 'else' and just pasting under if not explained.
-    - Difference between specific rank and rank ++ not explained.
-    - Copy paste explanation.
-    - 'Kaarthouder' needs better explanation.
-    - No dropdown explanation for 'Kaarthouder'.
     - Make tips for dropdown blocks.
     - What is 'middenste if' in step 3?
-    - Moving of workspace not clear...
-    - The challenge is good, should be explained more in the beginning.
-
-  BLOCKLY STEP:
-    - Learn clicks.
-    - Learn the 'raise' action before step 3.
-    - Learn card clicks!
-    - Add back button to steps in tutorial.
-    - Jump between steps in tutorial.
-    - Check for location of blocks in tips.
-    - Count the number of used tips.
-    - Copy paste explanation.
-    - No dropdown explanation for 'Kaarthouder'.
-    - Moving of workspace not clear...
     - The challenge is good, should be explained more in the beginning.
 
 
