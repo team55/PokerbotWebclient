@@ -1,15 +1,18 @@
 
-<!-- NEW STEP -->
-
 <span class="tutorial-step step-interaction hide-toolbox">
   <span class="step-description">
     <span class="on-success">
-      <i class="huge yellow trophy icon"></i><br /><br /><br />
+      <i class="huge yellow trophy icon"></i>
+      <br /><br /><br />
     </span>
-  	<p> We beginnen met een simpel voorbeeld. Wanneer een speler raised, moet
-        hij ook aantonen met welke hoeveelheid hij wil raisen. </p>
-    <p> Probeer de blokken in elkaar te klikken zodat ze aantonen dat de speler
-        zal raisen met de potgrootte. </p>
+  	<p>
+      We beginnen met een simpel voorbeeld. Wanneer een speler raised, moet hij
+      ook aantonen met welke hoeveelheid hij wil raisen.
+    </p>
+    <p>
+      Probeer de blokken in elkaar te klikken zodat ze aantonen dat de speler
+      zal raisen naar de potgrootte.
+    </p>
   </span>
 	<div class="ui buttons">
 		<button class="ui blue icon button next-step-view disabled">
@@ -19,7 +22,7 @@
   <br>
 	<span class="step-data">
 		<span class="workspace-data">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_raise" x="197" y="111"></block><block type="potsize" x="372" y="115"></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_raise" x="229" y="127"></block><block type="potsize" x="414" y="260"></block></xml>
 		</span>
 		<span class="workspace-solution">
       <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_raise" x="197" y="111"><value name="amount"><block type="potsize"></block></value></block></xml>
@@ -27,7 +30,6 @@
 	</span>
 </span>
 
-<!-- NEW STEP -->
 
 <span class="tutorial-step step-interaction hide-toolbox">
   <span class="step-description">
@@ -37,6 +39,8 @@
   	<p> De stackgrootte is de totale hoeveelheid chips die je voor je hebt
         liggen. Indien je all-in wil gaan, kun je gewoon raisen naar je
         stackgrootte. </p>
+    <p> Probeer nu eens de actie te maken die aantoont dat de speler all-in
+        gaat. </p>
   </span>
 	<div class="ui buttons">
 		<button class="ui blue icon button next-step-view disabled">
@@ -46,7 +50,7 @@
   <br>
 	<span class="step-data">
 		<span class="workspace-data">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_raise" x="197" y="111"></block><block type="stacksize" x="372" y="115"></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_raise" x="229" y="127"></block><block type="stacksize" x="414" y="260"></block></xml>
 		</span>
 		<span class="workspace-solution">
       <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_raise" x="197" y="111"><value name="amount"><block type="stacksize"></block></value></block></xml>
@@ -54,7 +58,6 @@
 	</span>
 </span>
 
-<!-- NEW STEP -->
 
 <span class="tutorial-step step-interaction hide-toolbox">
   <span class="step-description">
@@ -62,7 +65,8 @@
       <i class="huge yellow trophy icon"></i><br /><br /><br />
     </span>
     <p> Een kaart heeft steeds een rang en een kleur. We gebruiken het bruine
-        blok om een kaart te maken. Het 'elke kleur' blok kan eender welke
+        blok om een kaart te maken. </p>
+    <p> Het 'elke kleur' blok kan eender welke
         kleur voorstellen. Het 'elke rang' blok kan eender welke rang
         voorstellen. </p>
     <p> Probeer de blokken in elkaar te klikken zodat we een kaart bekomen die
@@ -78,7 +82,7 @@
 	</div>
 	<span class="step-data">
 		<span class="workspace-data">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_color_any" x="392" y="88"></block><block type="poker_card" x="213" y="103"></block><block type="poker_rank_any" x="393" y="168"></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_color_any" x="406" y="94"></block><block type="poker_card" x="206" y="168"></block><block type="poker_rank_any" x="408" y="274"></block></xml>
 		</span>
 		<span class="workspace-solution">
       <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_card" x="213" y="103"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value></block></xml>
@@ -86,7 +90,6 @@
 	</span>
 </span>
 
-<!-- NEW STEP -->
 
 <span class="tutorial-step step-interaction no-success hide-toolbox">
   <span class="step-description">
@@ -114,7 +117,6 @@
 	</span>
 </span>
 
-<!-- NEW STEP -->
 
 <span class="tutorial-step step-interaction hide-toolbox">
   <span class="step-description">
@@ -141,8 +143,6 @@
 		</span>
 	</span>
 </span>
-
-<!-- NEW STEP -->
 
 <span class="tutorial-step step-interaction hide-toolbox">
   <span class="step-description">
@@ -173,8 +173,6 @@
 </span>
 
 
-<!-- NEW STEP -->
-
 <span class="tutorial-step step-interaction hide-toolbox">
   <span class="step-description">
     <span class="on-success">
@@ -195,15 +193,13 @@
 	</div>
 	<span class="step-data">
 		<span class="workspace-data">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="122" y="51"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value></block></next></block></statement></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="119" y="43"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></statement></block></xml>
 		</span>
 		<span class="workspace-solution">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="141" y="85"><field name="in">allekaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value></block></next></block></statement></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="119" y="43"><field name="in">allekaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value></block></next></block></statement></block></xml>
 		</span>
 	</span>
 </span>
-
-<!-- NEW STEP -->
 
 <span class="tutorial-step clear-workspace hide-toolbox">
   <span class="step-description">
@@ -224,9 +220,6 @@
     </button>
 	</div>
 </span>
-
-
-<!-- NEW STEP -->
 
 <span class="tutorial-step step-interaction hide-toolbox">
   <span class="step-description">
@@ -256,15 +249,14 @@
 </span>
 
 
-<!-- NEW STEP -->
-
 <span class="tutorial-step step-interaction hide-toolbox">
   <span class="step-description">
     <span class="on-success">
       <i class="huge yellow trophy icon"></i><br /><br /><br />
     </span>
     <p> Een blok verwijderen kan je door gebruik te maken van de delete of
-        backspace knop. Probeer zelf maar eens alle blokken te verwijderen! </p>
+        backspace knop. </p>
+    <p> Probeer zelf maar eens alle blokken te verwijderen! </p>
   </span>
 	<div class="ui buttons">
 		<button class="ui red icon button back-step-view">
@@ -284,15 +276,14 @@
 	</span>
 </span>
 
-<!-- NEW STEP -->
-
 <span class="tutorial-step step-interaction hide-toolbox">
   <span class="step-description">
     <span class="on-success">
       <i class="huge yellow trophy icon"></i><br /><br /><br />
     </span>
     <p> Als laatste willen we je ook nog meegeven dat het mogelijk is om
-        blokken te kopiëren en te plakken! Dit kan enorm handig zijn in
+        blokken te kopiëren en te plakken! </p>
+    <p> Dit kan enorm handig zijn in
         de toekomst wanneer je grote combinaties van blokken meerdere
         keren nodig hebt. </p>
     <p> Probeer zelf deze kaart maar eens de dupliceren. </p>
@@ -315,7 +306,6 @@
 	</span>
 </span>
 
-<!-- NEW STEP -->
 
 <span class="tutorial-step clear-workspace">
   <span class="step-description">
