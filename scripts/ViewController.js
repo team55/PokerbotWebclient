@@ -199,14 +199,13 @@ $(document).ready(function(e) {
 
  /******************************************************************************
 
-                              END OF REFACTORED CODE
+                              TUTORIALCONTROLLER
 
  ******************************************************************************/
 
 var TutorialController = {
 
-  currentChapter: 0,  // GOING FROM 1 to N. So starts from 1, not 0.
-  final: 'finished',  // TODO What is this?
+  currentChapter: 0,
   _currentView: 1,
   _finishedStep: 0,
 
@@ -229,13 +228,32 @@ var TutorialController = {
   }],
 
   /**
+   * This variable holds the final view when the complete tutorial is finished.
+   * It is impossible to jump to it; It's also impossible to go back (except
+   * the select box controls).
+   */
+  finalChapter: {
+    name: 'Gefeliciteerd!',
+    path: 'final'
+  },
+
+  /**
    * Returns the full name of the current chapter as it is written in the
    * chapters list of this Controller. If the Controller is not started,
    * 'undefined' will be returned.
    */
   currentChapterName: function() {
-    if (this.currentChapter == 0) return 'undefined';
-    return this.chapters[this.currentChapter - 1]['name'];
+    return this.chapterName(this.currentChapter);
+  },
+
+  /**
+   * Returns the full name of the ith chapter as it is written in the chapters
+   * list of this Controller. If the given i value is invalid, 'undefined' will
+   * be returned.
+   */
+  chapterName: function(i) {
+    if (i > this.chapters.length || i < 0) return 'undefined';
+    return this.chapters[i - 1]['name'];
   },
 
   /**
@@ -245,25 +263,54 @@ var TutorialController = {
    * i.e. 'Stap 3: Als X, dan Y' becomes 'Als X, dan Y'.
    */
   currentChapterTitle: function() {
-    if (this.currentChapter == 0) return 'undefined';
-    var str = this.chapters[this.currentChapter - 1]['name'];
-    var elems = (str[0].toUpperCase() + str.slice(1)).split(':');
+    return this.chapterTitle(this.currentChapter);
+  },
+
+  /**
+   * Returns a formatted title of the ith chapter that is ready to diplay to the
+   * user (Pascal Case). It also removes the prefix (before ':'). If the
+   * given value i is invalid, 'undefined' will be returned.
+   * i.e. for i = 3: 'Als X, dan Y'.
+   */
+  chapterTitle: function(i) {
+    var raw = this.chapterName(i);
+    var elems = (raw[0].toUpperCase() + raw.slice(1)).split(':');
     return elems[elems.length - 1].trim();
   },
 
   /**
    * Starts the tutorial sequence when no chapter was loaded yet. It has to be
    * called in the beginning because the main container for the chapters should
-   * be loaded first.
+   * be loaded first. It also initializes the ChapterSwitcher (select box) and
+   * initializes the first chapter.
    */
   start: function() {
     $('#bargraph').load('tutorials/container.html', function() {
       TutorialController.setChapter(1);
       $('#tutorial-chapter-select').change(TutorialController._chapterSwitch);
       $.each(TutorialController.chapters, function(index, element) {
-        $('#tutorial-chapter-select').append('<option value="'+index+'">'+element['name'][0].toUpperCase() + element['name'].slice(1)+'</option>');
+        $('#tutorial-chapter-select').append('\
+          <option value="'+index+'">\
+            ' + element['name'][0].toUpperCase() + element['name'].slice(1) + '\
+          </option>');
       });
     });
+  },
+
+  /**
+   * This functions loads the final module which is defined in the finalChapter
+   * variable of this controller. It should only be called when the last chapter
+   * from this.chapters is finished.
+   */
+  finish: function() {
+    this.currentChapter = -1;
+    var path = this.finalChapter['path'];
+    var location = 'tutorials/' + path + '/main.html';
+    $('#tutorial-container').load(location, function() {
+      $('#tutorial-title').html(TutorialController.finalChapter['name']);
+      TutorialController._initializeNewChapter();
+    });
+    $('#tutorial-chapter-select').val(0);
   },
 
   /**
@@ -277,14 +324,6 @@ var TutorialController = {
     this._buildChapterUI('tutorials/' + path + '/main.html');
     $('#tutorial-chapter-select').val(this.currentChapter - 1);
   },
-  /**
-   * Jumps to the next chapter (if it exists). Otherwise it won't do anything.
-   * TODO: Should still be implemented for the final step.
-   */
-  nextChapter: function() {
-    if (this.currentChapter == this.chapters.length) { return; }
-    this.setChapter(this.currentChapter + 1);
-  },
 
   _buildChapterUI: function(path) {
     $('#tutorial-container').load(path, function() {
@@ -293,7 +332,6 @@ var TutorialController = {
     });
   },
   _initializeNewChapter: function() {
-    console.log('Initialize new chapter');
     this._currentView = 1;
     this._finishedStep = 0;
     this._initializeNextStepButtons();
@@ -374,64 +412,15 @@ var TutorialController = {
   _chapterFinished: function() {
     this._currentView = $('.tutorial-step').length;
     if (this.currentChapter == this.chapters.length) {
-      console.error('End of the sequence... No final?');
+      this.finish();
     } else {
       this.nextChapter();
     }
   },
 
-
-
-
-
-
-
-  next: function() {
-    this.current++;
-    if (this.current <= this.steps.length) {
-      var step = this.steps[this.current - 1];
-      var location = 'tutorials/' + step + '/main.html';
-      $('#bargraph').load(location);
-    }
-  },
-
-
-
-
-
-
-
-
-
-
-   createStepSwitcher: function() {
-     console.log('count:' + $('.tutorial-step').length);
-   },
-
-
-
-
-
-
-
-
-
-   /**
-    * Callback function for when the user selects another chapter from the
-    * dropdown menu. When a new chapter is selected, it should be injected in
-    * the Tutorial Section.
-    */
-   _chapterSwitch: function() {
-     var value = parseInt($('#tutorial-chapter-select').val(), 10) + 1;
-     TutorialController.setChapter(value);
-   },
-
-
-
-
-
-
-
-
+  _chapterSwitch: function() {
+    var value = parseInt($('#tutorial-chapter-select').val(), 10) + 1;
+    TutorialController.setChapter(value);
+  }
 
  };
