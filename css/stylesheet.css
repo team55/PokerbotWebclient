@@ -355,3 +355,7 @@ p.diminfo {
   margin: 0px 25px 15px 25px;
   text-align: justify;
 }
+
+.on-success {
+  display: none;
+}

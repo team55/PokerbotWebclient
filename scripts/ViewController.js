@@ -203,140 +203,222 @@ $(document).ready(function(e) {
 
  ******************************************************************************/
 
- var TutorialController = {
-   current: 0,
-   steps: [
-     'stap 1: Inleiding',
-     'stap 2: Als X, dan Y',
-     'stap 3: Complexe handen',
-     'stap 4: Sequenties',
-     'stap 5: Versla een bot'
-   ],
-   locations: [
-     'introduction',
-     'stap 2: Als X, dan Y',
-     'stap 3: Complexe handen',
-     'stap 4: Sequenties',
-     'stap 5: Versla een bot'
-   ],
-   currentTitle: function() {
-     var str = this.steps[this.current - 1];
-     var elems = (str[0].toUpperCase() + str.slice(1)).split(':');
-     return elems[elems.length-1].trim();
-   },
-   final: 'finished',
+var TutorialController = {
 
-   start: function() {
-     this.current = 1;
-     $('#bargraph').load('tutorials/container.html', function() {
-       TutorialController.injectChapter(1);
-       $('#tutorial-title').html(TutorialController.currentTitle());
-       $.each(TutorialController.steps, function(index, element) {
-         console.log('eh');
-         $('#tutorial-chapter-select').append('<option value="'+element+'">'+element[0].toUpperCase() + element.slice(1)+'</option>');
-       });
-     });
+  currentChapter: 0,  // GOING FROM 1 to N. So starts from 1, not 0.
+  final: 'finished',  // TODO What is this?
+  _currentView: 1,
+  _finishedStep: 0,
 
-   },
+  /**
+   *  This is a list of the chapters for the current tutorial. In case you
+   *  would like to change the order, drop or add modules, you can do it here.
+   */
+  chapters: [{
+    name: 'Stap 1: Inleiding',
+    path: 'introduction'
+  },{
+    name: 'Stap 2: Als X, dan Y',
+    path: 'ifstatement'
+  }],
 
-   injectChapter: function(i) {
-     i = Math.abs(i);
-     if (i > this.steps.length) return;
-     var step = this.locations[i - 1];
-     $('#tutorial-container').load('tutorials/'+step+'/main.html', function() {
-       TutorialController.createStepSwitcher();
-       TutorialController.current = i;
-       TutorialController._initializeNewChapter();
-     });
-   },
+  /**
+   * Returns the full name of the current chapter as it is written in the
+   * chapters list of this Controller. If the Controller is not started,
+   * 'undefined' will be returned.
+   */
+  currentChapterName: function() {
+    if (this.currentChapter == 0) return 'undefined';
+    return this.chapters[this.currentChapter - 1]['name'];
+  },
+
+  /**
+   * Returns a formatted title of the current chapter that is ready to display
+   * to the user (Pascal Case). It also removes the prefix (before ':'). If the
+   * Controller is not started yet, 'undefined' will be returned.
+   * i.e. 'Stap 3: Als X, dan Y' becomes 'Als X, dan Y'.
+   */
+  currentChapterTitle: function() {
+    if (this.currentChapter == 0) return 'undefined';
+    var str = this.chapters[this.currentChapter - 1]['name'];
+    var elems = (str[0].toUpperCase() + str.slice(1)).split(':');
+    return elems[elems.length - 1].trim();
+  },
+
+  /**
+   * Starts the tutorial sequence when no chapter was loaded yet. It has to be
+   * called in the beginning because the main container for the chapters should
+   * be loaded first.
+   */
+  start: function() {
+    $('#bargraph').load('tutorials/container.html', function() {
+      TutorialController.setChapter(1);
+      $('#tutorial-chapter-select').change(TutorialController._chapterSwitch);
+      $.each(TutorialController.chapters, function(index, element) {
+        $('#tutorial-chapter-select').append('<option value="'+index+'">'+element['name'][0].toUpperCase() + element['name'].slice(1)+'</option>');
+      });
+    });
+  },
+
+  /**
+   * Sets the chapter to the nth one. If it does not exists, it won't do
+   * anything. Chapter number start from 1, not 0.
+   */
+  setChapter: function(i) {
+    if (Math.abs(i) > this.chapters.length) return;
+    this.currentChapter = Math.abs(i);
+    var path = this.chapters[this.currentChapter - 1]['path'];
+    this._buildChapterUI('tutorials/' + path + '/main.html');
+    $('#tutorial-chapter-select').val(this.currentChapter - 1);
+  },
+  /**
+   * Jumps to the next chapter (if it exists). Otherwise it won't do anything.
+   * TODO: Should still be implemented for the final step.
+   */
+  nextChapter: function() {
+    if (this.currentChapter == this.chapters.length) { return; }
+    this.setChapter(this.currentChapter + 1);
+  },
+
+  _buildChapterUI: function(path) {
+    $('#tutorial-container').load(path, function() {
+      $('#tutorial-title').html(TutorialController.currentChapterTitle());
+      TutorialController._initializeNewChapter();
+    });
+  },
+  _initializeNewChapter: function() {
+    console.log('Initialize new chapter');
+    this._currentView = 1;
+    this._finishedStep = 0;
+    this._initializeNextStepButtons();
+    this._initializeBackStepButtons();
+    this._redraw();
+    workspace.addChangeListener(this._checkForSolution);
+  },
+  _initializeNextStepButtons: function() {
+    $('.next-step-view').click(function(e) {
+      TutorialController._currentView++;
+      TutorialController._finishedStep = TutorialController._currentView - 1;
+      if (TutorialController._currentView > $('.tutorial-step').length) {
+        TutorialController._chapterFinished();
+      } else { TutorialController._redraw(); }
+    });
+  },
+  _initializeBackStepButtons: function() {
+    $('.back-step-view').click(function(e) {
+      TutorialController._currentView--;
+      TutorialController._finishedStep = TutorialController._currentView - 1;
+      if (TutorialController._currentView < 1) { console.error('Tut.: 1'); }
+      else { TutorialController._redraw(); }
+    });
+  },
+  _checkForSolution: function() {
+    $('.tutorial-step').each(function(index) {
+      if (index == (TutorialController._currentView - 1)
+           && $(this).hasClass('step-interaction')) {
+             var solution = $(this).find('.workspace-solution').first().html();
+             var markup = Blockly.Xml.workspaceToDom(workspace);
+             var provided = Blockly.Xml.domToText(markup);
+             if (Utils.equalBlocks(solution, provided))
+               TutorialController._reportSolution();
+           }
+    });
+  },
+  _reportSolution: function() {
+    this._finishedStep = this._currentView;
+    this._redraw();
+  },
+  _redraw: function() {
+    $('.tutorial-step').each(function(index) {
+      if (index == (TutorialController._currentView - 1)) {
+        $(this).show();
+        $('.blocklyToolboxDiv').hide();
+        if (!$(this).hasClass('hide-toolbox')) $('.blocklyToolboxDiv').show();
+        if ($(this).hasClass('clear-workspace')) workspace.clear();
+        if ($(this).hasClass('step-interaction')) {
+          if (TutorialController._finishedStep < TutorialController._currentView) {
+            $('#bargraph').addClass('tutorialinfo');
+            $('#bargraph').removeClass('tutorialsuccess');
+            $('#bargraph').removeClass('tutorialfailed');
+            $('.on-success').hide();
+            $(this).find('.next-step-view').addClass('disabled');
+            workspace.clear();
+            var data = $(this).find('.workspace-data').first().html();
+            var dom = Blockly.Xml.textToDom(data);
+            Blockly.Xml.domToWorkspace(workspace, dom);
+          } else {
+            if (!($(this).hasClass('no-success'))) {
+              $('#bargraph').addClass('tutorialsuccess');
+              $('#bargraph').removeClass('tutorialinfo');
+              $('#bargraph').removeClass('tutorialfailed');
+            }
+            $('.on-success').show();
+            $('#step-description').append('<i class="huge yellow trophy icon"></i><br /><br /><br />');
+            $(this).find('.next-step-view').removeClass('disabled');
+          }
+        } else {
+          $('#bargraph').addClass('tutorialinfo');
+          $('#bargraph').removeClass('tutorialsuccess');
+          $('#bargraph').removeClass('tutorialfailed');
+        }
+      } else { $(this).hide(); }
+    });
+  },
+
+  _chapterFinished: function() {
+    this._currentView = $('.tutorial-step').length;
+    if (this.currentChapter == this.chapters.length) {
+      console.error('End of the sequence... No final?');
+    } else {
+      this.nextChapter();
+    }
+  },
+
+
+
+
+
+
+
+  next: function() {
+    this.current++;
+    if (this.current <= this.steps.length) {
+      var step = this.steps[this.current - 1];
+      var location = 'tutorials/' + step + '/main.html';
+      $('#bargraph').load(location);
+    }
+  },
+
+
+
+
+
+
+
+
+
 
    createStepSwitcher: function() {
      console.log('count:' + $('.tutorial-step').length);
    },
 
-   next: function() {
-     this.current++;
-     if (this.current <= this.steps.length) {
-       var step = this.steps[this.current - 1];
-       var location = 'tutorials/' + step + '/main.html';
-       $('#bargraph').load(location);
-     }
+
+
+
+
+
+
+
+
+   /**
+    * Callback function for when the user selects another chapter from the
+    * dropdown menu. When a new chapter is selected, it should be injected in
+    * the Tutorial Section.
+    */
+   _chapterSwitch: function() {
+     var value = parseInt($('#tutorial-chapter-select').val(), 10) + 1;
+     TutorialController.setChapter(value);
    },
-
-
-
-
-   _currentView: 1,
-   _finishedStep: 0,
-
-   _initializeNewChapter: function() {
-     this._initializeNextStepButtons();
-     this._initializeBackStepButtons();
-     this._redraw();
-     workspace.addChangeListener(this._checkForSolution);
-   },
-   _initializeNextStepButtons: function() {
-     $('.next-step-view').click(function(e) {
-       TutorialController._currentView++;
-       TutorialController._finishedStep = TutorialController._currentView - 1;
-       if (TutorialController._currentView > $('.tutorial-step').length) {
-         TutorialController._chapterFinished();
-       } else { TutorialController._redraw(); }
-     });
-   },
-   _initializeBackStepButtons: function() {
-     $('.back-step-view').click(function(e) {
-       TutorialController._currentView--;
-       TutorialController._finishedStep = TutorialController._currentView - 1;
-       if (TutorialController._currentView < 1) { console.error('Tut.: 1'); }
-       else { TutorialController._redraw(); }
-     });
-   },
-
-   _chapterFinished: function() {
-     this._currentView = $('.tutorial-step').length;
-     console.error('Chapter finished but no callback provided.');
-   },
-
-   _checkForSolution: function() {
-     $('.tutorial-step').each(function(index) {
-       if (index == (TutorialController._currentView - 1)
-            && $(this).hasClass('step-interaction')) {
-              var solution = $(this).find('.workspace-solution').first().html();
-              var markup = Blockly.Xml.workspaceToDom(workspace);
-              var provided = Blockly.Xml.domToText(markup);
-              if (Utils.equalBlocks(solution, provided))
-                TutorialController._reportSolution();
-            }
-     });
-   },
-   _reportSolution: function() {
-     this._finishedStep = this._currentView;
-     this._redraw();
-   },
-
-   _redraw: function() {
-     $('.tutorial-step').each(function(index) {
-       if (index == (TutorialController._currentView - 1)) {
-         $(this).show();
-         $('.blocklyToolboxDiv').hide();
-         if (!$(this).hasClass('hide-toolbox')) $('.blocklyToolboxDiv').show();
-         if ($(this).hasClass('clear-workspace')) workspace.clear();
-         if ($(this).hasClass('step-interaction')) {
-           if (TutorialController._finishedStep < TutorialController._currentView) {
-             $(this).find('.next-step-view').addClass('disabled');
-             workspace.clear();
-             var data = $(this).find('.workspace-data').first().html();
-             var dom = Blockly.Xml.textToDom(data);
-             Blockly.Xml.domToWorkspace(workspace, dom);
-           } else {
-             $(this).find('.next-step-view').removeClass('disabled');
-           }
-         }
-       } else { $(this).hide(); }
-     });
-   },
-
 
 
 
