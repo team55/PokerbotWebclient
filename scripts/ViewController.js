@@ -216,16 +216,16 @@ var TutorialController = {
    *  would like to change the order, drop or add modules, you can do it here.
    */
   chapters: [{
-    name: 'Stap 1: Inleiding',
+    name: 'Hoofdstuk 1: Inleiding',
     path: 'introduction'
   },{
-    name: 'Stap 2: Als X, dan Y',
+    name: 'Hoofdstuk 2: Als X, dan Y',
     path: 'ifstatement'
   },{
-    name: 'Stap 3: Zinvolle regels',
+    name: 'Hoofdstuk 3: Zinvolle regels',
     path: 'firstrules'
   },{
-    name: 'Stap 4: Volgorde',
+    name: 'Hoofdstuk 4: Volgorde',
     path: 'order'
   }],
 

@@ -12,6 +12,14 @@ Tutorial Structure:
 Todo's:
   - Translate all blocks.
 
+Notes on mail:
+  1. Raise, Fold & Call should not be translated.
+  2. Done.
+  3. Made the intentions clear by renaming it to 'chapters'.
+  4. Done.
+  5. Done.
+
+
 SKYPE:
   - Add legend to charts on side and bottom (how?).
   - Top chart can be in labels or ranks.
