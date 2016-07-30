@@ -1,49 +1,32 @@
 
-Notes on mail:
-  1. Raise, Fold & Call should not be translated.
-  2. Done.
-  3. Made the intentions clear by renaming it to 'chapters'.
-  4. Done.
-  5. Done.
-  6&7. Groups < Text? Was clear during test, but I'll fix this after other todo's.
-  8. Done.
-  9. Done.
-  10. Done.
-  11. Done.
-  12. Done.
-  13. Didn't do it because it's OS specific?
-  14. Not sure about this order of the blocks?
-  15. Don't understand the goal of the image?
-
-SKYPE:
-  - Add legend to charts on side and bottom (how?).
-  - Top chart can be in labels or ranks.
-  - Fix bar loading margin.
-  - If extra time... Move to Sass?
-  - Fades instead of hide & show? Might look more robust.
-  - Disconnect, seat open?
-  - Add leave table option.
-  - Move Disconnect button and change table status.
-  - Beat Pokerbot button.
-  - Fix header signout issue.
-
-Todo's after first test:
-  - Default action is fold! (wasn't obvious).
+Final todos for beta:
+  MAIN GAME:
+    - Fix the broken loaders.
+    - Leave table on disconnect.
+    - Add description to all charts.
+    - Add the two numbers back to the top chart.
+    - Disconnect button is fine, but add second one (instead of disabled one).
+    - See if a transition is needed?
+  TUTORIAL:
+    - Add 'default action is fold' to the tutorial.
 
 Server-side Todo's:
-  - Add server side error when table already exists.
   - Translate Server-side errors.
-  - Catch 'invalid prolog' error server side.
-  - Find some bottlenecks on server?
-  - A lot of desanitizing should still be done.
+  - Catch 'invalid prolog' on server.
   - Rolling average in bar charts should be faster.
+  - Add server side error when table already exists.
+  - A lot of input checks should still be done on the server.
+  - Find some bottlenecks on server?
 
-// Future?:
+Future ideas:
+  - Upload blocks for preview?
+  - Possibility to load bots in multiplayer tables?
+  - Lock & unlock tables.
 
-Ideas:
-- Uploading BLOCKLY code to preview others? (db?)
-- More Stepwise Client Side
-- Load bots into the tables
-- Preconfigured in a list (the default bots)
-- Lock tables (hide tables) and unlock tables
-- Explanation of the graphs
+Notes on mail:
+  - Raise, Fold & Call should not be translated.
+  - It should be clear now the the tutorial dropdown contains 'chapters'.
+  - Groups is something that can be fixed (ABC), but was clear during tests...
+  - Copy paste controls are OS specific.
+  - Order of blocks is fine I think, cards are more important?
+  - Don't understand the banner idea.
