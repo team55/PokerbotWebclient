@@ -3,9 +3,6 @@ Final todos for beta:
   GLOBAL:
     - Clean project.
     - Test on 127.0.0.1 before beta push.
-  MAIN GAME:
-    - Disconnect button is fine, but add second one (instead of disabled one).
-    - See if a transition is needed?
   TUTORIAL:
     - Add 'default action is fold' to the tutorial.
     - Fix the Bot step 'next' buttons (border-radius).

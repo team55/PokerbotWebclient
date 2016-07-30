@@ -364,3 +364,7 @@ p.diminfo {
 .on-success > p, .step-description > p {
   margin-bottom: 25px;
 }
+
+#red-disconnect-btn {
+  display: none;
+}

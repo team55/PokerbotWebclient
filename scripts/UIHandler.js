@@ -27,8 +27,8 @@ var UIHANDLER = {
     },
 
     updateButtonsAfterConnectionEstablished: function () {
-        $('#toggledimmer')
-            .addClass('disabled');
+        $('#toggledimmer').hide();
+        $('#red-disconnect-btn').show();
         $('#rulesendbtn')
             .removeClass('disabled');
         $('#detailedviewbtn')
@@ -242,8 +242,8 @@ var UIHANDLER = {
     resetButtons: function () {
         $('#rulesendbtn')
             .addClass('disabled');
-        $('#toggledimmer')
-            .removeClass('disabled');
+        $('#toggledimmer').show();
+        $('#red-disconnect-btn').hide();
         $('#detailedviewbtn')
             .addClass('hideme');
     },
