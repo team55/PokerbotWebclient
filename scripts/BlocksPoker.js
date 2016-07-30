@@ -407,7 +407,7 @@ Blockly.Blocks['poker_cards'] = {
 Blockly.Blocks['poker_card'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("card with ");
+        .appendField("kaart met ");
     this.appendValueInput("arg_color")
         .setCheck("POKER_TYPE_COLOR")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -415,13 +415,13 @@ Blockly.Blocks['poker_card'] = {
     this.appendValueInput("arg_rank")
         .setCheck("POKER_TYPE_RANK")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("rank:");
+        .appendField("rang:");
     this.setOutput(false, "POKER_TYPE_CARD");
     this.setInputsInline(false);
     this.setPreviousStatement(true, "POKER_TYPE_CARD");
     this.setNextStatement(true, "POKER_TYPE_CARD");
     this.setColour(cardcolor);
-    this.setTooltip('Definieert een kaart met gegeven rank en kleur.');
+    this.setTooltip('Definieert een kaart met gegeven rang en kleur.');
   }
 };
 
@@ -470,41 +470,41 @@ var rankcolor = 330;
 Blockly.Blocks['poker_rank'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("rank ")
+        .appendField("rang ")
         .appendField(new Blockly.FieldDropdown([[">=", ">="], [">", ">"], ["<=", "=<"], ["<", "<"], ["=", "=:="], ["!=", "=\\="]]), "op")
         .appendField(new Blockly.FieldDropdown([["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"], ["Jack", "11"], ["Queen", "12"], ["King", "13"], ["Ace", "14"]]), "rank");
     this.setOutput(true, "POKER_TYPE_RANK");
     this.setColour(rankcolor);
-    this.setTooltip('Zorgt er voor dat de rank van de kaart voldoet aan de gegeven vergelijking.');
+    this.setTooltip('Zorgt er voor dat de rang van de kaart voldoet aan de gegeven vergelijking.');
   }
 };
 Blockly.Blocks['poker_rank_any'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("elke rank");
+        .appendField("elke rang");
     this.setOutput(true, "POKER_TYPE_RANK");
     this.setColour(rankcolor);
-    this.setTooltip('Kan eender welke rank zijn.');
+    this.setTooltip('Kan eender welke rang zijn.');
   }
 };
 Blockly.Blocks['poker_rank_same'] = {
   init: function() {
     this.appendValueInput("num")
         .setCheck("Number")
-        .appendField("zelfde rank (Groep");
+        .appendField("zelfde rang (Groep");
     this.appendDummyInput()
         .appendField(")");
     this.setInputsInline(true);
     this.setOutput(true, "POKER_TYPE_RANK");
     this.setColour(rankcolor);
-    this.setTooltip('Kaarten waarvan de rank tot eenzelfde groep behoord, zullen dezelfde rank moeten hebben!');
+    this.setTooltip('Kaarten waarvan de rang tot eenzelfde groep behoord, zullen dezelfde rang moeten hebben!');
   }
 };
 Blockly.Blocks['poker_rank_incr'] = {
   init: function() {
     this.appendValueInput("num")
         .setCheck("Number")
-        .appendField("same rank (Group");
+        .appendField("same rang (Group");
     this.appendDummyInput()
         .appendField(") +");
     this.appendValueInput("incr")

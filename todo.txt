@@ -1,8 +1,4 @@
 
-Tutorial Structure:
-  Notes:
-    - Translate all blocks.
-
 Notes on mail:
   1. Raise, Fold & Call should not be translated.
   2. Done.
