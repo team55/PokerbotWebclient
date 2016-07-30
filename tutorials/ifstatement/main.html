@@ -1,7 +1,4 @@
 
-<!--  This document is the redesigned chapter for learning the if statement. In
-      earlies versions, this was step 1a.   -->
-
 <span class="tutorial-step step-interaction no-success hide-toolbox">
   <span class="step-description">
     <p>
@@ -26,7 +23,7 @@
   </div>
 	<span class="step-data">
 		<span class="workspace-data">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="149" y="87"></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="218" y="136"></block></xml>
 		</span>
 		<span class="workspace-solution">
       <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="149" y="87"></block></xml>
@@ -57,10 +54,10 @@
   </div>
 	<span class="step-data">
 		<span class="workspace-data">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="is_preflop" x="187" y="112"></block><block type="is_flop" x="417" y="187"></block><block type="is_big_blind" x="259" y="287"></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="is_preflop" x="262" y="137"></block><block type="is_big_blind" x="254" y="179"></block><block type="is_flop" x="272" y="219"></block></xml>
 		</span>
 		<span class="workspace-solution">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="is_preflop" x="187" y="112"></block><block type="is_flop" x="417" y="187"></block><block type="is_big_blind" x="259" y="287"></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="is_preflop" x="262" y="137"></block><block type="is_big_blind" x="254" y="179"></block><block type="is_flop" x="272" y="219"></block></xml>
 		</span>
 	</span>
 </span>
@@ -89,10 +86,10 @@
   </div>
 	<span class="step-data">
 		<span class="workspace-data">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_raise" x="200" y="158"><value name="amount"><block type="math_number"><field name="NUM">20</field></block></value></block><block type="poker_call" x="396" y="197"></block><block type="poker_fold" x="298" y="282"></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_call" x="284" y="158"></block><block type="poker_fold" x="284" y="196"></block><block type="poker_raise" x="252" y="239"><value name="amount"><block type="math_number"><field name="NUM">20</field></block></value></block></xml>
 		</span>
 		<span class="workspace-solution">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_raise" x="200" y="158"><value name="amount"><block type="math_number"><field name="NUM">20</field></block></value></block><block type="poker_call" x="396" y="197"></block><block type="poker_fold" x="298" y="282"></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_call" x="284" y="158"></block><block type="poker_fold" x="284" y="196"></block><block type="poker_raise" x="252" y="239"><value name="amount"><block type="math_number"><field name="NUM">20</field></block></value></block></xml>
 		</span>
 	</span>
 </span>
@@ -101,16 +98,20 @@
   <span class="step-description">
     <span class="on-success">
       <i class="huge yellow trophy icon"></i>
-      <br /><br /><br />
+      <br />
+      <h2>Gefeliciteerd</h2>
+      <p>Op naar de volgende stap!</p>
     </span>
-    <p>
-      Wanneer aan de voorwaarde van een 'if' voldaan is, zal de actie in het
-      'do' vak uitgevoerd worden.
-    </p>
-    <p>
-      Probeer nu zelf eens de blokken in elkaar te klikken zodat de regel ons
-      zegt dat 'indien het preflop is, call ik'.
-    </p>
+    <span class="before-success">
+      <p>
+        Wanneer aan de voorwaarde van een 'if' voldaan is, zal de actie in het
+        'do' vak uitgevoerd worden.
+      </p>
+      <p>
+        Probeer nu zelf eens de blokken in elkaar te klikken zodat de regel ons
+        zegt dat 'indien het preflop is, call ik'.
+      </p>
+    </span>
   </span>
   <div class="ui buttons">
     <button class="ui red icon button back-step-view">
@@ -151,10 +152,10 @@
   </div>
 	<span class="step-data">
 		<span class="workspace-data">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="261" y="127"><value name="IF0"><block type="logic_boolean"><field name="BOOL">TRUE</field></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></next></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="199" y="142"><value name="IF0"><block type="logic_boolean"><field name="BOOL">TRUE</field></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></next></block></xml>
 		</span>
 		<span class="workspace-solution">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="261" y="127"><value name="IF0"><block type="logic_boolean"><field name="BOOL">TRUE</field></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></next></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="199" y="142"><value name="IF0"><block type="logic_boolean"><field name="BOOL">TRUE</field></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></next></block></xml>
 		</span>
 	</span>
 </span>
@@ -163,12 +164,16 @@
   <span class="step-description">
     <span class="on-success">
       <i class="huge yellow trophy icon"></i>
-      <br /><br /><br />
+      <br />
+      <h2>Gefeliciteerd</h2>
+      <p>Op naar de volgende stap!</p>
     </span>
-    <p>
-      Probeer nu eens met wat je weet de regel aan te passen zodat deze callt
-      indien het preflop is, maar fold indien dit niet zo is.
-    </p>
+    <span class="before-success">
+      <p>
+        Probeer nu eens met wat je weet de regel aan te passen zodat deze callt
+        indien het preflop is, maar fold indien dit niet zo is.
+      </p>
+    </span>
   </span>
   <div class="ui buttons">
     <button class="ui red icon button back-step-view">
@@ -180,7 +185,7 @@
   </div>
 	<span class="step-data">
 		<span class="workspace-data">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="208" y="121"><value name="IF0"><block type="is_preflop"></block></value><statement name="DO0"><block type="poker_call"></block></statement></block><block type="poker_fold" x="474" y="248"></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="208" y="121"><value name="IF0"><block type="is_preflop"></block></value><statement name="DO0"><block type="poker_call"></block></statement></block><block type="poker_fold" x="354" y="229"></block></xml>
 		</span>
 		<span class="workspace-solution">
       <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="208" y="121"><value name="IF0"><block type="is_preflop"></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>
@@ -192,15 +197,19 @@
   <span class="step-description">
     <span class="on-success">
       <i class="huge yellow trophy icon"></i>
-      <br /><br /><br />
+      <br />
+      <h2>Gefeliciteerd</h2>
+      <p>Op naar de volgende stap!</p>
     </span>
-    <p>
-      Pas nu de voorwaarde aan, zodat je enkel callt indien je een Queen of hoger
-      in je hand hebt. Anders fold je!
-    </p>
-    <p>
-      Let op, een Queen is dus ook nog goed genoeg om te callen!
-    </p>
+    <span class="before-success">
+      <p>
+        Pas nu de voorwaarde aan, zodat je enkel callt indien je een Queen of hoger
+        in je hand hebt. Anders fold je!
+      </p>
+      <p>
+        Let op, een Queen is dus ook nog goed genoeg om te callen!
+      </p>
+    </span>
   </span>
   <div class="ui buttons">
     <button class="ui red icon button back-step-view">
