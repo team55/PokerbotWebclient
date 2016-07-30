@@ -28,10 +28,7 @@ SKYPE:
   - Fix header signout issue.
 
 Todo's after first test:
-  - Too much text.
   - Default action is fold! (wasn't obvious).
-  - Make translation better!
-  - Make toolbox buttons more feel like buttons.
 
 Server-side Todo's:
   - Add server side error when table already exists.
