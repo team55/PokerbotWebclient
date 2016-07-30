@@ -10,6 +10,7 @@ const CONNECT_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?table
 const SEND_RULE_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName=';
 const TABLE_DATA_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/ObserveTable.php?tableName=';
 const TABLE_LIST_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/get_tables.php';
+const LEAVE_TABLE_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/goodbye.php';
 
 const CONNECT_URL_SUFFIX = '&playerName=';
 const SEND_RULE_FIRST_SUFFIX = '&playerName=';
@@ -182,6 +183,30 @@ var SERVER_CORE = {
         } catch(error) {
           if ('fail' in options && !(options.fail === undefined)) options.fail(error);
         }
+        if ('final' in options && !(options.final === undefined)) options.final();
+      },
+      error: function(xhr, error, thrown) {
+        if ('fail' in options && !(options.fail === undefined)) options.fail(error);
+        if ('final' in options && !(options.final === undefined)) options.final();
+      }
+    });
+  },
+
+  /**
+   *  Makes a user leave from a table. The success, fail and
+   *  final callbacks will be called in the corresponding cases.
+   *  @option   success     Callback when succeeded.
+   *  @option   fail        Callback when failed.
+   *  @option   final       Callback when finished.
+   */
+  leaveTable: function(username, tablename, options) {
+    options = options || {};
+    $.ajax({ url: LEAVE_TABLE_URL, method: 'POST', data: {
+        tableName: tablename,
+        playerName: username
+      },
+      success: function(result) {
+        if ('success' in options && !(options.success === undefined)) options.success();
         if ('final' in options && !(options.final === undefined)) options.final();
       },
       error: function(xhr, error, thrown) {

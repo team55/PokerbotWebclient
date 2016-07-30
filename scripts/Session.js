@@ -132,11 +132,19 @@ var SESSION = {
     if (!SESSION.isConnected()) {
       if ('fail' in options && !(options.fail === undefined)) options.fail('Not connected');
     } else {
-      SESSION._username = DEFAULT_USERNAME_VALUE;
-      SESSION._tablename = DEFAULT_TABLENAME_VALUE;
-      if ('success' in options && !(options.success === undefined)) options.success();
+      SERVER_CORE.leaveTable(SESSION.getServerUsername(), SESSION.getRawTablename(), {
+        success: function() {
+          SESSION._username = DEFAULT_USERNAME_VALUE;
+          SESSION._tablename = DEFAULT_TABLENAME_VALUE;
+          if ('success' in options && !(options.success === undefined)) options.success();
+          if ('final' in options && !(options.final === undefined)) options.final();
+        },
+        error: function(error) {
+          if ('fail' in options && !(options.fail === undefined)) options.fail(error);
+          if ('final' in options && !(options.final === undefined)) options.final();
+        }
+      });
     }
-    if ('final' in options && !(options.final === undefined)) options.final();
   },
 
   /**
@@ -152,7 +160,7 @@ var SESSION = {
       if ('fail' in options && !(options.fail === undefined)) options.fail('No user connected to send rule to');
       if ('final' in options && !(options.final === undefined)) options.final();
     } else {
-      SERVER_CORE.sendRule(SESSION._username, SESSION._tablename, rule, {
+      SERVER_CORE.sendRule(SESSION.getServerUsername(), SESSION.getRawTablename(), rule, {
         success: function() {
           if ('success' in options && !(options.success === undefined)) options.success();
         },

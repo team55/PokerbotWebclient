@@ -1,14 +1,17 @@
 
 Final todos for beta:
+  GLOBAL:
+    - Clean project.
+    - Test on 127.0.0.1 before beta push.
   MAIN GAME:
-    - Fix the broken loaders.
-    - Leave table on disconnect.
     - Add description to all charts.
+    - Fix 'Toon' and 'Hide' text on button.
     - Add the two numbers back to the top chart.
     - Disconnect button is fine, but add second one (instead of disabled one).
     - See if a transition is needed?
   TUTORIAL:
     - Add 'default action is fold' to the tutorial.
+    - Fix the Bot step 'next' buttons (border-radius).
 
 Server-side Todo's:
   - Translate Server-side errors.
