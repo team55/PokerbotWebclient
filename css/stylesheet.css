@@ -351,7 +351,8 @@ p.diminfo {
   display: none !important;
 }
 
-.step-description > span.before-success > p {
+.step-description > span.before-success > p,
+.step-description > p {
   margin: 0px 25px 15px 25px;
   text-align: justify;
 }
@@ -360,6 +361,6 @@ p.diminfo {
   display: none;
 }
 
-.on-success > p {
+.on-success > p, .step-description > p {
   margin-bottom: 25px;
 }

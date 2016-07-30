@@ -18,7 +18,15 @@ Notes on mail:
   3. Made the intentions clear by renaming it to 'chapters'.
   4. Done.
   5. Done.
-
+  6&7. Groups < Text? Was clear during test, but I'll fix this after other todo's.
+  8. Done.
+  9. Done.
+  10. Done.
+  11. Done.
+  12. Done.
+  13. Didn't do it because it's OS specific?
+  14. Not sure about this order of the blocks?
+  15. Don't understand the goal of the image?
 
 SKYPE:
   - Add legend to charts on side and bottom (how?).
