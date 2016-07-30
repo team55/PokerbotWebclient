@@ -9,6 +9,9 @@ Tutorial Structure:
     - Difference between real 'else' and just pasting under if not explained.
     - What is 'middenste if' in step 3?
 
+Todo's:
+  - Translate all blocks.
+
 SKYPE:
   - Add legend to charts on side and bottom (how?).
   - Top chart can be in labels or ranks.

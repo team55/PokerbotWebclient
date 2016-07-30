@@ -22,6 +22,7 @@ var Utils = {
   },
 
   equalBlocks: function(a, b) {
+    console.log(b);
     var ca = this.cleanBlock(a), cb = this.cleanBlock(b);
     return ca === cb;
   },

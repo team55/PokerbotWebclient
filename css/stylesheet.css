@@ -351,11 +351,15 @@ p.diminfo {
   display: none !important;
 }
 
-.step-description > p {
+.step-description > span.before-success > p {
   margin: 0px 25px 15px 25px;
   text-align: justify;
 }
 
 .on-success {
   display: none;
+}
+
+.on-success > p {
+  margin-bottom: 25px;
 }

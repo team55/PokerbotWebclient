@@ -141,6 +141,8 @@ $('#stoptutorialbutton').click(function(e) {
     });
   } catch(error) {}
   UIHANDLER.disableFullscreenWorkspace();
+  workspace.clear();
+  $('.blocklyToolboxDiv').show();
 });
 
 /******************************************************************************
@@ -294,7 +296,21 @@ var TutorialController = {
             ' + element['name'][0].toUpperCase() + element['name'].slice(1) + '\
           </option>');
       });
+
+      $('#bargraph').addClass('tutorialinfo');
+      $('#stoptutorial').show();
+      $('#toggledimmer').addClass('disabled');
     });
+  },
+
+  /**
+   * This functions sets the values of this Controller to the start values. That
+   * way the Controller can be reset. It does not redraw the layout.
+   */
+  stop: function() {
+    this.chapter = 1;
+    this._currentView = 0;
+    this._finishedStep = 0;
   },
 
   /**
@@ -385,6 +401,7 @@ var TutorialController = {
             $('#bargraph').removeClass('tutorialsuccess');
             $('#bargraph').removeClass('tutorialfailed');
             $('.on-success').hide();
+            $('.before-success').show();
             $(this).find('.next-step-view').addClass('disabled');
             workspace.clear();
             var data = $(this).find('.workspace-data').first().html();
@@ -396,6 +413,7 @@ var TutorialController = {
               $('#bargraph').removeClass('tutorialinfo');
               $('#bargraph').removeClass('tutorialfailed');
             }
+            $('.before-success').hide();
             $('.on-success').show();
             $('#step-description').append('<i class="huge yellow trophy icon"></i><br /><br /><br />');
             $(this).find('.next-step-view').removeClass('disabled');
