@@ -1,12 +1,4 @@
 
-Final todos for beta:
-  GLOBAL:
-    - Clean project.
-    - Test on 127.0.0.1 before beta push.
-  TUTORIAL:
-    - Add 'default action is fold' to the tutorial.
-    - Fix the Bot step 'next' buttons (border-radius).
-
 Server-side Todo's:
   - Translate Server-side errors.
   - Catch 'invalid prolog' on server.
