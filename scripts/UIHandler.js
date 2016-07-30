@@ -388,6 +388,9 @@ var UIHANDLER = {
             });*/
             $('#bottomgraph')
                 .hide();
+
+                $('#detailedviewbtn')
+                    .html('Toon details');
     },
 
     showTutorialModal: function () {

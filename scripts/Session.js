@@ -5,7 +5,7 @@
  *  disconnect, sendRule, etc).
  */
 
-const USERNAME_MAX_LENGTH = 12;
+const USERNAME_MAX_LENGTH = 10;
 const USERNAME_MAX_SERVER_LENGTH = 20;
 const USERNAME_SUFFIX = "...";
 

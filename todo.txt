@@ -5,7 +5,6 @@ Final todos for beta:
     - Test on 127.0.0.1 before beta push.
   MAIN GAME:
     - Add description to all charts.
-    - Fix 'Toon' and 'Hide' text on button.
     - Add the two numbers back to the top chart.
     - Disconnect button is fine, but add second one (instead of disabled one).
     - See if a transition is needed?
