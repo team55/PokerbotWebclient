@@ -1,9 +1,6 @@
 
 Tutorial Structure:
   Notes:
-    - Difference between 2 and 3 is too big.
-    - Add explanation of bar graph in step 4.
-    - What is 'middenste if' in step 3?
     - Add explanation to step 5.
     - Add levels to step 5.
     - Step 5 ideas?
