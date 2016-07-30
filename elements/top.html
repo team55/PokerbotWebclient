@@ -23,7 +23,7 @@
     smoothie = new SmoothieChart({
       grid: { strokeStyle:'rgb(247, 247, 247)', fillStyle:'rgb(247, 247, 247)',
               lineWidth: 1, millisPerLine: 250, verticalSections: 6 },
-      labels: { disabled: true }
+      labels: { fillStyle: 'rgb(0,0,0)' }
     });
     smoothie.streamTo(document.getElementById("topGraphCanvas"));
     dataSets = new Array(players.length);
