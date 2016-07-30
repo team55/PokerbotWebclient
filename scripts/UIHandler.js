@@ -110,6 +110,7 @@ var UIHANDLER = {
                     .attr('value', '')
                     .text('Kies een tafel'));
             $.each(converted, function (key, value) {
+              if (!key.startsWith('Step5TableID'))
                 $('#tablename')
                     .append($('<option></option>')
                         .attr('value', key)

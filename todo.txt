@@ -28,7 +28,6 @@ SKYPE:
   - Fix header signout issue.
 
 Todo's after first test:
-  - Hide Step5 tables in UI.
   - Too much text.
   - Default action is fold! (wasn't obvious).
   - Clear workspace button.
