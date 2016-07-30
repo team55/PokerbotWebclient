@@ -30,7 +30,6 @@ SKYPE:
 Todo's after first test:
   - Too much text.
   - Default action is fold! (wasn't obvious).
-  - Clear workspace button.
   - Make translation better!
   - Make toolbox buttons more feel like buttons.
 
