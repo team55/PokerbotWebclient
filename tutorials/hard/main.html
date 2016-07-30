@@ -9,10 +9,9 @@
       <p>Op naar de volgende stap!</p>
     </span>
     <span class="before-success">
-      <p> Versla de pokerbot! Probeer nu regels te bouwen om hem te verslaan! Wanneer een regel klaar is,
+      <p> Versla de moeilijke pokerbot! Probeer nu regels te bouwen om hem te verslaan! Wanneer een regel klaar is,
           klik dan op de groene pijl en kijk of hij goed genoeg is. </p>
-      <p> <b>Tip:</b> De pokerbot gaat elke hand all in (raised naar zijn stackgrootte),
-          dus probeer enkel all in te gaan indien je een goede hand hebt. </p>
+      <p> <b>Tip:</b> De pokerbot gaat all-in met een Aas! </p>
     </span>
   </span>
   <button id="step-5-start-btn" class="ui green button">Start!</button>
@@ -100,7 +99,7 @@
     },
 
     sendDefaultRule: function(callback) {
-      $.get('tutorials/bot/default.txt', function(data) {
+      $.get('tutorials/hard/default.txt', function(data) {
         step5Sequencer.sendRule(step5Sequencer.computername, data, function() {
         })
       });

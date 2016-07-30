@@ -1,9 +1,6 @@
 
 Tutorial Structure:
   Notes:
-    - Add explanation to step 5.
-    - Add levels to step 5.
-    - Step 5 ideas?
     - Translate all blocks.
 
 Notes on mail:

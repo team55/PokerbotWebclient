@@ -230,6 +230,9 @@ var TutorialController = {
   }, {
     name: 'Hoofdstuk 5: Easy Bot',
     path: 'bot'
+  }, {
+    name: 'Hoofdstuk 6: Hard bot',
+    path: 'hard'
   }],
 
   /**
@@ -338,6 +341,8 @@ var TutorialController = {
    */
   setChapter: function(i) {
     if (Math.abs(i) > this.chapters.length) return;
+    $('#topgraph').html('');
+    UIHANDLER.resizeWorkspace();
     this.currentChapter = Math.abs(i);
     var path = this.chapters[this.currentChapter - 1]['path'];
     this._buildChapterUI('tutorials/' + path + '/main.html');
@@ -398,7 +403,7 @@ var TutorialController = {
         $('.blocklyToolboxDiv').hide();
         if (!$(this).hasClass('hide-toolbox')) $('.blocklyToolboxDiv').show();
         if ($(this).hasClass('clear-workspace')) workspace.clear();
-        if ($(this).hasClass('step-interaction')) {
+        if ($(this).hasClass('step-interaction') || $(this).hasClass('step-bot')) {
           if (TutorialController._finishedStep < TutorialController._currentView) {
             $('#bargraph').addClass('tutorialinfo');
             $('#bargraph').removeClass('tutorialsuccess');
@@ -407,9 +412,11 @@ var TutorialController = {
             $('.before-success').show();
             $(this).find('.next-step-view').addClass('disabled');
             workspace.clear();
-            var data = $(this).find('.workspace-data').first().html();
-            var dom = Blockly.Xml.textToDom(data);
-            Blockly.Xml.domToWorkspace(workspace, dom);
+            if ($(this).hasClass('step-interaction')) {
+              var data = $(this).find('.workspace-data').first().html();
+              var dom = Blockly.Xml.textToDom(data);
+              Blockly.Xml.domToWorkspace(workspace, dom);
+            }
           } else {
             if (!($(this).hasClass('no-success'))) {
               $('#bargraph').addClass('tutorialsuccess');
@@ -418,13 +425,17 @@ var TutorialController = {
             }
             $('.before-success').hide();
             $('.on-success').show();
-            $('#step-description').append('<i class="huge yellow trophy icon"></i><br /><br /><br />');
             $(this).find('.next-step-view').removeClass('disabled');
           }
         } else {
           $('#bargraph').addClass('tutorialinfo');
           $('#bargraph').removeClass('tutorialsuccess');
           $('#bargraph').removeClass('tutorialfailed');
+          if ($(this).hasClass('always-success')) {
+            $('#bargraph').addClass('tutorialsuccess');
+            $('#bargraph').removeClass('tutorialinfo');
+            $('#bargraph').removeClass('tutorialfailed');
+          }
         }
       } else { $(this).hide(); }
     });
