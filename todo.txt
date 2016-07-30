@@ -4,7 +4,6 @@ Final todos for beta:
     - Clean project.
     - Test on 127.0.0.1 before beta push.
   MAIN GAME:
-    - Add description to all charts.
     - Disconnect button is fine, but add second one (instead of disabled one).
     - See if a transition is needed?
   TUTORIAL:
