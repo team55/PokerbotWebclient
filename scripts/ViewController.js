@@ -227,6 +227,9 @@ var TutorialController = {
   },{
     name: 'Hoofdstuk 4: Volgorde',
     path: 'order'
+  }, {
+    name: 'Hoofdstuk 5: Easy Bot',
+    path: 'bot'
   }],
 
   /**

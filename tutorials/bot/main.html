@@ -1,21 +1,15 @@
 
 <!-- Step description -->
 <span id="step-5-description" class="tutorial-step">
-  <p> Versla de pokerbot! Probeer nu regels te bouwen om hem te verslaan! Wanneer een regel klaar is,
-      klik dan op de groene pijl en kijk of hij goed genoeg is. </p>
-  <p> Tip: De pokerbot gaat elke hand all in (raised naar zijn stackgrootte),
-      dus probeer enkel all in te gaan indien je een goede hand hebt. </p>
+  <span class="step-description">
+    <p> Versla de pokerbot! Probeer nu regels te bouwen om hem te verslaan! Wanneer een regel klaar is,
+        klik dan op de groene pijl en kijk of hij goed genoeg is. </p>
+    <p> <b>Tip:</b> De pokerbot gaat elke hand all in (raised naar zijn stackgrootte),
+        dus probeer enkel all in te gaan indien je een goede hand hebt. </p>
+  </span>
   <button id="step-5-start-btn" class="ui green button">Start!</button>
   <div id="step-5-help-btns" class="ui buttons hideme">
-    <button id="step-5-tips-btn" class="ui teal button">
-      Tip
-    </button>
-    <div class="or" data-text="of"></div>
-    <button id="step-5-send-btn" class="circular ui green button hideme"><i class="arrow up icon"></i></button>
-    <div class="or" data-text="of"></div>
-    <button id="step-5-resign-btn" class="ui red button">
-      Stop
-    </button>
+    <button id="step-5-send-btn" class="circular ui green button hideme">Activeer Regel</button>
   </div>
 </span>
 
@@ -143,6 +137,7 @@
 
     sendRule: function(user, rule, callback) {
       var destination = "http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName=";
+      console.log(rule);
       destination += SERVER._desanitize(this.tableID) + "&playerName=" + user + "&description=" + encodeURIComponent(rule);
       $.ajax({url: destination, success: function(result) {
         if (callback) callback();
@@ -152,7 +147,7 @@
     },
 
     sendDefaultRule: function(callback) {
-      $.get('tutorials/5/default.txt', function(data) {
+      $.get('tutorials/bot/default.txt', function(data) {
         step5Sequencer.sendRule(step5Sequencer.computername, data, function() {
         })
       });
