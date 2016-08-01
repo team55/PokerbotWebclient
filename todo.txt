@@ -3,7 +3,6 @@ Server-side Todo's:
   - Translate Server-side errors.
   - Catch 'invalid prolog' on server.
   - Rolling average in bar charts should be faster.
-  - Add server side error when table already exists.
   - A lot of input checks should still be done on the server.
   - Find some bottlenecks on server?
 
