@@ -52,7 +52,7 @@ $('#create-table-btn').click(function(e) {
     $('#table-create-tablename').val(),
     $('#table-password').val(),
     $('#table-players').val(), {
-    success: function() {
+    success: function(data) {
       updateTableSelectionList();
       var txt ='Create table with name '+$('#table-create-tablename').val()+'.';
       UIHANDLER.showCreateTableLog(txt);

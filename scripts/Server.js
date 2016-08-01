@@ -35,7 +35,14 @@ var SERVER = {
       if ('fail' in options && !(options.fail === undefined)) options.fail('Ongeldige data opgegeven.');
       if ('final' in options && !(options.final === undefined)) options.final();
     } else {
-      SERVER_CORE.createTable(ct, cp, cs, options);
+      SERVER_CORE.createTable(ct, cp, cs, {
+        success: function(data) {
+          if (data.indexOf('already exists') > -1) {
+            if ('fail' in options && !(options.fail === undefined)) options.fail('Tafel bestaat al!');
+          } else {
+            if ('success' in options && !(options.success === undefined)) options.success();
+          }
+        }, fail: options.fail, final: options.final});
     }
   },
 
