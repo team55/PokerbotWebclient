@@ -185,7 +185,7 @@
           setTimeout(function() {
             fetchDataForBarCharts();
           }, 2500);
-        } catch(error) {}
+        } catch(error) {  console.error('bar:' + error);  }
       },
       fail: function(error) {
         if (error != 'Ongeldige tafelnaam.') {
