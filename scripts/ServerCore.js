@@ -4,17 +4,17 @@
  *  communicate with the server. This file requires JQUERY.
  */
 
-const CREATE_TABLE_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/makeTable.php';
-const KILL_TABLE_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/killTable.php';
-const CONNECT_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName=';
-const SEND_RULE_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName=';
-const TABLE_DATA_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/ObserveTable.php?tableName=';
-const TABLE_LIST_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/get_tables.php';
-const LEAVE_TABLE_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/goodbye.php';
+var CREATE_TABLE_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/makeTable.php';
+var KILL_TABLE_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/killTable.php';
+var CONNECT_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/hello.php?tableName=';
+var SEND_RULE_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName=';
+var TABLE_DATA_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/ObserveTable.php?tableName=';
+var TABLE_LIST_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/get_tables.php';
+var LEAVE_TABLE_URL = 'http://bear.cs.kuleuven.be/pokerdemo/server/goodbye.php';
 
-const CONNECT_URL_SUFFIX = '&playerName=';
-const SEND_RULE_FIRST_SUFFIX = '&playerName=';
-const SEND_RULE_SECOND_SUFFIX = '&description=';
+var CONNECT_URL_SUFFIX = '&playerName=';
+var SEND_RULE_FIRST_SUFFIX = '&playerName=';
+var SEND_RULE_SECOND_SUFFIX = '&description=';
 
 /**
  *  SERVER_CORE instance is the lowest level connection to the server. Every

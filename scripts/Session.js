@@ -5,12 +5,12 @@
  *  disconnect, sendRule, etc).
  */
 
-const USERNAME_MAX_LENGTH = 10;
-const USERNAME_MAX_SERVER_LENGTH = 20;
-const USERNAME_SUFFIX = "...";
+var USERNAME_MAX_LENGTH = 10;
+var USERNAME_MAX_SERVER_LENGTH = 20;
+var USERNAME_SUFFIX = "...";
 
-const DEFAULT_USERNAME_VALUE = undefined;
-const DEFAULT_TABLENAME_VALUE = undefined;
+var DEFAULT_USERNAME_VALUE = undefined;
+var DEFAULT_TABLENAME_VALUE = undefined;
 
 /**
  *  SESSION instance is the one that holds all the information about the current

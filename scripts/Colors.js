@@ -7,7 +7,7 @@
  *  color schemes of flatuicolors.com.
  */
 
-const GRAPH_COLORS = [
+var GRAPH_COLORS = [
   'rgb(41, 187, 156)',    // TURQUOISE
   'rgb(154, 92, 180)',    // AMETHYST
   'rgb(53, 73, 93)',      // WET ASPHALT
