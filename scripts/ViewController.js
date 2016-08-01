@@ -189,6 +189,7 @@ $(document).ready(function(e) {
     workspace = Blockly.inject('blocklyDiv',
         {media: 'blockly/media/',
          trashcan: false,
+         sounds: false,
          toolbox: document.getElementById('toolbox')});
     Blockly.Xml.domToWorkspace(workspace,
             document.getElementById('startBlocks'));
