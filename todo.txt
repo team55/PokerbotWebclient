@@ -2,14 +2,6 @@ Our cool new ideas:
 
 Start tutorial:
 
-- zinvolle regels: (top: je kan blokken verwijderen of copieren met gewoonlijke keyboard shortcuts of rechtermuisclick)
-  'een paar, dus zelfde rang, ongeacht de kleur'
-
-- three of a kind: geen 'back'
-  "je hebt enkel nog..." 'Een paar is een goede hand, maar 3 dezelfde kaarten is nog beter; ..."
-  three of a kind: moet op hand OF tafel!!
-    -> voeg check toe; 3 kaarten maar enkel 'hand'? (bij submit)
-
 - hoofdstuk 5: introduceer dat nu tegen bots
 - easy bot: tip verbergen? activeer regel op plaats
   default regel: if true fold
@@ -65,6 +57,7 @@ Extra's:
   - Exact footer text?
   - Switch to Group A, B, C, ...
   - Add loading bars to chapters.
+  - More than 2 cards in cardholder when selected 'hand'...
 
 
 Server-side Todo's:
