@@ -106,7 +106,6 @@ html, body {
 #topgraph, #bargraph, #bottomgraph {
   font-style: italic;
   text-align: center;
-  padding-top: 16px;
 }
 
 
@@ -375,7 +374,6 @@ p.diminfo {
 
 
 #topgraph {
-  display: none !important;
   margin-bottom: 0px !important;
 }
 .maingrid {
@@ -393,4 +391,31 @@ p.diminfo {
 
 .header > .content > a {
   color: inherit;
+}
+
+#tutorial-progress {
+  border: none;
+  background-color: #7f8c8d;
+  padding: 0;
+  border-radius: 0;
+}
+#tutorial-progress > bar {
+  border-radius: 0px !important;
+}
+
+.progress-container {
+  height: 400px;
+  margin-top: 0px;
+}
+
+#tutorial-chapter-select {
+}
+
+#tutorial-title {
+  padding-top: 35px;
+}
+
+.progress-data {
+  font-size: 8px;
+  color: #7f8c8d;
 }

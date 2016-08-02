@@ -1,6 +1,6 @@
 
 <!-- Step description -->
-<span class="tutorial-step clear-workspace step-bot">
+<span class="tutorial-step clear-workspace step-bot no-progress">
   <span class="step-description">
     <span class="on-success">
       <i class="huge yellow trophy icon"></i>
@@ -9,12 +9,11 @@
       <p>Op naar de volgende stap!</p>
     </span>
     <span class="before-success">
-      <p> Versla de pokerbot! Probeer nu regels te bouwen om hem te verslaan! Wanneer een regel klaar is,
-          klik dan op de groene pijl en kijk of hij goed genoeg is. </p>
-      <p> Wanneer eens peler geen regels heeft geactiveerd, is de standaard actie
-          altijd fold. </p>
-      <p> <b>Tip:</b> De pokerbot gaat elke hand all in (raised naar zijn stackgrootte),
-          dus probeer enkel all in te gaan indien je een goede hand hebt. </p>
+      <p> Gebruik deze kennis nu om een automatische bot te verslaan. Wanneer een regel klaar is,
+          activeer deze dan om te kijke of hij goed genoeg is. </p>
+      <p> Om hem te verslaan moet je ervoor zorgen dat de gemiddelde winst hoger is dan deze
+          van de bot. De resulaten zie je in de grafiek bovenaan deze pagina.</p>
+      <p> <b>Tip:</b> Raisen is vaak een goed idee indien je een sterke hand hebt.</p>
     </span>
   </span>
   <button id="step-5-start-btn" class="ui green button">Start!</button>
@@ -122,7 +121,7 @@
               computerScore = players[i]['avg profit'];
             }
           }
-          if (userScore > computerScore) {
+          if ((userScore - computerScore) > 0.25) {
             step5Sequencer.complete();
           }
         } catch(error) {
@@ -164,6 +163,12 @@
   $('#step-5-start-btn').click(function() {
     $('#step-5-start-btn').addClass('loading');
     step5Sequencer.start(function() {
+
+      var startUpBlocks = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="50" y="50"><value name="IF0"><block type="logic_boolean"><field name="BOOL">TRUE</field></block></value><statement name="DO0"><block type="poker_fold"></block></statement></block></xml>';
+      workspace.clear();
+      var dom = Blockly.Xml.textToDom(startUpBlocks);
+      Blockly.Xml.domToWorkspace(workspace, dom);
+
       $('#step-5-start-btn').removeClass('loading');
       $('#step-5-start-btn').addClass('hideme');
       $('#step-5-send-btn').removeClass('hideme');
@@ -184,5 +189,6 @@
 
     });
   });
+
 
 </script>

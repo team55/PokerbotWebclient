@@ -198,3 +198,9 @@ $(document).ready(function(e) {
   });
   updateTableSelectionList();
 });
+
+$(document).keyup(function(e) {
+ if (e.keyCode == 27) {
+   $('.ui.page.dimmer').dimmer('hide');
+ }
+});

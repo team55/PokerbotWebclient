@@ -1,6 +1,6 @@
 
 <!-- Step description -->
-<span class="tutorial-step clear-workspace step-bot">
+<span class="tutorial-step clear-workspace step-bot no-progress">
   <span class="step-description">
     <span class="on-success">
       <i class="huge yellow trophy icon"></i>
@@ -11,7 +11,8 @@
     <span class="before-success">
       <p> Versla de moeilijke pokerbot! Probeer nu regels te bouwen om hem te verslaan! Wanneer een regel klaar is,
           klik dan op de groene pijl en kijk of hij goed genoeg is. </p>
-      <p> <b>Tip:</b> De pokerbot gaat all-in met een Aas! </p>
+      <p> <b>Tip:</b> Deze bot houdt wel rekening met zijn kaarten, pas dus op en
+          speel enkel goede handen! </p>
     </span>
   </span>
   <button id="step-5-start-btn" class="ui green button">Start!</button>
@@ -119,7 +120,7 @@
               computerScore = players[i]['avg profit'];
             }
           }
-          if (userScore > computerScore) {
+          if ((userScore - computerScore) > 0.25) {
             step5Sequencer.complete();
           }
         } catch(error) {
@@ -161,6 +162,10 @@
   $('#step-5-start-btn').click(function() {
     $('#step-5-start-btn').addClass('loading');
     step5Sequencer.start(function() {
+      var startUpBlocks = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="50" y="50"><value name="IF0"><block type="logic_boolean"><field name="BOOL">TRUE</field></block></value><statement name="DO0"><block type="poker_fold"></block></statement></block></xml>';
+      workspace.clear();
+      var dom = Blockly.Xml.textToDom(startUpBlocks);
+      Blockly.Xml.domToWorkspace(workspace, dom);
       $('#step-5-start-btn').removeClass('loading');
       $('#step-5-start-btn').addClass('hideme');
       $('#step-5-send-btn').removeClass('hideme');

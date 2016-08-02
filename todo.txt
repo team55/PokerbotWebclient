@@ -1,63 +1,14 @@
-Our cool new ideas:
-
-Start tutorial:
-
-- hoofdstuk 5: introduceer dat nu tegen bots
-- easy bot: tip verbergen? activeer regel op plaats
-  default regel: if true fold
-  verslaan = hogere gemiddelde winst
-  eens peler
-  toon 'fold' als regel
-  gemiddelde winst en gewonnen verschillend?
-
-
-easybot: gooit regels weg wanneer gedaan?
-->  kunnen blijven spelen ook als gewonnen
-easybot: als enkel 'call' dan ook winnen... iets moeilijker?
- => is callbot
- => als verschil gedurende X (groter dan Y)
-    (verander naar 0.1 accuracy)
-iets met tip dat je moet raisen
-
-hard bot: minder expiciete tip? de pokerbot kijkt telkens naar zijn hand
-
-
-Varia:
-
-Kies een tafel: taflenaam (3/5 spelers)
-
-Esc op login scherm
-
-
-link naar pokerhanden?
-
-logfiles op server: andere plaats? minder loggen? (e.g. fetchtable niet?)
-
-server: json error:
-     [java] Incoming request: {"request":{"type":"fetchData","tableName":"Step5TableID53ZSt37EU5"}}
-     [java] JSON does not allow non-finite numbers.
-     [java] org.json.JSONException: JSON does not allow non-finite numbers.
-     [java]     at org.json.JSONObject.testValidity(JSONObject.java:1288)
-     [java]     at org.json.JSONObject.put(JSONObject.java:1100)
-     [java]     at org.json.JSONObject.put(JSONObject.java:1037)
-     [java]     at ww10.RequestHandler.handleFetchDataRequest(RequestHandler.java:187)
-     [java]     at ww10.RequestHandler.handleRequest(RequestHandler.java:76)
-     [java]     at ww10.RequestHandler.run(RequestHandler.java:40)
-     [java]     at java.lang.Thread.run(Thread.java:745)
-
-bugs van regels: een call block en een fold block: call\nfold. (illegal)
-                 enkel een raise(10) block: raise(X1). (illegal)
-
-
-Goed idee: blokken saven
-
 
 Extra's:
   - Check browser: Redirect if unsupported?
   - Exact footer text?
   - Switch to Group A, B, C, ...
-  - Add loading bars to chapters.
   - More than 2 cards in cardholder when selected 'hand'...
+  - Change bot 'send rule' button.
+  - Do not remove rule after win.
+  - Update table name in list (X/Y players).
+  - Link to ranks.
+  - Prolog bug fix.
 
 
 Server-side Todo's:
@@ -66,6 +17,8 @@ Server-side Todo's:
   - Rolling average in bar charts should be faster.
   - A lot of input checks should still be done on the server.
   - Find some bottlenecks on server?
+  - Change the log location.
+  - Fetch JSON error in case of incorrect actions.
 
 Future ideas:
   - Upload blocks for preview?

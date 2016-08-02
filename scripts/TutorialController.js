@@ -186,6 +186,7 @@ var TutorialController = {
   },
   _initializeNextStepButtons: function() {
     $('.next-step-view').click(function(e) {
+      TutorialController._finishedStep = TutorialController._currentView;
       TutorialController._currentView++;
       TutorialController._finishedStep = TutorialController._currentView - 1;
       if (TutorialController._currentView > $('.tutorial-step').length) {
@@ -218,8 +219,27 @@ var TutorialController = {
     this._redraw();
   },
   _redraw: function() {
+    console.log(this._currentView);
+    console.log($('.tutorial-step').length);
+    $('#tutorial-progress').attr('data-value', this._currentView);
+    $('#tutorial-progress').attr('data-total', $('.tutorial-step').length);
+    var progress = parseFloat(this._currentView - 1) / parseFloat($('.tutorial-step').length - 1);
+    if (!(this._currentView == $('.tutorial-step').length)) {
+      $('#tutorial-progress').progress('set percent', progress);
+      $('.progress-data').html(String(this._currentView - 1) + '/' + String($('.tutorial-step').length - 1) + ' voltooid')
+    } else {
+      $('#tutorial-progress').progress('complete');
+      $('.progress-data').html(this.currentChapterName() + ' voltooid');
+    }
     $('.tutorial-step').each(function(index) {
       if (index == (TutorialController._currentView - 1)) {
+        if ($(this).hasClass('no-progress')) {
+          $('#tutorial-progress').hide();
+          $('.progress-data').hide();
+        } else {
+          $('#tutorial-progress').show();
+          $('.progress-data').show();
+        }
         $(this).show();
         $('.blocklyToolboxDiv').hide();
         if (!$(this).hasClass('hide-toolbox')) $('.blocklyToolboxDiv').show();
