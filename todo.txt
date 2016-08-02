@@ -2,15 +2,6 @@ Our cool new ideas:
 
 Start tutorial:
 
-- call/raise: daar 'is preflop'
-- call/fold: weghalen
-* vertaling: Queen
-* copy/paste?
-
-
-- Deel 1: blokken maken
-  Deel 2: Als-Dan
-
 - zinvolle regels: (top: je kan blokken verwijderen of copieren met gewoonlijke keyboard shortcuts of rechtermuisclick)
   'een paar, dus zelfde rang, ongeacht de kleur'
 

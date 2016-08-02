@@ -37,10 +37,10 @@ var TutorialController = {
    *  would like to change the order, drop or add modules, you can do it here.
    */
   chapters: [{
-    name: 'Hoofdstuk 1: Inleiding',
+    name: 'Hoofdstuk 1: Blokken maken',
     path: 'introduction'
   },{
-    name: 'Hoofdstuk 2: Als X, dan Y',
+    name: 'Hoofdstuk 2: Als-Dan',
     path: 'ifstatement'
   },{
     name: 'Hoofdstuk 3: Zinvolle regels',
