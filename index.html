@@ -147,51 +147,44 @@
             </category>
           </xml>
           <xml id="startBlocks" style="display: none">
-            <block type="custom_if" x="25" y="25">
-              <value name="IF0">
-                <block type="greater_then_or_equal">
-                  <value name="A">
-                    <block type="stacksize">
+            <block type="custom_if" x="50" y="50">
+                <value name="IF0">
+                    <block type="poker_cards">
+                        <field name="in">handkaarten</field>
+                        <statement name="cardlist">
+                            <block type="poker_card">
+                                <value name="arg_color">
+                                    <block type="poker_color_any"></block>
+                                </value>
+                                <value name="arg_rank">
+                                    <block type="poker_rank">
+                                        <field name="op">&gt;=</field>
+                                        <field name="rank">13</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </statement>
                     </block>
-                  </value>
-                  <value name="B">
-                    <block type="potsize">
+                </value>
+                <statement name="DO0">
+                    <block type="poker_raise">
+                        <value name="amount">
+                            <block type="divide">
+                                <value name="A">
+                                    <block type="potsize"></block>
+                                </value>
+                                <value name="B">
+                                    <block type="math_number">
+                                        <field name="NUM">2</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
                     </block>
-                  </value>
-                </block>
-              </value>
-              <statement name="DO0">
-                <block type="poker_raise">
-                  <value name="amount">
-                    <block type="potsize">
-                    </block>
-                  </value>
-                </block>
-              </statement>
-              <next>
-                <block type="custom_if">
-                  <value name="IF0">
-                    <block type="and">
-                      <value name="A">
-                        <block type="is_preflop">
-                        </block>
-                      </value>
-                      <value name="B">
-                        <block type="is_big_blind">
-                        </block>
-                      </value>
-                    </block>
-                  </value>
-                  <statement name="DO0">
-                    <block type="poker_call">
-                    </block>
-                  </statement>
-                  <next>
-                    <block type="poker_fold">
-                    </block>
-                  </next>
-                </block>
-              </next>
+                </statement>
+                <next>
+                    <block type="poker_fold"></block>
+                </next>
             </block>
           </xml>
         </div>

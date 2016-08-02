@@ -2,7 +2,6 @@ Our cool new ideas:
 
 Eerste scherm:
 - ga naar tafel -> in kadertje (ook op 'activeer regel')? [gn 'gn verb tafel']
-- stand blok: raise if in hand >= king with potgrootte/2
 - speelscherm: simpeler
 - menu: reorder?
 - footer: link naar innolab, ons dept, credits page, source code
@@ -99,7 +98,8 @@ bugs van regels: een call block en een fold block: call\nfold. (illegal)
 Goed idee: blokken saven
 
 
-
+Extra's:
+  - Check browser: Redirect if unsupported?
 
 
 
