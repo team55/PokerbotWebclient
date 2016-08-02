@@ -76,8 +76,8 @@ html, body {
   margin: 0 auto !important;
 }
 
-#toggledimmer {
-  margin-left: 20px;
+#toggledimmer, #starttutorial {
+  margin: 0 auto !important;
 }
 
 #table-status {
@@ -248,7 +248,7 @@ body, .cutbottom {
 
 
 #bargraph, #BarLoader {
-  margin-top: 14px !important;
+  margin-top: 0px !important;
   margin-right: 20px !important;
 }
 
@@ -367,4 +367,22 @@ p.diminfo {
 
 #red-disconnect-btn {
   display: none;
+}
+
+
+#topgraph {
+  display: none !important;
+  margin-bottom: 0px !important;
+}
+.maingrid {
+  margin-bottom: 0px;
+}
+
+.above-btn {
+  margin-bottom: 15px !important;
+}
+
+#blocks-bar {
+  padding-top: 0px !important;
+  margin-top: 0px !important;
 }

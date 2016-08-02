@@ -1,9 +1,7 @@
 Our cool new ideas:
 
 Eerste scherm:
-- ga naar tafel -> in kadertje (ook op 'activeer regel')? [gn 'gn verb tafel']
 - speelscherm: simpeler
-- menu: reorder?
 - footer: link naar innolab, ons dept, credits page, source code
 - header: link naar main
 

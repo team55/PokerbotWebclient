@@ -6,12 +6,7 @@ var workspace;
                                   SIGN IN SECTION
 
  ******************************************************************************/
-
-// Connects a the dimmer to the connect button.
-$('#toggledimmer').click(function(e) {
-  $('.ui.page.dimmer').dimmer('show');
-});
-
+ 
 // Connects a sequence to the refresh button (to refresh table selection).
 var updateTableSelectionList = function() {
   SERVER.getTableList({

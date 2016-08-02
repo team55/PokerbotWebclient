@@ -38,15 +38,7 @@
     </h2>
   </div>
 
-  <div class="ui page grid cutbottom">
-
-    <!-- Sign in and status div -->
-    <div class="sixteen wide column cleancol">
-      <span id="toggledimmer" class="ui teal button">Ga naar een tafel</span>
-      <span id="red-disconnect-btn" class="ui red button">Verlaat tafel</span>
-      <span id="stoptutorial" class="ui red button">Stop tutorial</span>
-      <span id="table-status"><span class="ui label">Geen verbinding met een tafel</span></span>
-    </div>
+  <div class="ui page grid cutbottom maingrid">
 
     <!-- Top data div -->
     <div id="topgraph" class="sixteen wide column center aligned">
@@ -58,6 +50,9 @@
         <div id="workDiv" class="sixteen wide segment column">
           <div id="blocklyDiv"></div>
           <xml id="toolbox" style="display: none">
+            <category name="If statement">
+              <block type="custom_if"></block>
+            </category>
             <category name="Kaarten">
               <block type="poker_cards"></block>
               <block type="poker_card">
@@ -102,20 +97,6 @@
               <block type="poker_fold"></block>
               <block type="poker_raise"></block>
             </category>
-            <category name="Voorwaarden">
-              <block type="logic_boolean"></block>
-              <block type="is_preflop"></block>
-              <block type="is_flop"></block>
-              <block type="is_turn"></block>
-              <block type="is_river"></block>
-              <block type="is_postflop"></block>
-              <block type="is_small_blind"></block>
-              <block type="is_big_blind"></block>
-              <block type="is_dealer"></block>
-            </category>
-            <category name="If statement">
-              <block type="custom_if"></block>
-            </category>
             <category name="Hoeveelheden">
               <block type="math_number"></block>
               <block type="random"></block>
@@ -129,6 +110,12 @@
               <block type="min_raise"></block>
               <block type="max_raise"></block>
             </category>
+            <category name="Bewerkingen">
+              <block type="add"></block>
+              <block type="substract"></block>
+              <block type="multiply"></block>
+              <block type="divide"></block>
+            </category>
             <category name="Vergelijkingen">
               <block type="greater_then"></block>
               <block type="greater_then_or_equal"></block>
@@ -139,11 +126,16 @@
               <block type="or"></block>
               <block type="not"></block>
             </category>
-            <category name="Bewerkingen">
-              <block type="add"></block>
-              <block type="substract"></block>
-              <block type="multiply"></block>
-              <block type="divide"></block>
+            <category name="Voorwaarden">
+              <block type="logic_boolean"></block>
+              <block type="is_preflop"></block>
+              <block type="is_flop"></block>
+              <block type="is_turn"></block>
+              <block type="is_river"></block>
+              <block type="is_postflop"></block>
+              <block type="is_small_blind"></block>
+              <block type="is_big_blind"></block>
+              <block type="is_dealer"></block>
             </category>
           </xml>
           <xml id="startBlocks" style="display: none">
@@ -189,6 +181,9 @@
           </xml>
         </div>
         <div id="controls" class="sixteen wide column right aligned">
+          <span id="red-disconnect-btn" class="ui mini red button">Verlaat tafel</span>
+
+          <span id="stoptutorial" class="ui mini red button">Stop tutorial</span>
           <button id="detailedviewbtn" class="ui mini button hideme" onclick="toggleDetailedView()">Toon details</button>
           <button id="clear-btn" class="ui mini button" onclick="workspace.clear()">Clear workspace</button>
           <button id="resize-btn" class="ui mini button" onclick="toggleFullscreenWorkspace()">Vergroot</button>

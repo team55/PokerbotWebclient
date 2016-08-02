@@ -1,15 +1,28 @@
-<h1>Welkom!</h1>
-<p> Via deze weg kun je voor het eerst kennis maken met programmeren door
-    een eigen pokerbot te maken.  </p>
-    <div class="ui bulleted list">
-      <div class="item">  Niet je eerste keer? Dan kan je meteen aan een tafel
-                          gaan zitten! </div>
-      <div class="item">  Had je liever eerst meer uitleg? Onze tutorial is
-                          speciaal voor jou! </div>
-    </div>
-<div id="starttutorial" class="ui green button">Start tutorial</div>
+<h1>Welkom!
+</h1>
+<p>
+  Via deze weg kun je voor het eerst kennis maken met programmeren door een
+  eigen pokerbot te maken.
+</p>
+<p class="above-btn">
+  Niet je eerste keer? Dan kan je meteen aan een tafel gaan zitten!
+</p>
+<span id="toggledimmer" class="ui tiny green button">Ga naar een tafel
+</span>
+<p class="above-btn"> Had je liever eerst meer uitleg? Onze tutorial is
+  speciaal voor jou!
+</p>
+<div id="starttutorial" class="ui tiny teal button">Start tutorial
+</div>
+
+
 <script>
   $('#starttutorial').click(function(e) {
     TutorialController.start();
   });
+  // Connects a the dimmer to the connect button.
+  $('#toggledimmer').click(function(e) {
+    $('.ui.page.dimmer').dimmer('show');
+  });
+
 </script>
