@@ -2,8 +2,6 @@ Our cool new ideas:
 
 Start tutorial:
 
-
-- als-dan, te lang (knip uitlegjes)
 - call/raise: daar 'is preflop'
 - call/fold: weghalen
 * vertaling: Queen
