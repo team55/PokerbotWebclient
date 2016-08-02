@@ -17,7 +17,6 @@
     </span>
   </span>
   <button id="step-5-start-btn" class="ui green button">Start!</button>
-  <button id="step-5-send-btn" class="ui green button hideme sendBotRule">Activeer Regel</button>
   <button class="ui blue icon button next-step-view disabled">
     Volgende
   </button>
@@ -171,8 +170,9 @@
 
       $('#step-5-start-btn').removeClass('loading');
       $('#step-5-start-btn').addClass('hideme');
-      $('#step-5-send-btn').removeClass('hideme');
       $('#step-5-help-btns').removeClass('hideme');
+      $('#step-5-send-btn').removeClass('hideme');
+      $('#rule-send-btn').hide();
       setInterval(function() {
         step5Sequencer.checkForWin();
       }, 2500);
