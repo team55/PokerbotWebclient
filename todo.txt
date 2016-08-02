@@ -2,20 +2,6 @@ Our cool new ideas:
 
 Start tutorial:
 
-* zelfde rang zonder actie: merge met volgende
-* nog steeds groep 1?
-* flush en dropdown: merge
-
-
-- 'same' rang + : vertaal
-- rang+:'aan deze van een bepaalde groep' -> 'aan een andere kaart in die groep plus 1'
-- rang+: als laatste in deze inleiding...
-
-
-hoofdstuk 1 voelt lang; splits op? toon vooruitgang?
-(evt per hoofdstuk laadbalkje)
-
-- einde: 'Nu ken je de basis van hoe blokken werken. Met deze gaan we in de volgende stappen regels maken.  Om het overzicht te behouden staan niet alle blokken op het werkveld, maar zitten deze verdeeld in een menu. Kijk gerust... || maar niet waar in eerst volgende stappen... zet in toolbox gedeelte?
 
 - als-dan, te lang (knip uitlegjes)
 - call/raise: daar 'is preflop'
@@ -88,16 +74,8 @@ Goed idee: blokken saven
 Extra's:
   - Check browser: Redirect if unsupported?
   - Exact footer text?
-
-
-
-
-
-
-
-
-
-
+  - Switch to Group A, B, C, ...
+  - Add loading bars to chapters.
 
 
 Server-side Todo's:

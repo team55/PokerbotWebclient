@@ -506,7 +506,7 @@ Blockly.Blocks['poker_rank_incr'] = {
   init: function() {
     this.appendValueInput("num")
         .setCheck("Number")
-        .appendField("same rang (Group");
+        .appendField("zelfde rang (Groep");
     this.appendDummyInput()
         .appendField(") +");
     this.appendValueInput("incr")

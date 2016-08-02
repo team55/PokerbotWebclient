@@ -189,7 +189,6 @@ $(document).ready(function(e) {
     Blockly.Xml.domToWorkspace(workspace,
             document.getElementById('startBlocks'));
     function myUpdateFunction() {
-      console.log('update');
       var code = Blockly.Prolog.workspaceToCode(workspace);
       // If you need the prolog code, it can be logged here.
       console.log(code);

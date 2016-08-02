@@ -143,13 +143,11 @@ Blockly.Prolog.scrub_ = function(block, code) {
 
   // HACK: Parse next statements to if(true).
   if (nextBlock) {
-    console.log('JAAAAA');
     var parsed = Blockly.Prolog.blockToCode(nextBlock);
     if (parsed.indexOf('do') > -1) {
       return code + parsed;
     } else {
       var extra = 'do(' + parsed + ', ' + Blockly.Prolog.rulecounter + ') :- ' + Blockly.Prolog.scope + 'true.';
-      console.log(extra);
       Blockly.Prolog.rulecounter++;
       Blockly.Prolog.scope = '';
       return code + extra;
