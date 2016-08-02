@@ -1,3 +1,116 @@
+Our cool new ideas:
+
+Eerste scherm:
+- ga naar tafel -> in kadertje (ook op 'activeer regel')? [gn 'gn verb tafel']
+- stand blok: raise if in hand >= king with potgrootte/2
+- speelscherm: simpeler
+- menu: reorder?
+- footer: link naar innolab, ons dept, credits page, source code
+- header: link naar main
+
+Start tutorial:
+- stop tutorial: terug naar hoofdpagina (ergens onderaan?)
+- nog meer basis van poker? of waarom intro:
+"Om een pokerbot te maken, moet je de acties van de bot programmeren. De acties zijn fold (geef op), call (ga mee) en raise (verhoog de pot). Als je dus raised, moet je ook meegeven met welke hooveelheid je wil raisen. \n Probeer de blokken..."
+
+- rang/kleur: geef vb (harten aas, schoppen boer)
+- gooi black/red weg, vervang kleur door soort
+
+* zelfde rang zonder actie: merge met volgende
+* nog steeds groep 1?
+* flush en dropdown: merge
+
+
+- 'same' rang + : vertaal
+- rang+:'aan deze van een bepaalde groep' -> 'aan een andere kaart in die groep plus 1'
+- rang+: als laatste in deze inleiding...
+
+
+hoofdstuk 1 voelt lang; splits op? toon vooruitgang?
+(evt per hoofdstuk laadbalkje)
+
+- einde: 'Nu ken je de basis van hoe blokken werken. Met deze gaan we in de volgende stappen regels maken.  Om het overzicht te behouden staan niet alle blokken op het werkveld, maar zitten deze verdeeld in een menu. Kijk gerust... || maar niet waar in eerst volgende stappen... zet in toolbox gedeelte?
+
+- als-dan, te lang (knip uitlegjes)
+- call/raise: daar 'is preflop'
+- call/fold: weghalen
+* vertaling: Queen
+* copy/paste?
+
+
+- Deel 1: blokken maken
+  Deel 2: Als-Dan
+
+- zinvolle regels: (top: je kan blokken verwijderen of copieren met gewoonlijke keyboard shortcuts of rechtermuisclick)
+  'een paar, dus zelfde rang, ongeacht de kleur'
+
+- three of a kind: geen 'back'
+  "je hebt enkel nog..." 'Een paar is een goede hand, maar 3 dezelfde kaarten is nog beter; ..."
+  three of a kind: moet op hand OF tafel!!
+    -> voeg check toe; 3 kaarten maar enkel 'hand'? (bij submit)
+
+- hoofdstuk 5: introduceer dat nu tegen bots
+- easy bot: tip verbergen? activeer regel op plaats
+  default regel: if true fold
+  verslaan = hogere gemiddelde winst
+  eens peler
+  toon 'fold' als regel
+  gemiddelde winst en gewonnen verschillend?
+
+
+easybot: gooit regels weg wanneer gedaan?
+->  kunnen blijven spelen ook als gewonnen
+easybot: als enkel 'call' dan ook winnen... iets moeilijker?
+ => is callbot
+ => als verschil gedurende X (groter dan Y)
+    (verander naar 0.1 accuracy)
+iets met tip dat je moet raisen
+
+hard bot: minder expiciete tip? de pokerbot kijkt telkens naar zijn hand
+
+
+Varia:
+
+Kies een tafel: taflenaam (3/5 spelers)
+
+Esc op login scherm
+
+
+link naar pokerhanden?
+
+logfiles op server: andere plaats? minder loggen? (e.g. fetchtable niet?)
+
+server: json error:
+     [java] Incoming request: {"request":{"type":"fetchData","tableName":"Step5TableID53ZSt37EU5"}}
+     [java] JSON does not allow non-finite numbers.
+     [java] org.json.JSONException: JSON does not allow non-finite numbers.
+     [java]     at org.json.JSONObject.testValidity(JSONObject.java:1288)
+     [java]     at org.json.JSONObject.put(JSONObject.java:1100)
+     [java]     at org.json.JSONObject.put(JSONObject.java:1037)
+     [java]     at ww10.RequestHandler.handleFetchDataRequest(RequestHandler.java:187)
+     [java]     at ww10.RequestHandler.handleRequest(RequestHandler.java:76)
+     [java]     at ww10.RequestHandler.run(RequestHandler.java:40)
+     [java]     at java.lang.Thread.run(Thread.java:745)
+
+bugs van regels: een call block en een fold block: call\nfold. (illegal)
+                 enkel een raise(10) block: raise(X1). (illegal)
+
+
+Goed idee: blokken saven
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Server-side Todo's:
   - Translate Server-side errors.
