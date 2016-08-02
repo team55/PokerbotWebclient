@@ -89,6 +89,17 @@ Blockly.Prolog.init = function(workspace) {
 
 };
 
+// HACK: Helper function to filter a list.
+Array.prototype.filter = function(checker) {
+  var result = [];
+  for(var i = 0; i < this.length; i++) {
+    if (checker(this[i])) {
+      result.push(this[i]);
+    }
+  }
+  return result;
+}
+
 /**
  * Prepend the generated code with the variable definitions.
  * @param {string} code Generated code.
@@ -100,6 +111,26 @@ Blockly.Prolog.finish = function(code) {
   if (frmt[frmt.length - 1] != '.' && frmt.length > 0) {
     frmt += '.';
   }
+/*
+  var elements = frmt.split('\n').filter(function(element) { return element.length > 0; });
+  console.log(elements.join('\n'));
+  var results = { inc:[], cor:[] }
+  for(var i = 0; i < elements.length; i++) {
+    var element = elements[i];
+    if (element.indexOf('do') <= -1) {
+      results.inc.push(element);
+    } else {
+      results.cor.push(element);
+    }
+  }
+  var finals = results.cor;
+  for(var i = 0; i < results.inc.length; i++) {
+    var incorrect = results.inc[i];
+    var statement = 'do(' + incorrect.substring(0, incorrect.length - 1) + ', ' + (results.cor.length + i + 1) + ') :- ' + Blockly.Prolog.scope + 'true.';
+    finals.push(statement);
+  }
+  console.log('FINALS:');
+  console.log(finals.join('\n'));*/
   return frmt;
 };
 
@@ -142,7 +173,19 @@ Blockly.Prolog.scrub_ = function(block, code) {
   var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
 
   // HACK: Parse next statements to if(true).
+
+  console.log(code);
+  console.log('---');
+/*
+  if (code)
+    if (code.indexOf('do') <= -1) {
+      code = 'do(' + code + ', ' + Blockly.Prolog.rulecounter + ') :- ' + Blockly.Prolog.scope + 'true.';
+      Blockly.Prolog.rulecounter++;
+      Blockly.Prolog.scope = '';
+    }*/
+
   if (nextBlock) {
+    console.log('next found');
     var parsed = Blockly.Prolog.blockToCode(nextBlock);
     if (parsed.indexOf('do') > -1) {
       return code + parsed;
@@ -154,7 +197,8 @@ Blockly.Prolog.scrub_ = function(block, code) {
     }
 
   }
-  return code;
+
+  return code + Blockly.Prolog.blockToCode(nextBlock);
 };
 
 /** BLOCKS **/

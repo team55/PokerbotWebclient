@@ -133,6 +133,8 @@ $('#stoptutorial').click(function(e) {
 
 // Connects sequence to stop tutorial.
 $('#stoptutorialbutton').click(function(e) {
+  $('#rule-send-btn').show();
+  $('.sendBotRule').addClass('hideme');
   UIHANDLER.stopTutorial();
   try {
     step5Sequencer.killTable(function() {
@@ -192,6 +194,7 @@ $(document).ready(function(e) {
       var code = Blockly.Prolog.workspaceToCode(workspace);
       // If you need the prolog code, it can be logged here.
       console.log(code);
+      console.log('***');
     }
     workspace.addChangeListener(myUpdateFunction);
     $('#bargraph').load('elements/welcomebar.html');

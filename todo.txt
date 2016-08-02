@@ -4,11 +4,12 @@ Extra's:
   - Exact footer text?
   - Switch to Group A, B, C, ...
   - More than 2 cards in cardholder when selected 'hand'...
-  - Change bot 'send rule' button.
+  - Change bot 'send rule' button for hard bot. Also reset after!
   - Do not remove rule after win.
   - Update table name in list (X/Y players).
   - Link to ranks.
-  - Prolog bug fix.
+  - SB & BB.
+  - Prolog bug fix. !!!
 
 
 Server-side Todo's:

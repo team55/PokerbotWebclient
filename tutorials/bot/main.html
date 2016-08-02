@@ -136,7 +136,8 @@
         UIHANDLER.disableFullscreenWorkspace();
         this.completed = true;
         TutorialController._reportSolution();
-        $('.sendBotRule').hide();
+        $('.sendBotRule').addClass('hideme');
+        $('#rule-send-btn').show();
       }
     },
 
