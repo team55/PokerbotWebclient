@@ -411,7 +411,7 @@ Blockly.Blocks['poker_card'] = {
     this.appendValueInput("arg_color")
         .setCheck("POKER_TYPE_COLOR")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("kleur:");
+        .appendField("soort:");
     this.appendValueInput("arg_rank")
         .setCheck("POKER_TYPE_RANK")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -421,7 +421,7 @@ Blockly.Blocks['poker_card'] = {
     this.setPreviousStatement(true, "POKER_TYPE_CARD");
     this.setNextStatement(true, "POKER_TYPE_CARD");
     this.setColour(cardcolor);
-    this.setTooltip('Definieert een kaart met gegeven rang en kleur.');
+    this.setTooltip('Definieert een kaart met gegeven rang en soort.');
   }
 };
 
@@ -430,6 +430,7 @@ Blockly.Blocks['poker_card'] = {
 // Properties for the block construction.
 var suitcolor = 110;
 var allsuits = [["red", "red"], ["black", "black"]];
+/*
 Blockly.Blocks['poker_color'] = {
   init: function() {
     this.appendDummyInput()
@@ -440,26 +441,27 @@ Blockly.Blocks['poker_color'] = {
     this.setTooltip('Een kleur kan rood of zwart zijn.');
   }
 };
+*/
 Blockly.Blocks['poker_color_any'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("elke kleur");
+        .appendField("elke soort");
     this.setOutput(true, "POKER_TYPE_COLOR");
     this.setColour(suitcolor);
-    this.setTooltip('Kan eender welke kleur zijn.');
+    this.setTooltip('Kan eender welke soort zijn.');
   }
 };
 Blockly.Blocks['poker_color_same'] = {
   init: function() {
     this.appendValueInput("num")
         .setCheck("Number")
-        .appendField("zelfde kleur (Groep");
+        .appendField("zelfde soort (Groep");
     this.appendDummyInput()
         .appendField(")");
     this.setInputsInline(true);
     this.setOutput(true, "POKER_TYPE_COLOR");
     this.setColour(suitcolor);
-    this.setTooltip('Kaarten waarvan de kleur tot eenzelfde groep behoord, zullen dezelfde kleur moeten hebben!');
+    this.setTooltip('Kaarten waarvan de soort tot eenzelfde groep behoord, zullen dezelfde soort moeten hebben!');
   }
 };
 

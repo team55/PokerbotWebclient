@@ -6,7 +6,7 @@ var workspace;
                                   SIGN IN SECTION
 
  ******************************************************************************/
- 
+
 // Connects a sequence to the refresh button (to refresh table selection).
 var updateTableSelectionList = function() {
   SERVER.getTableList({
@@ -189,9 +189,10 @@ $(document).ready(function(e) {
     Blockly.Xml.domToWorkspace(workspace,
             document.getElementById('startBlocks'));
     function myUpdateFunction() {
+      console.log('update');
       var code = Blockly.Prolog.workspaceToCode(workspace);
       // If you need the prolog code, it can be logged here.
-      //console.log(code);
+      console.log(code);
     }
     workspace.addChangeListener(myUpdateFunction);
     $('#bargraph').load('elements/welcomebar.html');

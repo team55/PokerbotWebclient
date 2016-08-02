@@ -1,17 +1,6 @@
 Our cool new ideas:
 
-Eerste scherm:
-- speelscherm: simpeler
-- footer: link naar innolab, ons dept, credits page, source code
-- header: link naar main
-
 Start tutorial:
-- stop tutorial: terug naar hoofdpagina (ergens onderaan?)
-- nog meer basis van poker? of waarom intro:
-"Om een pokerbot te maken, moet je de acties van de bot programmeren. De acties zijn fold (geef op), call (ga mee) en raise (verhoog de pot). Als je dus raised, moet je ook meegeven met welke hooveelheid je wil raisen. \n Probeer de blokken..."
-
-- rang/kleur: geef vb (harten aas, schoppen boer)
-- gooi black/red weg, vervang kleur door soort
 
 * zelfde rang zonder actie: merge met volgende
 * nog steeds groep 1?
@@ -98,6 +87,7 @@ Goed idee: blokken saven
 
 Extra's:
   - Check browser: Redirect if unsupported?
+  - Exact footer text?
 
 
 

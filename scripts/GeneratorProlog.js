@@ -83,13 +83,10 @@ Blockly.Prolog.init = function(workspace) {
   Blockly.Prolog.scope = '';
   // POKER_TYPE_CARDSET second return argument (nr of cards in set)
   Blockly.Prolog.cardset_nr = -1;
-  // Create a dictionary of definitions to be printed before the code.
-  Blockly.Prolog.definitions_ = Object.create(null);
-  // Create a dictionary mapping desired function names in definitions_
-  // to actual function names (to avoid collisions with user functions).
-  Blockly.Prolog.functionNames_ = Object.create(null);
   // Create a dictionary for samevar and samecolor (reset in every poker_cards)
   Blockly.Prolog.cardsame_ = {};
+
+
 };
 
 /**
@@ -98,20 +95,12 @@ Blockly.Prolog.init = function(workspace) {
  * @return {string} Completed code.
  */
 Blockly.Prolog.finish = function(code) {
-  // Convert the definitions dictionary into a list.
-  var definitions = ['red(h).','red(d).','black(c).','black(s).'];
-  for (var name in Blockly.Prolog.definitions_) {
-    definitions.push(Blockly.Prolog.definitions_[name]);
-  }
-  // Clean up temporary data.
-  delete Blockly.Prolog.definitions_;
-  delete Blockly.Prolog.functionNames_;
   delete Blockly.Prolog.cardsame_;
   var frmt = code.split(', .').join('.').split(', )').join(')').split(', ,').join(', ').trim();
   if (frmt[frmt.length - 1] != '.' && frmt.length > 0) {
     frmt += '.';
   }
-  return definitions.join('\n') + '\n\n' + frmt;
+  return frmt;
 };
 
 /**
@@ -151,7 +140,23 @@ Blockly.Prolog.quote_ = function(string) {
  */
 Blockly.Prolog.scrub_ = function(block, code) {
   var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
-  return code + Blockly.Prolog.blockToCode(nextBlock);
+
+  // HACK: Parse next statements to if(true).
+  if (nextBlock) {
+    console.log('JAAAAA');
+    var parsed = Blockly.Prolog.blockToCode(nextBlock);
+    if (parsed.indexOf('do') > -1) {
+      return code + parsed;
+    } else {
+      var extra = 'do(' + parsed + ', ' + Blockly.Prolog.rulecounter + ') :- ' + Blockly.Prolog.scope + 'true.';
+      console.log(extra);
+      Blockly.Prolog.rulecounter++;
+      Blockly.Prolog.scope = '';
+      return code + extra;
+    }
+
+  }
+  return code;
 };
 
 /** BLOCKS **/
