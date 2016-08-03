@@ -4,24 +4,11 @@ Extra's:
   - Exact footer text?
   - Switch to Group A, B, C, ...
   - More than 2 cards in cardholder when selected 'hand'...
-  - Update table name in list (X/Y players).
   - Link to ranks.
-
-  - Bot solution together with graph.
-  - Fix other 'win' checker.
   - Update win checker description.
-
-  - Add second solution to >10 >A solution.
+  - Add second solution to the >10 >A order solution.
   - Fix loader color issue.
-
   - Remove extra 'true' from prolog.
-
-  if > J
-    if >= A
-      Raise 40
-    call
-  Fold
-
 
 Server-side Todo's:
   - Translate Server-side errors.

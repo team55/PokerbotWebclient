@@ -419,3 +419,7 @@ p.diminfo {
   font-size: 8px;
   color: #7f8c8d;
 }
+
+h3 {
+  margin-top: 18px !important;
+}

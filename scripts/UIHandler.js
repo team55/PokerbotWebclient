@@ -11,6 +11,10 @@ var UIHANDLER = {
         UIHANDLER.resizeWorkspace();
         UIHANDLER.hideSignInError();
         UIHANDLER.hideCreateTableLogAndError();
+        var startUpBlocks = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="50" y="50"><value name="IF0"><block type="logic_boolean"><field name="BOOL">TRUE</field></block></value><statement name="DO0"><block type="poker_fold"></block></statement></block></xml>';
+        workspace.clear();
+        var dom = Blockly.Xml.textToDom(startUpBlocks);
+        Blockly.Xml.domToWorkspace(workspace, dom);
     },
 
     updateHeaderAfterConnectionEstablished: function () {

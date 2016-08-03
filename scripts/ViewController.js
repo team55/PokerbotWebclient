@@ -106,11 +106,11 @@ $('#create-table-and-connect-btn').click(function(e) {
 
 // Show modal on cross sign.
 var requestDisconnect = function() {
-  UIHANDLER.showDisconnectModal();
+  disconnect();
 };
 
 $('#red-disconnect-btn').click(function(e) {
-  UIHANDLER.showDisconnectModal();
+  disconnect();
 });
 
 // Connect sequence to sign out button.
