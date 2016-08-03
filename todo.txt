@@ -6,8 +6,6 @@ Extra's:
   - More than 2 cards in cardholder when selected 'hand'...
   - Update table name in list (X/Y players).
   - Link to ranks.
-  - SB & BB.
-  - Prolog bug fix. !!! -> workspaceToCode.
 
   - Bot solution together with graph.
   - Fix other 'win' checker.
