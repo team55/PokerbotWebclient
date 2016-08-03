@@ -5,8 +5,6 @@ Extra's:
   - Switch to Group A, B, C, ...
   - Update win checker description.
   - Add second solution to the >10 >A order solution.
-  - Remove extra 'true' from prolog.
-  - Remove clear workspace button in tutorial.
   - 'Click next' message when there is no action required.
   - Translate card names in dropdown.
   - Pair in 'hand': not clear in description (dropdown).
@@ -25,6 +23,7 @@ Extra's:
 
 Todo's that might not be necessary:
   - More than 2 cards in cardholder when selected 'hand'...
+  - Remove extra 'true' from prolog.
 
 Server-side Todo's:
   - Translate Server-side errors.

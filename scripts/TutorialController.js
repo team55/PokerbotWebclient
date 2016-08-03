@@ -124,6 +124,7 @@ var TutorialController = {
       $('#bargraph').addClass('tutorialinfo');
       $('#stoptutorial').show();
       $('#toggledimmer').addClass('disabled');
+      $('#clear-btn').hide();
     });
   },
 

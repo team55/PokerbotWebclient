@@ -129,6 +129,7 @@ var toggleHeader = function() {
 
 // Connects sequence to stop tutorial.
 $('#stoptutorial').click(function(e) {
+  $('#clear-btn').show();
   $('#rule-send-btn').show();
   $('.sendBotRule').addClass('hideme');
   $('#bottomgraph').html('');
