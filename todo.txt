@@ -2,7 +2,6 @@
 Extra's:
   - Check which browser are unsupported & implement.
   - Exact footer text?
-  - Switch to Group A, B, C, ...
   - Possibility fir high pair: A pair and rank >= X.
 
 Questions:

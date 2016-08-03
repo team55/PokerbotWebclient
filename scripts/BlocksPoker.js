@@ -453,9 +453,9 @@ Blockly.Blocks['poker_color_any'] = {
 };
 Blockly.Blocks['poker_color_same'] = {
   init: function() {
-    this.appendValueInput("num")
-        .setCheck("Number")
-        .appendField("zelfde kleur (Groep");
+    this.appendDummyInput()
+        .appendField("zelfde kleur (Groep")
+        .appendField(new Blockly.FieldDropdown([["A", "A"], ["B", "2"], ["C", "3"], ["D", "4"]]), "num");
     this.appendDummyInput()
         .appendField(")");
     this.setInputsInline(true);
@@ -491,9 +491,9 @@ Blockly.Blocks['poker_rank_any'] = {
 };
 Blockly.Blocks['poker_rank_same'] = {
   init: function() {
-    this.appendValueInput("num")
-        .setCheck("Number")
-        .appendField("zelfde rang (Groep");
+    this.appendDummyInput()
+        .appendField("zelfde rang (Groep")
+        .appendField(new Blockly.FieldDropdown([["A", "A"], ["B", "2"], ["C", "3"], ["D", "4"]]), "num");
     this.appendDummyInput()
         .appendField(")");
     this.setInputsInline(true);

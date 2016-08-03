@@ -486,7 +486,7 @@ Blockly.Prolog['poker_color_any'] = function(block) {
 };
 Blockly.Prolog['poker_color_same'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
-  var groupnum = Blockly.Prolog.valueToCode(block, 'num', order) || '0';
+  var groupnum = block.getFieldValue('num') || '0';
   var cardsame_group = 'color'+groupnum;
 
   if (!Blockly.Prolog.cardsame_[cardsame_group]) {
@@ -517,7 +517,7 @@ Blockly.Prolog['poker_rank_any'] = function(block) {
 };
 Blockly.Prolog['poker_rank_same'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
-  var groupnum = Blockly.Prolog.valueToCode(block, 'num', order) || '0';
+  var groupnum = block.getFieldValue('num') || '0';
   var cardsame_group = 'rank'+groupnum;
 
   if (!Blockly.Prolog.cardsame_[cardsame_group]) {
