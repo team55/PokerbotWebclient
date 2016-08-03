@@ -185,7 +185,6 @@ Blockly.Generator.prototype.workspaceToCode = function(workspace) {
           }
         }
       }
-      console.log(parsedRules);
       line = parsedRules.join('\n');
 
 
@@ -365,7 +364,6 @@ Blockly.Prolog['and'] = function(block) {
 }
 Blockly.Prolog['or'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
-  console.log(Blockly.Prolog.valueToCode(block, 'A', order));
   var a = Blockly.Prolog.valueToCode(block, 'A', order) || 'true';
   var b = Blockly.Prolog.valueToCode(block, 'B', order) || 'true';
   var code = '((' + a + '); (' + b + '))';

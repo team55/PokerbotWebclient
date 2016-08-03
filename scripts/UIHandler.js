@@ -107,7 +107,6 @@ var UIHANDLER = {
         try {
             var data = $.parseJSON(result);
             var converted = {};
-            console.log(data);
             for (var i = 0; i < data['tables'].length; i++)
                 converted[data['tables'][i]['name']] = data['tables'][i]['name'];
             $('#tablename')

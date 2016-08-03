@@ -219,8 +219,6 @@ var TutorialController = {
     this._redraw();
   },
   _redraw: function() {
-    console.log(this._currentView);
-    console.log($('.tutorial-step').length);
     $('#tutorial-progress').attr('data-value', this._currentView);
     $('#tutorial-progress').attr('data-total', $('.tutorial-step').length);
     var progress = parseFloat(this._currentView - 1) / parseFloat($('.tutorial-step').length - 1);
