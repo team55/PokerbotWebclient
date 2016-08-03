@@ -1,4 +1,4 @@
-<span class="tutorial-step step-interaction hide-toolbox">
+<!--<span class="tutorial-step step-interaction hide-toolbox">
   <span class="step-description">
     <span class="on-success">
       <i class="huge yellow trophy icon"></i>
@@ -61,6 +61,7 @@
 		</span>
 	</span>
 </span>
+-->
 
 
 <span class="tutorial-step step-interaction">
@@ -80,12 +81,10 @@
         callt indien je een paar hebt (in plaats van met een Vrouw of hoger). Anders
         fold je.
       </p>
+      <p><b>Tip:</b> Het is mogelijk om blokken te knippen, kopiëren en plakken!</p>
     </span>
   </span>
   <div class="ui buttons">
-    <button class="ui red icon button back-step-view">
-      <i class="arrow left icon"></i>
-    </button>
 		<button class="ui blue icon button next-step-view disabled">
       Volgende
     </button>
@@ -110,14 +109,12 @@
     </span>
     <span class="before-success">
       <p>
-        Een paar is een goede hand, maar 3 dezelfde is nog veel beter! Probeer
-        het voorbeeld nu aan te passen zodat we het hebben over een three of a
-        kind in plaats van een paar.
-      </p>
-      <p>
-        Let op! Het is belangrijk dat de three of a kind ook op tafel kan liggen.
-        Het is onmogelijk om dit in je hand te habben aangezien je zelf maar twee
-        kaarten bezit.
+        Een paar is een goede hand, maar 3 dezelfde kaarten is nog beter! Pas
+het voorbeeld nu aan zodat de bot nagaat of die een three-of-a-kind heeft.</p>
+
+<p><b>Let op!</b> Net zoals bij de flush het geval was heb je maar 2
+kaarten in je hand, je moet dus ook rekening houden met de kaarten op de
+tafel.
       </p>
     </span>
   </span>
@@ -176,11 +173,75 @@
 	</span>
 </span>
 
+
+<span class="tutorial-step step-interaction no-success">
+  <span class="step-description">
+    <p>
+      Als laatste willen we je nog wat bijbrengen over de volgorde van de if statements.
+      Het is belangrijk hier rekening mee te houden.
+    </p>
+    <p>
+      Neem het volgende scenario: heb je een kaart die groter is als een 10? Call dan.
+      Heb je een Aas? Raise dan naar de potgrootte! Indien geen van beide waar is,
+      fold dan. In je workspace zie je hier een voorbeeld van.
+    </p>
+  </span>
+  <div class="ui buttons">
+    <button class="ui red icon button back-step-view">
+      <i class="arrow left icon"></i>
+    </button>
+		<button class="ui blue icon button next-step-view disabled">
+      Volgende
+    </button>
+  </div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="46" y="25"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">10</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="custom_if"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">=:=</field><field name="rank">14</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></statement><next><block type="poker_fold"></block></next></block></next></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="46" y="25"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">10</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="custom_if"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">=:=</field><field name="rank">14</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></statement><next><block type="poker_fold"></block></next></block></next></block></xml>
+		</span>
+	</span>
+</span>
+
+<span class="tutorial-step step-interaction hide-toolbox">
+  <span class="step-description">
+    <span class="on-success">
+      <i class="huge yellow trophy icon"></i>
+      <br />
+      <h2>Gefeliciteerd</h2>
+      <p>Op naar de volgende stap!</p>
+    </span>
+    <span class="before-success">
+      <p>
+        Het probleem met deze regels is dat de tweede regel nooit zal uitgevoerd worden. Zie je hoe een Aas ook aan de eerste regel voldoet, en dus nooit tot aan de tweede geraakt?</p>
+      </p>
+      <p> Later zul je beschikken over grafieken die aantonen welke regel (if statement)
+          hoeveel keer wordt uitgevoerd.</p>
+    </span>
+  </span>
+  <div class="ui buttons">
+    <button class="ui red icon button back-step-view">
+      <i class="arrow left icon"></i>
+    </button>
+		<button class="ui blue icon button next-step-view disabled">
+      Volgende
+    </button>
+  </div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="46" y="25"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">10</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="custom_if"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">=:=</field><field name="rank">14</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></statement><next><block type="poker_fold"></block></next></block></next></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="4" y="31"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">=:=</field><field name="rank">14</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="potsize"></block></value></block></statement><next><block type="custom_if"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">10</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></next></block></xml>
+		</span>
+	</span>
+</span>
+
 <span class="tutorial-step clear-workspace">
   <span class="step-description">
-    <p> Dit waren dan de eerste regels die je in de toekomst zou kunnen gebruiken
-        om onze bots te verslaan. </p>
-    <p> We zijn nog maar enkele stappen verwijderd van onze eerste echt uitdaging!</p>
+    <p> Dit was alles was je moet weten om zelf aan de slag te kunnen gaan. Probeer
+        maar eens enkele bots te verslaan, of speel eens tegen elkaar!</p>
   </span>
 	<div class="ui buttons">
 		<button class="ui red icon button back-step-view">

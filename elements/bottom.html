@@ -1,5 +1,5 @@
 
-<p><i>Hover over de grafieken om te kijken om welke actie het gaat.</i></p>
+<p><i>Hover over de grafieken om te kijken om welke actie het gaat.</i><br>Games per seconde: <span id="gps-data">1000</span>.</p>
 
 <div id="BottomMoveCharts"></div>
 
@@ -93,11 +93,16 @@
       success: function(result) {
         try {
           var data = $.parseJSON(result);
+          var rate = parseFloat(data['gamesPerSec']);
+          console.warn(rate);
+          $('#gps-data').html(Math.round(rate * 100) / 100);
           parseBottomMoveChartsData(data);
           setTimeout(function() {
             fetchBottomBarGraphsData();
           }, 2500);
-        } catch(error) { mainBottomError = 1; }
+        } catch(error) {
+          mainBottomError = 1;
+        }
       },
       fail: function(error) {
         if (error != 'Ongeldige tafelnaam.') {

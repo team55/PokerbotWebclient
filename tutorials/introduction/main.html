@@ -124,7 +124,7 @@
       <p> Indien we meerdere waarden hebben die we aan elkaar gelijk willen
           stellen, is het mogelijk deze in dezelfde groep te plaatsen. Het gebruik
           van groepen is zeer belangrijk in dit programma. </p>
-      <p> Zo kun je bijvoorbeeld een paar voorstellen door de rang van beide
+      <p> Zo kun je bijvoorbeeld een paar, twee kaarten met dezelfde rang, voorstellen door de rang van beide
           kaarten in één enkele groep te plaatsen. </p>
       <p> Probeer nu zelf eens zo een paar te maken. </p>
     </span>
@@ -156,12 +156,10 @@
       <p>Op naar de volgende stap!</p>
     </span>
     <span class="before-success">
-      <p> We kunnen nu hetzelfde doen voor de kleur van de kaarten. Door ze in
-          dezelfde groep te plaatsen, zullen de kleuren gelijk zijn aan elkaar. </p>
-      <p> Sleep de groepen op hun juiste plaats om een flush te maken! Dit wil
-          zeggen dat de 5 kaarten allemaal dezelfde kleur hebben. </p>
-      <p> Merk op dat je zowel de kaarten in je hand als de kaarten op tafel moet
-          nagaan!</p>
+      <p> Groepen kan je ook gebruiken om aan te duiden dat kaarten dezelfde soort moeten hebben. Zo
+          kan je ook een flush, vijf kaarten van dezelfde soort (zoals 5 harten), voorstellen zoals je links ziet.</p>
+      <p> De huidige constructie is echter onmogelijk want je hebt maar 2 kaarten in je hand.</p>
+      <p>Pas dit nu aan met behulp van het dropdown-menu, zodat zowel de kaarten in je hand als op tafel worden gebruikt.</p>
     </span>
   </span>
 	<div class="ui buttons">
@@ -174,7 +172,7 @@
 	</div>
 	<span class="step-data">
 		<span class="workspace-data">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="39" y="11"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_rank"><block type="poker_rank_any"></block></value></block></next></block></next></block></next></block></next></block></statement></block><block type="poker_color_same" x="343" y="173"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block><block type="poker_color_same" x="344" y="220"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block><block type="poker_color_same" x="345" y="264"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block><block type="poker_color_same" x="346" y="307"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block><block type="poker_color_same" x="347" y="351"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="47" y="-1"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value></block></next></block></next></block></next></block></next></block></statement></block></xml>
 		</span>
 		<span class="workspace-solution">
       <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="47" y="-1"><field name="in">allekaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_same"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></value><value name="arg_rank"><block type="poker_rank_any"></block></value></block></next></block></next></block></next></block></next></block></statement></block></xml>
@@ -184,8 +182,8 @@
 
 <span class="tutorial-step step-interaction no-success hide-toolbox">
   <span class="step-description">
-    <p> We kunnen zeggen dat de rang van een kaart
-        gelijk moet zijn aan een andere kaart uit een groep <b>plus 1</b>. </p>
+    <p> We kunnen ook zeggen dat de rang van een kaart
+        gelijk moet zijn aan een andere kaart uit de groep <b>plus 1</b>. </p>
     <p> Wanneer we willen dat beide kaarten 2 waarden verschillen (bv. een 8
         en een 10) dan beginnen we met de eerste waarde in Groep 1 te plaatsen.
         Hierna zetten we de waarde van de tweede kaart gelijk aan <b>'Groep 1'
@@ -242,13 +240,11 @@
 	</span>
 </span>
 
-<span class="tutorial-step clear-workspace">
+<span class="tutorial-step hide-toolbox clear-workspace">
   <span class="step-description">
-    <p> Nu ken je de basis van hoe blokken werken. Met deze gaan we in de volgende
-        stappen regels maken. Om het overzicht te behouden staan niet alle blokken
-        op het werkveld, maar zitten deze verdeeld in een menu.</p>
-    <p> Kijk gerust zelf al maar eens even rond welke blokken er allemaal
-        beschikbaar zijn! </p>
+    <p> Goed gedaan, nu ken je de basis van blokken maken.</p>
+    <p> In de volgende hoofdstukken leer je met als-dan regels werken, zinvolle regels maken
+        en andere technieken. Deze kan je dan uittesten op enkele eenvoudige bots. </p>
   </span>
 	<div class="ui buttons">
 		<button class="ui red icon button back-step-view">

@@ -7,7 +7,20 @@ Extra's:
   - Update table name in list (X/Y players).
   - Link to ranks.
   - SB & BB.
-  - Prolog bug fix. !!!
+  - Prolog bug fix. !!! -> workspaceToCode.
+
+  - Bot solution together with graph.
+  - Fix other 'win' checker.
+  - Update win checker description.
+
+  - Add second solution to >10 >A solution.
+  - Fix loader color issue.
+
+  if > J
+    if >= A
+      Raise 40
+    call
+  Fold
 
 
 Server-side Todo's:

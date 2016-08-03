@@ -35,14 +35,12 @@
 
 <span class="tutorial-step step-interaction no-success hide-toolbox">
   <span class="step-description">
-    <p>
-      Het is belangrijk om te begrijpen dat een 'actie' de regel altijd stopt.
-      In het voorbeeld hiernaast zal de 'fold' actie dus nooit worden uitgevoerd!
-    </p>
-    <p>
-      Ons programma zal dus enkel verdergaan onder het if statement indien het if
-      statement geen actie heeft uitgevoerd.
-    </p>
+    <p>De bot zal de Als-Dan regels evalueren, tot een actie (fold, call,
+raise) wordt uitgevoerd.</p>
+
+<p>Indien aan een Als-Dan regel dus niet voldaan is, zal het blokje onder
+de 'do' geevalueerd worden. De regel hiernaast zal dus in de preflop
+callen, maar in alle andere rondes folden.</p>
   </span>
   <div class="ui buttons">
     <button class="ui red icon button back-step-view">
@@ -72,11 +70,11 @@
     </span>
     <span class="before-success">
       <p>
-        Pas nu de voorwaarde aan, zodat je enkel callt indien je een Vrouw of hoger
+        Pas nu de voorwaarde aan, zodat je enkel callt indien je een Boer of hoger
         in je hand hebt. Anders fold je!
       </p>
       <p>
-        Let op, een Vrouw is dus ook nog goed genoeg om te callen!
+        Let op, een Boer is dus ook nog goed genoeg om te callen!
       </p>
     </span>
   </span>
@@ -93,16 +91,18 @@
       <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="304" y="51"><field name="in">handkaarten</field></block><block type="custom_if" x="141" y="128"><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block><block type="poker_card" x="304" y="176"><value name="arg_color"><block type="poker_color_any"></block></value></block><block type="poker_rank" x="313" y="320"><field name="op">&gt;=</field><field name="rank">2</field></block></xml>
 		</span>
 		<span class="workspace-solution">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="141" y="128"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">12</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="141" y="128"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">11</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>
 		</span>
 	</span>
 </span>
 
 <span class="tutorial-step clear-workspace">
   <span class="step-description">
-    <p> Tot zo ver de inleiding tot de 'if'. Je kan al aardig wat regels maken
-        met alles wat je tot nu toe geleerd hebt! </p>
-    <p> Vanaf volgend hoofdstuk zul je steeds toegang hebben tot de toolbox. </p>
+      <p> Nu ken je de basis van hoe blokken werken. Met deze gaan we in de volgende
+          stappen regels maken. Om het overzicht te behouden staan niet alle blokken
+          op het werkveld, maar zitten deze verdeeld in een menu.</p>
+      <p> Kijk gerust zelf al maar eens even rond welke blokken er allemaal
+          beschikbaar zijn! </p>
   </span>
 	<div class="ui buttons">
 		<button class="ui red icon button back-step-view">
