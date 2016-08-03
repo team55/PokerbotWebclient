@@ -5,7 +5,6 @@ Extra's:
   - Switch to Group A, B, C, ...
   - Update win checker description.
   - Add second solution to the >10 >A order solution.
-  - 'Click next' message when there is no action required.
   - Translate card names in dropdown.
   - Pair in 'hand': not clear in description (dropdown).
   - Chapter 1: replace any rank by group block.
