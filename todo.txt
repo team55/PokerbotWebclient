@@ -11,7 +11,6 @@ Extra's:
   - Possibility fir high pair: A pair and rank >= X.
   - Make solution a substring, not a complete comparison.
   - Add trash to the workspace.
-  - Show StackSize in description.
   - Activate Rule Button (bot) right margin.
   - Save blocks.
   - Tip: Keep it simple.
