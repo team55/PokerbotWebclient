@@ -185,6 +185,7 @@ Blockly.Generator.prototype.workspaceToCode = function(workspace) {
           }
         }
       }
+      console.log(parsedRules);
       line = parsedRules.join('\n');
 
 
@@ -490,8 +491,13 @@ Blockly.Prolog['poker_color_same'] = function(block) {
   var groupnum = Blockly.Prolog.valueToCode(block, 'num', order) || '0';
   var cardsame_group = 'color'+groupnum;
 
-  if (!Blockly.Prolog.cardsame_[cardsame_group])
-    Blockly.Prolog.cardsame_[cardsame_group] = Blockly.Prolog.newvar();
+  if (!Blockly.Prolog.cardsame_[cardsame_group]) {
+    var newVar = Blockly.Prolog.newvar();
+    for (var key in Blockly.Prolog.cardsame_) {
+      Blockly.Prolog.scope += Blockly.Prolog.cardsame_[key] + ' \\= ' + newVar + ', ';
+    }
+    Blockly.Prolog.cardsame_[cardsame_group] = newVar;
+  }
 
   var Xvar = Blockly.Prolog.cardsame_[cardsame_group];
   return [Xvar, Blockly.Prolog.ORDER_ATOMIC];
@@ -516,8 +522,13 @@ Blockly.Prolog['poker_rank_same'] = function(block) {
   var groupnum = Blockly.Prolog.valueToCode(block, 'num', order) || '0';
   var cardsame_group = 'rank'+groupnum;
 
-  if (!Blockly.Prolog.cardsame_[cardsame_group])
-    Blockly.Prolog.cardsame_[cardsame_group] = Blockly.Prolog.newvar();
+  if (!Blockly.Prolog.cardsame_[cardsame_group]) {
+    var newVar = Blockly.Prolog.newvar();
+    for (var key in Blockly.Prolog.cardsame_) {
+      Blockly.Prolog.scope += Blockly.Prolog.cardsame_[key] + ' \\= ' + newVar + ', ';
+    }
+    Blockly.Prolog.cardsame_[cardsame_group] = newVar;
+  }
 
   var Xvar = Blockly.Prolog.cardsame_[cardsame_group];
   return [Xvar, Blockly.Prolog.ORDER_ATOMIC];
