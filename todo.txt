@@ -1,10 +1,8 @@
 
 Extra's:
-  - Check browser: Redirect if unsupported?
+  - Check which browser are unsupported & implement.
   - Exact footer text?
   - Switch to Group A, B, C, ...
-  - More than 2 cards in cardholder when selected 'hand'...
-  - Link to ranks.
   - Update win checker description.
   - Add second solution to the >10 >A order solution.
   - Remove extra 'true' from prolog.
@@ -24,6 +22,9 @@ Extra's:
   - Tip: Keep it simple.
   - Fix the OR bug.
   - Make sure groups != groups.
+
+Todo's that might not be necessary:
+  - More than 2 cards in cardholder when selected 'hand'...
 
 Server-side Todo's:
   - Translate Server-side errors.
