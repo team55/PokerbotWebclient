@@ -3,7 +3,6 @@ Extra's:
   - Check which browser are unsupported & implement.
   - Exact footer text?
   - Switch to Group A, B, C, ...
-  - Chapter 1: replace any rank by group block.
   - Possibility fir high pair: A pair and rank >= X.
   - Activate Rule Button (bot) right margin.
   - Save blocks.

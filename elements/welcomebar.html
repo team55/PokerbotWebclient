@@ -25,4 +25,9 @@
     $('.ui.page.dimmer').dimmer('show');
   });
 
+  workspace.clear();
+  var text = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="40" y="40"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">13</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="divide"><value name="A"><block type="potsize"></block></value><value name="B"><block type="math_number"><field name="NUM">2</field></block></value></block></value></block></statement></block></xml>';
+  var dom = Blockly.Xml.textToDom(text);
+  Blockly.Xml.domToWorkspace(workspace, dom);
+
 </script>
