@@ -94,7 +94,6 @@
         try {
           var data = $.parseJSON(result);
           var rate = parseFloat(data['gamesPerSec']);
-          console.warn(rate);
           $('#gps-data').html(Math.round(rate * 100) / 100);
           parseBottomMoveChartsData(data);
           setTimeout(function() {
