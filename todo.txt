@@ -1,16 +1,4 @@
 
-Extra's:
-  - Check which browser are unsupported & implement.
-  - Exact footer text?
-
-Questions:
-  - Save blocks ok?
-  - Trash while tutorial?
-
-Todo's that might not be necessary:
-  - More than 2 cards in cardholder when selected 'hand'...
-  - Remove extra 'true' from prolog.
-
 Server-side Todo's:
   - Translate Server-side errors.
   - Catch 'invalid prolog' on server.
