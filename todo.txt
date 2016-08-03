@@ -7,7 +7,6 @@ Extra's:
   - Link to ranks.
   - Update win checker description.
   - Add second solution to the >10 >A order solution.
-  - Fix loader color issue.
   - Remove extra 'true' from prolog.
 
 Server-side Todo's:
