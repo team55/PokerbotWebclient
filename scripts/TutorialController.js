@@ -204,11 +204,13 @@ var TutorialController = {
     $('.tutorial-step').each(function(index) {
       if (index == (TutorialController._currentView - 1)
            && $(this).hasClass('step-interaction')) {
-             var solution = $(this).find('.workspace-solution').first().html();
-             var markup = Blockly.Xml.workspaceToDom(workspace);
-             var provided = Blockly.Xml.domToText(markup);
-             if (Utils.equalBlocks(solution, provided))
-               TutorialController._reportSolution();
+             $(this).find('.workspace-solution').each(function() {
+               var solution = $(this).html();
+               var markup = Blockly.Xml.workspaceToDom(workspace);
+               var provided = Blockly.Xml.domToText(markup);
+               if (Utils.equalBlocks(solution, provided))
+                 TutorialController._reportSolution();
+             });
            }
     });
   },
