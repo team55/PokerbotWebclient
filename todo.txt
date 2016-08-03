@@ -23,6 +23,7 @@ Extra's:
   - Save blocks.
   - Tip: Keep it simple.
   - Fix the OR bug.
+  - Make sure groups != groups.
 
 Server-side Todo's:
   - Translate Server-side errors.

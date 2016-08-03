@@ -3,6 +3,6 @@ red(d).
 black(c).
 black(s).
 
-do(raise(X3), 1) :- handkaarten(X1), members([card(X2,_)],X1), X2 =:= 14, true, saldo(X4), X3 is X4.
+do(raise(X3), 1) :- handkaarten(X1), members([card(X2,_)],X1), X2 >= 11, true, saldo(X4), X3 is X4.
 
 fold.
