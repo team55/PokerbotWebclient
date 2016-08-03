@@ -330,6 +330,8 @@ var UIHANDLER = {
             .hide();
         $('#rule-send-btn')
             .addClass('fullscreen-margin');
+        $('#step-5-send-btn')
+            .addClass('fullscreen-margin');
         $('#resize-btn')
             .html('Verklein');
         UIHANDLER.resizeWorkspace();
@@ -344,6 +346,8 @@ var UIHANDLER = {
             .addClass('eleven wide column');
         $('#bargraph')
             .show();
+        $('#step-5-send-btn')
+            .removeClass('fullscreen-margin');
         try {
             fetchDataForBarCharts();
         } catch (error) {}

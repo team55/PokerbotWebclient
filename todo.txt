@@ -4,9 +4,7 @@ Extra's:
   - Exact footer text?
   - Switch to Group A, B, C, ...
   - Possibility fir high pair: A pair and rank >= X.
-  - Activate Rule Button (bot) right margin.
   - Save blocks.
-  - Tip: Keep it simple.
   - Fix the OR bug.
   - Make sure groups != groups.
 
