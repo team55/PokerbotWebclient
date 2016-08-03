@@ -126,15 +126,12 @@ var toggleHeader = function() {
   UIHANDLER.toggleHeader();
 };
 
-// Connect sequence to stop tutorial request.
-$('#stoptutorial').click(function(e) {
-  UIHANDLER.showTutorialModal();
-});
 
 // Connects sequence to stop tutorial.
-$('#stoptutorialbutton').click(function(e) {
+$('#stoptutorial').click(function(e) {
   $('#rule-send-btn').show();
   $('.sendBotRule').addClass('hideme');
+  $('#bottomgraph').html('');
   UIHANDLER.stopTutorial();
   try {
     step5Sequencer.killTable(function() {

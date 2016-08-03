@@ -16,7 +16,7 @@
     </span>
   </span>
   <button id="step-5-start-btn" class="ui green button">Start!</button>
-  <button class="ui blue icon button next-step-view disabled">
+  <button class="ui blue icon button next-step-view disabled hide-send-btn">
     Volgende
   </button>
 </span>
@@ -135,8 +135,6 @@
         UIHANDLER.disableFullscreenWorkspace();
         this.completed = true;
         TutorialController._reportSolution();
-        $('.sendBotRule').addClass('hideme');
-        $('#rule-send-btn').show();
       }
     },
 
@@ -152,6 +150,7 @@
               step5Sequencer.sendDefaultRule();
               if (callback) callback();
             });
+            $('#bottomgraph').load('elements/bottom.html');
           });
         });
       });
@@ -187,5 +186,12 @@
 
     });
   });
+
+
+    $('.hide-send-btn').click(function() {
+      $('.sendBotRule').addClass('hideme');
+      $('#rule-send-btn').show();
+      $('#bottomgraph').html('');
+    });
 
 </script>
