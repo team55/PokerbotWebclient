@@ -6,7 +6,6 @@ Extra's:
   - Chapter 1: replace any rank by group block.
   - Reorder: fix this!
   - Possibility fir high pair: A pair and rank >= X.
-  - Add trash to the workspace.
   - Activate Rule Button (bot) right margin.
   - Save blocks.
   - Tip: Keep it simple.

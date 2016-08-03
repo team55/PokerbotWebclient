@@ -183,7 +183,6 @@ $(document).ready(function(e) {
   customWorkspace('blockly-colors/custom.css', function() {
     workspace = Blockly.inject('blocklyDiv',
         {media: 'blockly/media/',
-         trashcan: false,
          sounds: false,
          toolbox: document.getElementById('toolbox')});
     Blockly.Xml.domToWorkspace(workspace,
