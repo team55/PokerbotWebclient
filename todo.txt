@@ -4,7 +4,6 @@ Extra's:
   - Exact footer text?
   - Switch to Group A, B, C, ...
   - Add second solution to the >10 >A order solution.
-  - Pair in 'hand': not clear in description (dropdown).
   - Chapter 1: replace any rank by group block.
   - Ignore small blocks.
   - Reorder: fix this!
