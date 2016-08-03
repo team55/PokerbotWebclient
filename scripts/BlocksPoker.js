@@ -474,7 +474,7 @@ Blockly.Blocks['poker_rank'] = {
     this.appendDummyInput()
         .appendField("rang ")
         .appendField(new Blockly.FieldDropdown([[">=", ">="], [">", ">"], ["<=", "=<"], ["<", "<"], ["=", "=:="], ["!=", "=\\="]]), "op")
-        .appendField(new Blockly.FieldDropdown([["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"], ["Jack", "11"], ["Queen", "12"], ["King", "13"], ["Ace", "14"]]), "rank");
+        .appendField(new Blockly.FieldDropdown([["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"], ["Boer", "11"], ["Vrouw", "12"], ["Koning", "13"], ["Aas", "14"]]), "rank");
     this.setOutput(true, "POKER_TYPE_RANK");
     this.setColour(rankcolor);
     this.setTooltip('Zorgt er voor dat de rang van de kaart voldoet aan de gegeven vergelijking.');
