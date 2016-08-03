@@ -8,6 +8,20 @@ Extra's:
   - Update win checker description.
   - Add second solution to the >10 >A order solution.
   - Remove extra 'true' from prolog.
+  - Remove clear workspace button in tutorial.
+  - 'Click next' message when there is no action required.
+  - Translate card names in dropdown.
+  - Pair in 'hand': not clear in description (dropdown).
+  - Chapter 1: replace any rank by group block.
+  - Ignore small blocks.
+  - Reorder: fix this!
+  - Possibility fir high pair: A pair and rank >= X.
+  - Make solution a substring, not a complete comparison.
+  - Add trash to the workspace.
+  - Show StackSize in description.
+  - Activate Rule Button (bot) right margin.
+  - Save blocks.
+  - Tip: Keep it simple.
 
 Server-side Todo's:
   - Translate Server-side errors.
