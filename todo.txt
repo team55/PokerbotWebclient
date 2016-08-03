@@ -4,7 +4,6 @@ Extra's:
   - Exact footer text?
   - Switch to Group A, B, C, ...
   - Chapter 1: replace any rank by group block.
-  - Reorder: fix this!
   - Possibility fir high pair: A pair and rank >= X.
   - Activate Rule Button (bot) right margin.
   - Save blocks.
