@@ -411,7 +411,7 @@ Blockly.Blocks['poker_card'] = {
     this.appendValueInput("arg_color")
         .setCheck("POKER_TYPE_COLOR")
         .setAlign(Blockly.ALIGN_RIGHT)
-        .appendField("soort:");
+        .appendField("kleur:");
     this.appendValueInput("arg_rank")
         .setCheck("POKER_TYPE_RANK")
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -421,7 +421,7 @@ Blockly.Blocks['poker_card'] = {
     this.setPreviousStatement(true, "POKER_TYPE_CARD");
     this.setNextStatement(true, "POKER_TYPE_CARD");
     this.setColour(cardcolor);
-    this.setTooltip('Definieert een kaart met gegeven rang en soort.');
+    this.setTooltip('Definieert een kaart met gegeven rang en kleur.');
   }
 };
 
@@ -445,23 +445,23 @@ Blockly.Blocks['poker_color'] = {
 Blockly.Blocks['poker_color_any'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("elke soort");
+        .appendField("elke kleur");
     this.setOutput(true, "POKER_TYPE_COLOR");
     this.setColour(suitcolor);
-    this.setTooltip('Kan eender welke soort zijn.');
+    this.setTooltip('Kan eender welke kleur zijn.');
   }
 };
 Blockly.Blocks['poker_color_same'] = {
   init: function() {
     this.appendValueInput("num")
         .setCheck("Number")
-        .appendField("zelfde soort (Groep");
+        .appendField("zelfde kleur (Groep");
     this.appendDummyInput()
         .appendField(")");
     this.setInputsInline(true);
     this.setOutput(true, "POKER_TYPE_COLOR");
     this.setColour(suitcolor);
-    this.setTooltip('Kaarten waarvan de soort tot eenzelfde groep behoord, zullen dezelfde soort moeten hebben!');
+    this.setTooltip('Kaarten waarvan de kleur tot eenzelfde groep behoord, zullen dezelfde kleur moeten hebben!');
   }
 };
 
