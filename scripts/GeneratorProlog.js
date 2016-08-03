@@ -111,26 +111,6 @@ Blockly.Prolog.finish = function(code) {
   if (frmt[frmt.length - 1] != '.' && frmt.length > 0) {
     frmt += '.';
   }
-/*
-  var elements = frmt.split('\n').filter(function(element) { return element.length > 0; });
-  console.log(elements.join('\n'));
-  var results = { inc:[], cor:[] }
-  for(var i = 0; i < elements.length; i++) {
-    var element = elements[i];
-    if (element.indexOf('do') <= -1) {
-      results.inc.push(element);
-    } else {
-      results.cor.push(element);
-    }
-  }
-  var finals = results.cor;
-  for(var i = 0; i < results.inc.length; i++) {
-    var incorrect = results.inc[i];
-    var statement = 'do(' + incorrect.substring(0, incorrect.length - 1) + ', ' + (results.cor.length + i + 1) + ') :- ' + Blockly.Prolog.scope + 'true.';
-    finals.push(statement);
-  }
-  console.log('FINALS:');
-  console.log(finals.join('\n'));*/
   return frmt;
 };
 
@@ -161,6 +141,66 @@ Blockly.Prolog.quote_ = function(string) {
 };
 
 /**
+ * Generate code for all blocks in the workspace to the specified language.
+ * @param {Blockly.Workspace} workspace Workspace to generate code from.
+ * @return {string} Generated code.
+ */
+Blockly.Generator.prototype.workspaceToCode = function(workspace) {
+  if (!workspace) {
+    // Backwards compatibility from before there could be multiple workspaces.
+    console.warn('No workspace specified in workspaceToCode call.  Guessing.');
+    workspace = Blockly.getMainWorkspace();
+  }
+  var code = [];
+  this.init(workspace);
+  var blocks = workspace.getTopBlocks(true);
+  for (var x = 0, block; block = blocks[x]; x++) {
+    var line = this.blockToCode(block);
+    if (goog.isArray(line)) {
+      // Value blocks return tuples of code and operator order.
+      // Top-level blocks don't care about operator order.
+      line = line[0];
+    }
+    if (line) {
+      if (block.outputConnection && this.scrubNakedValue) {
+        // This block is a naked value.  Ask the language's code generator if
+        // it wants to append a semicolon, or something.
+        line = this.scrubNakedValue(line);
+      }
+
+    }
+    if (line) {
+      // HACK: Here we format invalid PROLOG code.
+      var rules = line.split('\n');
+      var parsedRules = [];
+      for(var i = 0; i < rules.length; i++) {
+        if (rules[i].trim().length > 0) {
+          if (rules[i].indexOf('do') <= -1) {
+            var newline = 'do(' + rules[i] + ', ' + Blockly.Prolog.rulecounter + ') :- ' + Blockly.Prolog.scope + 'true.';
+            Blockly.Prolog.rulecounter++;
+            Blockly.Prolog.scope = '';
+            parsedRules.push(newline);
+          } else {
+            parsedRules.push(rules[i]);
+          }
+        }
+      }
+      line = parsedRules.join('\n');
+
+
+      code.push(line);
+    }
+  }
+  code = code.join('\n');  // Blank line between each section.
+  code = this.finish(code);
+  // Final scrubbing of whitespace.
+  code = code.replace(/^\s+\n/, '');
+  code = code.replace(/\n\s+$/, '\n');
+  code = code.replace(/[ \t]+\n/g, '\n');
+  return code;
+};
+
+/**
  * Common tasks for generating Prolog from blocks.
  * Ignores comments
  * Calls any statements following this block.
@@ -171,33 +211,6 @@ Blockly.Prolog.quote_ = function(string) {
  */
 Blockly.Prolog.scrub_ = function(block, code) {
   var nextBlock = block.nextConnection && block.nextConnection.targetBlock();
-
-  // HACK: Parse next statements to if(true).
-
-  console.log(code);
-  console.log('---');
-/*
-  if (code)
-    if (code.indexOf('do') <= -1) {
-      code = 'do(' + code + ', ' + Blockly.Prolog.rulecounter + ') :- ' + Blockly.Prolog.scope + 'true.';
-      Blockly.Prolog.rulecounter++;
-      Blockly.Prolog.scope = '';
-    }*/
-
-  if (nextBlock) {
-    console.log('next found');
-    var parsed = Blockly.Prolog.blockToCode(nextBlock);
-    if (parsed.indexOf('do') > -1) {
-      return code + parsed;
-    } else {
-      var extra = 'do(' + parsed + ', ' + Blockly.Prolog.rulecounter + ') :- ' + Blockly.Prolog.scope + 'true.';
-      Blockly.Prolog.rulecounter++;
-      Blockly.Prolog.scope = '';
-      return code + extra;
-    }
-
-  }
-
   return code + Blockly.Prolog.blockToCode(nextBlock);
 };
 
@@ -566,5 +579,6 @@ Blockly.Prolog['custom_if'] = function(block) {
     code += 'do(' + branch + ', ' + Blockly.Prolog.rulecounter + ') :- ' + argument + '.\n';
     Blockly.Prolog.rulecounter++;
   }
+  Blockly.Prolog.scope = '';
   return code + '\n';
 };

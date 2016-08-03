@@ -16,6 +16,8 @@ Extra's:
   - Add second solution to >10 >A solution.
   - Fix loader color issue.
 
+  - Remove extra 'true' from prolog.
+
   if > J
     if >= A
       Raise 40

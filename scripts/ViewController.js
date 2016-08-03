@@ -14,7 +14,7 @@ var updateTableSelectionList = function() {
     final: UIHANDLER.stopTableListRefreshing,
     fail: function(error) {
       LOGGER.warn('Unable to fetch table list...');
-      UIHANDLER.showSignInERror('Er is een fout opgetreden.');
+      UIHANDLER.showSignInError('Er is een fout opgetreden.');
     }
   });
 };
@@ -192,9 +192,7 @@ $(document).ready(function(e) {
             document.getElementById('startBlocks'));
     function myUpdateFunction() {
       var code = Blockly.Prolog.workspaceToCode(workspace);
-      // If you need the prolog code, it can be logged here.
       console.log(code);
-      console.log('***');
     }
     workspace.addChangeListener(myUpdateFunction);
     $('#bargraph').load('elements/welcomebar.html');
