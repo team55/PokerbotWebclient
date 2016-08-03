@@ -28,7 +28,7 @@
       <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="164" y="120"></block><block type="poker_call" x="384" y="138"></block><block type="is_preflop" x="333" y="241"></block></xml>
 		</span>
 		<span class="workspace-solution">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="164" y="120"><value name="IF0"><block type="is_preflop"></block></value><statement name="DO0"><block type="poker_call"></block></statement></block></xml>
+      <block type="custom_if" x="164" y="120"><value name="IF0"><block type="is_preflop"></block></value><statement name="DO0"><block type="poker_call"></block></statement></block>
 		</span>
 	</span>
 </span>
@@ -56,7 +56,7 @@ callen, maar in alle andere rondes folden.</p>
       <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="208" y="121"><value name="IF0"><block type="is_preflop"></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>
 		</span>
 		<span class="workspace-solution">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="208" y="121"><value name="IF0"><block type="is_preflop"></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>
+      <block type="custom_if" x="208" y="121"><value name="IF0"><block type="is_preflop"></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block>
 		</span>
 	</span>
 </span>
@@ -92,7 +92,7 @@ callen, maar in alle andere rondes folden.</p>
       <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="304" y="51"><field name="in">handkaarten</field></block><block type="custom_if" x="141" y="128"><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block><block type="poker_card" x="304" y="176"><value name="arg_color"><block type="poker_color_any"></block></value></block><block type="poker_rank" x="313" y="320"><field name="op">&gt;=</field><field name="rank">2</field></block></xml>
 		</span>
 		<span class="workspace-solution">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="141" y="128"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">11</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block></xml>
+      <block type="custom_if" x="141" y="128"><value name="IF0"><block type="poker_cards"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank"><field name="op">&gt;=</field><field name="rank">11</field></block></value></block></statement></block></value><statement name="DO0"><block type="poker_call"></block></statement><next><block type="poker_fold"></block></next></block>
 		</span>
 	</span>
 </span>
