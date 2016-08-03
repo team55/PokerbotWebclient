@@ -502,6 +502,21 @@ Blockly.Blocks['poker_rank_same'] = {
     this.setTooltip('Kaarten waarvan de rang tot eenzelfde groep behoord, zullen dezelfde rang moeten hebben!');
   }
 };
+Blockly.Blocks['poker_rank_same_and_specific'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("zelfde rang (Groep")
+        .appendField(new Blockly.FieldDropdown([["A", "A"], ["B", "2"], ["C", "3"], ["D", "4"]]), "num");
+    this.appendDummyInput()
+        .appendField(" en rang ")
+        .appendField(new Blockly.FieldDropdown([[">=", ">="], [">", ">"], ["<=", "=<"], ["<", "<"], ["=", "=:="], ["!=", "=\\="]]), "op")
+        .appendField(new Blockly.FieldDropdown([["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"], ["Boer", "11"], ["Vrouw", "12"], ["Koning", "13"], ["Aas", "14"]]), "rank");
+    this.setInputsInline(true);
+    this.setOutput(true, "POKER_TYPE_RANK");
+    this.setColour(rankcolor);
+    this.setTooltip('Zorgt er voor dat de rang van de kaart voldoet aan de gegeven vergelijking.');
+  }
+};
 Blockly.Blocks['poker_rank_incr'] = {
   init: function() {
     this.appendValueInput("num")
