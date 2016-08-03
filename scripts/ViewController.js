@@ -197,6 +197,29 @@ $(document).ready(function(e) {
   updateTableSelectionList();
 });
 
+var SAVED_BLOCKS = [];
+
+var saveWorkspace = function() {
+
+  $('#save-workspace').addClass('loading');
+
+  var dom = Blockly.Xml.workspaceToDom(workspace);
+  var complete = Blockly.Xml.domToText(dom);
+  var core = complete.substring(complete.indexOf('>') + 1, complete.length - 6);
+  SAVED_BLOCKS.push(core);
+
+  setTimeout(function() {
+    var toolbox = '<xml>' + $('#toolbox').html() + '<category name="Opgeslagen">';
+    for(var i = 0; i < SAVED_BLOCKS.length; i++) {
+      toolbox += SAVED_BLOCKS[i] + '\n';
+    }
+    toolbox += '</category></xml>';
+    workspace.updateToolbox(toolbox);
+    $('#save-workspace').removeClass('loading');
+  }, 500);
+
+};
+
 $(document).keyup(function(e) {
  if (e.keyCode == 27) {
    $('.ui.page.dimmer').dimmer('hide');

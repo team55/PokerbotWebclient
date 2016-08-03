@@ -4,7 +4,10 @@ Extra's:
   - Exact footer text?
   - Switch to Group A, B, C, ...
   - Possibility fir high pair: A pair and rank >= X.
-  - Save blocks.
+
+Questions:
+  - Save blocks ok?
+  - Trash while tutorial?
 
 Todo's that might not be necessary:
   - More than 2 cards in cardholder when selected 'hand'...
