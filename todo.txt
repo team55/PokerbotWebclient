@@ -22,6 +22,7 @@ Extra's:
   - Activate Rule Button (bot) right margin.
   - Save blocks.
   - Tip: Keep it simple.
+  - Fix the OR bug.
 
 Server-side Todo's:
   - Translate Server-side errors.
