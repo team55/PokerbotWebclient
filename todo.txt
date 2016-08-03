@@ -5,7 +5,6 @@ Extra's:
   - Switch to Group A, B, C, ...
   - Possibility fir high pair: A pair and rank >= X.
   - Save blocks.
-  - Fix the OR bug.
   - Make sure groups != groups.
 
 Todo's that might not be necessary:

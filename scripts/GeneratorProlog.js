@@ -107,7 +107,7 @@ Array.prototype.filter = function(checker) {
  */
 Blockly.Prolog.finish = function(code) {
   delete Blockly.Prolog.cardsame_;
-  var frmt = code.split(', .').join('.').split(', )').join(')').split(', ,').join(', ').trim();
+  var frmt = code.split(', .').join('.').split(', )').join(')').split(', ,').join(', ').split(', ;').join(';').trim();
   if (frmt[frmt.length - 1] != '.' && frmt.length > 0) {
     frmt += '.';
   }
@@ -322,36 +322,36 @@ Blockly.Prolog['math_number'] = function(block) {
 
 Blockly.Prolog['greater_then'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
-  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
-  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || 0;
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || 0;
   var code = '(' + a + ' > ' + b + ')';
   return [code, order];
 }
 Blockly.Prolog['greater_then_or_equal'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
-  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
-  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || 0;
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || 0;
   var code = '(' + a + ' >= ' + b + ')';
   return [code, order];
 }
 Blockly.Prolog['less_then'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
-  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
-  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || 0;
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || 0;
   var code = '(' + a + ' < ' + b + ')';
   return [code, order];
 }
 Blockly.Prolog['less_then_or_equal'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
-  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
-  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || 0;
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || 0;
   var code = '(' + a + ' =< ' + b + ')';
   return [code, order];
 }
 Blockly.Prolog['equals'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
-  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
-  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || 0;
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || 0;
   var code = '(' + a + ' is ' + b + ')';
   return [code, order];
 }
@@ -364,9 +364,10 @@ Blockly.Prolog['and'] = function(block) {
 }
 Blockly.Prolog['or'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
+  console.log(Blockly.Prolog.valueToCode(block, 'A', order));
   var a = Blockly.Prolog.valueToCode(block, 'A', order) || 'true';
   var b = Blockly.Prolog.valueToCode(block, 'B', order) || 'true';
-  var code = '(' + a + '; ' + b + ')';
+  var code = '((' + a + '); (' + b + '))';
   return [code, order];
 }
 Blockly.Prolog['not'] = function(block) {
@@ -384,32 +385,32 @@ Blockly.Prolog['not'] = function(block) {
 Blockly.Prolog['add'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var Xnew = Blockly.Prolog.newvar();
-  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
-  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || 0;
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || 0;
   Blockly.Prolog.scope += Xnew + ' is ' + a + ' + ' + b + ', ';
   return [Xnew, order];
 }
 Blockly.Prolog['substract'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var Xnew = Blockly.Prolog.newvar();
-  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
-  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || 0;
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || 0;
   Blockly.Prolog.scope += Xnew + ' is ' + a + ' - ' + b + ', ';
   return [Xnew, order];
 }
 Blockly.Prolog['multiply'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var Xnew = Blockly.Prolog.newvar();
-  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
-  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || 0;
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || 0;
   Blockly.Prolog.scope += Xnew + ' is ' + a + ' * ' + b + ', ';
   return [Xnew, order];
 }
 Blockly.Prolog['divide'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var Xnew = Blockly.Prolog.newvar();
-  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
-  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || 0;
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || 1;
   Blockly.Prolog.scope += Xnew + ' is ' + a + ' / ' + b + ', ';
   return [Xnew, order];
 }
@@ -459,9 +460,10 @@ Blockly.Prolog['poker_cards'] = function(block) {
     cardlist = cardlist.substr(0,l-2);
   var code = 'members(['+cardlist+'],'+Xnew+'), ';
 
-  Blockly.Prolog.scope = prevScope + code + Blockly.Prolog.scope;
+  var finaloutput = prevScope + code + Blockly.Prolog.scope;
+  Blockly.Prolog.scope = '';
 
-  return ['', Blockly.Prolog.ORDER_ATOMIC];
+  return [finaloutput, Blockly.Prolog.ORDER_ATOMIC];
 };
 Blockly.Prolog['poker_card'] = function(block) {
   // return: card(Xrank,Xcolor)
