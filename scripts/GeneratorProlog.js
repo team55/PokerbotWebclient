@@ -506,30 +506,6 @@ Blockly.Prolog['poker_color_same'] = function(block) {
   return [Xvar, Blockly.Prolog.ORDER_ATOMIC];
 };
 
-Blockly.Prolog['poker_rank_same_and_specific'] = function(block) {
-  var order = Blockly.Prolog.ORDER_ATOMIC;
-  var groupnum = block.getFieldValue('num') || '0';
-  var cardsame_group = 'color'+groupnum;
-
-  if (!Blockly.Prolog.cardsame_[cardsame_group]) {
-    var newVar = Blockly.Prolog.newvar();
-    for (var key in Blockly.Prolog.cardsame_) {
-      Blockly.Prolog.scope += Blockly.Prolog.cardsame_[key] + ' \\= ' + newVar + ', ';
-    }
-    Blockly.Prolog.cardsame_[cardsame_group] = newVar;
-  }
-
-  var Xvar = Blockly.Prolog.cardsame_[cardsame_group];
-
-  var arg_op = block.getFieldValue('op');
-  var arg_rank = block.getFieldValue('rank');
-
-  var code = Xvar + ' ' + arg_op + ' ' + arg_rank + ', ';
-  Blockly.Prolog.scope += code;
-
-  return [Xvar, Blockly.Prolog.ORDER_ATOMIC];
-};
-
 Blockly.Prolog['poker_rank'] = function(block) {
   // scope: X0 => 14,
   var Xnew = Blockly.Prolog.newvar();
@@ -581,6 +557,17 @@ Blockly.Prolog['poker_rank_incr'] = function(block) {
   }
   return [Xvar, Blockly.Prolog.ORDER_ATOMIC];
 };
+
+Blockly.Prolog['poker_rank_and'] = function(block) {
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
+  var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
+  var Xnew = Blockly.Prolog.newvar();
+  Blockly.Prolog.scope += Xnew + ' = ' + a + ', ' + Xnew + ' = ' + b + ', ';
+  return [Xnew, order];
+}
+
+
 
 /**
  *  Implementation for the custom if block.
