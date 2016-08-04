@@ -455,7 +455,7 @@ Blockly.Blocks['poker_color_same'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("kleur variabele ")
-        .appendField(new Blockly.FieldDropdown([["A", "A"], ["B", "2"], ["C", "3"], ["D", "4"]]), "num");
+        .appendField(new Blockly.FieldDropdown([["X", "A"], ["Y", "2"], ["Z", "3"]]), "num");
     this.setInputsInline(true);
     this.setOutput(true, "POKER_TYPE_COLOR");
     this.setColour(suitcolor);
@@ -491,7 +491,7 @@ Blockly.Blocks['poker_rank_same'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("rang variabele ")
-        .appendField(new Blockly.FieldDropdown([["A", "A"], ["B", "2"], ["C", "3"], ["D", "4"]]), "num");
+        .appendField(new Blockly.FieldDropdown([["X", "A"], ["Y", "2"], ["Z", "3"]]), "num");
     this.setInputsInline(true);
     this.setOutput(true, "POKER_TYPE_RANK");
     this.setColour(rankcolor);
@@ -502,7 +502,7 @@ Blockly.Blocks['poker_rank_incr'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("rang variabele ")
-        .appendField(new Blockly.FieldDropdown([["A", "A"], ["B", "2"], ["C", "3"], ["D", "4"]]), "num");
+        .appendField(new Blockly.FieldDropdown([["X", "A"], ["Y", "2"], ["Z", "3"]]), "num");
     this.appendDummyInput()
         .appendField(" + ");
     this.appendValueInput("incr")

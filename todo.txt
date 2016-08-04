@@ -1,19 +1,23 @@
 
 Todo's after tests:
-  - More conceptual intro, i.e. chapter zero? of video.
-  - Move hand rankings to a more obvious place.
   - Translate if statement tooltip.
-  - Add explanation of poker. Rules & terms?
   - Bottom stats are not removed after chapter switch.
   - Sync the win and graph message.
   - Effect when saving blocks so its clear where they are located.
-  - Remove some old files.
-  - Tooltip vermelden.
-  - Tooltipspeed.
-  - Center blocks in tutorial.
   - Scroll down vermelden.
-  - Nieuwe dropdown voor Groups. "Kleur variabele & Rang variabele genaamd"...
   - Variabele introductie: tekst mail.
+  - Remove some old files.
+  - Center blocks in tutorial.
+
+Chapter zero idea:
+  - Add conceptual intro, fullscreen?
+  - Add possible video.
+  - Tell about the hand rankings.
+  - Move hand rankings to the icon on top.
+  - Add explanation of poker. Rules & terms?
+  - Explain tooltips.
+  - Increase speed of tooltip.
+
 
 Server-side Todo's:
   - Translate Server-side errors.
