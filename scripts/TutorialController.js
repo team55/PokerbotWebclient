@@ -46,10 +46,10 @@ var TutorialController = {
     name: 'Hoofdstuk 3: Zinvolle regels',
     path: 'firstrules'
   }, {
-    name: 'Hoofdstuk 4: Easy Bot',
+    name: 'Hoofdstuk 4: Rhobot',
     path: 'bot'
   }, {
-    name: 'Hoofdstuk 5: Hard bot',
+    name: 'Hoofdstuk 5: Sigmabot',
     path: 'hard'
   }],
 
@@ -308,7 +308,8 @@ var TutorialController = {
   },
 
   resetWorkspaceForstep: function() {
-    this._redraw();
+    this._finishedStep = this._currentView - 1;
+    TutorialController._redraw();
   }
 
 
