@@ -566,6 +566,18 @@ Blockly.Prolog['poker_rank_and'] = function(block) {
   Blockly.Prolog.scope += Xnew + ' = ' + a + ', ' + Xnew + ' = ' + b + ', ';
   return [Xnew, order];
 }
+Blockly.Prolog['poker_rank_plus'] = function(block) {
+  var order = Blockly.Prolog.ORDER_ATOMIC;
+  var Xvar = Blockly.Prolog.valueToCode(block, 'A', order)  || '0';
+  var incrval = Blockly.Prolog.valueToCode(block, 'B', order) || '0';
+  if (incrval != '0') {
+    var Xnew = Blockly.Prolog.newvar();
+    var code = Xnew + ' is ' + Xvar + ' + ' + incrval + ', ';
+    Blockly.Prolog.scope += code;
+    Xvar = Xnew; // for in return
+  }
+  return [Xvar, Blockly.Prolog.ORDER_ATOMIC];
+}
 
 
 

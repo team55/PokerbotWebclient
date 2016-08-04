@@ -527,6 +527,20 @@ Blockly.Blocks['poker_rank_and'] = {
     this.setTooltip('Mogelijkheid om meerdere rang voorwaarden te combineren.');
   }
 };
+Blockly.Blocks['poker_rank_plus'] = {
+  init: function() {
+    this.appendValueInput("A")
+        .setCheck("POKER_TYPE_RANK");
+    this.appendDummyInput()
+        .appendField("+");
+    this.appendValueInput("B")
+        .setCheck("Number");
+    this.setInputsInline(true);
+    this.setOutput(true, "POKER_TYPE_RANK");
+    this.setColour(rankcolor);
+    this.setTooltip('Mogelijkheid om een som op een rang uit te voeren.');
+  }
+};
 
 /* Custom if statement */
 

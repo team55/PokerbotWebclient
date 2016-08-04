@@ -203,7 +203,7 @@ dit zelf eens. </p>
 	</div>
 	<span class="step-data">
 		<span class="workspace-data">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_rank_incr" x="168" y="202"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_rank_plus" x="248" y="183"><value name="A"><block type="poker_rank_same"><field name="num">A</field></block></value><value name="B"><block type="math_number"><field name="NUM">1</field></block></value></block></xml>
 		</span>
 		<span class="workspace-solution">
 		</span>
@@ -235,13 +235,13 @@ dit zelf eens. </p>
 	</div>
 	<span class="step-data">
 		<span class="workspace-data">
-      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="63" y="43"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value></block></next></block></statement></block><block type="poker_rank_same" x="234" y="260"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block><block type="math_number" x="483" y="264"><field name="NUM">0</field></block><block type="poker_rank_incr" x="268" y="327"><value name="num"><block type="math_number"><field name="NUM">1</field></block></value></block></xml>
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="poker_cards" x="63" y="43"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value></block></next></block></statement></block><block type="poker_rank_same" x="234" y="260"><field name="num">A</field></block><block type="math_number" x="473" y="259"><field name="NUM">1</field></block><block type="poker_rank_plus" x="246" y="337"><value name="A"><block type="poker_rank_same"><field name="num">A</field></block></value></block></xml>
 		</span>
 		<span class="workspace-solution">
-      <block type="poker_cards" x="63" y="43"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><field name="num">A</field></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_incr"><field name="num">A</field><value name="incr"><block type="math_number"><field name="NUM">2</field></block></value></block></value></block></next></block></statement></block>
+      <block type="poker_cards" x="63" y="43"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><field name="num">A</field></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_plus"><value name="A"><block type="poker_rank_same"><field name="num">A</field></block></value><value name="B"><block type="math_number"><field name="NUM">2</field></block></value></block></value></block></next></block></statement></block>
 		</span>
     <span class="workspace-solution">
-      <block type="poker_cards" x="63" y="43"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_incr"><field name="num">A</field><value name="incr"><block type="math_number"><field name="NUM">2</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><field name="num">A</field></block></value></block></next></block></statement></block>
+      <block type="poker_cards" x="63" y="43"><field name="in">handkaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_plus"><value name="A"><block type="poker_rank_same"><field name="num">A</field></block></value><value name="B"><block type="math_number"><field name="NUM">2</field></block></value></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><field name="num">A</field></block></value></block></next></block></statement></block>
     </span>
 	</span>
 </span>

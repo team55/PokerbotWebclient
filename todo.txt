@@ -2,7 +2,6 @@
 Todo's after tests:
   - Remove some old files.
   - Center blocks in tutorial.
-  - + block.
 
 Chapter zero idea:
   - Add conceptual intro, fullscreen?

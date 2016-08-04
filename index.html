@@ -66,19 +66,31 @@
                <block type="poker_color_same"></block>
               <block type="poker_rank_same"></block>
               <block type="poker_rank"></block>
-              <block type="poker_rank_incr">
-                <value name="num">
-                  <block type="math_number">
-                    <field name="NUM">1</field>
+              <block type="poker_rank_plus">
+                <value name="A">
+                  <block type="poker_rank_same">
+                    <field name="num">2</field>
                   </block>
                 </value>
-                <value name="incr">
+                <value name="B">
                   <block type="math_number">
                     <field name="NUM">1</field>
                   </block>
                 </value>
               </block>
-              <block type="poker_rank_and"></block>
+              <block type="poker_rank_and">
+                <value name="A">
+                  <block type="poker_rank_same">
+                    <field name="num">A</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="poker_rank">
+                    <field name="op">&gt;=</field>
+                    <field name="rank">11</field>
+                  </block>
+                </value>
+              </block>
             </category>
             <category name="Acties">
               <block type="poker_call"></block>
