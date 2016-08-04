@@ -229,9 +229,6 @@
 
 .blocklyTreeRoot {
   padding: 4px 0;
-}
-
-.blocklyTreeRoot: focus {
   outline: none;
 }
 

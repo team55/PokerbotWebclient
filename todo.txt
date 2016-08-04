@@ -1,7 +1,5 @@
 
 Todo's after tests:
-  - Scroll down vermelden.
-  - Variabele introductie: tekst mail.
   - Remove some old files.
   - Center blocks in tutorial.
   - + block.
