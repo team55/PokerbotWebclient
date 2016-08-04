@@ -5,7 +5,6 @@ Todo's after tests:
   - Move hand rankings to a more obvious place.
   - Translate if statement tooltip.
   - Add explanation of poker. Rules & terms?
-  - Add 'credit' to SB & BB.
   - Bottom stats are not removed after chapter switch.
   - Sync the win and graph message.
   - Effect when saving blocks so its clear where they are located.
