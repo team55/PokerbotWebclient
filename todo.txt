@@ -2,6 +2,7 @@
 Todo's after tests:
   - Center blocks in tutorial.
   - Add 'reset workspace' during tutorial.
+  - Loader margin on join table.
 
 
 Server-side Todo's:
