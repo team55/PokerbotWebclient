@@ -2,7 +2,6 @@
 Todo's after tests:
   - Center blocks in tutorial.
   - Add 'reset workspace' during tutorial.
-  - Update Group + X block.
 
 
 Server-side Todo's:
