@@ -131,9 +131,11 @@
 
     complete: function() {
       if (!this.completed) {
-        UIHANDLER.disableFullscreenWorkspace();
+        setTimeout(function() {
+          UIHANDLER.disableFullscreenWorkspace();
+          TutorialController._reportSolution();
+        }, 1500);
         this.completed = true;
-        TutorialController._reportSolution();
       }
     },
 
