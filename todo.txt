@@ -1,6 +1,6 @@
 
 Todo's after tests:
-  - More conceptual intro, i.e. chapter zero?
+  - More conceptual intro, i.e. chapter zero? of video.
   - Fix the Prolog error! Example X > T ? Jam : Fold.
   - Move hand rankings to a more obvious place.
   - Translate if statement tooltip.
@@ -9,9 +9,13 @@ Todo's after tests:
   - Sync the win and graph message.
   - Effect when saving blocks so its clear where they are located.
   - Add 'and' block for suits.
-  - Loader margin on join table.
   - Remove some old files.
+  - Tooltip vermelden.
+  - Tooltipspeed.
   - Center blocks in tutorial.
+  - Scroll down vermelden.
+  - Nieuwe dropdown voor Groups. "Kleur variabele & Rang variabele genaamd"...
+  - Variabele introductie: tekst mail.
 
 Server-side Todo's:
   - Translate Server-side errors.
