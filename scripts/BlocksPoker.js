@@ -562,5 +562,6 @@ Blockly.Blocks['custom_if'] = {
     });
     this.elseifCount_ = 0;
     this.elseCount_ = 0;
+    this.setTooltip('Indien de voorwaarde true is, voer dan enkele statements uit.');
   }
 };

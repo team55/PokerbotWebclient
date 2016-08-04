@@ -1,6 +1,5 @@
 
 Todo's after tests:
-  - Translate if statement tooltip.
   - Bottom stats are not removed after chapter switch.
   - Sync the win and graph message.
   - Effect when saving blocks so its clear where they are located.
