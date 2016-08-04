@@ -202,22 +202,28 @@ var SAVED_BLOCKS = [];
 
 var saveWorkspace = function() {
 
-  $('#save-workspace').addClass('loading');
 
   var dom = Blockly.Xml.workspaceToDom(workspace);
   var complete = Blockly.Xml.domToText(dom);
   var core = complete.substring(complete.indexOf('>') + 1, complete.length - 6);
   SAVED_BLOCKS.push(core);
+  var toolbox = '<xml>' + $('#toolbox').html() + '<category name="Opgeslagen" class="flash">';
+  for(var i = 0; i < SAVED_BLOCKS.length; i++) {
+    toolbox += SAVED_BLOCKS[i] + '\n';
+  }
+  toolbox += '</category></xml>';
+  workspace.updateToolbox(toolbox);
 
-  setTimeout(function() {
-    var toolbox = '<xml>' + $('#toolbox').html() + '<category name="Opgeslagen">';
-    for(var i = 0; i < SAVED_BLOCKS.length; i++) {
-      toolbox += SAVED_BLOCKS[i] + '\n';
-    }
-    toolbox += '</category></xml>';
-    workspace.updateToolbox(toolbox);
-    $('#save-workspace').removeClass('loading');
-  }, 500);
+  $('.blocklyTreeRow').last().css('background-color', '#7f8c8d');
+  $('.blocklyTreeRow').last().css('margin-top', '25px');
+  $('.blocklyTreeRow').last().css('padding-top', '5px');
+  $('.blocklyTreeRow').last().css('padding-bottom', '5px');
+  $('.blocklyTreeRow').last().css('height', ($('.blocklyTreeRow').find('.blocklyTreeLabel').last().height() + 15) + 'px');
+  if (SAVED_BLOCKS.length === 1) {
+    $('.blocklyTreeRow').last().hide();
+    $('.blocklyTreeRow').last().transition('fly up');
+  }
+
 
 };
 
