@@ -1,6 +1,5 @@
 
 Todo's after tests:
-  - Bottom stats are not removed after chapter switch.
   - Sync the win and graph message.
   - Effect when saving blocks so its clear where they are located.
   - Scroll down vermelden.

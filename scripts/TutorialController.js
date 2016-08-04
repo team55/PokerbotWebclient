@@ -161,6 +161,7 @@ var TutorialController = {
   setChapter: function(i) {
     if (Math.abs(i) > this.chapters.length) return;
     $('#topgraph').html('');
+    $('#bottomgraph').html('');
     UIHANDLER.resizeWorkspace();
     this.currentChapter = Math.abs(i);
     var path = this.chapters[this.currentChapter - 1]['path'];
