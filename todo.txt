@@ -1,7 +1,6 @@
 
 Todo's after tests:
   - More conceptual intro, i.e. chapter zero? of video.
-  - Fix the Prolog error! Example X > T ? Jam : Fold.
   - Move hand rankings to a more obvious place.
   - Translate if statement tooltip.
   - Add explanation of poker. Rules & terms?

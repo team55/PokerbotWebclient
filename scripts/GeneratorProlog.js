@@ -185,6 +185,11 @@ Blockly.Generator.prototype.workspaceToCode = function(workspace) {
           }
         }
       }
+      for(var j = 0; j < parsedRules.length; j++) {
+        var frmt = parsedRules[j].split(', .').join('.').split(', )').join(')').split(', ,').join(', ').split(', ;').join(';').trim();
+        if (frmt[frmt.length - 1] != '.' && frmt.length > 0) { frmt += '.'; }
+        parsedRules[j] = frmt;
+      }
       line = parsedRules.join('\n');
 
 
