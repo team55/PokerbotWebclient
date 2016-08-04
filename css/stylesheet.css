@@ -423,3 +423,7 @@ p.diminfo {
 h3 {
   margin-top: 18px !important;
 }
+
+#reset-step {
+  display:none;
+}

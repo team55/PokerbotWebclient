@@ -131,6 +131,7 @@ var toggleHeader = function() {
 $('#stoptutorial').click(function(e) {
   $('#clear-btn').show();
   $('#rule-send-btn').show();
+  $('#reset-step').hide();
   $('.sendBotRule').addClass('hideme');
   $('#bottomgraph').html('');
   UIHANDLER.stopTutorial();
@@ -188,8 +189,8 @@ $(document).ready(function(e) {
     Blockly.Xml.domToWorkspace(workspace,
             document.getElementById('startBlocks'));
     function myUpdateFunction() {
-      var code = Blockly.Prolog.workspaceToCode(workspace);
-      console.log(code);
+      //var code = Blockly.Prolog.workspaceToCode(workspace);
+      //console.log(code);
     }
     workspace.addChangeListener(myUpdateFunction);
     $('#bargraph').load('elements/welcomebar.html');

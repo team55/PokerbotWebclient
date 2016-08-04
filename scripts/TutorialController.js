@@ -242,6 +242,9 @@ var TutorialController = {
         $('.blocklyToolboxDiv').hide();
         if (!$(this).hasClass('hide-toolbox')) $('.blocklyToolboxDiv').show();
         if ($(this).hasClass('clear-workspace')) workspace.clear();
+        if ($(this).hasClass('no-reset')) {
+          $('#reset-step').hide();
+        } else { $('#reset-step').show(); }
         if ($(this).hasClass('step-interaction') || $(this).hasClass('step-bot')) {
           if (TutorialController._finishedStep < TutorialController._currentView) {
             $('#bargraph').addClass('tutorialinfo');
@@ -302,6 +305,10 @@ var TutorialController = {
    */
   isOperating: function() {
     return this.currentChapter === TUTORIAL_CONTROLLER_DEFAULT_CHAPTER_VALUE;
+  },
+
+  resetWorkspaceForstep: function() {
+    this._redraw();
   }
 
 
