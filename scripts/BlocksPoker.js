@@ -508,7 +508,7 @@ Blockly.Blocks['poker_rank_same_and_specific'] = {
         .appendField("zelfde rang (Groep")
         .appendField(new Blockly.FieldDropdown([["A", "A"], ["B", "2"], ["C", "3"], ["D", "4"]]), "num");
     this.appendDummyInput()
-        .appendField(" en rang ")
+        .appendField(") en rang ")
         .appendField(new Blockly.FieldDropdown([[">=", ">="], [">", ">"], ["<=", "=<"], ["<", "<"], ["=", "=:="], ["!=", "=\\="]]), "op")
         .appendField(new Blockly.FieldDropdown([["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["7", "7"], ["8", "8"], ["9", "9"], ["10", "10"], ["Boer", "11"], ["Vrouw", "12"], ["Koning", "13"], ["Aas", "14"]]), "rank");
     this.setInputsInline(true);
@@ -519,13 +519,14 @@ Blockly.Blocks['poker_rank_same_and_specific'] = {
 };
 Blockly.Blocks['poker_rank_incr'] = {
   init: function() {
-    this.appendValueInput("num")
-        .setCheck("Number")
-        .appendField("zelfde rang (Groep");
+    this.appendDummyInput()
+        .appendField("zelfde rang (Groep")
+        .appendField(new Blockly.FieldDropdown([["A", "A"], ["B", "2"], ["C", "3"], ["D", "4"]]), "num");
     this.appendDummyInput()
         .appendField(") +");
     this.appendValueInput("incr")
         .setCheck("Number");
+    this.setInputsInline(true);
     this.setOutput(true, "POKER_TYPE_RANK");
     this.setColour(rankcolor);
     this.setTooltip('Kan gebruikt worden om opeenvolgende kaarten te definieren.');

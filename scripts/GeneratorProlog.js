@@ -559,7 +559,7 @@ Blockly.Prolog['poker_rank_same'] = function(block) {
 Blockly.Prolog['poker_rank_incr'] = function(block) {
   // scope: X0 is Xgrp + 1,
   var order = Blockly.Prolog.ORDER_ATOMIC;
-  var groupnum = Blockly.Prolog.valueToCode(block, 'num', order) || '0';
+  var groupnum = block.getFieldValue('num')  || '0';
   var cardsame_group = 'rank'+groupnum;
 
   if (!Blockly.Prolog.cardsame_[cardsame_group])
