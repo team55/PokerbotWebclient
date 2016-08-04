@@ -1,9 +1,19 @@
 
 Todo's after tests:
-  - Center blocks in tutorial.
+  - More conceptual intro, i.e. chapter zero?
+  - Fix the Prolog error! Example X > T ? Jam : Fold.
+  - Move hand rankings to a more obvious place.
+  - Translate if statement tooltip.
+  - Add explanation of poker. Rules & terms?
+  - Remove Red & Black from automated bots' prolog.
+  - Add 'credit' to SB & BB.
+  - Bottom stats are not removed after chapter switch.
+  - Sync the win and graph message.
+  - Effect when saving blocks so its clear where they are located.
+  - Add 'and' block for suits.
   - Loader margin on join table.
   - Remove some old files.
-
+  - Center blocks in tutorial.
 
 Server-side Todo's:
   - Translate Server-side errors.
