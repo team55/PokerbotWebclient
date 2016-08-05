@@ -13,6 +13,39 @@ Chapter zero idea:
   - Move hand rankings to the icon on top.
   - Add explanation of poker. Rules & terms?
 
+Session feedback:
+  - Skip video should be clear
+  - Keep the biggest score!
+  - Fix resolution issue
+  - Change 500$ amount
+  - Skip video issue after complete video
+  - Puzzel was not clear... Step 1???
+  - Change sort to color.
+  - Brown block is an individual card.
+  - Translate tooltips: Group to Variable.
+  - 10 & A is unclear. Lost het op zodat raise wel wordt uitgevoerd.
+  - Blockly dropdown scrolls.
+  - Tutorial: Active players.
+  - Add table name to main screen.
+  - Redraw table list at open dimmer.
+  - Brown card is a single card!
+  - Change green arrow button in description.
+  - Names next to lines...
+  - Scroll in workspace.
+  - Fix rolling average side bar.
+  - Fix bottom graph on large.
+  - Explain call if raise...
+  - Color names different in color and rank.
+  - Change prolog fixes to regex.
+  - Preflop or pair crashes...
+  - More examples for numbers.
+  - More examples for OR and AND.
+  - Example rule page?
+  - Feedback on PFR & VPIP?
+  - Add Flop, Turn and River to description/video.
+  - Rules of others? 
+  - No passwords! 
+  - HTML Storage voor session?
 
 Server-side Todo's:
   - Translate Server-side errors.
