@@ -427,3 +427,19 @@ h3 {
 #reset-step {
   display:none;
 }
+
+.video-container {
+  width: 560px;
+}
+
+.skip-video {
+  color: grey;
+  width: 560px;
+  margin: 0 auto;
+  text-align: right;
+  margin-top: 10px;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}

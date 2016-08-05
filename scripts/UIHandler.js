@@ -80,7 +80,7 @@ var UIHANDLER = {
     },
 
     makeConnectedTransition: function () {
-        $('.ui.page.dimmer')
+        $('#signin-overlay')
             .dimmer('hide');
     },
 
@@ -435,6 +435,5 @@ var UIHANDLER = {
             UIHANDLER.hideDetailedView();
         }
     }
-
-
+    
 }

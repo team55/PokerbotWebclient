@@ -202,7 +202,6 @@ var SAVED_BLOCKS = [];
 
 var saveWorkspace = function() {
 
-
   var dom = Blockly.Xml.workspaceToDom(workspace);
   var complete = Blockly.Xml.domToText(dom);
   var core = complete.substring(complete.indexOf('>') + 1, complete.length - 6);
@@ -229,6 +228,6 @@ var saveWorkspace = function() {
 
 $(document).keyup(function(e) {
  if (e.keyCode == 27) {
-   $('.ui.page.dimmer').dimmer('hide');
+   $('#signin-overlay').dimmer('hide');
  }
 });

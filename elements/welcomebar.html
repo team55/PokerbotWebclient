@@ -18,11 +18,13 @@
 
 <script>
   $('#starttutorial').click(function(e) {
-    TutorialController.start();
+    $('#video-overlay').dimmer('show', function() {
+      TutorialController.start();
+    });
   });
   // Connects a the dimmer to the connect button.
   $('#toggledimmer').click(function(e) {
-    $('.ui.page.dimmer').dimmer('show');
+    $('#signin-overlay').dimmer('show');
   });
 
   workspace.clear();
