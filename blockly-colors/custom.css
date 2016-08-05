@@ -479,3 +479,11 @@
 .flash {
   background-color: red !important;
 }
+
+.blocklyTooltipDiv {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  border: 1px solid #7f8c8d;
+  border-radius: 2px;
+  padding: 10px;
+}

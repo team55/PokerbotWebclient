@@ -9,12 +9,9 @@ Todo's after tests:
 
 Chapter zero idea:
   - Add conceptual intro, fullscreen?
-  - Add possible video.
   - Tell about the hand rankings.
   - Move hand rankings to the icon on top.
   - Add explanation of poker. Rules & terms?
-  - Explain tooltips.
-  - Increase speed of tooltip.
 
 
 Server-side Todo's:

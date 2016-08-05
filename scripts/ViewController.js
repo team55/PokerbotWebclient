@@ -182,6 +182,7 @@ var toggleDetailedView = function() {
 
 $(document).ready(function(e) {
   customWorkspace('blockly-colors/custom.css', function() {
+    Blockly.Tooltip.HOVER_MS = 300;
     workspace = Blockly.inject('blocklyDiv',
         {media: 'blockly/media/',
          sounds: false,
