@@ -43,8 +43,8 @@ Session feedback:
   - Example rule page?
   - Feedback on PFR & VPIP?
   - Add Flop, Turn and River to description/video.
-  - Rules of others? 
-  - No passwords! 
+  - Rules of others?
+  - No passwords!
   - HTML Storage voor session?
 
 Server-side Todo's:

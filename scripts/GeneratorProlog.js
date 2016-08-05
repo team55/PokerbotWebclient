@@ -79,14 +79,12 @@ Blockly.Prolog.init = function(workspace) {
   Blockly.Prolog.rulecounter = 1;
   // Init global variable-name counter (X1, X2, ...)
   Blockly.Prolog.varcounter = 1;
-  // scope for 'and' expressions
-  Blockly.Prolog.scope = '';
   // POKER_TYPE_CARDSET second return argument (nr of cards in set)
   Blockly.Prolog.cardset_nr = -1;
   // Create a dictionary for samevar and samecolor (reset in every poker_cards)
   Blockly.Prolog.cardsame_ = {};
-
-
+  // Scope became an instance, see Scope.js documentation for more info.
+  Blockly.Prolog.scope = ScopeInstance;
 };
 
 // HACK: Helper function to filter a list.
@@ -170,16 +168,23 @@ Blockly.Generator.prototype.workspaceToCode = function(workspace) {
 
     }
     if (line) {
+
       // HACK: Here we format invalid PROLOG code.
       var rules = line.split('\n');
       var parsedRules = [];
       for(var i = 0; i < rules.length; i++) {
         if (rules[i].trim().length > 0) {
           if (rules[i].indexOf('do') <= -1) {
-            var newline = 'do(' + rules[i] + ', ' + Blockly.Prolog.rulecounter + ') :- ' + Blockly.Prolog.scope + 'true.';
-            Blockly.Prolog.rulecounter++;
-            Blockly.Prolog.scope = '';
-            parsedRules.push(newline);
+            var allowed = ['poker_call', 'poker_raise', 'poker_fold', 'custom_if'];
+            if(allowed.indexOf(block.type) > -1) {
+              var value = 'fold';
+              if (rules[i].length > 0) value = rules[i];
+              var newline = 'do(' + value + ', ' + Blockly.Prolog.rulecounter + ') :- ' + Blockly.Prolog.scope.build() + '.';
+              Blockly.Prolog.rulecounter++;
+              parsedRules.push(newline);
+            } else {
+              Blockly.Prolog.scope.build();
+            }
           } else {
             parsedRules.push(rules[i]);
           }
@@ -267,52 +272,52 @@ Blockly.Prolog['logic_boolean'] = function(block) {
 
 Blockly.Prolog['stacksize'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
-  Blockly.Prolog.scope += 'saldo(' + Xnew + '), ';
+  Blockly.Prolog.scope.addFact('saldo(' + Xnew + ')');
   return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 }
 Blockly.Prolog['potsize'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
-  Blockly.Prolog.scope += 'potgrootte(' + Xnew + '), ';
+  Blockly.Prolog.scope.addFact('potgrootte(' + Xnew + ')');
   return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 }
 Blockly.Prolog['active_players'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
-  Blockly.Prolog.scope += 'actievespelers(' + Xnew + '), ';
+  Blockly.Prolog.scope.addFact('actievespelers(' + Xnew + ')');
   return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 }
 Blockly.Prolog['non_allin_active_players'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
-  Blockly.Prolog.scope += 'actievespelersmetgeld(' + Xnew + '), ';
+  Blockly.Prolog.scope.addFact('actievespelersmetgeld(' + Xnew + ')');
   return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 }
 Blockly.Prolog['amount_to_call'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
-  Blockly.Prolog.scope += 'tekort(' + Xnew + '), ';
+  Blockly.Prolog.scope.addFact('tekort(' + Xnew + ')');
   return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 }
 Blockly.Prolog['max_profit'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
-  Blockly.Prolog.scope += 'maximalewinst(' + Xnew + '), ';
+  Blockly.Prolog.scope.addFact('maximalewinst(' + Xnew + ')');
   return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 }
 Blockly.Prolog['min_raise'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
-  Blockly.Prolog.scope += 'minimumraise(' + Xnew + '), ';
+  Blockly.Prolog.scope.addFact('minimumraise(' + Xnew + ')');
   return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 }
 Blockly.Prolog['max_raise'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
-  Blockly.Prolog.scope += 'maximumraise(' + Xnew + '), ';
+  Blockly.Prolog.scope.addFact('maximumraise(' + Xnew + ')');
   return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 }
 Blockly.Prolog['number_of_raises'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
-  Blockly.Prolog.scope += 'aantalraises(' + Xnew + '), ';
+  Blockly.Prolog.scope.addFact('aantalraises(' + Xnew + ')');
   return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 }
 Blockly.Prolog['random'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
-  Blockly.Prolog.scope += 'random(' + Xnew + '), ';
+  Blockly.Prolog.scope.addFact('random(' + Xnew + ')');
   return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 }
 Blockly.Prolog['math_number'] = function(block) {
@@ -391,7 +396,7 @@ Blockly.Prolog['add'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
   var a = Blockly.Prolog.valueToCode(block, 'A', order) || 0;
   var b = Blockly.Prolog.valueToCode(block, 'B', order) || 0;
-  Blockly.Prolog.scope += Xnew + ' is ' + a + ' + ' + b + ', ';
+  Blockly.Prolog.scope.addFact(Xnew + ' is ' + a + ' + ' + b);
   return [Xnew, order];
 }
 Blockly.Prolog['substract'] = function(block) {
@@ -399,7 +404,7 @@ Blockly.Prolog['substract'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
   var a = Blockly.Prolog.valueToCode(block, 'A', order) || 0;
   var b = Blockly.Prolog.valueToCode(block, 'B', order) || 0;
-  Blockly.Prolog.scope += Xnew + ' is ' + a + ' - ' + b + ', ';
+  Blockly.Prolog.scope.addFact(Xnew + ' is ' + a + ' - ' + b);
   return [Xnew, order];
 }
 Blockly.Prolog['multiply'] = function(block) {
@@ -407,7 +412,7 @@ Blockly.Prolog['multiply'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
   var a = Blockly.Prolog.valueToCode(block, 'A', order) || 0;
   var b = Blockly.Prolog.valueToCode(block, 'B', order) || 0;
-  Blockly.Prolog.scope += Xnew + ' is ' + a + ' * ' + b + ', ';
+  Blockly.Prolog.scope.addFact(Xnew + ' is ' + a + ' * ' + b);
   return [Xnew, order];
 }
 Blockly.Prolog['divide'] = function(block) {
@@ -415,7 +420,7 @@ Blockly.Prolog['divide'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
   var a = Blockly.Prolog.valueToCode(block, 'A', order) || 0;
   var b = Blockly.Prolog.valueToCode(block, 'B', order) || 1;
-  Blockly.Prolog.scope += Xnew + ' is ' + a + ' / ' + b + ', ';
+  Blockly.Prolog.scope.addFact(Xnew + ' is ' + a + ' / ' + b);
   return [Xnew, order];
 }
 
@@ -435,8 +440,7 @@ Blockly.Prolog['poker_raise'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var argument0 = Blockly.Prolog.valueToCode(block, 'amount', order) || '0';
-  var code = Xnew + ' is ' + argument0 + ', ';
-  Blockly.Prolog.scope += code;
+  Blockly.Prolog.scope.addFact(Xnew + ' is ' + argument0);
   return 'raise(' + Xnew + ')';
 };
 
@@ -451,21 +455,20 @@ Blockly.Prolog['poker_cards'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
 
   var cardset_name = block.getFieldValue('in');
-  Blockly.Prolog.scope += cardset_name + '(' + Xnew + '), ';
+  Blockly.Prolog.scope.addFact(cardset_name + '(' + Xnew + ')');
 
   // put stuff generated by 'cardlist' after previous stuff
-  var prevScope = Blockly.Prolog.scope;
-  Blockly.Prolog.scope = '';
+  var prevScope = Blockly.Prolog.scope.build();
 
   var cardlist = Blockly.Prolog.statementToCode(block, 'cardlist') || '_';
   var l = cardlist.length;
   // cut of spurious ', ' at end if exists
   if (l >= 2 && cardlist.charAt(l-1) == ' ' && cardlist.charAt(l-2) == ',')
     cardlist = cardlist.substr(0,l-2);
-  var code = 'members(['+cardlist+'],'+Xnew+'), ';
 
-  var finaloutput = prevScope + code + Blockly.Prolog.scope;
-  Blockly.Prolog.scope = '';
+  var code = 'members(['+cardlist+'],'+Xnew+')';
+
+  var finaloutput = prevScope + ', ' + code + ', ' + Blockly.Prolog.scope.build();
 
   return [finaloutput, Blockly.Prolog.ORDER_ATOMIC];
 };
@@ -481,8 +484,7 @@ Blockly.Prolog['poker_color'] = function(block) {
   var Xnew = Blockly.Prolog.newvar();
 
   var color_name = block.getFieldValue('color');
-  var code = color_name + '(' + Xnew + '), ';
-  Blockly.Prolog.scope += code;
+  Blockly.Prolog.scope.addFact(color_name + '(' + Xnew + ')');
 
   return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 };
@@ -497,7 +499,7 @@ Blockly.Prolog['poker_color_same'] = function(block) {
   if (!Blockly.Prolog.cardsame_[cardsame_group]) {
     var newVar = Blockly.Prolog.newvar();
     for (var key in Blockly.Prolog.cardsame_) {
-      Blockly.Prolog.scope += Blockly.Prolog.cardsame_[key] + ' \\= ' + newVar + ', ';
+      Blockly.Prolog.scope.addFact(Blockly.Prolog.cardsame_[key] + ' \\= ' + newVar);
     }
     Blockly.Prolog.cardsame_[cardsame_group] = newVar;
   }
@@ -513,8 +515,8 @@ Blockly.Prolog['poker_rank'] = function(block) {
   var arg_op = block.getFieldValue('op');
   var arg_rank = block.getFieldValue('rank');
 
-  var code = Xnew + ' ' + arg_op + ' ' + arg_rank + ', ';
-  Blockly.Prolog.scope += code;
+  var code = Xnew + ' ' + arg_op + ' ' + arg_rank;
+  Blockly.Prolog.scope.addFact(code);
 
   return [Xnew, Blockly.Prolog.ORDER_ATOMIC];
 };
@@ -529,7 +531,7 @@ Blockly.Prolog['poker_rank_same'] = function(block) {
   if (!Blockly.Prolog.cardsame_[cardsame_group]) {
     var newVar = Blockly.Prolog.newvar();
     for (var key in Blockly.Prolog.cardsame_) {
-      Blockly.Prolog.scope += Blockly.Prolog.cardsame_[key] + ' \\= ' + newVar + ', ';
+      Blockly.Prolog.scope.addFact(Blockly.Prolog.cardsame_[key] + ' \\= ' + newVar);
     }
     Blockly.Prolog.cardsame_[cardsame_group] = newVar;
   }
@@ -551,8 +553,8 @@ Blockly.Prolog['poker_rank_incr'] = function(block) {
   var incrval = Blockly.Prolog.valueToCode(block, 'incr', order) || '0';
   if (incrval != '0') {
     var Xnew = Blockly.Prolog.newvar();
-    var code = Xnew + ' is ' + Xvar + ' + ' + incrval + ', ';
-    Blockly.Prolog.scope += code;
+    var code = Xnew + ' is ' + Xvar + ' + ' + incrval;
+    Blockly.Prolog.scope.addFact(code);
     Xvar = Xnew; // for in return
   }
   return [Xvar, Blockly.Prolog.ORDER_ATOMIC];
@@ -562,7 +564,8 @@ Blockly.Prolog['poker_rank_and'] = function(block) {
   var order = Blockly.Prolog.ORDER_ATOMIC;
   var a = Blockly.Prolog.valueToCode(block, 'A', order) || '_';
   var b = Blockly.Prolog.valueToCode(block, 'B', order) || '_';
-  Blockly.Prolog.scope = a + ' = ' + b + ', ' + Blockly.Prolog.scope;
+  //Blockly.Prolog.scope = a + ' = ' + b + ', ' + Blockly.Prolog.scope;
+  Blockly.Prolog.scope.addFact(a + ' = ' + b);
   if (a === '_') { return [b, order]; }
   return [a, order];
 }
@@ -572,14 +575,12 @@ Blockly.Prolog['poker_rank_plus'] = function(block) {
   var incrval = Blockly.Prolog.valueToCode(block, 'B', order) || '0';
   if (incrval != '0') {
     var Xnew = Blockly.Prolog.newvar();
-    var code = Xnew + ' is ' + Xvar + ' + ' + incrval + ', ';
-    Blockly.Prolog.scope += code;
+    var code = Xnew + ' is ' + Xvar + ' + ' + incrval;
+    Blockly.Prolog.scope.addFact(code);
     Xvar = Xnew; // for in return
   }
   return [Xvar, Blockly.Prolog.ORDER_ATOMIC];
 }
-
-
 
 /**
  *  Implementation for the custom if block.
@@ -587,38 +588,48 @@ Blockly.Prolog['poker_rank_plus'] = function(block) {
 
 Blockly.Prolog['custom_if'] = function(block) {
   var code = '';
-  for (var n=0; n <= block.elseifCount_; n++) {
-    var argument = Blockly.Prolog.valueToCode(block, 'IF' + n, Blockly.Prolog.ORDER_NONE) || 'true';
-    var scope = Blockly.Prolog.scope;
-    if (scope != '') {
-        argument = scope + argument;
-        Blockly.Prolog.scope = '';
-    }
-    var branch = Blockly.Prolog.statementToCode(block, 'DO' + n) || 'fold';
-    argument += ', ' + Blockly.Prolog.scope;
-    var stmts = branch.split('\n');
-    if (stmts.length > 1)
-      for(var i = 0; i < stmts.length-1; i++)
-        if (stmts[i].length > 0)
-          code += stmts[i].substring(0, stmts[i].length - 1)
-          + ', '
-          + argument
-          + '.\n';
-    branch = stmts[stmts.length - 1];
-    code += 'do(' + branch + ', ' + Blockly.Prolog.rulecounter + ') :- ' + argument + '.\n';
+  for (var n = 0; n <= block.elseifCount_; n++) {
+
+    // Check the CONDITION
+    var order = Blockly.Prolog.ORDER_NONE;
+    var condition = Blockly.Prolog.valueToCode(block, 'IF0', order) || 'true';
+    var scope = Blockly.Prolog.scope.build();
+    if (scope != 'true') { condition = condition + ', '+ scope; }               // XXX: Order issue might be here. Changed it
+                                                                                //      from scope + condition to condition + scope.
+
+    // Fix the BRANCH
+    var branch = Blockly.Prolog.statementToCode(block, 'DO0') || 'fold';
+    var scope = Blockly.Prolog.scope.build();
+    if (scope != 'true') { condition = condition + ', ' + scope; }
+
+
+    // The BRANCH can be complex.
+    // We check the branch line per line and add the current condition.
+    // Except for the last one: this one should be converted because it will be
+    // an action.
+    var index = 0, lines = branch.split('\n');
+    lines.forEach(function(line) {
+      if (++index < lines.length && line.length > 0)
+        code += line.substring(0, line.length - 1) + ', ' + condition + '.\n';
+    });
+    var action = lines[lines.length - 1] ? lines[lines.length - 1] : 'fold';
+    code += 'do(' + action + ', ' + Blockly.Prolog.rulecounter + ') ';
+    code += ':- ' + condition + '.\n';
     Blockly.Prolog.rulecounter++;
+
   }
   if (block.elseCount_) {
+    console.log('Jaman');
     var branch = Blockly.Prolog.statementToCode(block, 'ELSE') || 'fold';
     var argument = 'true';
-    var scope = Blockly.Prolog.scope;
+    var scope = Blockly.Prolog.scope.toString();
     if (scope != '') {
         argument = scope;
-        Blockly.Prolog.scope = '';
+        Blockly.Prolog.scope.build();
     }
     code += 'do(' + branch + ', ' + Blockly.Prolog.rulecounter + ') :- ' + argument + '.\n';
     Blockly.Prolog.rulecounter++;
   }
-  Blockly.Prolog.scope = '';
+  Blockly.Prolog.scope.build();
   return code + '\n';
 };
