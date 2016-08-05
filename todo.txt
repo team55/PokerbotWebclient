@@ -5,6 +5,7 @@ Todo's after tests:
 
   - Create PDF for classroom.
   - Extra chapter for classroom (on stats).
+  - Enable JS box.
 
 Chapter zero idea:
   - Add conceptual intro, fullscreen?
