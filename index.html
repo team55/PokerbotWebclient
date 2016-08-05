@@ -290,6 +290,9 @@
     <div class="content">
       <div class="center video-container">
         <h2>Spelregels</h2>
+        <p>In de tutorial zul je leren hoe je een echte pokerbot maakt. Dit wil zeggen dat je de computer zult laten spelen op de manier zoals jij hem hebt aangeleerd!</p>
+        <p>Vooraleer we beginnen is het natuurlijk belangrijk dat je de spelregels onder de knie hebt. Indien je nog geen ervaring hebt met het spel, kun je de video onderaan bekijken voor een korte uitleg.</p>
+        <p>Je kan ook de video gewoon overslaan en meteen met de tutorial beginnen.
         <div id="player"></div>
         <script>
           // 2. This code loads the IFrame Player API code asynchronously.
@@ -301,12 +304,33 @@
 
           // 3. This function creates an <iframe> (and YouTube player)
           //    after the API code downloads.
+
+          function getSearchParameters() {
+                var prmstr = window.location.search.substr(1);
+                return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+          }
+
+          function transformToAssocArray( prmstr ) {
+              var params = {};
+              var prmarr = prmstr.split("&");
+              for ( var i = 0; i < prmarr.length; i++) {
+                  var tmparr = prmarr[i].split("=");
+                  params[tmparr[0]] = tmparr[1];
+              }
+              return params;
+          }
+
+          var params = getSearchParameters();
+
+          console.log(params);
+
           var player;
           function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
               height: '390',
               width: '640',
               videoId: 'H184i3XMAH0',
+              playerVars: { 'autoplay': 0, 'showinfo': 0 },
               events: {
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
