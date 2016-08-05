@@ -3,6 +3,9 @@ Todo's after tests:
   - Remove some old files.
   - Center blocks in tutorial.
 
+  - Create PDF for classroom.
+  - Extra chapter for classroom (on stats).
+
 Chapter zero idea:
   - Add conceptual intro, fullscreen?
   - Add possible video.
