@@ -5,7 +5,6 @@ Todo queue:
   - Extra chapter for classroom (on stats).
   - Enable JS box.
   - Keep the biggest score!
-  - Remove some old files.
   - Explain call if raise...
 
 Extra's:
