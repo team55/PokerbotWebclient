@@ -619,7 +619,6 @@ Blockly.Prolog['custom_if'] = function(block) {
 
   }
   if (block.elseCount_) {
-    console.log('Jaman');
     var branch = Blockly.Prolog.statementToCode(block, 'ELSE') || 'fold';
     var argument = 'true';
     var scope = Blockly.Prolog.scope.toString();

@@ -1,8 +1,5 @@
 Extra's:
-  - Names next to lines...
   - Workspace dropdown scrolls.
-  - Center blocks in tutorial.
-  - Fix rolling average side bar.
   - Example rule page?
   - Feedback on PFR & VPIP?
   - Fix bottom graph on fullscreen.
@@ -11,6 +8,7 @@ Extra's:
   - Extra chapter for classroom (on stats).
 
 Server-side Todo's:
+  - Fix rolling average side bar.
   - Catch 'invalid prolog' on server.
   - Rolling average in bar charts should be faster.
   - A lot of input checks should still be done on the server.

@@ -10,7 +10,6 @@
   <script>
     var LOGGER = {
       trace: function(str) {
-        console.log(str);
       },
       error: function(str) {
         console.error(str);
@@ -338,8 +337,6 @@
           }
 
           var params = getSearchParameters();
-
-          console.log(params);
 
           var player;
           function onYouTubeIframeAPIReady() {

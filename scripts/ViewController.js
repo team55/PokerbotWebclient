@@ -28,8 +28,6 @@ $('#refresh-tables-btn').click(function(e) {
 var connectUser = function(username, tablename) {
   UIHANDLER.hideSignInError();
   UIHANDLER.startConnectToTable();
-  console.log(username);
-  console.log(tablename);
   SESSION.connect(username, tablename, {
     success: function() {
       UIHANDLER.updateViewsAfterConnectionEstablished();
@@ -197,8 +195,7 @@ $(document).ready(function(e) {
     Blockly.Xml.domToWorkspace(workspace,
             document.getElementById('startBlocks'));
     function myUpdateFunction() {
-      var code = Blockly.Prolog.workspaceToCode(workspace);
-      console.log(code);
+      //var code = Blockly.Prolog.workspaceToCode(workspace);
     }
     workspace.addChangeListener(myUpdateFunction);
     $('#bargraph').load('elements/welcomebar.html');
@@ -239,7 +236,6 @@ var drawSavedBlocks = function(forceAnimation, delay) {
 }
 
 var clearCache = function() {
-  console.log('Clear cache');
   SAVED_BLOCKS = [];
   drawSavedBlocks(false, 0);
   if (typeof(Storage) !== "undefined") {
