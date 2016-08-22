@@ -429,11 +429,11 @@ h3 {
 }
 
 .video-container {
-  width: 560px;
+  width: 400px;
 }
 
 .video-container > p {
-  width: 560px;
+  width: 400px;
   margin: 0 auto;
   text-align: justify;
   margin-bottom: 25px;
@@ -445,7 +445,7 @@ h3 {
 
 .skip-video {
   color: grey;
-  width: 560px;
+  width: 400px;
   margin: 0 auto;
   text-align: right;
   margin-top: 10px;
@@ -453,4 +453,16 @@ h3 {
 
 .clickable:hover {
   cursor: pointer;
+}
+
+.boxed {
+  height: 200px !important;
+  overflow: scroll !important;
+  margin: 0 auto;
+}
+
+.boxed > p {
+  margin-bottom: 10px !important;
+  width: 400px;
+  margin: 0 auto;
 }

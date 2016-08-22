@@ -1,5 +1,4 @@
 Todo queue:
-  - Skip video should be clear
   - Fix resolution issue
   - Puzzle was not clear... Step 1???
   - 10 & A is unclear. Better explanation for "fix this".
