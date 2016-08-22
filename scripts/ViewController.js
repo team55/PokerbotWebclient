@@ -45,7 +45,7 @@ $('#create-table-btn').click(function(e) {
   UIHANDLER.startCreateTable();
   SERVER.createTable(
     $('#table-create-tablename').val(),
-    $('#table-password').val(),
+    'bear',
     $('#table-players').val(), {
     success: function(data) {
       updateTableSelectionList();
@@ -74,7 +74,7 @@ $('#create-table-and-connect-btn').click(function(e) {
   } else {
     SERVER.createTable(
       tablename,
-      $('#table-password').val(),
+      'bear',
       $('#table-players').val(), {
       success: function() {
         updateTableSelectionList();

@@ -7,7 +7,6 @@ Todo queue:
   - Keep the biggest score!
   - Remove some old files.
   - Explain call if raise...
-  - No passwords!
 
 Extra's:
   - Add table name to main screen.
