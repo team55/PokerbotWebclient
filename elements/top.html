@@ -112,6 +112,8 @@
    */
   $(document).ready(function() {
     fetchDataForTopChart();
+    $('#tableinfo').html('Seated at <b><i>' + SESSION.getRawTablename() +'</i></b>');
+    $('#tableinfo').show();
   });
 
 </script>

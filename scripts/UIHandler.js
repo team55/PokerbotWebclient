@@ -219,6 +219,7 @@ var UIHANDLER = {
     },
 
     backHome: function () {
+      $('#tableinfo').hide();
         UIHANDLER.resetTableStatus();
         UIHANDLER.resetGraphs();
         UIHANDLER.resetButtons();
@@ -435,5 +436,5 @@ var UIHANDLER = {
             UIHANDLER.hideDetailedView();
         }
     }
-    
+
 }

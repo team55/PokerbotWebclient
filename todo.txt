@@ -1,9 +1,6 @@
 Todo queue:
-  - Tutorial: Active players.
-  - Tutorial: More examples for OR and AND.
   - Create PDF for classroom.
   - Extra chapter for classroom (on stats).
-  - Explain call if raise...
 
 Extra's:
   - Add table name to main screen.
@@ -14,14 +11,11 @@ Extra's:
   - Example rule page?
   - Feedback on PFR & VPIP?
   - Fix bottom graph on fullscreen.
-  - Rules of others?
-  - HTML Storage for session?
+  - Explain call if raise...
+  - HTML local Storage for session?
 
 Server-side Todo's:
-  - Translate Server-side errors.
   - Catch 'invalid prolog' on server.
   - Rolling average in bar charts should be faster.
   - A lot of input checks should still be done on the server.
   - Find some bottlenecks on server?
-  - Change the log location.
-  - Fetch JSON error in case of incorrect actions.

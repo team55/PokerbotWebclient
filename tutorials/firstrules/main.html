@@ -173,6 +173,45 @@ tafel.
 	</span>
 </span>
 
+<span class="tutorial-step step-interaction">
+  <span class="step-description">
+    <span class="on-success">
+      <i class="huge yellow trophy icon"></i>
+      <br />
+      <h2>Gefeliciteerd</h2>
+      <p>Op naar de volgende stap!</p>
+    </span>
+    <span class="before-success">
+      <p>
+        We willen nu nog een extra voorwaarde opleggen indien we een three of a kind hebben.
+        Indien het aantal raises strikt kleiner is als 3 gaan we nog steeds all-in, maar
+        anders callen we.
+      </p>
+      <p>
+        Pas de regel aan zodat deze voldoet aan de bovengenoemde voorwaarde!
+      </p>
+    </span>
+  </span>
+  <div class="ui buttons">
+    <button class="ui red icon button back-step-view">
+      <i class="arrow left icon"></i>
+    </button>
+		<button class="ui blue icon button next-step-view disabled">
+      Volgende
+    </button>
+  </div>
+	<span class="step-data">
+		<span class="workspace-data">
+      <xml xmlns="http://www.w3.org/1999/xhtml"><block type="custom_if" x="30" y="2"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><field name="num">A</field></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><field name="num">A</field></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><field name="num">A</field></block></value></block></next></block></next></block></statement></block></value><statement name="DO0"><block type="custom_if"><next><block type="poker_call"></block></next></block></statement><next><block type="poker_fold"></block></next></block><block type="less_then" x="187" y="281"></block><block type="poker_raise" x="186" y="331"><value name="amount"><block type="stacksize"></block></value></block></xml>
+		</span>
+		<span class="workspace-solution">
+      <block type="custom_if" x="15" y="1"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><field name="num">A</field></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><field name="num">A</field></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><field name="num">A</field></block></value></block></next></block></next></block></statement></block></value><statement name="DO0"><block type="custom_if"><value name="IF0"><block type="less_then"><value name="A"><block type="number_of_raises"></block></value><value name="B"><block type="math_number"><field name="NUM">3</field></block></value></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="stacksize"></block></value></block></statement><next><block type="poker_call"></block></next></block></statement><next><block type="poker_fold"></block></next></block>
+		</span>
+    <span class="workspace-solution">
+      <block type="custom_if" x="30" y="2"><value name="IF0"><block type="poker_cards"><field name="in">allekaarten</field><statement name="cardlist"><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><field name="num">A</field></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><field name="num">A</field></block></value><next><block type="poker_card"><value name="arg_color"><block type="poker_color_any"></block></value><value name="arg_rank"><block type="poker_rank_same"><field name="num">A</field></block></value></block></next></block></next></block></statement></block></value><statement name="DO0"><block type="custom_if"><value name="IF0"><block type="greater_then"><value name="A"><block type="math_number"><field name="NUM">3</field></block></value><value name="B"><block type="number_of_raises"></block></value></block></value><statement name="DO0"><block type="poker_raise"><value name="amount"><block type="stacksize"></block></value></block></statement><next><block type="poker_call"></block></next></block></statement><next><block type="poker_fold"></block></next></block>
+    </span>
+	</span>
+</span>
 
 <span class="tutorial-step step-interaction no-success hide-toolbox">
   <span class="step-description">
