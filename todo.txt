@@ -1,10 +1,4 @@
 Todo queue:
-  - Change sort to color.
-  - Chapter zero idea:
-    - Add conceptual intro, fullscreen?
-    - Tell about the hand rankings.
-    - Move hand rankings to the icon on top.
-    - Add explanation of poker. Rules & terms?
   - Skip video should be clear
   - Fix resolution issue
   - Puzzle was not clear... Step 1???
