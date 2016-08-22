@@ -459,7 +459,7 @@ Blockly.Blocks['poker_color_same'] = {
     this.setInputsInline(true);
     this.setOutput(true, "POKER_TYPE_COLOR");
     this.setColour(suitcolor);
-    this.setTooltip('Kaarten waarvan de kleur tot eenzelfde groep behoord, zullen dezelfde kleur moeten hebben!');
+    this.setTooltip('Kaarten met dezelfde kleur variabele, zullen dezelfde kleur moeten hebben!');
   }
 };
 
@@ -495,7 +495,7 @@ Blockly.Blocks['poker_rank_same'] = {
     this.setInputsInline(true);
     this.setOutput(true, "POKER_TYPE_RANK");
     this.setColour(rankcolor);
-    this.setTooltip('Kaarten waarvan de rang tot eenzelfde groep behoord, zullen dezelfde rang moeten hebben!');
+    this.setTooltip('Kaarten waarvan dezelfde rang variabele, zullen dezelfde rang moeten hebben!');
   }
 };
 Blockly.Blocks['poker_rank_incr'] = {

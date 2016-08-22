@@ -468,12 +468,17 @@
   fill: #bbb;
 }
 
+.blocklyScrollbarKnob {
+    fill: #bdc3c7 !important;
+    opacity: 1;
+}
+
 .blocklyScrollbarVertical > .blocklyScrollbarKnob {
-  width: 0px !important;
+  width: 6px !important;
 }
 
 .blocklyScrollbarHorizontal > .blocklyScrollbarKnob {
-  height: 0px !important;
+  height: 6px !important;
 }
 
 .flash {

@@ -1,18 +1,12 @@
 Todo queue:
-  - Change green arrow button in description.
   - Tutorial: Active players.
+  - Tutorial: More examples for OR and AND.
   - Create PDF for classroom.
   - Extra chapter for classroom (on stats).
   - Enable JS box.
   - Keep the biggest score!
-  - Change 500$ amount
-  - Brown block is an individual card.
-  - Translate tooltips: Group to Variable.
   - Remove some old files.
-  - Scrollbar in workspace.
-  - Redraw table list at open dimmer.
   - Explain call if raise...
-  - More examples for OR and AND.
   - No passwords!
 
 Extra's:
