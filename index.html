@@ -24,6 +24,23 @@
 </head>
 <body>
 
+  <noscript>
+    <style>
+      #JS-content { display:none; }
+      .no-JS {
+        margin-top: 75px;
+        text-align: center; }
+    </style>
+    <div class="no-JS">
+      <h1>Pokerbot</h1>
+      <p>We zien dat je geen JavaScript gebruikt.</p>
+      <p>Deze site heeft echter JavaScript nodig om te kunnen werken.</p>
+      <p>Gelieve JavaScript aan te zetten en te pagina te vernieuwen.</p>
+    </div>
+  </noscript>
+
+  <span id="JS-content">
+
   <!-- These divs are hidden initially but will be used for logging. -->
   <div id="errdiv" class="ui red label"></div>
   <div id="logdiv" class="ui blue label"></div>
@@ -444,6 +461,8 @@
   <script src="scripts/UIHandler.js"></script>
   <script src="scripts/ViewController.js"></script>
   <script src="scripts/TutorialController.js"></script>
+
+  </span>
 
 </body>
 </html>

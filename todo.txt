@@ -3,7 +3,6 @@ Todo queue:
   - Tutorial: More examples for OR and AND.
   - Create PDF for classroom.
   - Extra chapter for classroom (on stats).
-  - Enable JS box.
   - Keep the biggest score!
   - Explain call if raise...
 
