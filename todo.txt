@@ -1,7 +1,4 @@
 Todo queue:
-  - Fix resolution issue
-  - Puzzle was not clear... Step 1???
-  - 10 & A is unclear. Better explanation for "fix this".
   - Change green arrow button in description.
   - Tutorial: Active players.
   - Create PDF for classroom.
