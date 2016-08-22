@@ -1,6 +1,7 @@
 <h3>Gemiddelde winst per hand</h3>
 <canvas id="topGraphCanvas" width="750" height="175"></canvas>
 <div id="topGraphLegend"><span class="info"></span></div>
+<span id="record"><br /></span>
 <div id="gpswarning" class="ui raised segment hideme">
   <p> Het gemiddelde aantal handen per seconde is enorm gedaald sinds het
       toevoegen van de laatste regels. Om de snelheid optimaal te houden is het
@@ -12,6 +13,8 @@
   var MINIMAL_GAMES_PER_SECONDS = 10;
   var dataSets = null;
   var smoothie = null;
+
+  var record = null;
 
   /**
    *  This functions initializes the top chart for the given list of players.
@@ -49,7 +52,12 @@
     $('#topGraphLegend').html('');
     for(var i = 0; i < players.length; i++) {
       var player = players[i];
-      dataSets[i].append(new Date().getTime(), Math.round(player['avg profit'] * 100) / 100);
+      var value = Math.round(player['avg profit'] * 100) / 100;
+      if (!record || value > record.value) {
+        record = { name: player.name, value: value };
+        $('#record').html('Highest score sinds aanwezigheid: ' + record.name + ' met een winst van ' + record.value + '.<br />');
+      }
+      dataSets[i].append(new Date().getTime(), value);
       var description = '<span class="info" style="color:'+GRAPH_COLORS[i]+';">'+players[i]['name']+'</span>';
       $('#topGraphLegend').html($('#topGraphLegend').html() + description);
     }
