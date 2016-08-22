@@ -25,11 +25,15 @@ $('#refresh-tables-btn').click(function(e) {
 });
 
 // Connects a sequence to the sign in button on the left side!
-$('#connect-btn').click(function(e) {
+var connectUser = function(username, tablename) {
   UIHANDLER.hideSignInError();
   UIHANDLER.startConnectToTable();
-  SESSION.connect($('#username').val(), $('#tablename').val(), {
-    success: UIHANDLER.updateViewsAfterConnectionEstablished,
+  console.log(username);
+  console.log(tablename);
+  SESSION.connect(username, tablename, {
+    success: function() {
+      UIHANDLER.updateViewsAfterConnectionEstablished();
+    },
     final: UIHANDLER.stopConnectToTable,
     fail: function(error) {
       LOGGER.warn('Unable to connect to table...');
@@ -37,6 +41,9 @@ $('#connect-btn').click(function(e) {
       UIHANDLER.showSignInError(error);
     }
   });
+}
+$('#connect-btn').click(function(e) {
+  connectUser($('#username').val(), $('#tablename').val());
 });
 
 // Connects a sequence to the create table button (to only create a table).
@@ -195,11 +202,50 @@ $(document).ready(function(e) {
     }
     workspace.addChangeListener(myUpdateFunction);
     $('#bargraph').load('elements/welcomebar.html');
+    if (typeof(Storage) !== "undefined") {
+      if (localStorage.rules){
+        SAVED_BLOCKS = localStorage.rules.split('*');
+        drawSavedBlocks(true, 1200);
+      }
+    }
   });
   updateTableSelectionList();
 });
 
 var SAVED_BLOCKS = [];
+
+var oldToolbox = $('#toolbox').html();
+
+var drawSavedBlocks = function(forceAnimation, delay) {
+  if (SAVED_BLOCKS.length > 0) {
+    var toolbox = '<xml>' + $('#toolbox').html() + '<category name="Opgeslagen" class="flash">';
+    for(var i = 0; i < SAVED_BLOCKS.length; i++) {
+      toolbox += SAVED_BLOCKS[i] + '\n';
+    }
+    toolbox += '</category></xml>';
+    workspace.updateToolbox(toolbox);
+    $('.blocklyTreeRow').last().css('background-color', '#7f8c8d');
+    $('.blocklyTreeRow').last().css('margin-top', '25px');
+    $('.blocklyTreeRow').last().css('padding-top', '5px');
+    $('.blocklyTreeRow').last().css('padding-bottom', '5px');
+    $('.blocklyTreeRow').last().css('height', ($('.blocklyTreeRow').find('.blocklyTreeLabel').last().height() + 15) + 'px');
+    if (forceAnimation || SAVED_BLOCKS.length === 1) {
+      $('.blocklyTreeRow').last().hide();
+      $('.blocklyTreeRow').last().transition('fly up', delay);
+    }
+  } else {
+    workspace.updateToolbox('<xml>' + oldToolbox + '</xml>');
+  }
+}
+
+var clearCache = function() {
+  console.log('Clear cache');
+  SAVED_BLOCKS = [];
+  drawSavedBlocks(false, 0);
+  if (typeof(Storage) !== "undefined") {
+    localStorage.removeItem('rules');
+  }
+}
 
 var saveWorkspace = function() {
 
@@ -207,24 +253,10 @@ var saveWorkspace = function() {
   var complete = Blockly.Xml.domToText(dom);
   var core = complete.substring(complete.indexOf('>') + 1, complete.length - 6);
   SAVED_BLOCKS.push(core);
-  var toolbox = '<xml>' + $('#toolbox').html() + '<category name="Opgeslagen" class="flash">';
-  for(var i = 0; i < SAVED_BLOCKS.length; i++) {
-    toolbox += SAVED_BLOCKS[i] + '\n';
+  if (typeof(Storage) !== "undefined") {
+    localStorage.setItem('rules', SAVED_BLOCKS.join('*'))
   }
-  toolbox += '</category></xml>';
-  workspace.updateToolbox(toolbox);
-
-  $('.blocklyTreeRow').last().css('background-color', '#7f8c8d');
-  $('.blocklyTreeRow').last().css('margin-top', '25px');
-  $('.blocklyTreeRow').last().css('padding-top', '5px');
-  $('.blocklyTreeRow').last().css('padding-bottom', '5px');
-  $('.blocklyTreeRow').last().css('height', ($('.blocklyTreeRow').find('.blocklyTreeLabel').last().height() + 15) + 'px');
-  if (SAVED_BLOCKS.length === 1) {
-    $('.blocklyTreeRow').last().hide();
-    $('.blocklyTreeRow').last().transition('fly up');
-  }
-
-
+  drawSavedBlocks(false, 750);
 };
 
 $(document).keyup(function(e) {

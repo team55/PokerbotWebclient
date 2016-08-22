@@ -1,9 +1,4 @@
-Todo queue:
-  - Create PDF for classroom.
-  - Extra chapter for classroom (on stats).
-
 Extra's:
-  - Add table name to main screen.
   - Names next to lines...
   - Workspace dropdown scrolls.
   - Center blocks in tutorial.
@@ -12,7 +7,8 @@ Extra's:
   - Feedback on PFR & VPIP?
   - Fix bottom graph on fullscreen.
   - Explain call if raise...
-  - HTML local Storage for session?
+  - Create PDF for classroom.
+  - Extra chapter for classroom (on stats).
 
 Server-side Todo's:
   - Catch 'invalid prolog' on server.
