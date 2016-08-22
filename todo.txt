@@ -1,4 +1,5 @@
 Extra's:
+  - Add rule line on chart
   - Create PDF for classroom.
     - Explain call if raise...
     - Example rule page?
@@ -11,3 +12,17 @@ Server-side Todo's:
 Can't Fix:
   - Center blocks in workspace.
   - Workspace dropdown scrolls.
+
+Notes:
+
+  - Module 1: 30 mins - 45 mins, evt extra info voor leerlingen die snel klaar zijn?
+  - 4vs4: Nadruk op samenzitten en regels van andere zien om er in te komen?
+          Samen tactieken bespreken? Dan is het wel evt 30mins. Evt. een tactics pagina met stats uitgelegd?
+          We kunnen max seats locken op 4 spelers? Tot een 'notify'. Ik zou mss wel 3 doen?
+          Uitleg over 'meer spelers = minder handen'.
+  - 9vs9: Fine, zeker 30 mins.
+  - Tafel locken zou ik niet doen, als het uitloopt valt die op inactief of gaat die weg...
+  - Wel collectie maken van videos.
+
+  - Materiaal mss overbodig? Online vs Live is wennen :)
+  - Uitleg van regels ook op papier en misschien een stap voor stap guide van 'doe nu tutorial' enzo.
