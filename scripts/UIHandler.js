@@ -328,6 +328,8 @@ var UIHANDLER = {
             .addClass('sixteen wide column');
         $('#bargraph')
             .hide();
+        $('#resize-btn')
+            .addClass('fullscreen-margin');
         $('#rule-send-btn')
             .addClass('fullscreen-margin');
         $('#step-5-send-btn')
@@ -346,6 +348,8 @@ var UIHANDLER = {
             .addClass('eleven wide column');
         $('#bargraph')
             .show();
+        $('#resize-btn')
+            .removeClass('fullscreen-margin');
         $('#step-5-send-btn')
             .removeClass('fullscreen-margin');
         try {
@@ -399,7 +403,7 @@ var UIHANDLER = {
                 .hide();
 
                 $('#detailedviewbtn')
-                    .html('Toon details');
+                    .html('Details');
     },
 
     showTutorialModal: function () {

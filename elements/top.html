@@ -2,6 +2,9 @@
 <canvas id="topGraphCanvas" width="750" height="175"></canvas>
 <div id="topGraphLegend"><span class="info"></span></div>
 <span id="record"><br /></span>
+<div id="callwarning" class="ui raised segment">
+  <p> We zien dat je heel wat callt, is dit wel verstandig? </p>
+</div>
 <div id="gpswarning" class="ui raised segment hideme">
   <p> Het gemiddelde aantal handen per seconde is enorm gedaald sinds het
       toevoegen van de laatste regels. Om de snelheid optimaal te houden is het
@@ -82,6 +85,15 @@
         $('#gpswarning').addClass('hideme');
     }
   };
+
+  function notifyCalls() {
+    console.log('called');
+    $('#callwarning').show();
+  }
+
+  function notifyStopCalls() {
+    $('#callwarning').hide();
+  }
 
   /**
    *  This function will use the SERVER instance to fetch the information

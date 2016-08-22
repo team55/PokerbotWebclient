@@ -75,6 +75,12 @@
     var information = [], i = 0;
     for(index in data) {
       var value = Math.round((data[index]/total)*100);
+      if (index == 'nbCalls') {
+        try {
+          if (value > 50) { console.log('ja'); notifyCalls(); }
+          else { notifyStopCalls(); }
+        } catch(e){}
+      }
       var label = index + ' - ' + value + '%';
       var element = {
         value: value,

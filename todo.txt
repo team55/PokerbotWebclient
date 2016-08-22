@@ -1,15 +1,13 @@
 Extra's:
-  - Workspace dropdown scrolls.
-  - Example rule page?
-  - Feedback on PFR & VPIP?
-  - Fix bottom graph on fullscreen.
-  - Explain call if raise...
   - Create PDF for classroom.
-  - Extra chapter for classroom (on stats).
+    - Explain call if raise...
+    - Example rule page?
+  - Extra chapter for classroom (on stats?).
 
 Server-side Todo's:
-  - Fix rolling average side bar.
-  - Catch 'invalid prolog' on server.
   - Rolling average in bar charts should be faster.
   - A lot of input checks should still be done on the server.
-  - Find some bottlenecks on server?
+
+Can't Fix:
+  - Center blocks in workspace.
+  - Workspace dropdown scrolls.

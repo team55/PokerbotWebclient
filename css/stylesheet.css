@@ -475,3 +475,11 @@ h3 {
 #tableinfo {
   display:none;
 }
+
+#rule-send-btn, #step-5-send-btn {
+  margin-top: 25px;
+}
+
+#callwarning {
+  display: none;
+}
