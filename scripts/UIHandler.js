@@ -279,12 +279,12 @@ var UIHANDLER = {
             .addClass('loading');
     },
 
-    showRuleSentErrorMessage() {
+    showRuleSentErrorMessage: function() {
         $('#send-status')
             .show();
     },
 
-    hideRuleSentErrorMessage() {
+    hideRuleSentErrorMessage: function() {
         $('#send-status')
             .hide();
     },

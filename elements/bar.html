@@ -71,6 +71,7 @@
    *  @param  total The total value (sum of all values).
    */
   var createMovesChart = function(data, total) {
+    console.log(data);
     $('#movesUsernameView').html(SESSION.getAbbreviatedUsername());
     var information = [], i = 0;
     for(index in data) {
