@@ -1,0 +1,127 @@
+% PokerBot info for Innovation Labs.
+
+\documentclass{article}
+
+\usepackage[dutch]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{poker}
+\setkeys{poker}{inline=symbol}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\date{}
+\title{PokerBot}
+\author{Innovation labs}
+\maketitle
+
+\section*{Inleiding}
+
+\paragraph{} Todo In deze les zullen je een eigen pokerbot leren programmeren enzo........ 
+
+\section{Tutorial}
+
+	\paragraph{} We beginnen deze les met een stapsgewijze begeleiding om vertrouwd te raken met het programma dat we zullen gebruiken. Je kan het programma vinden op de locatie onderaan deze paragraaf. Start de tutorial en probeer de vijf hoofdstukken op te lossen.
+    
+    \vspace{4mm}
+    \url{http://bear.cs.kuleuven.be/pokerdemo/play}
+    
+    \paragraph{} Na het afwerken van de tutorial kun je terug naar de hoofdscherm gaan door op \emph{verlaat tutorial} te klikken, onderaan de de workspace. Zoek nu een partner om samen te starten aan deel twee.
+
+\section{Samenwerken}
+
+	\paragraph{} Voor het tweede zul je groepjes van van vier personen moeten vormen. We zullen wat extra ervaring opdoen door 2vs2 te spelen. Je moet dus per twee aan een computer gaan zitten.
+    
+    \paragraph{} Beide groepjes van twee personen moeten nu aan een tafel gaan zitten. Een groepje maakt een tafel aan voor twee personen en gaat zitten, de andere groep schuift erna mee aan tafel. Jullie zijn nu klaar voor deze ronde!\footnote{Het hele proces is nu hetzelfde als het speleven tegen Rhobot of Sigmabot.}
+    
+    \subsection{Wat is Artifici\"ele Intelligentie?}
+    
+    Artifici\"ele Intelligentie wordt gebruikt om oplossingen te zoeken voor problemen, hoe moeilijk ze ook zijn. Het gaat dus om het verwerken van input tot ouput. Een simpel voorbeeld hiervan is een rekenmachine die "5+4" als input neemt en "9" als output.\\
+    
+    Uiteraard is dit een heel breed vakgebied dat beschikt over verschillende technieken. De techniek waar wij ons op gaan baseren is \emph{contraint based programming} genoemd. Dit wil simpelweg zeggen dat we ons programma een bepaalde situatie voorschotelen \emph{(input)} en we een bepaalde actie \emph{(output)} terugkrijgen die gebaseerd is op het al dan niet voldoen aan bepaalde regels.\\
+    
+    We maken bijvoorbeeld de volgende regel: \emph{Indien ik twee azen heb, raise}. Na het activeren van deze regel zullen er dus een hele reeks handen gespeeld worden. Elke hand is een situatie die aan het programma voorgesteld wordt zodat deze kan na gaan of aan de gegeven constraint voldaan wordt. Op basis van deze beslissing kan de juiste actie gekozen worden.    
+    
+   	\subsection{Waarom Poker?}
+    
+    Poker, voornamelijk de no-limit en pot-limit varianten, zijn tot op dit moment zeer moeilijk \emph{(tot niet)} op te lossen. We kunnen benaderingen maken tot wat bijna perfect zou zijn, maar een programma da perfect een no-limit variant speelt is nog niet gekend. Poker is daarom een zeer interessant spel waar nog heel wat onderzoek naar gedaan moet worden.
+    
+    \subsection{Back to work!}
+    
+    Voordat we je enkele strategi\"en bijleren, zullen we eerst eens tegen elkaar spelen. Bespreek binnen jouw groep eens welke regels jullie hebben gebruikt om de pokerbot te verslaan en probeer ze eens tegen elkaar uit. Welke regel is hier aan het winnen? Zie je ook waarom?
+    
+    \subsection{Invloed vanuit de wiskunde}
+    
+    \subsubsection{Afleiden}
+    
+        Om een goede regel op te stellen is het belangrijk om te weten hoe vaak deze wordt gevuurd. Later zullen we hier ook de theoretische achtergrond van bekijken. Wanneer je bijvoorbeeld enkel raised indien je twee azen hebt is het belangrijk dat je weet hoe vaak deze voorkomen. Probeer dit eens door zo een regel te maken en het resultaat af te leiden van de grafieken rechts. Het is meestal makkelijker om te kijken naar welke regel wordt gevuurd, aangezien een actie (zoals call) op meerdere regels kan duiden.\\
+
+        \begin{tabular}{ l r }
+            Kans op een paar: & \dots\dots\% \\
+            Kans op een paar Azen:& \dots\dots\% \\
+            Kans op \As\Ah:& \dots\dots\% \\
+        \end{tabular}
+      
+    \subsubsection{Berekenen}
+
+        Wanneer je met een goede strategie aan tafel wil gaan zitten, is het belangrijk om op voorhand te weten hoe vaak een regel gaat vuren. Anders kan het zijn dat het je veel geld zal kosten! Hier zijn alvast enkele regels om je op weg te helpen.
+
+        Stel dat we willen weten wat de kans is dat we \As\Ah gedeeld krijgen. Ten eerste weten we dat er 52 kaarten in het spel zijn. De kans dat onze eerste kaart een van de twee azen is, is dus
+        $$P_1 = \frac{2}{52}$$
+        Indien dit waar is, zijn er dus nog 51 kaarten over waarvan er nog maar \'e\'en enkele kaart is die we kunnen gebruiken. Deze kans is dan
+        $$P_2 = \frac{1}{51}$$
+        Aangezien aan beide situaties moet voldaan zijn kunnen we deze kansen vermenigvuldigen om de totale kans te bekomen. Deze bedraagt dan
+        $$P = P_1 P_2 = \frac{2}{52} \frac{1}{51} = \frac{1}{1326} = 0.075\%$$
+
+        Voor we beginnen zullen we nog een voorbeeld geven. Stel dat we de kans op eender welk paar azen willen weten? Dan gebruiken we dezelfde redenering maar dan voor de vier azen
+        $$P = P_1 P_2 = \frac{4}{52} \frac{3}{51} = \frac{1}{221} = 0.452\%$$
+        Een handig trucje dat je hier kan toepassen is het volgende. We weten al de kans op een specifiek paar azen, namelijk $1/1326$. Aangezien we weten dat er zes mogelijke combinaties mogelijk zijn, kunnen we deze gewoon vermenigvuldigen met zes!
+        Mogelijke combinaties: \As\Ah, \As\Ac, \As\Ad, \Ah\Ac, \Ah\Ad, \Ac\Ad.
+        $$P = 6P_{\As\Ah} = \frac{6}{1326} = \frac{1}{221} = 0.452\%$$
+
+        Probeer met wat je nu weet eens de kans te berekenen op eender welke paar. Als controle kun je vergelijken met wat je hebt afgeleid van de grafieken in de voorgaande stap. Let op! De kansen uit de grafieken zijn afgerond. Er zijn ook nog wat extra voorbeelden om te oefenen. De laatste is een moeilijkere en is vrijblijvend.\\
+        
+        \begin{tabular}{ l r }
+            Kans op een paar: & \dots\dots\% \\
+            Kans op \Ks:& \dots\dots\% \\
+            Kans op twee opeenvolgende kaarten (bv. \sevd\sixc, \As\Kh): &\dots\dots\% \\
+        \end{tabular}
+
+    \subsubsection{Handen spelen}
+
+        Het is belangrijk om niet te veel handen te spelen, maar enkel indien je relatief goede kaarten hebt. Zo kun je ervoor zorgen dat je niet zomaar gokt op goede kaarten, maar van bij de start al een voordeel hebt tegenover je tegenstander.\\
+
+        Tijdens het spelen is het dus belangrijk om te letten op het aantal handen dat je speelt. Hoe bereken je dit nu? Je speelt een hand indien je checkt, callt of raised, maar niet als je fold. Deze ratio die aantoont hoeveel procent van de handen je speelt heet jouw \emph{VPIP}\footnote{Afkomstig van Voluntarily Put \$ In Pot}. Deze kan je berekenen met wat je kan afleiden uit de grafieken op de website
+        $$VPIP = \frac{checks + calls + raises}{checks + calls + raises + folds}$$
+        Een belangrijke tip is dat wanneer jouw \emph{VPIP} \emph{meer} dan $30\%$ bedraagt je best minder handen begint te spelen. Je speelt er zoveel handen dat er heel wat situaties tussenzitten wanneer de andere spelers een beter hand zullen hebben!\\
+
+        Probeer met wat je nu hebt bijgeleerd in de vorige drie stappen, nieuwe regels te maken en elkaar te verslaan. Werk hiervoor in groepjes van twee. Indien jullie klaar zijn of extra willen bijleren kun je overgaan naar de volgende secties. Hierin leren we hoe het komt dat een bepaalde regel winstgevend is of niet. Dit is zeer belangrijk om snel goede regels te maken.
+
+    \subsubsection{Extra: Expected Value}
+
+        Om te weten of een regel winstgevend is, is het belangrijk om de expected value (of verwachtingswaarde) te berekenen. Dit komt neer op het berekenen van de gemiddelde winst per hand. We houden het bij een simpel voorbeeld (ga hier zelf zo ver in als je wil).\\
+
+        Stel dat we aan een tafel met twee spelers zitten. Elke hand moeten we ofwel een small blind, ofwel een big blind betalen. We weten ook dat de tegenstander altijd callt. Is het voordelig om altijd te folden, maar enkel all-in te gaan indien we een paar Azen hebben?\\
+
+        We weten al dat de kans op een paar azen gelijk is aan $1/221$. Dit wil zeggen dat we per $221$ handen, $220$ keer zullen folden en $1$ keer all-in gaan. Van deze $220$ folds, zijn we $110$ keer small blind en $110$ keer big blind, wat onze kost omhoog brengt tot
+        $$C = 110SB + 110BB = 110+220 = 330$$
+        We hebben hier echter nog niet onze winst in rekening gebracht wanneer we all-in gaan met Azen en de tegenstander callt. We gaan er hier vanuit dat we altijd winnen met Azen om het voorbeeld makkelijker te maken\footnote{Dit is niet echt zo! Indien de tegenstander callt met eender welke hand, winnen de Azen echter maar $85.20\%$ van de tijd.}. In dit geval winnen we dus $200$. Dit brengt onze totale winst dan op
+        $$W_t = W - C = 200-330 = -130$$
+        Deze regel verliest dus in theorie! De absolute winst per hand is dan
+        $$W_h = W_t / 221 = -0.59$$
+
+    \subsubsection{Extra: Invloed van de tafelgrootte}
+
+        Wat is nu de invloed van de tafelgrootte in bovenstaand voorbeeld? Stel dat er niet $1$, maar $9$ andere spelers mee aan tafel zitten. In dat geval is de kost van $220$ keer folden veel lager! We zitten echter maar $1$ op de $10$ keer in de small blind en $1$ op de $10$ keer in de big blind positie. De kost is dan
+        $$C = 22SB + 22BB = 22+44 = 66$$
+        $$W_h = \frac{200 - 66}{221} = 0.61$$
+        Nu is onze regel dus wel winstgevend! Hou dus goed rekening met hoe vaak je de blinds moet betalen.
+    
+    
+\section{Toernooi}
+
+\section{Termen}
+
+\end{document}
