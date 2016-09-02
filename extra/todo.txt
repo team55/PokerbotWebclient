@@ -2,7 +2,6 @@
 - Bundle:
   - Explain call if max raise, check if fold, etc.
   - Edit intro to AI and Poker.
-  - Add PFR as stat.
   - Add resources...
   - Bundle with solutions?
 
