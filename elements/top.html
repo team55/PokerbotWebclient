@@ -16,6 +16,7 @@
   var MINIMAL_GAMES_PER_SECONDS = 10;
   var dataSets = null;
   var smoothie = null;
+  var submits = {};
 
   var record = null;
 
@@ -60,6 +61,12 @@
         record = { name: player.name, value: value };
         $('#record').html('Highest score sinds aanwezigheid: ' + record.name + ' met een winst van ' + record.value + '.<br />');
       }
+
+      if (player.name in submits && player.lastSubmit < submits[player.name]) {
+        submits[player.name] = player.lastSubmit;
+        smoothie.addEvent(new Date().getTime() - player.lastSubmit, player.name);
+      } else { submits[player.name] = player.lastSubmit; }
+
       dataSets[i].append(new Date().getTime(), value);
       var description = '<span class="info" style="color:'+GRAPH_COLORS[i]+';">'+players[i]['name']+'</span>';
       $('#topGraphLegend').html($('#topGraphLegend').html() + description);
@@ -104,6 +111,7 @@
     SERVER.getTableData(SESSION.getRawTablename(), {
       success: function(result) {
         try {
+          console.log(result);
           var data = $.parseJSON(result);
           checkGamesPerSecond(data);
           UIHANDLER.resizeWorkspace();

@@ -269,6 +269,7 @@
   function SmoothieChart(options) {
     this.options = Util.extend({}, SmoothieChart.defaultChartOptions, options);
     this.seriesSet = [];
+    this.eventsSet = [];  // XXX: Added eventsSet.
     this.currentValueRange = 1;
     this.currentVisMinValue = 0;
     this.lastRenderTimeMillis = 0;
@@ -293,6 +294,15 @@
       fillStyle: '#000000',
       strokeStyle: '#777777',
       lineWidth: 1,
+      sharpLines: false,
+      millisPerLine: 1000,
+      verticalSections: 2,
+      borderVisible: true
+    },
+    events: {
+      fillStyle: '#000000',
+      strokeStyle: '#c0392b',
+      lineWidth: 3,
       sharpLines: false,
       millisPerLine: 1000,
       verticalSections: 2,
@@ -367,6 +377,13 @@
         timeSeries.options.resetBoundsInterval
       );
     }
+  };
+
+  SmoothieChart.prototype.addEvent = function(time, event) { // XXX: Add event stuff
+    this.eventsSet.push({
+      time: time,
+      name: event
+    });
   };
 
   /**
@@ -611,8 +628,10 @@
 
     // Grid lines...
     context.save();
-    context.lineWidth = chartOptions.grid.lineWidth;
-    context.strokeStyle = chartOptions.grid.strokeStyle;
+
+    context.lineWidth = chartOptions.grid.lineWidth;      // XXX: Set linewidth
+    context.strokeStyle = chartOptions.grid.strokeStyle;  // XXX: Set strokeWidth
+
     // Vertical (time) dividers.
     if (chartOptions.grid.millisPerLine > 0) {
       context.beginPath();
@@ -642,12 +661,41 @@
       context.stroke();
       context.closePath();
     }
+
+    context.lineWidth = chartOptions.events.lineWidth;      // XXX: Set linewidth
+    context.strokeStyle = chartOptions.events.strokeStyle;  // XXX: Set strokeWidth
+
+    context.beginPath();
+    for(var i = this.eventsSet.length - 1; i >= 0; i--) {
+      var event = this.eventsSet[i];
+      if (event.time >= oldestValidTime) {
+        var gx = timeToXPixel(event.time);
+        context.moveTo(gx, 0);
+        context.lineTo(gx, dimensions.height);
+          context.save();
+          context.translate( gx + 5, 0 );
+          context.rotate( Math.PI / 2 );
+          context.font = "16px serif";
+          context.fillStyle = "#c0392b";
+          context.fillText(event.name, 0, 0 );
+          context.restore();
+      } else {
+        i = -1;
+      }
+    }
+    context.stroke();
+    context.closePath();
+
+    context.lineWidth = chartOptions.grid.lineWidth;      // XXX: Set linewidth
+    context.strokeStyle = chartOptions.grid.strokeStyle;  // XXX: Set strokeWidth
+
     // Bounding rectangle.
     if (chartOptions.grid.borderVisible) {
       context.beginPath();
       context.strokeRect(0, 0, dimensions.width, dimensions.height);
       context.closePath();
     }
+
     context.restore();
 
     // Draw any horizontal lines...

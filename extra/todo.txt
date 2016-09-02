@@ -1,11 +1,9 @@
 
 - Bundle:
   - Edit intro to AI and Poker.
-  - Add resources...
 
 - Website
   - Show difference between check and call.
-  - Add rule line on top chart...
   - Example rule page.
   - Extra info page with videos.
   - Round percentages to .1 percent.
@@ -13,4 +11,3 @@
 
 - Server
   - A lot of input checks should still be done on the server.
-
