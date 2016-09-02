@@ -1,4 +1,5 @@
 <h3>Zetten van <span id="movesUsernameView"><span></h3>
+<h5><i>VPIP: <span id="vpip-value">0</span>%</i></h5>
 <canvas id="MovesChart" width="90" height="90"></canvas>
 <h3>Gevuurde regels van <span id="rulesUsernameView"></span></h3>
 <canvas id="RulesChart" width="90" height="90"></canvas>
@@ -76,12 +77,6 @@
     var information = [], i = 0;
     for(index in data) {
       var value = Math.round((data[index]/total)*100);
-      if (index == 'nbCalls') {
-        try {
-          if (value > 50) { console.log('ja'); notifyCalls(); }
-          else { notifyStopCalls(); }
-        } catch(e){}
-      }
       var label = index + ' - ' + value + '%';
       var element = {
         value: value,
@@ -120,8 +115,20 @@
         total = result['nbFolds'] + result['nbCalls'] + result['nbRaises'];
       }
     }
+    updateVPIPValue(result);
     createMovesChart(result, total);
   };
+
+  function updateVPIPValue(result) {
+    var vpip = STATSCALCULATOR.calculateVPIP({
+      calls: result['nbCalls'],
+      folds: result['nbFolds'],
+      raises: result['nbRaises'],
+      checks: 0,
+    });
+    var value = Math.round(vpip * 100);
+    $('#vpip-value').html(value);
+  }
 
   /**
    *  Creates the rulesChart with the data that is prepared by the

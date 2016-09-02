@@ -1,3 +1,7 @@
+CHECK EN CALLS?
+
+
+
 Extra's:
   - Add rule line on chart
   - Create PDF for classroom.
@@ -43,5 +47,5 @@ Bundel:
 Teacher bundel:
   - Gezamelijk de video en vragen
   - Gezamelijk wachten op deel 3
-
+d .
 - Fix percentages to rount to .1%.

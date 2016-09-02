@@ -151,7 +151,7 @@ html, body {
 }
 
 #blocklyDiv {
-  height: 475px;
+  height: 525px;
   margin-left: 20px;
 }
 
@@ -259,7 +259,7 @@ body, .cutbottom {
 #BarLoader {
   margin: 14px 28px 45px 16px !important;
   width: 85%;
-  height: 475px;
+  height: 525px;
 }
 
 #TopLoader, #BarLoader {
@@ -270,21 +270,21 @@ body, .cutbottom {
   background-color: #ecf0f1;
   border: solid 3px #bdc3c7;
   border-radius: 2px;
-  height: 475px;
+  height: 525px;
 }
 
 .tutorialsuccess {
   background-color: #2ecc71;
   border: solid 3px #27ae60;
   border-radius: 2px;
-  height: 475px;
+  height: 525px;
 }
 
 .tutorialfailed {
   background-color: #e74c3c;
   border: solid 3px #c0392b;
   border-radius: 2px;
-  height: 475px;
+  height: 525px;
 }
 
 #stoptutorial {
