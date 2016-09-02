@@ -4,9 +4,11 @@
 
 ![preview](https://raw.githubusercontent.com/Dtai/PokerbotWebclient/master/img/preview.png)
 
-# Structure
+## What
 
-This is a small introduction on how the project is structured. Detailed explanations can be found in the code documentation. This is just to get to know the project.
+Web interface for the [PokerServer](https://github.com/Dtai/Webserver). Uses [Blockly](https://github.com/google/blockly) to provide a simple interface for the user, which renders Prolog to execute on the server. Includes a step by step tutorial, possibility to play against automated bots or free for all.
+
+## Structure
 
 ```
 /blockly
