@@ -66,7 +66,7 @@ This folder can be used to store rules that make the program slower and/or crash
 
 ####`/libs`
 
-Contains the libraries that we use for charts etc. We use this folder to seperate them from our custom scripts. The top graph uses v1.28 of the [Smoothie](http://smoothiecharts.org) library, which can be found in `Smoothie.js`. The pie charts are created with v1.0.2 of the [ChartJS](http://www.chartjs.org) library which can be found in `Charts.js`. Note that this is an older version and updating to a newer one might change some of the syntax.
+Contains the libraries that we use for charts etc. We use this folder to seperate them from our custom scripts. The top graph uses v1.28 of the [Smoothie](http://smoothiecharts.org) library, which can be found in `Smoothie.js`. This file is edited to display the events on the graph. The pie charts are created with v1.0.2 of the [ChartJS](http://www.chartjs.org) library which can be found in `Charts.js`. Note that this is an older version and updating to a newer one might change some of the syntax.
 
 ####`/scripts`
 
