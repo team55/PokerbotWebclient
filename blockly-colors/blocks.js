@@ -6,8 +6,7 @@
  *
  *  Blockly-colors makes it possible to link custom CSS files to the basic
  *  BLOCKLY workspace. The original styles will be overwritten! You can better
- *  start from the template in this folder and only customize in the
- *  CUSTOMIZE section (this project uses custom.css).
+ *  start from the template in this folder (blocks.or.css). We use custom.css.
  *
  *  You can call this function like this:
  *

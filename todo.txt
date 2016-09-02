@@ -1,51 +1,18 @@
-CHECK EN CALLS?
 
+- Bundle:
+  - Explain call if max raise, check if fold, etc.
+  - Edit intro to AI and Poker.
+  - Add PFR as stat.
+  - Add resources...
+  - Bundle with solutions?
 
+- Website
+  - Show difference between check and call.
+  - Add rule line on top chart...
+  - Example rule page.
+  - Extra info page with videos.
+  - Round percentages to .1 percent.
+  - Add as much documentation as possible!
 
-Extra's:
-  - Add rule line on chart
-  - Create PDF for classroom.
-    - Explain call if raise...
-    - Example rule page?
-  - Extra chapter for classroom (on stats?).
-
-Server-side Todo's:
-  - Rolling average in bar charts should be faster.
+- Server
   - A lot of input checks should still be done on the server.
-
-Can't Fix:
-  - Center blocks in workspace.
-  - Workspace dropdown scrolls.
-
-  - table grey if no table
-  - show if submitted
-  - dropown scrolls
-
-Notes:
-
-  - Module 1: 30 mins - 45 mins, evt extra info voor leerlingen die snel klaar zijn?
-  - 2vs2: Nadruk op samenzitten en regels van andere zien om er in te komen?
-          Samen tactieken bespreken? Dan is het wel evt 30mins. Evt. een tactics pagina met stats uitgelegd?
-          We kunnen max seats locken op 4 spelers? Tot een 'notify'. Ik zou mss wel 3 doen?
-          Uitleg over 'meer spelers = minder handen'.
-  - 9vs9: Fine, zeker 30 mins.
-  - Tafel locken zou ik niet doen, als het uitloopt valt die op inactief of gaat die weg...
-  - Wel collectie maken van videos.
-
-  - Materiaal mss overbodig? Online vs Live is wennen
-  - Uitleg van regels ook op papier en misschien een stap voor stap guide van 'doe nu tutorial' enzo.
-
-Bundel:
-  - waarom poker
-  - opdracht: speel met de regel van de bot
-  - statistieken leren aflezen
-  - statistieken leren berekenen
-  - VPIP
-  - Extra opdrachten? EV, blocker, set, etc.
-  - Extra pagina voor als je klaar bent (met videos)
-
-Teacher bundel:
-  - Gezamelijk de video en vragen
-  - Gezamelijk wachten op deel 3
-d .
-- Fix percentages to rount to .1%.

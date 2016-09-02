@@ -1,4 +1,0 @@
-Timeline when a new chapter i should be loaded.
-
--> ChapterSwitch();
--> InjectChapter(i);
