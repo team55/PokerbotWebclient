@@ -1,17 +1,10 @@
-Prototype of a web-based pokerdemo client.
+<h1 align="center">
+  Pokerbot
+</h1>
 
-Uses blockly for pure client-side blocks.
+![preview](https://raw.githubusercontent.com/Dtai/PokerbotWebclient/master/img/preview.png)
 
-
-TODO:
-- connect to a table (using http request: https://github.com/Dtai/Webserver/blob/master/server/joinTable.php)
-- send rules to a table (same as above)
-- test prolog output of card_ blocks
-- value to statement for cards to make it less 'wide'? (see stash)
-- add all missing blocks that are in other client
-- correct prolog output; no nested math, but raise(5+3) -> raise(X1), X1 is 5+3
-
-# Project Overview
+# Structure
 
 This is a small introduction on how the project is structured. Detailed explanations can be found in the code documentation. This is just to get to know the project.
 
