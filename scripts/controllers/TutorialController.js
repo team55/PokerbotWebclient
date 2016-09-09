@@ -46,10 +46,10 @@ var TutorialController = {
     name: 'Hoofdstuk 3: Zinvolle regels',
     path: 'firstrules'
   }, {
-    name: 'Hoofdstuk 4: Rhobot',
+    name: 'Hoofdstuk 4: Rho-bot',
     path: 'bot'
   }, {
-    name: 'Hoofdstuk 5: Sigmabot',
+    name: 'Hoofdstuk 5: Sigma-bot',
     path: 'hard'
   }],
 
