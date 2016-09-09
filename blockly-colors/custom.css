@@ -63,7 +63,8 @@
   stroke-width: 3px;
 }
 
-.blocklyDragging>.blocklyPath,.blocklyDragging>.blocklyPathLight {
+.blocklyDragging>.blocklyPath,
+.blocklyDragging>.blocklyPathLight {
   fill-opacity: .8;
   stroke-opacity: .8;
 }
@@ -84,7 +85,8 @@
   pointer-events: none;
 }
 
-.blocklyNonEditableText>rect,.blocklyEditableText>rect {
+.blocklyNonEditableText>rect,
+.blocklyEditableText>rect {
   fill: #fff;
   fill-opacity: .6;
 }
@@ -154,10 +156,9 @@
 }
 
 .blocklyScrollbarKnob {
-  fill: #bdc3c7; /* SCROLL BAR COLORS */
+  fill: #bdc3c7;
   opacity: .25;
 }
-
 
 .blocklyZoom>image {
   opacity: .4;
@@ -167,7 +168,8 @@
   opacity: .8;
 }
 
-.blocklyFlyout .blocklyScrollbarBackground: hover+.blocklyScrollbarKnob,.blocklyFlyout .blocklyScrollbarKnob: hover {
+.blocklyFlyout .blocklyScrollbarBackground: hover+.blocklyScrollbarKnob,
+.blocklyFlyout .blocklyScrollbarKnob: hover {
   fill: #aaa;
 }
 
@@ -206,12 +208,13 @@
   padding: 0!important;
 }
 
-.blocklyWidgetDiv .goog-option-selected .goog-menuitem-checkbox,.blocklyWidgetDiv .goog-option-selected .goog-menuitem-icon {
+.blocklyWidgetDiv .goog-option-selected .goog-menuitem-checkbox,
+.blocklyWidgetDiv .goog-option-selected .goog-menuitem-icon {
   background: url(<<<PATH>>>/sprites.png) no-repeat -48px -16px!important;
 }
 
 .blocklyToolboxDiv {
-  background-color: #95a5a6; /* Toolbox background color */
+  background-color: #95a5a6;
   overflow-x: visible;
   overflow-y: auto;
   position: absolute;
@@ -285,7 +288,8 @@
   background-position: -16px -17px;
 }
 
-.blocklyTreeIconNone,.blocklyTreeSelected>.blocklyTreeIconNone {
+.blocklyTreeIconNone,
+.blocklyTreeSelected>.blocklyTreeIconNone {
   background-position: -48px -1px;
 }
 
@@ -373,7 +377,8 @@
   padding-right: 28px;
 }
 
-.blocklyWidgetDiv .goog-menu-nocheckbox .goog-menuitem,.blocklyWidgetDiv .goog-menu-noicon .goog-menuitem {
+.blocklyWidgetDiv .goog-menu-nocheckbox .goog-menuitem,
+.blocklyWidgetDiv .goog-menu-noicon .goog-menuitem {
   padding-left: 12px;
 }
 
@@ -386,7 +391,8 @@
   font: normal 13px Arial, sans-serif;
 }
 
-.blocklyWidgetDiv .goog-menuitem-disabled .goog-menuitem-accel,.blocklyWidgetDiv .goog-menuitem-disabled .goog-menuitem-content {
+.blocklyWidgetDiv .goog-menuitem-disabled .goog-menuitem-accel,
+.blocklyWidgetDiv .goog-menuitem-disabled .goog-menuitem-content {
   color: #ccc!important;
 }
 
@@ -396,7 +402,8 @@
   filter: alpha(opacity=30);
 }
 
-.blocklyWidgetDiv .goog-menuitem-highlight,.blocklyWidgetDiv .goog-menuitem-hover {
+.blocklyWidgetDiv .goog-menuitem-highlight,
+.blocklyWidgetDiv .goog-menuitem-hover {
   background-color: #d6e9f8;
   padding-bottom: 3px;
   padding-top: 3px;
@@ -405,7 +412,8 @@
   border-width: 1px 0;
 }
 
-.blocklyWidgetDiv .goog-menuitem-checkbox,.blocklyWidgetDiv .goog-menuitem-icon {
+.blocklyWidgetDiv .goog-menuitem-checkbox,
+.blocklyWidgetDiv .goog-menuitem-icon {
   background-repeat: no-repeat;
   height: 16px;
   left: 6px;
@@ -415,7 +423,8 @@
   width: 16px;
 }
 
-.blocklyWidgetDiv .goog-menuitem-rtl .goog-menuitem-checkbox,.blocklyWidgetDiv .goog-menuitem-rtl .goog-menuitem-icon {
+.blocklyWidgetDiv .goog-menuitem-rtl .goog-menuitem-checkbox,
+.blocklyWidgetDiv .goog-menuitem-rtl .goog-menuitem-icon {
   left: auto;
   right: 6px;
 }
@@ -452,19 +461,29 @@
   padding: 0;
 }
 
-.blocklySelected>.blocklyPathLight,.blocklyDragging>.blocklyPathDark,.blocklyDisabled>.blocklyPathLight,.blocklyDisabled>.blocklyPathDark,.blocklyHidden {
+.blocklySelected>.blocklyPathLight,
+.blocklyDragging>.blocklyPathDark,
+.blocklyDisabled>.blocklyPathLight,
+.blocklyDisabled>.blocklyPathDark,
+.blocklyHidden {
   display: none;
 }
 
-.blocklyNonEditableText>text,.blocklyEditableText>text,.blocklyBubbleText {
+.blocklyNonEditableText>text,
+.blocklyEditableText>text,
+.blocklyBubbleText {
   fill: #000;
 }
 
-.blocklyIconGroup: not(: hover),.blocklyIconGroupReadonly,.blocklyZoom>image: hover {
+.blocklyIconGroup: not(: hover),
+.blocklyIconGroupReadonly,
+.blocklyZoom>image: hover {
   opacity: .6;
 }
 
-.blocklyScrollbarBackground: hover+.blocklyScrollbarKnob,.blocklyScrollbarKnob: hover,.blocklyFlyout .blocklyScrollbarKnob {
+.blocklyScrollbarBackground: hover+.blocklyScrollbarKnob,
+.blocklyScrollbarKnob: hover,
+.blocklyFlyout .blocklyScrollbarKnob {
   fill: #bbb;
 }
 

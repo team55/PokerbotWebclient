@@ -86,7 +86,6 @@
 
     sendRule: function(user, rule, callback) {
       var destination = "http://bear.cs.kuleuven.be/pokerdemo/server/joinTable.php?tableName=";
-      console.log(rule);
       destination += SERVER._desanitize(this.tableID) + "&playerName=" + user + "&description=" + encodeURIComponent(rule);
       $.ajax({url: destination, success: function(result) {
         if (callback) callback();
@@ -108,7 +107,6 @@
       $.ajax({url: DATASOURCE, method: 'GET', success: function(result) {
         try {
           var data = $.parseJSON(result);
-          console.log(data);
           var players = data['result']['player'];
           var userScore, computerScore;
           for(var i = 0; i < players.length; i++) {

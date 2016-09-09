@@ -100,7 +100,7 @@ var SERVER = {
   },
 
   _desanitize: function(str) {
-    if (str === undefined) return '';
+    if (str === undefined || str === null) return '';
     return str.replace(/\W|_/g, '');
   }
 

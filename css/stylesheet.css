@@ -1,5 +1,5 @@
-
-html, body {
+html,
+body {
   padding: 0;
   margin: 0;
   width: 100%;
@@ -7,7 +7,8 @@ html, body {
   min-width: 1000px !important;
 }
 
-#errdiv, #logdiv {
+#errdiv,
+#logdiv {
   width: 100% !important;
   border-radius: none !important;
   border: none !important;
@@ -21,7 +22,8 @@ html, body {
   z-index: 100;
 }
 
-#errdiv > button, #logdiv > button {
+#errdiv > button,
+#logdiv > button {
   color: black;
   margin-top: 15px;
 }
@@ -77,7 +79,8 @@ html, body {
   margin: 0 auto !important;
 }
 
-#toggledimmer, #starttutorial {
+#toggledimmer,
+#starttutorial {
   margin: 0 auto !important;
 }
 
@@ -104,7 +107,9 @@ html, body {
   background-color: yellow;
 }
 
-#topgraph, #bargraph, #bottomgraph {
+#topgraph,
+#bargraph,
+#bottomgraph {
   font-style: italic;
   text-align: center;
 }
@@ -129,7 +134,8 @@ html, body {
   margin-bottom: 100px !important;
 }
 
-.connect > span > span > input, .connect > span > span > span {
+.connect > span > span > input,
+.connect > span > span > span {
   margin-top: 15px !important;
 }
 
@@ -175,7 +181,8 @@ h1 {
   margin-top: 45px !important;
 }
 
-body, .cutbottom {
+body,
+.cutbottom {
   margin-bottom: 0 !important;
   padding-bottom: 0 !important;
 }
@@ -218,7 +225,8 @@ body, .cutbottom {
   color: inherit !important;
 }
 
-#bargraph > span > p, #bargraph > p {
+#bargraph > span > p,
+#bargraph > p {
   text-align: justify;
   margin-top: 25px;
   margin-bottom: 35px;
@@ -226,7 +234,8 @@ body, .cutbottom {
   margin-right: 20px;
 }
 
-#bargraph > .button, #bargraph > span > div > .button {
+#bargraph > .button,
+#bargraph > span > div > .button {
   margin-bottom: 45px;
 }
 
@@ -234,13 +243,33 @@ body, .cutbottom {
   font-size: 25px;
 }
 
-#step-1a-success, #step-1b-success, #step-1c-success, #step-2-success, #step-3-success, #step-4a-success, #step-4b-success, #step-5-success,
-#step-1a-fail, #step-1b-fail, #step-1c-fail, #step-2-fail, #step-3-fail, #step-4a-fail, #step-4b-fail, #step-5-fail {
+#step-1a-success,
+#step-1b-success,
+#step-1c-success,
+#step-2-success,
+#step-3-success,
+#step-4a-success,
+#step-4b-success,
+#step-5-success,
+#step-1a-fail,
+#step-1b-fail,
+#step-1c-fail,
+#step-2-fail,
+#step-3-fail,
+#step-4a-fail,
+#step-4b-fail,
+#step-5-fail {
   display: none;
 }
 
-#step-1a-fail > p, #step-1b-fail > p, #step-1c-fail > p,
-#step-2-fail > p, #step-3-fail > p, #step-4a-fail > p, #step-4b-fail > p, #step-5-fail > p {
+#step-1a-fail > p,
+#step-1b-fail > p,
+#step-1c-fail > p,
+#step-2-fail > p,
+#step-3-fail > p,
+#step-4a-fail > p,
+#step-4b-fail > p,
+#step-5-fail > p {
   text-align: justify !important;
   margin: 0 auto !important;
   margin-bottom: 25px !important;
@@ -249,9 +278,8 @@ body, .cutbottom {
   margin-right: 20px !important;
 }
 
-
-
-#bargraph, #BarLoader {
+#bargraph,
+#BarLoader {
   margin-top: 0px !important;
   margin-right: 20px !important;
 }
@@ -262,7 +290,8 @@ body, .cutbottom {
   height: 525px;
 }
 
-#TopLoader, #BarLoader {
+#TopLoader,
+#BarLoader {
   display: none;
 }
 
@@ -315,7 +344,8 @@ p.diminfo {
   margin-right: 25px !important;
 }
 
-.arrow.up.icon, .refresh.icon {
+.arrow.up.icon,
+.refresh.icon {
   padding: 0 !important;
   margin: 0 !important;
 }
@@ -365,14 +395,14 @@ p.diminfo {
   display: none;
 }
 
-.on-success > p, .step-description > p {
+.on-success > p,
+.step-description > p {
   margin-bottom: 25px;
 }
 
 #red-disconnect-btn {
   display: none;
 }
-
 
 #topgraph {
   margin-bottom: 0px !important;
@@ -476,7 +506,8 @@ h3 {
   display:none;
 }
 
-#rule-send-btn, #step-5-send-btn {
+#rule-send-btn,
+#step-5-send-btn {
   margin-top: 25px;
 }
 

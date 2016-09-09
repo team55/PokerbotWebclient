@@ -94,7 +94,6 @@
   };
 
   function notifyCalls() {
-    console.log('called');
     $('#callwarning').show();
   }
 
@@ -111,12 +110,11 @@
     SERVER.getTableData(SESSION.getRawTablename(), {
       success: function(result) {
         try {
-          console.log(result);
           var data = $.parseJSON(result);
           checkGamesPerSecond(data);
           UIHANDLER.resizeWorkspace();
           useTopChartData(data);
-        } catch(error) { console.error('top:' + error); }
+        } catch(error) {}
       },
       fail: function(error) {
         if (error != 'Ongeldige tafelnaam.') {
