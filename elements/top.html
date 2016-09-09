@@ -64,7 +64,7 @@
 
       if (player.name in submits && player.lastSubmit < submits[player.name]) {
         submits[player.name] = player.lastSubmit;
-        smoothie.addEvent(new Date().getTime() - player.lastSubmit, player.name);
+        smoothie.addEvent(new Date().getTime() - player.lastSubmit, player.name, GRAPH_COLORS[i]);
       } else { submits[player.name] = player.lastSubmit; }
 
       dataSets[i].append(new Date().getTime(), value);

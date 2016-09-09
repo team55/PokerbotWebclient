@@ -379,10 +379,11 @@
     }
   };
 
-  SmoothieChart.prototype.addEvent = function(time, event) { // XXX: Add event stuff
+  SmoothieChart.prototype.addEvent = function(time, event, color) { // XXX: Add event stuff
     this.eventsSet.push({
       time: time,
-      name: event
+      name: event,
+      color: color
     });
   };
 
@@ -665,26 +666,28 @@
     context.lineWidth = chartOptions.events.lineWidth;      // XXX: Set linewidth
     context.strokeStyle = chartOptions.events.strokeStyle;  // XXX: Set strokeWidth
 
-    context.beginPath();
     for(var i = this.eventsSet.length - 1; i >= 0; i--) {
       var event = this.eventsSet[i];
+      context.beginPath();
+      context.strokeStyle = event.color;
+      context.fillStyle = event.color;
       if (event.time >= oldestValidTime) {
         var gx = timeToXPixel(event.time);
         context.moveTo(gx, 0);
         context.lineTo(gx, dimensions.height);
-          context.save();
-          context.translate( gx + 5, 0 );
-          context.rotate( Math.PI / 2 );
-          context.font = "16px serif";
-          context.fillStyle = "#c0392b";
-          context.fillText(event.name, 0, 0 );
-          context.restore();
+        context.save();
+        context.translate( gx + 5, 0 );
+        context.rotate( Math.PI / 2 );
+        context.font = "12px sans-serif";
+        context.fillStyle = event.color;
+        context.fillText(event.name, 0, 0 );
+        context.restore();
       } else {
         i = -1;
       }
+      context.stroke();
+      context.closePath();
     }
-    context.stroke();
-    context.closePath();
 
     context.lineWidth = chartOptions.grid.lineWidth;      // XXX: Set linewidth
     context.strokeStyle = chartOptions.grid.strokeStyle;  // XXX: Set strokeWidth
