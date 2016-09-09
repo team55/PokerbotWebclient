@@ -5,8 +5,6 @@
 - Website
   - Show difference between check and call.
   - Example rule page.
-  - Extra info page with videos.
-  - Solution rules for teacher.
 
 - Server
   - A lot of input checks should still be done on the server.
